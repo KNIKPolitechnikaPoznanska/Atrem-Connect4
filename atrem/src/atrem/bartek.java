@@ -1,11 +1,10 @@
 package atrem;
 
-public class test {
+public class bartek {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println("porno");
-		System.out.println("testpazdy - conflict");
+		System.out.println("Bartek");
 	}
 
 }
