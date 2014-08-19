@@ -2,22 +2,22 @@ package atrem;
 
 public class PlanszaAlt {
 
-	Dziura[][] planszaGry;
+	Hole[][] planszaGry;
 
 	public PlanszaAlt() {
-		planszaGry = new Dziura[S][W]; // poprawic na zmienne
+		planszaGry = new Hole[S][W]; // poprawic na zmienne
 		for (int i = 0; i < S; i++) {
 			for (int j = 0; j < W; j++) {
-				planszaGry[i][j] = new Dziura();
+				planszaGry[i][j] = new Hole();
 			}
 		}
 	}
 
-	public Dziura[][] getPlanszaGry() {
+	public Hole[][] getPlanszaGry() {
 		return planszaGry;
 	}
 
-	public void setPlanszaGry(Dziura[][] planszaGry) {
+	public void setPlanszaGry(Hole[][] planszaGry) {
 		this.planszaGry = planszaGry;
 	}
 

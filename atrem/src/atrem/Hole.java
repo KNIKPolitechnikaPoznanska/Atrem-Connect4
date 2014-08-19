@@ -1,12 +1,11 @@
 package atrem;
 
-public class Dziura {
+public class Hole {
 
-	public int stanDziury;
+	int stanDziury;
 
-	public Dziura() {
-
-		stanDziury = 0;
+	public Hole() {
+		stanDziury = PUSTY;
 	}
 
 	public void setStanDziury(int arg) {

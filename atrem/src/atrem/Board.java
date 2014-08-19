@@ -1,16 +1,16 @@
 package atrem;
 
-public class Plansza {
+public class Board {
 	public static int Slots = 4;
 	public static int Rows = 4;
-	public static Dziura[][] planszaGry = new Dziura[Slots][Rows];
+	public static Hole[][] planszaGry = new Hole[Slots][Rows];
 
 	public static void main(String[] args) {
 
 		System.out.println("lool");
 		for (int i = 0; i < Slots; i++) {
 			for (int j = 0; j < Rows; j++) {
-				planszaGry[i][j] = new Dziura();
+				planszaGry[i][j] = new Hole();
 
 				System.out.print(planszaGry[i][j].getStanDziury() + " ");
 			}
@@ -19,11 +19,11 @@ public class Plansza {
 
 	}
 
-	public Dziura[][] getPlanszaGry() {
+	public Hole[][] getPlanszaGry() {
 		return planszaGry;
 	}
 
-	public void setPlanszaGry(Dziura[][] planszaGry) {
-		Plansza.planszaGry = planszaGry;
+	public void setPlanszaGry(Hole[][] planszaGry) {
+		Board.planszaGry = planszaGry;
 	}
 }

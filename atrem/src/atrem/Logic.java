@@ -1,8 +1,8 @@
 package atrem;
 
-public class Logika {
+public class Logic {
 
-	public static void main(String[] args) {
+	public Logic() {
 		// TODO Auto-generated method stub
 
 	}
