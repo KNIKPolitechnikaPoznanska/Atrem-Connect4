@@ -1,8 +1,8 @@
 package atrem;
 
 public class Board {
-	public static int Slots = 4;
-	public static int Rows = 4;
+	private static int Slots = 4;
+	private static int Rows = 4;
 	public static Hole[][] gameBoard = new Hole[Slots][Rows];
 
 	public Board() {
@@ -19,5 +19,21 @@ public class Board {
 
 	public void setPlanszaGry(Hole[][] planszaGry) {
 		Board.gameBoard = planszaGry;
+	}
+
+	public static int getSlots() {
+		return Slots;
+	}
+
+	public static void setSlots(int slots) {
+		Slots = slots;
+	}
+
+	public static int getRows() {
+		return Rows;
+	}
+
+	public static void setRows(int rows) {
+		Rows = rows;
 	}
 }
