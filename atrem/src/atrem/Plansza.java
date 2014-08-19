@@ -1,9 +1,9 @@
 package atrem;
 
 public class Plansza {
-	public static int S = 3;
-	public static int W = 3;
-	public static Dziura[][] planszaGry = new Dziura[5][5];
+	public static int S = 4;
+	public static int W = 4;
+	public static Dziura[][] planszaGry = new Dziura[S][W];
 
 	public static void main(String[] args) {
 
