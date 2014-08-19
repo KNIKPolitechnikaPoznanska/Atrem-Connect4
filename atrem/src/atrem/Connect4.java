@@ -24,6 +24,7 @@ public class Connect4 {
 		System.out.println("Podaj imie drugiego zawodnika");
 		im = in.next();
 		player2 = new Player(im);
+		// player1.go(1, board);
 		gui.drawBoard(board);
 
 	}
