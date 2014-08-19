@@ -2,17 +2,17 @@ package atrem;
 
 public class Hole {
 
-	private HoleState stanDziury;
+	private HoleState holeState;
 
 	public Hole() {
-		stanDziury = HoleState.EMPTY;
+		holeState = HoleState.EMPTY;
 	}
 
 	public void setStanDziury(HoleState stanDziury) {
-		this.stanDziury = stanDziury;
+		this.holeState = stanDziury;
 	}
 
 	public HoleState getStanDziury() {
-		return stanDziury;
+		return holeState;
 	}
 }

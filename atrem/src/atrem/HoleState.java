@@ -5,8 +5,8 @@ public enum HoleState {
 
 	private int numberRepresentation;
 
-	private HoleState(int i) {
-		this.numberRepresentation = i;
+	private HoleState(int numberRepresentation) {
+		this.numberRepresentation = numberRepresentation;
 	}
 
 	public int getNumber() {
