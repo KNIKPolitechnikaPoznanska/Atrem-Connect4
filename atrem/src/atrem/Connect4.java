@@ -8,9 +8,9 @@ public class Connect4 {
 	private static int rows;
 
 	public static void main(String[] args) {
-		// slots = board.getSlots();
-		// rows = board.getRows();
-		// board = new Board(hole, slots, rows);
+		slots = board.getSlots();
+		rows = board.getRows();
+		board = new Board(hole, slots, rows);
 
 	}
 }
