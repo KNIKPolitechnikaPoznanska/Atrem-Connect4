@@ -4,12 +4,12 @@ public class Dziura {
 
 	int stanDziury;
 
-	void setStanDziury(int arg) {
+	public void setStanDziury(int arg) {
 		stanDziury = arg;
 	}
 
-	void getStanDziury(int arg) {
-		stanDziury = arg;
+	public int getStanDziury() {
+		return stanDziury;
 	}
 
 	public static final int PUSTY = 0, GRACZ_1 = 1, GRACZ_2 = 2;
