@@ -27,4 +27,9 @@ public class Player {
 		this.id = id;
 	}
 
+	public void go(int slot, Board board) {
+		Engine engine = new Engine();
+		int emptySlot = engine.findFreeSpot(slot, board);
+		board.setGameBoard(emptySlot, slot, HoleState.PLAYER2); // gracz
+	}
 }
