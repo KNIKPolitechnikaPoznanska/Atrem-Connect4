@@ -3,7 +3,7 @@ package atrem;
 public class Board {
 	private int Slots;
 	private int Rows;
-	private Hole[][] gameBoard = new Hole[Slots][Rows];
+	private Hole[][] gameBoard;
 
 	public Board() {
 
@@ -16,6 +16,7 @@ public class Board {
 	public Board(int Slots, int Rows) {
 		this.Slots = Slots;
 		this.Rows = Rows;
+		gameBoard = new Hole[Slots][Rows];
 		for (int i = 0; i < this.Slots; i++)
 			for (int j = 0; j < this.Rows; j++)
 				gameBoard[i][j] = new Hole();
