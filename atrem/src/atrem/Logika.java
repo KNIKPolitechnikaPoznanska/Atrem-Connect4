@@ -1,8 +1,9 @@
 package atrem;
 
-public class wojtek {
+public class Logika {
+
 	public static void main(String[] args) {
-		System.out.println("loooo");
+		// TODO Auto-generated method stub
 
 	}
 

@@ -1,10 +1,10 @@
 package atrem;
 
-public class £ukasz {
+public class Connect4 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println("³ukasz");
+
 	}
 
 }
