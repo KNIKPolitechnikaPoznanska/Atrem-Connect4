@@ -8,11 +8,11 @@ public class Hole {
 		holeState = HoleState.EMPTY;
 	}
 
-	public void setStanDziury(HoleState stanDziury) {
-		this.holeState = stanDziury;
+	public void setHoleState(HoleState holeState) {
+		this.holeState = holeState;
 	}
 
-	public HoleState getStanDziury() {
+	public HoleState getHoleState() {
 		return holeState;
 	}
 }
