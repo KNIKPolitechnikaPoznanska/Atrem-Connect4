@@ -5,8 +5,8 @@ public class Gracz {
 	private static int idStat = 1;
 	private int id;
 
-	public Gracz(String imie_tmp) {
-		this.imie = imie_tmp;
+	public Gracz(String imie) {
+		this.imie = imie;
 		this.id = idStat;
 		this.idStat++;
 	}
