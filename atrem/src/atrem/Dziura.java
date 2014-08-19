@@ -2,7 +2,11 @@ package atrem;
 
 public class Dziura {
 
-	int stanDziury;
+	public int stanDziury;
+
+	public Dziura() {
+		stanDziury = 0;
+	}
 
 	public void setStanDziury(int arg) {
 		stanDziury = arg;
