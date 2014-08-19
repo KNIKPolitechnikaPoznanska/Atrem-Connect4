@@ -2,19 +2,17 @@ package atrem;
 
 public class Hole {
 
-	int stanDziury;
+	private HoleState stanDziury;
 
 	public Hole() {
-		stanDziury = PUSTY;
+		stanDziury = HoleState.EMPTY;
 	}
 
-	public void setStanDziury(int arg) {
-		stanDziury = arg;
+	public void setStanDziury(HoleState stanDziury) {
+		this.stanDziury = stanDziury;
 	}
 
-	public int getStanDziury() {
+	public HoleState getStanDziury() {
 		return stanDziury;
 	}
-
-	public static final int PUSTY = 0, GRACZ_1 = 1, GRACZ_2 = 2;
 }
