@@ -13,6 +13,6 @@ public class Engine {
 				return i - 1; // dla pelnego rowka zwraca -1
 			}
 		}
-		return i;
+		return i - 1;
 	}
 }
