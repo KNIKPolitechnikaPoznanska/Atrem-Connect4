@@ -19,16 +19,18 @@ public class Connect4 {
 
 		System.out.println("Podaj imie pierwszego zawodnika");
 		String im = in.next();
-		player1 = new Player(im);
+		player1 = new Player(im, HoleState.PLAYER1);
 		System.out.println("Podaj imie drugiego zawodnika");
 		im = in.next();
-		player2 = new Player(im);
-		player1.go(1, board);
-		player1.go(3, board);
-		player1.go(4, board);
-		player1.go(4, board);
-		player1.go(1, board);
-		gui.drawBoard(board);
+		player2 = new Player(im, HoleState.PLAYER2);
+
+		for (int i = 0; i < 10; i++) {
+			player1.go(in.nextInt(), board);
+			gui.drawBoard(board);
+			player2.go(in.nextInt(), board);
+			gui.drawBoard(board);
+		}
+		// gui.drawBoard(board);
 
 	}
 
