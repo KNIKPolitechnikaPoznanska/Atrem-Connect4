@@ -2,7 +2,7 @@ package atrem;
 
 import java.util.Scanner;
 
-public class connect4 {
+public class Connect4 {
 	private static Board board;
 	private static Player player1, player2; // dlaczego static?
 	private static GUI gui = new GUI();
