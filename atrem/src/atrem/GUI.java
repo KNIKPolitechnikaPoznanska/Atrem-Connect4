@@ -6,8 +6,9 @@ public class GUI {
 		for (int i = 0; i < BoardTmp.Slots; i++) {
 			for (int j = 0; j < BoardTmp.Rows; j++) {
 				HoleTmp = BoardTmp.getHoleState(i, j);
-				System.out.print("|" + HoleTmp + "|");
+				System.out.print("| " + HoleTmp.getNumber() + "| ");
 			}
+			System.out.println("");
 		}
 	}
 }
