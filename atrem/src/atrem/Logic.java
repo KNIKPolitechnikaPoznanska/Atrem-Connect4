@@ -2,20 +2,21 @@ package atrem;
 
 public class Logic {
 	private Board board;
-	private int rows;
-	private int slots;
+	private int maxRows;
+	private int maxSlots;
 	HoleState token;
 
-	public Logic() {
-		slots = board.getSlots();
-		rows = board.getRows();
+	public Logic(Board board) {
+		this.board = board;
+		maxSlots = board.getSlots();
+		maxRows = board.getRows();
 		this.checkIfWin();
 	}
 
 	public void checkIfWin() {
 
-		for (int row = 0; row < rows; row++) {
-			for (int slot = 0; slot < slots - 3; slot++) {
+		for (int row = 0; row < maxRows; row++) {
+			for (int slot = 0; slot < maxSlots - 3; slot++) {
 				token = board.getHoleState(row, slot);
 				if (token.getNumber() > 0
 						&& token == board.getHoleState(row, slot + 1)
@@ -26,8 +27,8 @@ public class Logic {
 			}
 		}
 
-		for (int slot = 0; slot < slots; slot++) {
-			for (int row = 0; row < rows - 3; row++) {
+		for (int slot = 0; slot < maxSlots; slot++) {
+			for (int row = 0; row < maxRows - 3; row++) {
 				token = board.getHoleState(row, slot);
 				if (token.getNumber() > 0
 						&& token == board.getHoleState(row + 1, slot)
@@ -37,8 +38,8 @@ public class Logic {
 			}
 		}
 
-		for (int row = 0; row < rows - 3; row++) {
-			for (int slot = 0; slot < slots - 3; slot++) {
+		for (int row = 0; row < maxRows - 3; row++) {
+			for (int slot = 0; slot < maxSlots - 3; slot++) {
 				token = board.getHoleState(row, slot);
 				if (token.getNumber() > 0
 						&& token == board.getHoleState(row + 1, slot + 1)
@@ -48,8 +49,8 @@ public class Logic {
 			}
 		}
 
-		for (int row = rows - 1; row >= 3; row--) {
-			for (int slot = 0; slot < slots - 3; slot++) {
+		for (int row = maxRows - 1; row >= 3; row--) {
+			for (int slot = 0; slot < maxSlots - 3; slot++) {
 				HoleState token = board.getHoleState(row, slot);
 				if (token.getNumber() > 0
 						&& token == board.getHoleState(row - 1, slot + 1)
@@ -61,7 +62,10 @@ public class Logic {
 	}
 
 	private void showWinner(HoleState holeState) {
-
+		if (holeState.name() == "PLAYER1") {
+			System.out.println("Wygra³ Gracz 1");
+		} else if (holeState.name() == "PLAYER2") {
+			System.out.println("Wygra³ Gracz 2");
+		}
 	}
-
 }
