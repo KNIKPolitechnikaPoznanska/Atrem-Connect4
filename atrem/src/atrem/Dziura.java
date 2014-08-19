@@ -4,6 +4,10 @@ public class Dziura {
 
 	int stanDziury;
 
+	public Dziura() {
+		stanDziury = PUSTY;
+	}
+
 	public void setStanDziury(int arg) {
 		stanDziury = arg;
 	}
