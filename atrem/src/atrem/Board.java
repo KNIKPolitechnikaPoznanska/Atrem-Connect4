@@ -17,7 +17,7 @@ public class Board {
 		return gameBoard[A][B].getHoleState();
 	}
 
-	public void setPlanszaGry(Hole[][] planszaGry) {
-		Board.gameBoard = planszaGry;
+	public void setPlanszaGry(int A, int B, HoleState holeState) {
+		gameBoard[A][B].setHoleState(holeState);
 	}
 }
