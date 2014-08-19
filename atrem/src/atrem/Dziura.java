@@ -11,4 +11,6 @@ public class Dziura {
 	void getStanDziury(int arg) {
 		stanDziury = arg;
 	}
+
+	public static final int PUSTY = 0, GRACZ_1 = 1, GRACZ_2 = 2;
 }
