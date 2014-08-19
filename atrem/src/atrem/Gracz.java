@@ -1,8 +1,8 @@
 package atrem;
 
 public class Gracz {
-	String imie;
-	int id;
+	private String imie;
+	private int id;
 
 	public String getImie() {
 		return imie;
@@ -18,6 +18,11 @@ public class Gracz {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public Gracz(String imie_tmp) {
+		this.imie = imie_tmp;
+		// id=
 	}
 
 }
