@@ -11,6 +11,11 @@ public class GUI {
 					System.out.print("1");
 				else if (planszaGry[i][j].getStanDziury() == HoleState.PLAYER2)
 					System.out.print("2");
+
+			}
+		}
+	}
+
 	public void drawBoard(Board BoardTmp) {
 		HoleState HoleTmp;
 		for (int i = 0; i < BoardTmp.Slots; i++) {
@@ -19,7 +24,6 @@ public class GUI {
 				System.out.print("| " + HoleTmp.getNumber() + "| ");
 			}
 			System.out.println("");
-
 		}
 	}
 
