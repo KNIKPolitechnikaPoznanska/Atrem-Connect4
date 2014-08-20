@@ -30,7 +30,7 @@ public class Connect4 {
 			player2.go(in.nextInt(), board);
 			gui.drawBoard(board);
 		}
-		// gui.drawBoard(board);
+		gui.drawBoard(board);
 
 	}
 
