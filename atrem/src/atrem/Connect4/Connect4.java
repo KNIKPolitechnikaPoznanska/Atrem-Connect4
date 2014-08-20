@@ -9,7 +9,7 @@ public class Connect4 {
 
 	private static GameFactory gamefactory;
 	private static Menu menu;
-	private static Game game = new Game();
+	private static Game game;
 	private static GameLoop gameloop;
 
 	public static void main(String[] args) {
