@@ -15,6 +15,15 @@ public class GameLoop {
 
 	public void startLoop() {
 		while (true) {
+			gui.displayGame(game);
+			if (game.getPlayerTurn() == 1) {
+				this.go(game.getBoard(), game.getPlayer1());
+				game.setPlayerTurn(2);
+			} else // (game.getPlayerTurn() == 2) {
+			{
+				this.go(game.getBoard(), game.getPlayer2());
+				game.setPlayerTurn(1);
+			}
 
 		}
 	}
@@ -29,4 +38,7 @@ public class GameLoop {
 		board.setHoleState(emptySlot, slot, player.getPlayerId()); // gracz
 	}
 
+	private void turnPlayer() {
+
+	}
 }

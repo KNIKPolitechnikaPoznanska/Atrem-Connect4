@@ -41,7 +41,7 @@ public class GUI {
 
 	private void writeCurrentPlayer(Player player) {
 		String name = player.getName();
-		System.out.println("Nastêpny ruch wykonuje:  " + name + " ");
+		System.out.println("Obecny ruch wykonuje:  " + name + " ");
 	}
 
 	private void displayParagraph() {
