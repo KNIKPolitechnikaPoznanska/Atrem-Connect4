@@ -4,12 +4,8 @@ import java.awt.event.KeyAdapter;
 import java.util.Scanner;
 
 import atrem.Connect4.Game.Board;
-import atrem.Connect4.Game.HoleState;
-import atrem.Connect4.Game.Player;
 
 public class CKeyHandler extends KeyAdapter {
-	private int maxSlots;
-	private int maxRows;
 
 	CKeyHandler() {
 	}
@@ -30,35 +26,18 @@ public class CKeyHandler extends KeyAdapter {
 		}
 	}
 
-	public Player getPlayerName(Player player) {
+	public String getString() {
 		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
-
-		String imie = input.next();
-		player = new Player(imie, HoleState.PLAYER1);
-		return player;
+		String string = input.next();
+		return string;
 	}
 
-	public void setMaxSlots() {
-		@SuppressWarnings("resource")
-		Scanner input = new Scanner(System.in);
-		int inputslots = input.nextInt();
-		maxSlots = inputslots;
-	}
-
-	public void setMaxRows() {
+	public int getInt() {
 
 		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
-		int inputrows = input.nextInt();
-		maxRows = inputrows;
-	}
-
-	public int getMaxRows() {
-		return maxRows;
-	}
-
-	public int getMaxSlots() {
-		return maxSlots;
+		int inputInt = input.nextInt();
+		return inputInt;
 	}
 }
