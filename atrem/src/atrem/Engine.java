@@ -4,7 +4,7 @@ public class Engine {
 
 	public int findFreeSpot(int slot, Board board) {
 		int i = 0;
-		for (i = 0; i < board.getSlots(); i++)// rows zmienna
+		for (i = 0; i < board.get(); i++)// rows zmienna
 		{
 			HoleState holeState = board.getHoleState(i, slot);
 			if (i == 0 && holeState != HoleState.EMPTY)
