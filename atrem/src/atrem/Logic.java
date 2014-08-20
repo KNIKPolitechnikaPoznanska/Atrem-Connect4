@@ -72,9 +72,9 @@ public class Logic {
 
 	private void showWinner(HoleState holeState) {
 		if (holeState.name() == "PLAYER1") {
-			System.out.println("Wygra³" + player1.getName());
+			System.out.println("Wygra³ " + player1.getName());
 		} else if (holeState.name() == "PLAYER2") {
-			System.out.println("Wygra³" + player2.getName());
+			System.out.println("Wygra³ " + player2.getName());
 		}
 		hasWinner = true;
 	}

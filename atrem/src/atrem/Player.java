@@ -1,13 +1,11 @@
 package atrem;
 
-import java.util.Scanner;
 
 public class Player {
 	private String name;
 	private int idStat = 1;
 	private int id;
 	HoleState playerId;
-	Scanner in = new Scanner(System.in);
 
 	public Player(String name, HoleState playerId) {
 		this.name = name;
