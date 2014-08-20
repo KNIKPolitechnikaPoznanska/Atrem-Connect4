@@ -19,8 +19,8 @@ public class GUI {
 		System.out.println("Numery slotów:");
 		for (int i = 0; i < slots; i++) {
 			System.out.print("| " + i + " |");
-
 		}
+		System.out.println("\n\n");
+		System.out.println("************************************");
 	}
-
 }

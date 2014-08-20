@@ -1,25 +1,25 @@
 package atrem;
 
 public class Player {
-	private String imie;
+	private String name;
 	private static int idStat = 1;
 	private int id;
 	HoleState playerId;
 
-	public Player(String imie, HoleState playerId) {
-		this.imie = imie;
+	public Player(String name, HoleState playerId) {
+		this.name = name;
 		this.id = idStat;
 		this.idStat++;
 		this.playerId = playerId;
 
 	}
 
-	public String getImie() {
-		return imie;
+	public String getName() {
+		return name;
 	}
 
-	public void setImie(String imie) {
-		this.imie = imie;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public int getId() {
