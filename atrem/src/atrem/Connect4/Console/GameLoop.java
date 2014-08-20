@@ -25,6 +25,13 @@ public class GameLoop {
 		return playerTurn;
 	}
 
+	public void go(Board board, Player player) {// do gui lub do gameloop
+		int slot = 2; // = metoda CKeyHandler.getSlot
+		int emptySlot = board.findFreeSpot(slot);
+		board.setHoleState(emptySlot, slot, player.getPlayerId()); // gracz
+
+	}
+
 	private void loop() { // public!n
 		while (true) { // g³ówna pêtla kolejek graczy
 			gui.drawBoard(board);
