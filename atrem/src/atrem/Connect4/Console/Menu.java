@@ -1,23 +1,37 @@
 package atrem.Connect4.Console;
 
-import atrem.Connect4.Game.Board;
-import atrem.Connect4.Game.Player;
 
-public class Menu { // GameFactory
-	private Board board;
-	private String player1name, player2name;
+public class Menu {
+
 	private CKeyHandler menu;
+
+	private String player1name, player2name;
+
 	private int slots, rows;
 
 	public Menu() {
 
 		menu = new CKeyHandler();
-		settings();
 
-		sendSettings();
 	}
 
-	public void settings() {
+	public String getPlayer1name() {
+		return player1name;
+	}
+
+	public String getPlayer2name() {
+		return player2name;
+	}
+
+	public int getRows() {
+		return rows;
+	}
+
+	public int getSlots() {
+		return slots;
+	}
+
+	public void loadSettings() {
 		menu = new CKeyHandler();
 		System.out.println("Witamy w grze connect 4");
 		System.out.println("Podaj liczbe wierszy");
@@ -34,22 +48,6 @@ public class Menu { // GameFactory
 		System.out.println("Podaj imie drugiego zawodnika");
 		player2name = menu.getString();
 
-	}
-
-	public void sendSettings() {
-
-	}
-
-	public Board getBoard() {
-		return board;
-	}
-
-	public Player getPlayer1() {
-		return player1;
-	}
-
-	public Player getPlayer2() {
-		return player2;
 	}
 
 }
