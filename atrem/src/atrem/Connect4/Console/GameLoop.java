@@ -2,19 +2,22 @@ package atrem.Connect4.Console;
 
 import atrem.Connect4.Game.Board;
 import atrem.Connect4.Game.Game;
+import atrem.Connect4.Game.Logic;
 import atrem.Connect4.Game.Player;
 
 public class GameLoop {
 	private GUI gui = new GUI();
 	private Game game;
 	private CKeyHandler keyHandler = new CKeyHandler();
+	private Logic logic;
 
 	public GameLoop(Game game) {
 		this.game = game;
+		logic = new Logic(game);
 	}
 
 	public void startLoop() {
-		while (true) {
+		while (!logic.checkIfWin()) {
 			gui.displayGame(game);
 			if (game.getPlayerTurn() == 1) {
 				this.go(game.getBoard(), game.getPlayer1());
@@ -26,6 +29,7 @@ public class GameLoop {
 			}
 
 		}
+		gui.displayResults(game);
 	}
 
 	public void go(Board board, Player player) {// do gui lub do gameloop
@@ -38,7 +42,4 @@ public class GameLoop {
 		board.setHoleState(emptySlot, slot, player.getPlayerId()); // gracz
 	}
 
-	private void turnPlayer() {
-
-	}
 }

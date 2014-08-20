@@ -18,6 +18,11 @@ public class GUI {
 		this.displayParagraph();
 	}
 
+	public void displayResults(Game game) {
+		this.drawBoard(game.getBoard());
+		this.displayParagraph();
+	}
+
 	private void drawBoard(Board BoardTmp) {
 		HoleState HoleTmp;
 		for (int j = 0; j < BoardTmp.getRows(); j++) {
