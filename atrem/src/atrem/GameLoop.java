@@ -29,7 +29,7 @@ public class GameLoop {
 			if (getPlayerTurn() == 1) {
 				slot = in.nextInt();
 				player1.go(slot, board);
-				logic = new Logic(board);
+				logic = new Logic(board, player1, player2);
 				setPlayerTurn(2);
 			} else {
 				slot = in.nextInt();

@@ -4,13 +4,17 @@ public class Logic {
 	private Board board;
 	private int maxRows;
 	private int maxSlots;
+	private Player player1, player2;
 	HoleState token;
 	private boolean hasWinner = false;
 
-	public Logic(Board board) {
+	public Logic(Board board, Player player1, Player player2) {
 		this.board = board;
 		maxSlots = board.getSlots();
 		maxRows = board.getRows();
+		this.player1 = player1;
+		this.player2 = player2;
+
 		this.checkIfWin();
 	}
 
@@ -68,9 +72,9 @@ public class Logic {
 
 	private void showWinner(HoleState holeState) {
 		if (holeState.name() == "PLAYER1") {
-			System.out.println("Wygra³ Gracz 1");
+			System.out.println("Wygra³" + player1.getName());
 		} else if (holeState.name() == "PLAYER2") {
-			System.out.println("Wygra³ Gracz 2");
+			System.out.println("Wygra³" + player2.getName());
 		}
 		hasWinner = true;
 	}
