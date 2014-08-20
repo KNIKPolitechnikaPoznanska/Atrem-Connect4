@@ -33,6 +33,8 @@ public class Player {
 	public void go(int slot, Board board) {
 		Engine engine = new Engine();
 		int emptySlot = engine.findFreeSpot(slot, board);
-		board.setGameBoard(emptySlot, slot, playerId); // gracz
+		if (emptySlot != -1)
+			board.setGameBoard(emptySlot, slot, playerId); // gracz
+
 	}
 }
