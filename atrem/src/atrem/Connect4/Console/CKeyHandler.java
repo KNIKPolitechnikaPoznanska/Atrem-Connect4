@@ -6,17 +6,18 @@ import java.util.Scanner;
 import atrem.Connect4.Game.Board;
 
 public class CKeyHandler extends KeyAdapter {
+	private int slot;
 
 	CKeyHandler() {
 	}
 
-	public void getSlot(Board board) {
+	public int getSlot(Board board) {
 		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
 		while (true) {
-			int slot = input.nextInt();
+			slot = input.nextInt();
 			if (slot > 0 && slot < board.getSlots()) {
-				return;
+				return slot;
 			} else {
 				System.out.println("Wprowadzi³eœ z³y slot!");
 				System.out.println("WprowadŸ slot z zakresu [0-"
