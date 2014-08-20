@@ -2,7 +2,7 @@ package atrem;
 
 public class Player {
 	private String name;
-	private static int idStat = 1;
+	private int idStat = 1;
 	private int id;
 	HoleState playerId;
 
