@@ -38,7 +38,7 @@ public class GUI {
 
 	private void drawSlots(int slots) {
 		System.out.println("Numery slotów:");
-		for (int i = 0; i < slots; i++) {
+		for (int i = 1; i <= slots; i++) {
 			System.out.print("| " + i + " |");
 		}
 

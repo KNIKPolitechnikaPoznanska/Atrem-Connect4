@@ -29,8 +29,8 @@ public class CKeyHandler extends KeyAdapter {
 				}
 				bError = false;
 
-				if (slot > 0 && slot < board.getSlots()) {
-					return slot;
+				if (slot > 0 && slot <= board.getSlots()) {
+					return slot - 1;
 				} else {
 					System.out.println("Wprowadzi³eœ z³y slot!");
 					System.out.println("WprowadŸ slot z zakresu [0-"
