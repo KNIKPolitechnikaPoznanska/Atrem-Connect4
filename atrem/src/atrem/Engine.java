@@ -7,7 +7,7 @@ public class Engine {
 
 		for (i = 0; i < board.getRows(); i++)// rows zmienna
 		{
-			HoleState holeState = board.getHoleState(i, slot);
+			HoleState holeState = board.getHoleState(slot, i);
 			if (i == 0 && holeState != HoleState.EMPTY)
 				return -1;
 			if (holeState != HoleState.EMPTY) {
