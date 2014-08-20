@@ -8,6 +8,8 @@ import atrem.Connect4.Game.HoleState;
 import atrem.Connect4.Game.Player;
 
 public class CKeyHandler extends KeyAdapter {
+	private int maxSlots;
+	private int maxRows;
 
 	CKeyHandler() {
 	}
@@ -35,5 +37,28 @@ public class CKeyHandler extends KeyAdapter {
 		String imie = input.next();
 		player = new Player(imie, HoleState.PLAYER1);
 		return player;
+	}
+
+	public void setMaxSlots() {
+		@SuppressWarnings("resource")
+		Scanner input = new Scanner(System.in);
+		int inputslots = input.nextInt();
+		maxSlots = inputslots;
+	}
+
+	public void setMaxRows() {
+
+		@SuppressWarnings("resource")
+		Scanner input = new Scanner(System.in);
+		int inputrows = input.nextInt();
+		maxRows = inputrows;
+	}
+
+	public int getMaxRows() {
+		return maxRows;
+	}
+
+	public int getMaxSlots() {
+		return maxSlots;
 	}
 }
