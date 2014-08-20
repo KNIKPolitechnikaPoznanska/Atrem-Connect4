@@ -43,15 +43,14 @@ public class Board {
 	public int findFreeSpot(int slot) {
 		int i = 0;
 
-		for (i = 0; i < getRows(); i++)// rows zmienna
-		{
+		for (i = 0; i < getRows(); i++) {
 			HoleState holeState = getHoleState(i, slot);
-			if (i == 0 && holeState != HoleState.EMPTY)
+			if (i == 0 && holeState != HoleState.EMPTY) // gdy jest pelen
 				return -1;
 			if (holeState != HoleState.EMPTY) {
 				{
 					return i - 1;
-				}// dla pelnego rowka zwraca -1}
+				}//
 			}
 		}
 		return i - 1;

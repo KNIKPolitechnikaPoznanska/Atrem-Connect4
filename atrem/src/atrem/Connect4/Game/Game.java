@@ -5,6 +5,7 @@ public class Game { // klasa przechowujaca dane gry
 	private Board board;
 	private Player player1;
 	private Player player2;
+	private int playerTurn = 1;
 
 	public Board getBoard() {
 		return board;
@@ -28,6 +29,14 @@ public class Game { // klasa przechowujaca dane gry
 
 	public void setPlayer2(Player player2) {
 		this.player2 = player2;
+	}
+
+	public int getPlayerTurn() {
+		return playerTurn;
+	}
+
+	public void setPlayerTurn(int playerTurn) {
+		this.playerTurn = playerTurn;
 	}
 
 }
