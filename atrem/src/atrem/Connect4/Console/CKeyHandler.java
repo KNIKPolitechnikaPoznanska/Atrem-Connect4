@@ -33,7 +33,7 @@ public class CKeyHandler extends KeyAdapter {
 	public Player getPlayerName(Player player) {
 		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
-		System.out.println("Podaj imie zawodnika " + player.getName() + ": ");
+
 		String imie = input.next();
 		player = new Player(imie, HoleState.PLAYER1);
 		return player;
