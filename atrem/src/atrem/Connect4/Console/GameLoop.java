@@ -12,7 +12,6 @@ public class GameLoop {
 	Scanner in = new Scanner(System.in);
 	private Logic logic;
 	private Player player1, player2;
-	private int playerTurn = 1;
 
 	GameLoop(Board board, Player player1, Player player2) {
 		this.player1 = player1;
