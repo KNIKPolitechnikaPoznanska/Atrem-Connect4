@@ -12,15 +12,15 @@ public class GUI {
 			}
 			System.out.println("");
 		}
-		this.drawNumber(BoardTmp.getSlots());
+		this.drawSlots(BoardTmp.getSlots());
 	}
 
-	private void drawNumber(int slots) {
+	private void drawSlots(int slots) {
 		System.out.println("Numery slotów:");
 		for (int i = 0; i < slots; i++) {
 			System.out.print("| " + i + " |");
 		}
-		System.out.println("\n\n");
+		System.out.println("\n");
 		System.out.println("************************************");
 	}
 }
