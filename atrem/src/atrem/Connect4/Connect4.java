@@ -7,7 +7,7 @@ import atrem.Connect4.Game.GameFactory;
 
 public class Connect4 {
 
-	private static GameFactory gamefactory;
+	private static GameFactory gamefactory = new GameFactory();
 	private static Menu menu;
 	private static Game game;
 	private static GameLoop gameloop;
