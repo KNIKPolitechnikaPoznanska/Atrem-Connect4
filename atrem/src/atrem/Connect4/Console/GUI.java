@@ -2,6 +2,7 @@ package atrem.Connect4.Console;
 
 import atrem.Connect4.Game.Board;
 import atrem.Connect4.Game.Game;
+import atrem.Connect4.Game.HoleState;
 import atrem.Connect4.Game.Player;
 
 public class GUI {
@@ -18,6 +19,7 @@ public class GUI {
 	}
 
 	private void drawBoard(Board BoardTmp) {
+		HoleState HoleTmp;
 		for (int j = 0; j < BoardTmp.getRows(); j++) {
 			for (int i = 0; i < BoardTmp.getSlots(); i++) {
 
