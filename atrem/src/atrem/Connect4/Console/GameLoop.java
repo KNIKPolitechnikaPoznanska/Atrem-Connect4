@@ -7,6 +7,7 @@ import atrem.Connect4.Game.Player;
 public class GameLoop {
 	private GUI gui = new GUI();
 	private Game game;
+	private CKeyHandler keyHandler = new CKeyHandler();
 
 	public GameLoop(Game game) {
 		this.game = game;
@@ -20,7 +21,7 @@ public class GameLoop {
 	}
 
 	public void go(Board board, Player player) {// do gui lub do gameloop
-		int slot = 2; // = metoda CKeyHandler.getSlot
+		int slot = keyHandler.getSlot(board); // = metoda CKeyHandler.getSlot
 		int emptySlot = board.findFreeSpot(slot);
 		board.setHoleState(emptySlot, slot, player.getPlayerId()); // gracz
 	}
