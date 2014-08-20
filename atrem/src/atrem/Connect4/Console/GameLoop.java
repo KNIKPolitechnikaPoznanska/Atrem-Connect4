@@ -21,8 +21,12 @@ public class GameLoop {
 	}
 
 	public void go(Board board, Player player) {// do gui lub do gameloop
-		int slot = keyHandler.getSlot(board); // = metoda CKeyHandler.getSlot
-		int emptySlot = board.findFreeSpot(slot);
+		int emptySlot;
+		int slot;
+		do {
+			slot = keyHandler.getSlot(board); // = metoda CKeyHandler.getSlot
+			emptySlot = board.findFreeSpot(slot);
+		} while (emptySlot == -1);
 		board.setHoleState(emptySlot, slot, player.getPlayerId()); // gracz
 	}
 
