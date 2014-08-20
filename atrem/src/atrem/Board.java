@@ -13,7 +13,7 @@ public class Board {
 
 	}
 
-	public Board(int Slots, int Rows) {
+	public Board(int Rows, int Slots) {
 		this.Slots = Slots;
 		this.Rows = Rows;
 		gameBoard = new Hole[Slots][Rows];
