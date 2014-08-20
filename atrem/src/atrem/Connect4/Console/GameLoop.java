@@ -16,7 +16,6 @@ public class GameLoop {
 	public void startLoop() {
 		while (true) {
 
-			return;
 		}
 	}
 
