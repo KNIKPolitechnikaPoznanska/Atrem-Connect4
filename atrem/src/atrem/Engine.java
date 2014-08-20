@@ -1,6 +1,6 @@
 package atrem;
 
-public class Engine {
+public class Engine {// a moze by tak do board?
 
 	public int findFreeSpot(int slot, Board board) {
 		int i = 0;

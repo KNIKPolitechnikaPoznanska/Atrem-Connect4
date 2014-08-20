@@ -1,6 +1,5 @@
 package atrem;
 
-
 public class Player {
 	private String name;
 	private int idStat = 1;
@@ -31,7 +30,7 @@ public class Player {
 		this.id = id;
 	}
 
-	public void go(Board board) {
+	public void go(Board board) {// do gui lub do gameloop
 		Engine engine = new Engine();
 		int emptySlot;
 		int slot;
@@ -40,7 +39,7 @@ public class Player {
 			emptySlot = engine.findFreeSpot(slot, board);
 		} while (emptySlot == -1);
 
-		board.setGameBoard(emptySlot, slot, playerId); // gracz
+		board.setHoleState(emptySlot, slot, playerId); // gracz
 
 	}
 }

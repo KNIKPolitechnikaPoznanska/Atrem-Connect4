@@ -1,24 +1,25 @@
 package atrem;
 
 public class Board {
-	private int Slots;
-	private int Rows;
+	private int slots;
+	private int rows;
 	private Hole[][] gameBoard;
 
 	public Board() {
 
-		for (int i = 0; i < Slots; i++)
-			for (int j = 0; j < Rows; j++)
+		for (int i = 0; i < slots; i++)
+			for (int j = 0; j < rows; j++)
+
 				gameBoard[j][i] = new Hole();
 
 	}
 
-	public Board(int Rows, int Slots) {
-		this.Slots = Slots;
-		this.Rows = Rows;
-		gameBoard = new Hole[Rows][Slots];
-		for (int i = 0; i < this.Slots; i++)
-			for (int j = 0; j < this.Rows; j++)
+	public Board(int rows, int slots) {
+		this.slots = slots;
+		this.rows = rows;
+		gameBoard = new Hole[rows][slots];
+		for (int i = 0; i < this.slots; i++)
+			for (int j = 0; j < this.rows; j++)
 				gameBoard[j][i] = new Hole();
 
 	}
@@ -27,16 +28,16 @@ public class Board {
 		return gameBoard[Rows][Slots].getHoleState();
 	}
 
-	public void setGameBoard(int Rows, int Slots, HoleState holeState) {
+	public void setHoleState(int Rows, int Slots, HoleState holeState) {
 		gameBoard[Rows][Slots].setHoleState(holeState);
 	}
 
 	public int getSlots() {
-		return Slots;
+		return slots;
 	}
 
 	public int getRows() {
-		return Rows;
+		return rows;
 	}
 
 }

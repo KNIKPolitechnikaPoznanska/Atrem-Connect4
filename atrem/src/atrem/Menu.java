@@ -2,11 +2,12 @@ package atrem;
 
 import java.util.Scanner;
 
-public class Menu {
+public class Menu { // GameFactory
 	private Board board;
 	private Player player1, player2;
 
-	public Menu(Board board, Player player1, Player player2) {
+	public Menu(Board board, Player player1, Player player2) {// rozbicie na
+																// metody
 		@SuppressWarnings("resource")
 		Scanner in = new Scanner(System.in);
 		System.out.println("Witamy w grze connect 4");

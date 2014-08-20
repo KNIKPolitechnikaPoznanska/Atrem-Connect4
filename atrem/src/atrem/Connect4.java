@@ -12,7 +12,8 @@ public class Connect4 {
 		board = menu.getBoard();
 		player1 = menu.getPlayer1();
 		player2 = menu.getPlayer2();
-		gameloop = new GameLoop(board, player1, player2);
+		gameloop = new GameLoop(board, player1, player2);// zamienic na met
+															// start
 
 	}
 }
