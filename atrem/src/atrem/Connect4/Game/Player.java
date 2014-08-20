@@ -1,4 +1,4 @@
-package atrem;
+package atrem.Connect4.Game;
 
 public class Player {
 	private String name;

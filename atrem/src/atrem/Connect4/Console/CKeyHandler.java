@@ -1,7 +1,11 @@
-package atrem;
+package atrem.Connect4.Console;
 
 import java.awt.event.KeyAdapter;
 import java.util.Scanner;
+
+import atrem.Connect4.Game.Board;
+import atrem.Connect4.Game.HoleState;
+import atrem.Connect4.Game.Player;
 
 public class CKeyHandler extends KeyAdapter {
 

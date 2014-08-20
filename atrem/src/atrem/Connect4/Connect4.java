@@ -1,4 +1,9 @@
-package atrem;
+package atrem.Connect4;
+
+import atrem.Connect4.Console.GameLoop;
+import atrem.Connect4.Console.Menu;
+import atrem.Connect4.Game.Board;
+import atrem.Connect4.Game.Player;
 
 public class Connect4 {
 

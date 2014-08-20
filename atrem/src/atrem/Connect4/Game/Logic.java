@@ -1,4 +1,4 @@
-package atrem;
+package atrem.Connect4.Game;
 
 public class Logic {
 	private Board board;

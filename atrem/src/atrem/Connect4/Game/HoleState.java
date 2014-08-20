@@ -1,4 +1,4 @@
-package atrem;
+package atrem.Connect4.Game;
 
 public enum HoleState {
 	PLAYER1(1), PLAYER2(2), EMPTY(0);

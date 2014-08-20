@@ -1,4 +1,7 @@
-package atrem;
+package atrem.Connect4.Console;
+
+import atrem.Connect4.Game.Board;
+import atrem.Connect4.Game.HoleState;
 
 public class GUI {
 

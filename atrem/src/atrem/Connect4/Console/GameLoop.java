@@ -1,6 +1,10 @@
-package atrem;
+package atrem.Connect4.Console;
 
 import java.util.Scanner;
+
+import atrem.Connect4.Game.Board;
+import atrem.Connect4.Game.Logic;
+import atrem.Connect4.Game.Player;
 
 public class GameLoop {
 	Board board;
@@ -9,7 +13,6 @@ public class GameLoop {
 	private Logic logic;
 	private Player player1, player2;
 	private int playerTurn = 1;
-	private int slot;
 
 	GameLoop(Board board, Player player1, Player player2) {
 		this.player1 = player1;
