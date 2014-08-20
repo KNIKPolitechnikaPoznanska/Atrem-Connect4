@@ -18,6 +18,8 @@ public class Connect4 {
 
 		gamefactory.setGameFactory(game, menu.getRows(), menu.getSlots(),
 				menu.getPlayer1name(), menu.getPlayer2name());
-		gameloop.
+		gameloop = new GameLoop(game);
+		gameloop.startLoop();
+
 	}
 }
