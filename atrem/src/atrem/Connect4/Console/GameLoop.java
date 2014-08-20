@@ -38,12 +38,12 @@ public class GameLoop {
 
 			if (getPlayerTurn() == 1) {
 				// slot = in.nextInt();
-				player1.go(board);
+				// player1.go(board);
 
 				setPlayerTurn(2);
 			} else {
 				// slot = in.nextInt();
-				player2.go(board);
+				// player2.go(board);
 				setPlayerTurn(1); // ma byc private
 			}
 			if (logic.checkIfWin())
