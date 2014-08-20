@@ -33,7 +33,7 @@ public class Player {
 	public void go(int slot, Board board) {
 		Engine engine = new Engine();
 		int emptySlot = engine.findFreeSpot(slot, board);
-
+		// -1
 		board.setGameBoard(emptySlot, slot, playerId); // gracz
 
 	}

@@ -37,7 +37,7 @@ public class GameLoop {
 				setPlayerTurn(1);
 			}
 			if (logic.checkIfWin())
-				break;
+				return;
 		}
 
 	}
