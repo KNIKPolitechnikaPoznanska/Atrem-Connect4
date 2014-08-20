@@ -4,7 +4,11 @@ import atrem.Connect4.Game.Board;
 import atrem.Connect4.Game.Game;
 import atrem.Connect4.Game.Logic;
 import atrem.Connect4.Game.Player;
-
+/*
+ * G³ówna pêtla gry
+ * wykorzystywana tylko w konsoli
+ * obs³uguj¹ca kolejki graczy
+ */
 public class GameLoop {
 	private GUI gui = new GUI();
 	private Game game;

@@ -1,5 +1,5 @@
 /**
- * 
+ * Wersja konsolowa gry Connect4
  */
 /**
  * @author Wojtek

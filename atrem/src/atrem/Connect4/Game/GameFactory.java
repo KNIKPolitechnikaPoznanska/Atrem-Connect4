@@ -1,5 +1,7 @@
 package atrem.Connect4.Game;
-
+/*
+ * Klasa tworz¹ca planszê (Board)
+ */
 public class GameFactory {
 
 	private Board board;

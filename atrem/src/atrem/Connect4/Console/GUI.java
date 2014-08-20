@@ -4,7 +4,10 @@ import atrem.Connect4.Game.Board;
 import atrem.Connect4.Game.Game;
 import atrem.Connect4.Game.HoleState;
 import atrem.Connect4.Game.Player;
-
+/*
+ * Rysowanie GUI konsolowego
+ * w tym: planszy i jej objaœnieñ
+ */
 public class GUI {
 
 	public void displayGame(Game game) {
