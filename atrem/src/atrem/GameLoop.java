@@ -27,13 +27,13 @@ public class GameLoop {
 			gui.drawBoard(board);
 
 			if (getPlayerTurn() == 1) {
-				slot = in.nextInt();
-				player1.go(slot, board);
+				// slot = in.nextInt();
+				player1.go(board);
 				logic = new Logic(board, player1, player2);
 				setPlayerTurn(2);
 			} else {
-				slot = in.nextInt();
-				player2.go(slot, board);
+				// slot = in.nextInt();
+				player2.go(board);
 				setPlayerTurn(1);
 			}
 			if (logic.checkIfWin())
