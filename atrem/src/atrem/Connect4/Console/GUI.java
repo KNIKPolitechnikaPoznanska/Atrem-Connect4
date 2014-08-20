@@ -54,4 +54,8 @@ public class GUI {
 		System.out.println("************************************");
 	}
 
+	public void writeFullSlots() {
+		System.out.println("Slot jest pelen, podaj inny: ");
+	}
+
 }

@@ -38,6 +38,9 @@ public class GameLoop {
 		do {
 			slot = keyHandler.getSlot(board); // = metoda CKeyHandler.getSlot
 			emptySlot = board.findFreeSpot(slot);
+			if (emptySlot == -1) {
+				gui.writeFullSlots();
+			}
 		} while (emptySlot == -1);
 		board.setHoleState(emptySlot, slot, player.getPlayerId()); // gracz
 	}
