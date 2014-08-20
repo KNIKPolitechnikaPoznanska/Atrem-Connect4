@@ -9,26 +9,26 @@ public class Board {
 
 		for (int i = 0; i < Slots; i++)
 			for (int j = 0; j < Rows; j++)
-				gameBoard[i][j] = new Hole();
+				gameBoard[j][i] = new Hole();
 
 	}
 
 	public Board(int Rows, int Slots) {
 		this.Slots = Slots;
 		this.Rows = Rows;
-		gameBoard = new Hole[Slots][Rows];
+		gameBoard = new Hole[Rows][Slots];
 		for (int i = 0; i < this.Slots; i++)
 			for (int j = 0; j < this.Rows; j++)
-				gameBoard[i][j] = new Hole();
+				gameBoard[j][i] = new Hole();
 
 	}
 
-	public HoleState getHoleState(int A, int B) {
-		return gameBoard[A][B].getHoleState();
+	public HoleState getHoleState(int Rows, int Slots) {
+		return gameBoard[Rows][Slots].getHoleState();
 	}
 
-	public void setGameBoard(int A, int B, HoleState holeState) {
-		gameBoard[A][B].setHoleState(holeState);
+	public void setGameBoard(int Rows, int Slots, HoleState holeState) {
+		gameBoard[Rows][Slots].setHoleState(holeState);
 	}
 
 	public int getSlots() {

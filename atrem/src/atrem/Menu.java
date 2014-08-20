@@ -11,10 +11,10 @@ public class Menu {
 		Scanner in = new Scanner(System.in);
 		System.out.println("Witamy w grze connect 4");
 		System.out.println("Podaj liczbe wierszy");
-		int a = in.nextInt();
+		int Rows = in.nextInt();
 		System.out.println("Podaj liczbe slotow");
-		int b = in.nextInt();
-		board = new Board(a, b);
+		int Slots = in.nextInt();
+		board = new Board(Rows, Slots);
 
 		System.out.println("Podaj imie pierwszego zawodnika");
 		String im = in.next();
