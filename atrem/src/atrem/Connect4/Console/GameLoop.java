@@ -8,7 +8,7 @@ public class GameLoop {
 	private GUI gui = new GUI();
 	private Game game;
 
-	GameLoop(Game game) {
+	public GameLoop(Game game) {
 		this.game = game;
 	}
 
