@@ -3,17 +3,17 @@ package atrem;
 import java.util.Scanner;
 
 public class GameLoop {
-	private int kolejGracza = 1;
+	private int playerTurn = 1;
 	private Logic logic;
 	private int slot;
 	Scanner in = new Scanner(System.in);
 
-	public int getKolejGracza() {
-		return kolejGracza;
+	public int getPlayerTurn() {
+		return playerTurn;
 	}
 
-	public void setKolejGracza(int kolejGracza) {
-		this.kolejGracza = kolejGracza;
+	public void setPlayerTurn(int kolejGracza) {
+		this.playerTurn = kolejGracza;
 	}
 
 	Board board;
@@ -27,16 +27,16 @@ public class GameLoop {
 		while (true) { // g³ówna pêtla kolejek graczy
 			gui.drawBoard(board);
 
-			if (getKolejGracza() == 1) {
+			if (getPlayerTurn() == 1) {
 				slot = in.nextInt();
 				player1.go(slot, board);
 				logic = new Logic(board);
-				setKolejGracza(2);
+				setPlayerTurn(2);
 			} else {
 				slot = in.nextInt();
 				player1.go(slot, board);
 				logic.checkIfWin();
-				setKolejGracza(1);
+				setPlayerTurn(1);
 			}
 		}
 	}
