@@ -25,18 +25,25 @@ public class GameLoop {
 		return playerTurn;
 	}
 
+	public void go(Board board, Player player) {// do gui lub do gameloop
+		int slot = 2; // = metoda CKeyHandler.getSlot
+		int emptySlot = board.findFreeSpot(slot);
+		board.setHoleState(emptySlot, slot, player.getPlayerId()); // gracz
+
+	}
+
 	private void loop() { // public!n
 		while (true) { // g³ówna pêtla kolejek graczy
 			gui.drawBoard(board);
 
 			if (getPlayerTurn() == 1) {
 				// slot = in.nextInt();
-				player1.go(board);
+				// player1.go(board);
 
 				setPlayerTurn(2);
 			} else {
 				// slot = in.nextInt();
-				player2.go(board);
+				// player2.go(board);
 				setPlayerTurn(1); // ma byc private
 			}
 			if (logic.checkIfWin())
