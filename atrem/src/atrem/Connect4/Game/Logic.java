@@ -1,4 +1,7 @@
 package atrem.Connect4.Game;
+
+import atrem.Connect4.Console.GUI;
+
 /*
  * Logika gry
  */
@@ -9,6 +12,7 @@ public class Logic {
 	private Game game;
 	HoleState token;
 	private boolean hasWinner = false;
+	private GUI gui = new GUI();
 
 	public Logic(Game game) {
 		maxSlots = game.getBoard().getSlots();
@@ -16,35 +20,36 @@ public class Logic {
 		this.game = game;
 		this.checkIfWin();
 	}
-/*
- * Sprawdzenie u³o¿enia 4 w 4 wariantach
- */
+
+	/*
+	 * Sprawdzenie u³o¿enia 4 w 4 wariantach
+	 */
 	public boolean checkIfWin() {
 
-		for (int row = 0; row < maxRows; row++) { //slot\kolumna
+		for (int row = 0; row < maxRows; row++) { // slot\kolumna
 			for (int slot = 0; slot < maxSlots - 3; slot++) {
 				token = game.getBoard().getHoleState(row, slot);
 				if (token.getNumber() > 0
 						&& token == game.getBoard().getHoleState(row, slot + 1)
 						&& token == game.getBoard().getHoleState(row, slot + 2)
 						&& token == game.getBoard().getHoleState(row, slot + 3)) {
-					this.showWinner(token);
+					hasWinner = gui.showWinner(token, game);
 				}
 			}
 		}
 
-		for (int slot = 0; slot < maxSlots; slot++) { //wiersz
+		for (int slot = 0; slot < maxSlots; slot++) { // wiersz
 			for (int row = 0; row < maxRows - 3; row++) {
 				token = game.getBoard().getHoleState(row, slot);
 				if (token.getNumber() > 0
 						&& token == game.getBoard().getHoleState(row + 1, slot)
 						&& token == game.getBoard().getHoleState(row + 2, slot)
 						&& token == game.getBoard().getHoleState(row + 3, slot))
-					this.showWinner(token);
+					hasWinner = gui.showWinner(token, game);
 			}
 		}
 
-		for (int row = 0; row < maxRows - 3; row++) { //skos /
+		for (int row = 0; row < maxRows - 3; row++) { // skos /
 			for (int slot = 0; slot < maxSlots - 3; slot++) {
 				token = game.getBoard().getHoleState(row, slot);
 				if (token.getNumber() > 0
@@ -54,11 +59,11 @@ public class Logic {
 								slot + 2)
 						&& token == game.getBoard().getHoleState(row + 3,
 								slot + 3))
-					this.showWinner(token);
+					hasWinner = gui.showWinner(token, game);
 			}
 		}
 
-		for (int row = maxRows - 1; row >= 3; row--) { //skos \
+		for (int row = maxRows - 1; row >= 3; row--) { // skos \
 			for (int slot = 0; slot < maxSlots - 3; slot++) {
 				HoleState token = game.getBoard().getHoleState(row, slot);
 				if (token.getNumber() > 0
@@ -68,21 +73,10 @@ public class Logic {
 								slot + 2)
 						&& token == game.getBoard().getHoleState(row - 3,
 								slot + 3))
-					this.showWinner(token);
+					hasWinner = gui.showWinner(token, game);
 			}
 		}
-		if (hasWinner)
-			return true;
-		else
-			return false;
+		return hasWinner;
 	}
 
-	private void showWinner(HoleState holeState) {
-		if (holeState.name() == "PLAYER1") {
-			System.out.println("Wygra³ " + game.getPlayer1().getName());
-		} else if (holeState.name() == "PLAYER2") {
-			System.out.println("Wygra³ " + game.getPlayer2().getName());
-		}
-		hasWinner = true;
-	}
 }

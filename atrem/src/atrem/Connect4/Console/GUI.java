@@ -13,6 +13,7 @@ public class GUI {
 
 	public void displayGame(Game game) {
 		this.drawBoard(game.getBoard());
+		this.drawSlots(game.getBoard().getSlots());
 		if (game.getPlayerTurn() == 1) {
 			this.writeCurrentPlayer(game.getPlayer1());
 		}
@@ -37,7 +38,7 @@ public class GUI {
 			}
 			System.out.println("");
 		}
-		this.drawSlots(BoardTmp.getSlots());
+
 	}
 
 	private void drawSlots(int slots) {
@@ -45,6 +46,7 @@ public class GUI {
 		for (int i = 1; i <= slots; i++) {
 			System.out.print("| " + i + " |");
 		}
+		System.out.println();
 
 	}
 
@@ -60,6 +62,15 @@ public class GUI {
 
 	public void writeFullSlots() {
 		System.out.println("Slot jest pelen, podaj inny: ");
+	}
+
+	public boolean showWinner(HoleState holeState, Game game) {
+		if (holeState.name() == "PLAYER1") {
+			System.out.println("	Wygra³: " + game.getPlayer1().getName());
+		} else if (holeState.name() == "PLAYER2") {
+			System.out.println("Wygra³ " + game.getPlayer2().getName());
+		}
+		return true;
 	}
 
 }
