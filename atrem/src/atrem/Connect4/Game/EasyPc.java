@@ -27,8 +27,7 @@ public class EasyPc extends AI implements PlayerController {
 	}
 
 	@Override
-	public int getSlots() // dopisac logike wyboru slota
-	{
+	public int getSlots() {
 		int randomSlot;
 		int choosenSlot;
 		Random rand = new Random();
