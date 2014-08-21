@@ -3,7 +3,7 @@ package atrem.Connect4.Game;
 /*
  * Klasa obs³uguj¹ca dane graczy
  */
-public class Player implements PlayerController {
+public class Player {
 	protected String name;
 	protected HoleState playerId;
 	protected int slots;
@@ -17,22 +17,18 @@ public class Player implements PlayerController {
 		this.slots = slots;
 	}
 
-	@Override
 	public String getName() {
 		return name;
 	}
 
-	@Override
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	@Override
 	public HoleState getPlayerId() {
 		return null;
 	}
 
-	@Override
 	public int getSlots() {
 		return 0;
 	}
