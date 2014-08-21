@@ -55,4 +55,8 @@ public class Menu {
 			System.out.println("Podaj imie komputera");
 		player2name = keyGo.getString();
 	}
+
+	public String getOpponent() {
+		return opponent;
+	}
 }
