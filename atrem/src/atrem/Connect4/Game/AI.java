@@ -1,5 +1,5 @@
 package atrem.Connect4.Game;
 
-public class AI extends Player implements PlayerController {
+public class AI {
 
 }
