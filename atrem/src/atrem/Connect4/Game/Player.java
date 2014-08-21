@@ -1,4 +1,5 @@
 package atrem.Connect4.Game;
+
 /*
  * Klasa obs³uguj¹ca dane graczy
  */
@@ -11,28 +12,33 @@ public class Player implements PlayerController {
 		this.playerId = playerId;
 	}
 
-	/* (non-Javadoc)
-	 * @see atrem.Connect4.Game.PlayerType#getName()
+	/*
+	 * Pobierz imie gracza
 	 */
 	@Override
 	public String getName() {
 		return name;
 	}
 
-	/* (non-Javadoc)
-	 * @see atrem.Connect4.Game.PlayerType#setName(java.lang.String)
+	/*
+	 * Ustaw imie gracza
 	 */
 	@Override
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	/* (non-Javadoc)
-	 * @see atrem.Connect4.Game.PlayerType#getPlayerId()
+	/*
+	 * Pobierz playerId
 	 */
 	@Override
 	public HoleState getPlayerId() {
-		return playerId;
+		return null;
+	}
+
+	@Override
+	public int getSlots() {
+		return 0;
 	}
 
 }
