@@ -1,4 +1,5 @@
 package atrem.Connect4.Game;
+
 /*
  * Logika gry
  */
@@ -16,12 +17,13 @@ public class Logic {
 		this.game = game;
 		this.checkIfWin();
 	}
-/*
- * Sprawdzenie u³o¿enia 4 w 4 wariantach
- */
+
+	/*
+	 * Sprawdzenie u³o¿enia 4 w 4 wariantach
+	 */
 	public boolean checkIfWin() {
 
-		for (int row = 0; row < maxRows; row++) { //slot\kolumna
+		for (int row = 0; row < maxRows; row++) { // slot\kolumna
 			for (int slot = 0; slot < maxSlots - 3; slot++) {
 				token = game.getBoard().getHoleState(row, slot);
 				if (token.getNumber() > 0
@@ -33,7 +35,7 @@ public class Logic {
 			}
 		}
 
-		for (int slot = 0; slot < maxSlots; slot++) { //wiersz
+		for (int slot = 0; slot < maxSlots; slot++) { // wiersz
 			for (int row = 0; row < maxRows - 3; row++) {
 				token = game.getBoard().getHoleState(row, slot);
 				if (token.getNumber() > 0
@@ -44,7 +46,7 @@ public class Logic {
 			}
 		}
 
-		for (int row = 0; row < maxRows - 3; row++) { //skos /
+		for (int row = 0; row < maxRows - 3; row++) { // skos /
 			for (int slot = 0; slot < maxSlots - 3; slot++) {
 				token = game.getBoard().getHoleState(row, slot);
 				if (token.getNumber() > 0
@@ -58,7 +60,7 @@ public class Logic {
 			}
 		}
 
-		for (int row = maxRows - 1; row >= 3; row--) { //skos \
+		for (int row = maxRows - 1; row >= 3; row--) { // skos \
 			for (int slot = 0; slot < maxSlots - 3; slot++) {
 				HoleState token = game.getBoard().getHoleState(row, slot);
 				if (token.getNumber() > 0
@@ -75,6 +77,14 @@ public class Logic {
 			return true;
 		else
 			return false;
+	}
+
+	public boolean checkIfDraw(int doneMoves) {
+		if (doneMoves == game.getBoard().getTotalSpots()) {
+			System.out.println("REMIS");
+			return true;
+		}
+		return false;
 	}
 
 	private void showWinner(HoleState holeState) {
