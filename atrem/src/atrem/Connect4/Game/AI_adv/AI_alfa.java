@@ -25,11 +25,8 @@ public class AI_alfa {
 
 	public int evaluateNextMouve() {
 
-		for (int row = 0; row < rows; rows++) {
-			for (int slot = 0; slot < slots; slot++) {
-				board.findFreeSpot(slot);
-
-			}
+		for (int slot = 0; slot < slots; slot++) {
+			board.findFreeSpot(slot);
 
 		}
 		return 0;

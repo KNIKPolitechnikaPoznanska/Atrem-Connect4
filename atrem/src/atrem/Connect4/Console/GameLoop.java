@@ -45,7 +45,8 @@ public class GameLoop {
 		int emptySlot;
 		int slot;
 		do {
-			slot = player.getSlots(); // = metoda CKeyHandler.getSlot
+			slot = player.getSlots(board.getSlots()); // = metoda
+														// CKeyHandler.getSlot
 			emptySlot = board.findFreeSpot(slot);
 			if (emptySlot == -1) {
 				gui.writeFullSlots();
