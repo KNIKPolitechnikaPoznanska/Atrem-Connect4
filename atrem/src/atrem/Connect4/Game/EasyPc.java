@@ -1,10 +1,13 @@
 package atrem.Connect4.Game;
 
+import java.util.Random;
+
 public class EasyPc extends AI implements PlayerController {
 
-	public EasyPc(String name, HoleState playerId) {
+	public EasyPc(String name, HoleState playerId, Board board) {
 		this.name = name;
 		this.playerId = playerId;
+		this.board = board;
 	}
 
 	@Override
@@ -21,6 +24,19 @@ public class EasyPc extends AI implements PlayerController {
 	public HoleState getPlayerId() {
 		return playerId;
 
+	}
+
+	@Override
+	public int getSlots() // dopisac logike wyboru slota
+	{
+		int randomSlot;
+		int choosenSlot;
+		Random rand = new Random();
+		do {
+			randomSlot = rand.nextInt(board.getSlots());
+			choosenSlot = board.findFreeSpot(randomSlot);
+		} while (choosenSlot == -1);
+		return choosenSlot;
 	}
 
 }

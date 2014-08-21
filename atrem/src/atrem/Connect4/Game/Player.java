@@ -6,6 +6,7 @@ package atrem.Connect4.Game;
 public class Player {
 	protected String name;
 	protected HoleState playerId;
+
 	protected int slots;
 
 	public Player() {
@@ -17,20 +18,9 @@ public class Player {
 		this.slots = slots;
 	}
 
-	public String getName() {
-		return name;
-	}
-
 	public void setName(String name) {
 		this.name = name;
-	}
 
-	public HoleState getPlayerId() {
-		return null;
-	}
-
-	public int getSlots() {
-		return 0;
 	}
 
 }
