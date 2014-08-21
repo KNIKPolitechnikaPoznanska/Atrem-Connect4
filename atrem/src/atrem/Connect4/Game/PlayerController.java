@@ -8,6 +8,6 @@ public interface PlayerController {
 
 	public abstract HoleState getPlayerId();
 
-	public abstract int getSlots(int maxSlots);
+	public abstract int getSlots();
 
 }
