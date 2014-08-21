@@ -3,6 +3,7 @@ package atrem.Connect4.Game.AI_adv;
 import atrem.Connect4.Game.Board;
 import atrem.Connect4.Game.Game;
 import atrem.Connect4.Game.Logic;
+import atrem.Connect4.Game.PlayerController;
 
 public class AI_alfa {
 
@@ -12,6 +13,7 @@ public class AI_alfa {
 	private Logic logic;
 	private Game game;
 	private Board board;
+	private PlayerController player1;
 
 	public AI_alfa(Game game) {
 
@@ -33,7 +35,25 @@ public class AI_alfa {
 	}
 
 	private Board nextMouve(Board nextBoard) {
+		this.go(nextBoard,)
 		return nextBoard;
+	}
+
+	private void go(Board board, PlayerController player, int slot) {// do gui
+																		// lub
+																		// do
+		// gameloop
+		int emptySlot;
+		// int slot;
+		do {
+			// slot = player.getSlots(board.getSlots()); // = metoda
+			// CKeyHandler.getSlot
+			emptySlot = board.findFreeSpot(slot);
+			if (emptySlot == -1) {
+				return;
+			}
+		} while (emptySlot == -1);
+		board.setHoleState(emptySlot, slot, player.getPlayerId()); // gracz
 	}
 
 }
