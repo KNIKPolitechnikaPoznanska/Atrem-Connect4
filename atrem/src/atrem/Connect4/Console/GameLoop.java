@@ -3,7 +3,7 @@ package atrem.Connect4.Console;
 import atrem.Connect4.Game.Board;
 import atrem.Connect4.Game.Game;
 import atrem.Connect4.Game.Logic;
-import atrem.Connect4.Game.PlayerType;
+import atrem.Connect4.Game.PlayerController;
 
 /*
  * G³ówna pêtla gry
@@ -40,7 +40,7 @@ public class GameLoop {
 		gui.displayResults(game);
 	}
 
-	public void go(Board board, PlayerType player) {// do gui lub do gameloop
+	public void go(Board board, PlayerController player) {// do gui lub do gameloop
 		int emptySlot;
 		int slot;
 		do {

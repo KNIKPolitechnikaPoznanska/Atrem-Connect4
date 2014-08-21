@@ -2,7 +2,7 @@ package atrem.Connect4.Game;
 /*
  * Klasa obs³uguj¹ca dane graczy
  */
-public class Player implements PlayerType {
+public class Player implements PlayerController {
 	private String name;
 	HoleState playerId;
 

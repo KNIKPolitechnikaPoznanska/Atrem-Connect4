@@ -1,6 +1,6 @@
 package atrem.Connect4.Game;
 
-public interface PlayerType {
+public interface PlayerController {
 
 	public abstract String getName();
 

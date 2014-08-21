@@ -72,7 +72,7 @@ public class CKeyHandler extends KeyAdapter {
 				// input.close();
 				return inputInt;
 			} else {
-				System.out.println("Wprowadü slot z zakresu [4-n]");
+				System.out.println("Wprowadü liczbÍ z zakresu [4-n]");
 			}
 		}
 	}

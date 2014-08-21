@@ -4,19 +4,19 @@ package atrem.Connect4.Game;
  */
 public class Game {
 	private Board board;
-	private PlayerType player1;
-	private PlayerType player2;
+	private PlayerController player1;
+	private PlayerController player2;
 	private int playerTurn = 1;
 
 	public Board getBoard() {
 		return board;
 	}
 
-	public PlayerType getPlayer1() {
+	public PlayerController getPlayer1() {
 		return player1;
 	}
 
-	public PlayerType getPlayer2() {
+	public PlayerController getPlayer2() {
 		return player2;
 	}
 
@@ -28,11 +28,11 @@ public class Game {
 		this.board = board;
 	}
 
-	public void setPlayer1(PlayerType player1) {
+	public void setPlayer1(PlayerController player1) {
 		this.player1 = player1;
 	}
 
-	public void setPlayer2(PlayerType player2) {
+	public void setPlayer2(PlayerController player2) {
 		this.player2 = player2;
 	}
 
