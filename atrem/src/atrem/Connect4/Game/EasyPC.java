@@ -2,9 +2,9 @@ package atrem.Connect4.Game;
 
 import java.util.Random;
 
-public class EasyPc extends AI implements PlayerController {
+public class EasyPC extends AI implements PlayerController {
 
-	public EasyPc(String name, HoleState playerId, Board board) {
+	public EasyPC(String name, HoleState playerId, Board board) {
 		this.name = name;
 		this.playerId = playerId;
 		this.board = board;

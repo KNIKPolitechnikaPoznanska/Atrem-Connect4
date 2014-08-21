@@ -14,7 +14,7 @@ public class GameFactory {
 			String im2, String opponent) {
 		board = new Board(rows, slots);
 		if (opponent.equalsIgnoreCase("K"))
-			player2 = new AI(board.getSlots(), im2, HoleState.PLAYER2);
+			player2 = new EasyPC(im2, HoleState.PLAYER2, board);
 		else
 			player2 = new PlayerConsole(board.getSlots(), im1,
 					HoleState.PLAYER2);
