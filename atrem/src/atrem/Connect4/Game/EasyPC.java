@@ -27,7 +27,7 @@ public class EasyPC extends AI implements PlayerController {
 	}
 
 	@Override
-	public int getSlots() {
+	public int getSlotNumber() {
 		int randomSlot;
 		int choosenSlot;
 		Random rand = new Random();
@@ -36,12 +36,6 @@ public class EasyPC extends AI implements PlayerController {
 			choosenSlot = board.findFreeSpot(randomSlot);
 		} while (choosenSlot == -1);
 		return choosenSlot;
-	}
-
-	@Override
-	public int getSlotNumber() {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 }
