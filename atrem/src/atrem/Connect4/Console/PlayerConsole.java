@@ -4,6 +4,9 @@ import atrem.Connect4.Game.HoleState;
 import atrem.Connect4.Game.Player;
 import atrem.Connect4.Game.PlayerController;
 
+/*
+ * Klasa obs³uguj¹ca gracza konsolowego
+ */
 public class PlayerConsole extends Player implements PlayerController {
 	// private String name;
 	private CKeyHandler keyHandler;
