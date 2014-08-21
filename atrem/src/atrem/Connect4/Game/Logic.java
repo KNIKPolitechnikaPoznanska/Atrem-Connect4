@@ -15,8 +15,8 @@ public class Logic {
 	private GUI gui = new GUI();
 
 	public Logic(Game game) {
-		maxSlots = game.getBoard().getSlots();
-		maxRows = game.getBoard().getRows();
+		maxSlots = game.getBoardSlots();
+		maxRows = game.getBoardRows();
 		this.game = game;
 		this.checkIfWin();
 	}
@@ -28,11 +28,11 @@ public class Logic {
 
 		for (int row = 0; row < maxRows; row++) { // slot\kolumna
 			for (int slot = 0; slot < maxSlots - 3; slot++) {
-				token = game.getBoard().getHoleState(row, slot);
+				token = game.getHoleState(row, slot);
 				if (token.getNumber() > 0
-						&& token == game.getBoard().getHoleState(row, slot + 1)
-						&& token == game.getBoard().getHoleState(row, slot + 2)
-						&& token == game.getBoard().getHoleState(row, slot + 3)) {
+						&& token == game.getHoleState(row, slot + 1)
+						&& token == game.getHoleState(row, slot + 2)
+						&& token == game.getHoleState(row, slot + 3)) {
 					hasWinner = gui.showWinner(token, game);
 				}
 			}
@@ -42,9 +42,9 @@ public class Logic {
 			for (int row = 0; row < maxRows - 3; row++) {
 				token = game.getBoard().getHoleState(row, slot);
 				if (token.getNumber() > 0
-						&& token == game.getBoard().getHoleState(row + 1, slot)
-						&& token == game.getBoard().getHoleState(row + 2, slot)
-						&& token == game.getBoard().getHoleState(row + 3, slot))
+						&& token == game.getHoleState(row + 1, slot)
+						&& token == game.getHoleState(row + 2, slot)
+						&& token == game.getHoleState(row + 3, slot))
 					hasWinner = gui.showWinner(token, game);
 			}
 		}
@@ -53,26 +53,20 @@ public class Logic {
 			for (int slot = 0; slot < maxSlots - 3; slot++) {
 				token = game.getBoard().getHoleState(row, slot);
 				if (token.getNumber() > 0
-						&& token == game.getBoard().getHoleState(row + 1,
-								slot + 1)
-						&& token == game.getBoard().getHoleState(row + 2,
-								slot + 2)
-						&& token == game.getBoard().getHoleState(row + 3,
-								slot + 3))
+						&& token == game.getHoleState(row + 1, slot + 1)
+						&& token == game.getHoleState(row + 2, slot + 2)
+						&& token == game.getHoleState(row + 3, slot + 3))
 					hasWinner = gui.showWinner(token, game);
 			}
 		}
 
 		for (int row = maxRows - 1; row >= 3; row--) { // skos \
 			for (int slot = 0; slot < maxSlots - 3; slot++) {
-				HoleState token = game.getBoard().getHoleState(row, slot);
+				HoleState token = game.getHoleState(row, slot);
 				if (token.getNumber() > 0
-						&& token == game.getBoard().getHoleState(row - 1,
-								slot + 1)
-						&& token == game.getBoard().getHoleState(row - 2,
-								slot + 2)
-						&& token == game.getBoard().getHoleState(row - 3,
-								slot + 3))
+						&& token == game.getHoleState(row - 1, slot + 1)
+						&& token == game.getHoleState(row - 2, slot + 2)
+						&& token == game.getHoleState(row - 3, slot + 3))
 					hasWinner = gui.showWinner(token, game);
 			}
 		}

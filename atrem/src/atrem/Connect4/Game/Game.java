@@ -1,4 +1,5 @@
 package atrem.Connect4.Game;
+
 /*
  * klasa przechowujaca dane gry
  */
@@ -38,5 +39,25 @@ public class Game {
 
 	public void setPlayerTurn(int playerTurn) {
 		this.playerTurn = playerTurn;
+	}
+
+	public HoleState getHoleState(int rows, int slots) {
+		return this.board.getHoleState(rows, slots);
+	}
+
+	public int getBoardSlots() {
+		return this.board.getSlots();
+	}
+
+	public int getBoardRows() {
+		return this.board.getRows();
+	}
+
+	public String getNamePlayer1() {
+		return this.player1.getName();
+	}
+
+	public String getNamePlayer2() {
+		return this.player2.getName();
 	}
 }

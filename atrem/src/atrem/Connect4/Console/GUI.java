@@ -66,9 +66,9 @@ public class GUI {
 
 	public boolean showWinner(HoleState holeState, Game game) {
 		if (holeState.name() == "PLAYER1") {
-			System.out.println("	Wygra³: " + game.getPlayer1().getName());
+			System.out.println("	Wygra³: " + game.getNamePlayer1());
 		} else if (holeState.name() == "PLAYER2") {
-			System.out.println("Wygra³ " + game.getPlayer2().getName());
+			System.out.println("Wygra³ " + game.getNamePlayer2());
 		}
 		return true;
 	}
