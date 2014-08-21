@@ -4,6 +4,7 @@ import atrem.Connect4.Console.GameLoop;
 import atrem.Connect4.Console.Menu;
 import atrem.Connect4.Game.Game;
 import atrem.Connect4.Game.GameFactory;
+
 /*
  * Klasa main uruchamiaj¹ca grê Connect4
  */
@@ -18,7 +19,6 @@ public class Connect4 {
 		gamefactory = new GameFactory();
 		menu = new Menu();
 		game = new Game();
-		menu.loadSettings();
 
 		gamefactory.setGameFactory(game, menu.getRows(), menu.getSlots(),
 				menu.getPlayer1name(), menu.getPlayer2name());
