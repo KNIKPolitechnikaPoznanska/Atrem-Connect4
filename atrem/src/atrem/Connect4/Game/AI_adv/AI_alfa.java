@@ -35,4 +35,8 @@ public class AI_alfa {
 		return 0;
 	}
 
+	private Board nextMouve(Board nextBoard) {
+		return nextBoard;
+	}
+
 }
