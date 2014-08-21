@@ -3,8 +3,6 @@ package atrem.Connect4.Console;
 import java.awt.event.KeyAdapter;
 import java.util.Scanner;
 
-import atrem.Connect4.Game.Board;
-
 /*
  * Klasa obs³uguj¹ca klawiaturê 
  * i pobieraj¹ca prawid³owe wartoœci
@@ -14,7 +12,7 @@ public class CKeyHandler extends KeyAdapter {
 	private int slot;
 	private int inputInt;
 
-	public int getSlot(Board board) {
+	public int getSlot(int maxSlots) {
 		slot = 0;
 		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
@@ -32,12 +30,12 @@ public class CKeyHandler extends KeyAdapter {
 				bError = false;
 				// input.close();
 
-				if (slot > 0 && slot <= board.getSlots()) {
+				if (slot > 0 && slot <= maxSlots) {
 					return slot - 1;
 				} else {
 					System.out.println("Wprowadzi³eœ z³y slot!");
-					System.out.println("WprowadŸ slot z zakresu [0-"
-							+ board.getSlots() + "]");
+					System.out.println("WprowadŸ slot z zakresu [0-" + maxSlots
+							+ "]");
 				}
 			}
 		}
@@ -47,6 +45,18 @@ public class CKeyHandler extends KeyAdapter {
 		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
 		String string = input.next();
+		return string;
+	}
+
+	public String getStringChoice() {
+		@SuppressWarnings("resource")
+		Scanner input = new Scanner(System.in);
+		String string = input.next();
+		while (!string.equalsIgnoreCase("K") && !string.equalsIgnoreCase("C")) {
+			System.out.println("WprowadŸ K(komputer) lub C(cz³owiek)5");
+			string = input.next();
+
+		}
 		return string;
 	}
 

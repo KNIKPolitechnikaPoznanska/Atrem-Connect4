@@ -22,7 +22,8 @@ public class Connect4 {
 		menu.loadSettings();
 
 		gamefactory.setGameFactory(game, menu.getRows(), menu.getSlots(),
-				menu.getPlayer1name(), menu.getPlayer2name());
+				menu.getPlayer1name(), menu.getPlayer2name(),
+				menu.getOpponent());
 		gameloop = new GameLoop(game);
 		gameloop.startLoop();
 

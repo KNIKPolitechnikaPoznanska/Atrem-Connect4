@@ -40,11 +40,12 @@ public class GameLoop {
 		gui.displayResults(game);
 	}
 
-	public void go(Board board, PlayerController player) {// do gui lub do gameloop
+	public void go(Board board, PlayerController player) {// do gui lub do
+															// gameloop
 		int emptySlot;
 		int slot;
 		do {
-			slot = keyHandler.getSlot(board); // = metoda CKeyHandler.getSlot
+			slot = player.getSlots(); // = metoda CKeyHandler.getSlot
 			emptySlot = board.findFreeSpot(slot);
 			if (emptySlot == -1) {
 				gui.writeFullSlots();
