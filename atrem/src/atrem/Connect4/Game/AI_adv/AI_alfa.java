@@ -25,14 +25,18 @@ public class AI_alfa {
 
 	public int evaluateNextMouve() {
 
-		for (int row = 0; row < rows; rows++) {
-			for (int slot = 0; slot < slots; slot++) {
-				board.findFreeSpot(slot);
-
-			}
+		for (int slot = 0; slot < slots; slot++) {
+			board.findFreeSpot(slot);
 
 		}
 		return 0;
 	}
 
 }
+/*
+ * public void go(Board board, PlayerController player) {// do gui lub do //
+ * gameloop int emptySlot; int slot; do { slot = player.getSlots(); // = metoda
+ * CKeyHandler.getSlot emptySlot = board.findFreeSpot(slot); if (emptySlot ==
+ * -1) { gui.writeFullSlots(); } } while (emptySlot == -1);
+ * board.setHoleState(emptySlot, slot, player.getPlayerId()); // gracz }
+ */
