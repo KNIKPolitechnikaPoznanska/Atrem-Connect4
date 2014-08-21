@@ -5,14 +5,16 @@ package atrem.Connect4.Game;
  */
 public class Player implements PlayerController {
 	protected String name;
-	HoleState playerId;
+	protected HoleState playerId;
+	protected int slots;
 
 	public Player() {
 	};
 
-	public Player(String name, HoleState playerId) {
+	public Player(int slots, String name, HoleState playerId) {
 		this.name = name;
 		this.playerId = playerId;
+		this.slots = slots;
 	}
 
 	@Override
