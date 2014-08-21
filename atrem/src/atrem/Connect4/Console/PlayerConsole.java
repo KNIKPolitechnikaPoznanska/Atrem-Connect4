@@ -8,12 +8,11 @@ import atrem.Connect4.Game.PlayerController;
  * Klasa obs³uguj¹ca gracza konsolowego
  */
 public class PlayerConsole extends Player implements PlayerController {
-	// private String name;
 	private CKeyHandler keyHandler;
-	private int maxSlots;
 
-	public PlayerConsole(int slots, String name, HoleState playerId) {
-		super(slots, name, playerId);
+	public PlayerConsole(int maxSlots, String name, HoleState playerId) {
+		super(maxSlots, name, playerId);
+		keyHandler = new CKeyHandler();
 	}
 
 	@Override
@@ -29,14 +28,12 @@ public class PlayerConsole extends Player implements PlayerController {
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return name;
 	}
 
 	@Override
 	public HoleState getPlayerId() {
-		// TODO Auto-generated method stub
-		return null;
+		return playerId;
 	}
 
 }
