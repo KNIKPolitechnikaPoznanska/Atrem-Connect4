@@ -5,7 +5,7 @@ package atrem.Connect4.Game;
 public class GameFactory {
 
 	private Board board;
-	private Player player1, player2;
+	private PlayerType player1, player2;
 
 	public void setGameFactory(Game game, int rows, int slots, String im1,
 			String im2) {

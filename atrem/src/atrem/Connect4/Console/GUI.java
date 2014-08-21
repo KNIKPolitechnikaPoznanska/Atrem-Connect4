@@ -3,7 +3,7 @@ package atrem.Connect4.Console;
 import atrem.Connect4.Game.Board;
 import atrem.Connect4.Game.Game;
 import atrem.Connect4.Game.HoleState;
-import atrem.Connect4.Game.Player;
+import atrem.Connect4.Game.PlayerType;
 
 /*
  * Rysowanie GUI konsolowego
@@ -50,7 +50,7 @@ public class GUI {
 
 	}
 
-	private void writeCurrentPlayer(Player player) {
+	private void writeCurrentPlayer(PlayerType player) {
 		String name = player.getName();
 		System.out.println("Obecny ruch wykonuje:  " + name + " ");
 	}
