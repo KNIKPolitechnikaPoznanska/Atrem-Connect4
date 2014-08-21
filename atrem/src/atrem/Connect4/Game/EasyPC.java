@@ -32,9 +32,12 @@ public class EasyPC extends AI implements PlayerController {
 		int choosenSlot;
 		Random rand = new Random();
 		do {
+
 			randomSlot = rand.nextInt(board.getSlots());
 			choosenSlot = board.findFreeSpot(randomSlot);
 		} while (choosenSlot == -1);
+		System.out.println(choosenSlot);
+
 		return choosenSlot;
 	}
 
