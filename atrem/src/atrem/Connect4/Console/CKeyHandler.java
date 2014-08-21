@@ -11,9 +11,7 @@ import atrem.Connect4.Game.Board;
  * podane przez graczy
  */
 public class CKeyHandler extends KeyAdapter {
-	private int inputInt;
 	private int maxSlots;
-	private int slot;
 
 	public CKeyHandler() {
 	}
@@ -26,55 +24,36 @@ public class CKeyHandler extends KeyAdapter {
 	public int getInt() {
 		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
-		inputInt = 0;
-		boolean bError;
 		while (true) {
-			bError = true;
-			while (bError) {
-				if (input.hasNextInt()) {
-					inputInt = input.nextInt();
-					bError = false;
+			if (input.hasNextInt()) {
+				int inputInt = input.nextInt();
+				if (inputInt > 3) {
+					return inputInt;
 				} else {
-					System.out.println("WprowadŸ liczbê!!!");
-					input.next();
-					continue;
+					System.out.println("WprowadŸ liczbê z zakresu [4-n]");
 				}
-			}
-
-			if (inputInt > 3) {
-				// input.close();
-				return inputInt;
 			} else {
-				System.out.println("WprowadŸ liczbê z zakresu [4-n]");
+				System.out.println("WprowadŸ liczbê!!!");
+				input.next();
 			}
 		}
 	}
 
 	public int getSlot() {
-		slot = 0;
 		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
-
 		while (true) {
-			boolean bError = true;
-			while (bError) {
-				if (input.hasNextInt()) {
-					slot = input.nextInt();
-				} else {
-					System.out.println("WprowadŸ liczbê!!!");
-					input.next();
-					continue;
-				}
-				bError = false;
-				// input.close();
-
+			if (input.hasNextInt()) {
+				int slot = input.nextInt();
 				if (slot > 0 && slot <= maxSlots) {
 					return slot - 1;
 				} else {
-					System.out.println("Wprowadzi³eœ z³y slot!");
 					System.out.println("WprowadŸ slot z zakresu [0-" + maxSlots
 							+ "]");
 				}
+			} else {
+				System.out.println("WprowadŸ liczbê!!!");
+				input.next();
 			}
 		}
 	}
@@ -93,7 +72,6 @@ public class CKeyHandler extends KeyAdapter {
 		while (!string.equalsIgnoreCase("K") && !string.equalsIgnoreCase("C")) {
 			System.out.println("WprowadŸ K(komputer) lub C(cz³owiek)5");
 			string = input.next();
-
 		}
 		return string;
 	}
