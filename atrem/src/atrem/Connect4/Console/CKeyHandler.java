@@ -50,6 +50,17 @@ public class CKeyHandler extends KeyAdapter {
 		return string;
 	}
 
+	public String getStringChoice() {
+		Scanner input = new Scanner(System.in);
+		String string = input.next();
+		while (!string.equalsIgnoreCase("K") && !string.equalsIgnoreCase("C")) {
+			System.out.println("Wprowadü K(komputer) lub C(cz≥owiek)5");
+			string = input.next();
+
+		}
+		return string;
+	}
+
 	public int getInt() {
 		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
