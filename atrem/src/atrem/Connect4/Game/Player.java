@@ -15,34 +15,24 @@ public class Player implements PlayerController {
 		this.playerId = playerId;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see atrem.Connect4.Game.PlayerType#getName()
-	 */
 	@Override
 	public String getName() {
 		return name;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see atrem.Connect4.Game.PlayerType#setName(java.lang.String)
-	 */
 	@Override
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see atrem.Connect4.Game.PlayerType#getPlayerId()
-	 */
 	@Override
 	public HoleState getPlayerId() {
-		return playerId;
+		return null;
+	}
+
+	@Override
+	public int getSlots() {
+		return 0;
 	}
 
 }

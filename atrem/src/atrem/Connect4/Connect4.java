@@ -4,6 +4,7 @@ import atrem.Connect4.Console.GameLoop;
 import atrem.Connect4.Console.Menu;
 import atrem.Connect4.Game.Game;
 import atrem.Connect4.Game.GameFactory;
+
 /*
  * Klasa main uruchamiaj¹ca grê Connect4
  */
