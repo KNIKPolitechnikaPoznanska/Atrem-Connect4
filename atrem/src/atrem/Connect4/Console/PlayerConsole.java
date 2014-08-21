@@ -27,4 +27,16 @@ public class PlayerConsole extends Player implements PlayerController {
 		super.setName(name);
 	}
 
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public HoleState getPlayerId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

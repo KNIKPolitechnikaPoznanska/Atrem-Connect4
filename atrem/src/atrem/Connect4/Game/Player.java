@@ -18,4 +18,9 @@ public class Player {
 		this.slots = slots;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+
+	}
+
 }
