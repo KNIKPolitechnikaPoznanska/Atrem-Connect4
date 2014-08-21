@@ -6,19 +6,15 @@ package atrem.Connect4.Game;
 public class Player {
 	protected String name;
 	protected HoleState playerId;
-	protected int maxSlots;
+	protected Board board;
 
-	public Player() {
-	}
-
-	public Player(int maxSlots, String name, HoleState playerId) {
+	public Player(Board board, String name, HoleState playerId) {
 		this.name = name;
 		this.playerId = playerId;
-		this.maxSlots = maxSlots;
+		this.board = board;
 	}
 
 	public void setName(String name) {
 		this.name = name;
 	}
-
 }

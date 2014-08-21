@@ -13,7 +13,6 @@ import atrem.Connect4.Game.PlayerController;
 public class GameLoop {
 	private GUI gui = new GUI();
 	private Game game;
-	private CKeyHandler keyHandler = new CKeyHandler();
 	private Logic logic;
 	private int doneMoves;
 
@@ -45,8 +44,8 @@ public class GameLoop {
 		int emptySlot;
 		int slot;
 		do {
-			slot = player.getSlots(board.getSlots()); // = metoda
-														// CKeyHandler.getSlot
+			slot = player.getSlotNumber(); // = metoda
+											// CKeyHandler.getSlot
 			emptySlot = board.findFreeSpot(slot);
 			if (emptySlot == -1) {
 				gui.writeFullSlots();

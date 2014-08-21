@@ -1,5 +1,6 @@
 package atrem.Connect4.Console;
 
+import atrem.Connect4.Game.Board;
 import atrem.Connect4.Game.HoleState;
 import atrem.Connect4.Game.Player;
 import atrem.Connect4.Game.PlayerController;
@@ -10,15 +11,16 @@ import atrem.Connect4.Game.PlayerController;
 public class PlayerConsole extends Player implements PlayerController {
 
 	private CKeyHandler keyHandler;
+	private int slots;
 
-	public PlayerConsole(int maxSlots, String name, HoleState playerId) {
-		super(maxSlots, name, playerId);
-		keyHandler = new CKeyHandler();
+	public PlayerConsole(Board board, String name, HoleState playerId) {
+		super(board, name, playerId);
+		keyHandler = new CKeyHandler(board);
 	}
 
 	@Override
-	public int getSlots(int slots) {
-		slots = keyHandler.getSlot(maxSlots);
+	public int getSlotNumber() {
+		slots = keyHandler.getSlot();
 		return slots;
 	}
 
