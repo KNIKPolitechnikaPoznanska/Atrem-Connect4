@@ -1,18 +1,15 @@
 package atrem.Connect4.Console;
-
-
+/*
+ * Pobiera od gracza wszystkie informacje
+ * wymagane do uruchomienia gry
+ */
 public class Menu {
-
 	private CKeyHandler menu;
-
 	private String player1name, player2name;
-
 	private int slots, rows;
 
 	public Menu() {
-
 		menu = new CKeyHandler();
-
 	}
 
 	public String getPlayer1name() {
@@ -47,7 +44,5 @@ public class Menu {
 
 		System.out.println("Podaj imie drugiego zawodnika");
 		player2name = menu.getString();
-
 	}
-
 }

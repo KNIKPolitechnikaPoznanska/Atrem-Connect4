@@ -5,6 +5,10 @@ import atrem.Connect4.Game.Game;
 import atrem.Connect4.Game.HoleState;
 import atrem.Connect4.Game.Player;
 
+/*
+ * Rysowanie GUI konsolowego
+ * w tym: planszy i jej objaœnieñ
+ */
 public class GUI {
 
 	public void displayGame(Game game) {
@@ -15,6 +19,11 @@ public class GUI {
 		if (game.getPlayerTurn() == 2) {
 			this.writeCurrentPlayer(game.getPlayer2());
 		}
+		this.displayParagraph();
+	}
+
+	public void displayResults(Game game) {
+		this.drawBoard(game.getBoard());
 		this.displayParagraph();
 	}
 
@@ -33,7 +42,7 @@ public class GUI {
 
 	private void drawSlots(int slots) {
 		System.out.println("Numery slotów:");
-		for (int i = 0; i < slots; i++) {
+		for (int i = 1; i <= slots; i++) {
 			System.out.print("| " + i + " |");
 		}
 
@@ -41,12 +50,16 @@ public class GUI {
 
 	private void writeCurrentPlayer(Player player) {
 		String name = player.getName();
-		System.out.println("Nastêpny ruch wykonuje:  " + name + " ");
+		System.out.println("Obecny ruch wykonuje:  " + name + " ");
 	}
 
 	private void displayParagraph() {
 		System.out.println("\n");
 		System.out.println("************************************");
+	}
+
+	public void writeFullSlots() {
+		System.out.println("Slot jest pelen, podaj inny: ");
 	}
 
 }
