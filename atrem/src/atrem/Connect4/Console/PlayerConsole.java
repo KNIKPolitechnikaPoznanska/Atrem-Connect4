@@ -29,14 +29,12 @@ public class PlayerConsole extends Player implements PlayerController {
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return name;
 	}
 
 	@Override
 	public HoleState getPlayerId() {
-		// TODO Auto-generated method stub
-		return null;
+		return playerId;
 	}
 
 }
