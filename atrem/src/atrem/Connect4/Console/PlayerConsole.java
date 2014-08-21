@@ -8,11 +8,11 @@ import atrem.Connect4.Game.PlayerController;
  * Klasa obs³uguj¹ca gracza konsolowego
  */
 public class PlayerConsole extends Player implements PlayerController {
-
 	private CKeyHandler keyHandler;
 
-	public PlayerConsole(int slots, String name, HoleState playerId) {
-		super(slots, name, playerId);
+	public PlayerConsole(int maxSlots, String name, HoleState playerId) {
+		super(maxSlots, name, playerId);
+		keyHandler = new CKeyHandler();
 	}
 
 	@Override
