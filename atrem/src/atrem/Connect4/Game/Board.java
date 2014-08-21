@@ -1,4 +1,5 @@
 package atrem.Connect4.Game;
+
 /*
  * Tworzenie planszy 
  * poprzez wype³nienie obiektami klasy Hole
@@ -7,6 +8,7 @@ public class Board {
 	private int slots;
 	private int rows;
 	private Hole[][] gameBoard;
+	private int totalSpots;
 
 	public Board() {
 
@@ -23,6 +25,11 @@ public class Board {
 		for (int i = 0; i < this.slots; i++)
 			for (int j = 0; j < this.rows; j++)
 				gameBoard[j][i] = new Hole();
+		totalSpots = slots * rows;
+	}
+
+	public int getTotalSpots() {
+		return totalSpots;
 	}
 
 	public HoleState getHoleState(int Rows, int Slots) {

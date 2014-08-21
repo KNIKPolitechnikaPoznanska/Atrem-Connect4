@@ -4,6 +4,7 @@ import atrem.Connect4.Game.Board;
 import atrem.Connect4.Game.Game;
 import atrem.Connect4.Game.Logic;
 import atrem.Connect4.Game.Player;
+
 /*
  * G³ówna pêtla gry
  * wykorzystywana tylko w konsoli
@@ -14,6 +15,7 @@ public class GameLoop {
 	private Game game;
 	private CKeyHandler keyHandler = new CKeyHandler();
 	private Logic logic;
+	private int doneMoves;
 
 	public GameLoop(Game game) {
 		this.game = game;
@@ -21,7 +23,8 @@ public class GameLoop {
 	}
 
 	public void startLoop() {
-		while (!logic.checkIfWin()) {
+		doneMoves = 0;
+		while (!logic.checkIfWin() && !logic.checkIfDraw(doneMoves)) {
 			gui.displayGame(game);
 			if (game.getPlayerTurn() == 1) {
 				this.go(game.getBoard(), game.getPlayer1());
@@ -31,6 +34,7 @@ public class GameLoop {
 				this.go(game.getBoard(), game.getPlayer2());
 				game.setPlayerTurn(1);
 			}
+			doneMoves++;
 
 		}
 		gui.displayResults(game);

@@ -79,4 +79,12 @@ public class Logic {
 		return hasWinner;
 	}
 
+	public boolean checkIfDraw(int doneMoves) {
+		if (doneMoves == game.getBoard().getTotalSpots()) {
+			gui.showRemis();
+			return true;
+		}
+		return false;
+	}
+
 }

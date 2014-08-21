@@ -73,4 +73,8 @@ public class GUI {
 		return true;
 	}
 
+	public void showRemis() {
+		System.out.println("Gra bez rostrzygniecia \n Remis.");
+	}
+
 }
