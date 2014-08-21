@@ -19,6 +19,7 @@ public class Connect4 {
 		gamefactory = new GameFactory();
 		menu = new Menu();
 		game = new Game();
+		menu.loadSettings();
 
 		gamefactory.setGameFactory(game, menu.getRows(), menu.getSlots(),
 				menu.getPlayer1name(), menu.getPlayer2name());

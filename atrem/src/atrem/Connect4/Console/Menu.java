@@ -30,7 +30,7 @@ public class Menu {
 	}
 
 	public void loadSettings() {
-		keyGo = new CKeyHandler();
+
 		System.out.println("Witamy w grze connect 4");
 
 		System.out.println("Podaj liczbe wierszy wiêksz¹ od 3");
