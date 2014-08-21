@@ -62,5 +62,4 @@ public class Board {
 		}
 		return i - 1;
 	}
-
 }
