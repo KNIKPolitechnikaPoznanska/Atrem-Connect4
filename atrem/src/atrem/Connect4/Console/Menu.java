@@ -1,4 +1,5 @@
 package atrem.Connect4.Console;
+
 /*
  * Pobiera od gracza wszystkie informacje
  * wymagane do uruchomienia gry
@@ -31,11 +32,14 @@ public class Menu {
 	public void loadSettings() {
 		menu = new CKeyHandler();
 		System.out.println("Witamy w grze connect 4");
-		System.out.println("Podaj liczbe wierszy");
+
+		System.out.println("Podaj liczbe wierszy wiêksz¹ od 3");
 		rows = menu.getInt();
-		System.out.println("Podaj liczbe slotow");
+
+		System.out.println("Podaj liczbe slotów wiêksz¹ od 3");
 		slots = menu.getInt();
-		System.out.println("Podaj imie pierwszego zawodnika");
+
+		System.out.println("Podaj imie pierwszego zawodnika ");
 		player1name = menu.getString();
 
 		// System.out.println("Podaj imie zawodnika " + player.getName() +
