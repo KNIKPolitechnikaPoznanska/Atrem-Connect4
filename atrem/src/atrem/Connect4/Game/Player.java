@@ -1,17 +1,23 @@
 package atrem.Connect4.Game;
+
 /*
  * Klasa obs³uguj¹ca dane graczy
  */
 public class Player implements PlayerController {
-	private String name;
+	protected String name;
 	HoleState playerId;
+
+	public Player() {
+	};
 
 	public Player(String name, HoleState playerId) {
 		this.name = name;
 		this.playerId = playerId;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see atrem.Connect4.Game.PlayerType#getName()
 	 */
 	@Override
@@ -19,7 +25,9 @@ public class Player implements PlayerController {
 		return name;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see atrem.Connect4.Game.PlayerType#setName(java.lang.String)
 	 */
 	@Override
@@ -27,7 +35,9 @@ public class Player implements PlayerController {
 		this.name = name;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see atrem.Connect4.Game.PlayerType#getPlayerId()
 	 */
 	@Override
