@@ -1,21 +1,21 @@
-package atrem.Connect4.Console;
+package atrem.Connect4.console;
 
 import atrem.Connect4.Game.Board;
 import atrem.Connect4.Game.HoleState;
-import atrem.Connect4.Game.Player;
-import atrem.Connect4.Game.PlayerController;
+import atrem.Connect4.Game.player.Player;
+import atrem.Connect4.Game.player.PlayerController;
 
 /*
  * Klasa obs³uguj¹ca gracza konsolowego
  */
 public class PlayerConsole extends Player implements PlayerController {
 
-	private CKeyHandler keyHandler;
+	private KeyHandler keyHandler;
 	private int slots;
 
 	public PlayerConsole(Board board, String name, HoleState playerId) {
 		super(board, name, playerId);
-		keyHandler = new CKeyHandler(board);
+		keyHandler = new KeyHandler(board);
 	}
 
 	@Override

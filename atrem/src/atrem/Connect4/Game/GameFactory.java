@@ -1,6 +1,8 @@
 package atrem.Connect4.Game;
 
-import atrem.Connect4.Console.PlayerConsole;
+import atrem.Connect4.Game.player.PlayerController;
+import atrem.Connect4.Game.player.ai.EasyPC;
+import atrem.Connect4.console.PlayerConsole;
 
 /*
  * Klasa tworz¹ca planszê (Board)

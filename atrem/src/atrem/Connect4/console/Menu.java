@@ -1,17 +1,17 @@
-package atrem.Connect4.Console;
+package atrem.Connect4.console;
 
 /*
  * Pobiera od gracza wszystkie informacje
  * wymagane do uruchomienia gry
  */
 public class Menu {
-	private CKeyHandler keyGo;
+	private KeyHandler keyGo;
 	private String player1name, player2name;
 	private int slots, rows;
 	private String opponent;
 
 	public Menu() {
-		keyGo = new CKeyHandler();
+		keyGo = new KeyHandler();
 	}
 
 	public String getPlayer1name() {

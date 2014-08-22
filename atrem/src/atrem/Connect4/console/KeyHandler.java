@@ -1,4 +1,4 @@
-package atrem.Connect4.Console;
+package atrem.Connect4.console;
 
 import java.awt.event.KeyAdapter;
 import java.util.Scanner;
@@ -10,13 +10,13 @@ import atrem.Connect4.Game.Board;
  * i pobieraj¹ca prawid³owe wartoœci
  * podane przez graczy
  */
-public class CKeyHandler extends KeyAdapter {
+public class KeyHandler extends KeyAdapter {
 	private int maxSlots;
 
-	public CKeyHandler() {
+	public KeyHandler() {
 	}
 
-	public CKeyHandler(Board board) {
+	public KeyHandler(Board board) {
 		this.maxSlots = board.getSlots();
 
 	}

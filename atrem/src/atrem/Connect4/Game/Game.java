@@ -1,5 +1,7 @@
 package atrem.Connect4.Game;
 
+import atrem.Connect4.Game.player.PlayerController;
+
 /*
  * klasa przechowujaca dane gry
  */

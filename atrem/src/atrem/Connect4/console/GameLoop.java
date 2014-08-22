@@ -1,9 +1,9 @@
-package atrem.Connect4.Console;
+package atrem.Connect4.console;
 
 import atrem.Connect4.Game.Board;
 import atrem.Connect4.Game.Game;
 import atrem.Connect4.Game.Logic;
-import atrem.Connect4.Game.PlayerController;
+import atrem.Connect4.Game.player.PlayerController;
 
 /*
  * G³ówna pêtla gry
