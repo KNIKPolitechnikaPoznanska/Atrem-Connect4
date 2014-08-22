@@ -14,6 +14,8 @@ public class AI_alfa {
 	private Game game;
 	private Board board;
 	private PlayerController player1;
+	private int[] lastBestMouve;
+	private int playerTurn;
 
 	public AI_alfa(Game game) {
 
@@ -21,25 +23,53 @@ public class AI_alfa {
 		rows = game.getBoard().getRows();
 		this.game = game;
 		this.board = game.getBoard();
-		this.evaluateNextMouve();
+		this.lastBestMouve = new int[board.getSlots()];
+		this.playerTurn = game.getPlayerTurn();
+		// this.evaluateNextMouve();
 
 	}
 
-	public int evaluateNextMouve() {
+	private Board nextMouve(Board board, int slot) {
 
-		for (int slot = 0; slot < slots; slot++) {
-			board.findFreeSpot(slot);
-
+		// this.go(board, player, slot);
+		if (playerTurn == 1) {
+			this.go(board, game.getPlayer1(), slot);
+			playerTurn = 2;
+		} else // (game.getPlayerTurn() == 2) {
+		{
+			this.go(board, game.getPlayer2(), slot);
+			playerTurn = 1;
 		}
-		return 0;
-	}
 
-	private Board nextMouve(Board nextBoard) {
-		this.go(nextBoard,)
 		return nextBoard;
 	}
 
-	private void go(Board board, PlayerController player, int slot) {// do gui
+	public int evaluateNextMouve(int depth, Game game, int slot) {
+
+		if (depth == 0) {
+			int ocena = 5;
+			// ocenianie z zapisywanie slotu komputera
+			return ocena;
+		} else {
+			Board boardTmp = game.getBoard();
+			for (int slotTmp = 0; slotTmp < board.getSlots(); slotTmp++)// Ckeyhandler
+			{
+				if (board.findFreeSpot(slotTmp) != -1) {
+					boardTmp = this.nextMouve(game, slotTmp);
+					if (game.getPlayerTurn() == 2) {
+						// zapisywanie numeru slotu
+					}
+					evaluateNextMouve(depth - 1, game, slot);
+				}
+			}
+
+		}
+
+		return 0;
+	}
+
+	private boolean go(Board board, PlayerController player, int slot) {// do
+																		// gui
 																		// lub
 																		// do
 		// gameloop
@@ -54,6 +84,10 @@ public class AI_alfa {
 			}
 		} while (emptySlot == -1);
 		board.setHoleState(emptySlot, slot, player.getPlayerId()); // gracz
+	}
+
+	private boolean checkIfWin() {
+		return this.logic.checkIfWin();
 	}
 
 }
