@@ -1,6 +1,8 @@
 package atrem.Connect4.Game;
 
-import atrem.Connect4.Console.PlayerConsole;
+import atrem.Connect4.Game.player.PlayerController;
+import atrem.Connect4.Game.player.ai.EasyPC;
+import atrem.Connect4.console.PlayerConsole;
 
 /*
  * Klasa tworz¹ca planszê (Board)
@@ -16,7 +18,7 @@ public class GameFactory {
 		if (opponent.equalsIgnoreCase("K"))
 			player2 = new EasyPC(im2, HoleState.PLAYER2, board);
 		else
-			player2 = new PlayerConsole(board, im1, HoleState.PLAYER2);
+			player2 = new PlayerConsole(board, im2, HoleState.PLAYER2);
 		player1 = new PlayerConsole(board, im1, HoleState.PLAYER1);
 		game.setBoard(board);
 		game.setPlayer1(player1);

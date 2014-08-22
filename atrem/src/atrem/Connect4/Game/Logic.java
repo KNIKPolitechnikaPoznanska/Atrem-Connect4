@@ -1,6 +1,6 @@
 package atrem.Connect4.Game;
 
-import atrem.Connect4.Console.GUI;
+import atrem.Connect4.console.GUI;
 
 /*
  * Logika gry

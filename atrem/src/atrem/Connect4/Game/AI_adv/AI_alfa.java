@@ -3,7 +3,7 @@ package atrem.Connect4.Game.AI_adv;
 import atrem.Connect4.Game.Board;
 import atrem.Connect4.Game.Game;
 import atrem.Connect4.Game.Logic;
-import atrem.Connect4.Game.PlayerController;
+import atrem.Connect4.Game.player.PlayerController;
 
 public class AI_alfa {
 

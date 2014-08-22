@@ -1,5 +1,7 @@
 package atrem.Connect4.Game;
 
+import atrem.Connect4.Game.player.PlayerController;
+
 /*
  * klasa przechowujaca dane gry
  */
@@ -7,7 +9,7 @@ public class Game {
 	private Board board;
 	private PlayerController player1;
 	private PlayerController player2;
-	private int playerTurn = 1;
+	private int playerTurn;
 
 	public Board getBoard() {
 		return board;

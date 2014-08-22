@@ -1,4 +1,6 @@
-package atrem.Connect4.Game;
+package atrem.Connect4.Game.player;
+
+import atrem.Connect4.Game.HoleState;
 
 public interface PlayerController {
 

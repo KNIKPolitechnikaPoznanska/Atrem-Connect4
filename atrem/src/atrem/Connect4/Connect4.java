@@ -1,9 +1,9 @@
 package atrem.Connect4;
 
-import atrem.Connect4.Console.GameLoop;
-import atrem.Connect4.Console.Menu;
 import atrem.Connect4.Game.Game;
 import atrem.Connect4.Game.GameFactory;
+import atrem.Connect4.console.GameLoop;
+import atrem.Connect4.console.Menu;
 
 /*
  * Klasa main uruchamiaj¹ca grê Connect4
