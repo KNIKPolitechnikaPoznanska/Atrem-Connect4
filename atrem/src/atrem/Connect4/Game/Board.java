@@ -30,6 +30,12 @@ public class Board {
 		totalSpots = slots * rows;
 	}
 
+	public void cleanSpot(int row, int slot)
+
+	{
+		setHoleState(row, slot, HoleState.EMPTY);
+	}
+
 	public int getTotalSpots() {
 		return totalSpots;
 	}

@@ -13,15 +13,27 @@ public class MediumPC extends AI implements PlayerController {
 	public MediumPC(String name, HoleState playerId, Game game) {
 		this.name = name;
 		this.playerId = playerId;
-		this.board = game.getBoard();
-		this.game = game;
-		logic = new Logic(game);
+		
+		
+	
 
+		this.game = game;
+		this.logic = new Logic(game);
 	}
 
 	@Override
 	public String getName() {
 		return name;
+	}
+
+	public int simulatedGo(int slot) {
+
+		int emptySpot = board.findFreeSpot(slot);
+		if (emptySpot == -1) {
+			return -1;
+		}
+		return emptySpot;
+
 	}
 
 	@Override
@@ -37,8 +49,18 @@ public class MediumPC extends AI implements PlayerController {
 
 	@Override
 	public int getSlotNumber() {
-		for(int i=0; i<board.getSlots(); i++)
+		
 			
+		int simulatedRow;
+		for (int i = 0; i < board.getSlots(); i++) {
+			simulatedRow = simulatedGo(i);
+			if (simulatedRow == -1)
+				continue;
+			else {
+				// board.setHoleState(simulatedRow, i, HoleState.PLAYER1);
 
+			}
+
+		}
 	}
 }
