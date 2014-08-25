@@ -1,7 +1,6 @@
 package atrem.Connect4.Game;
 
 import atrem.Connect4.Game.board.HoleState;
-import atrem.Connect4.console.GUI;
 
 /*
  * Logika gry
@@ -12,7 +11,6 @@ public class Logic {
 	private Game game;
 	HoleState token;
 	private boolean hasWinner = false;
-	private GUI gui = new GUI();
 
 	public Logic(Game game) {
 		maxSlots = game.getBoardSlots();
@@ -21,11 +19,18 @@ public class Logic {
 		// this.checkIfWin();
 	}
 
+	public boolean checkResult(int doneMoves) {
+		checkIfWin();
+		checkIfDraw(doneMoves);
+		if (game.getResult() == ResultState.NoWin)
+			return false;
+		return true;
+	}
+
 	/*
 	 * Sprawdzenie u³o¿enia 4 w 4 wariantach
 	 */
 	public boolean checkIfWin() {
-
 		for (int row = 0; row < maxRows; row++) { // slot\kolumna
 			for (int slot = 0; slot < maxSlots - 3; slot++) {
 				token = game.getHoleState(row, slot);
@@ -84,7 +89,7 @@ public class Logic {
 
 	public boolean checkIfDraw(int doneMoves) {
 		if (doneMoves == game.getBoard().getTotalSpots()) {
-			gui.showRemis();
+			game.setResult(ResultState.Draw);
 			return true;
 		}
 		return false;

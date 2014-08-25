@@ -25,6 +25,10 @@ public class GameLoop {
 		game.setPlayerTurn(genFirstTurn());
 	}
 
+	/**
+	 * 
+	 * @return gracz, ktory rozpoczyna gre
+	 */
 	private int genFirstTurn() {
 		if (rnd.nextGaussian() < 0.0D) {
 			return 1;
@@ -37,8 +41,7 @@ public class GameLoop {
 		int emptySlot;
 		int slot;
 		do {
-			slot = player.getSlotNumber(); // = metoda
-											// CKeyHandler.getSlot
+			slot = player.getSlotNumber(); // CKeyHandler.getSlot
 			emptySlot = board.findFreeSpot(slot);
 			if (emptySlot == -1) {
 				gui.writeFullSlots();
@@ -49,7 +52,7 @@ public class GameLoop {
 
 	public void startLoop() {
 		doneMoves = 0;
-		while (!logic.checkIfWin() && !logic.checkIfDraw(doneMoves)) {
+		while (!logic.checkResult(doneMoves)) {
 			gui.displayGame(game);
 			if (game.getPlayerTurn() == 1) {
 				this.go(game.getBoard(), game.getPlayer1());
@@ -59,7 +62,6 @@ public class GameLoop {
 				game.setPlayerTurn(1);
 			}
 			doneMoves++;
-
 		}
 		gui.displayResults(game);
 	}

@@ -25,6 +25,7 @@ public class GameFactory {
 		game.setBoard(board);
 		game.setPlayer1(player1);
 		game.setPlayer2(player2);
+		game.setResult(ResultState.NoWin);
 	}
 
 }
