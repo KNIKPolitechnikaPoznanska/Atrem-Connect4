@@ -37,7 +37,8 @@ public class GameLoop {
 		}
 	}
 
-	public void go(Board board, PlayerController player) {
+	public void go(Board board, PlayerController player) { // wywalic z konsoli
+															// uniwersalne
 		int emptySlot;
 		int slot;
 		do {
@@ -50,7 +51,7 @@ public class GameLoop {
 		board.setHoleState(emptySlot, slot, player.getPlayerId()); // gracz
 	}
 
-	public void startLoop() {
+	public void startLoop() { // wywalic z konsoli
 		doneMoves = 0;
 		while (!logic.checkResult(doneMoves)) {
 			gui.displayGame(game);
