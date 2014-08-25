@@ -15,7 +15,7 @@ import atrem.Connect4.Game.player.PlayerController;
 public class GameLoop {
 	private int doneMoves;
 	private Game game;
-	private GUI gui = new GUI();
+	private GUIConsole gui = new GUIConsole();
 	private Logic logic;
 	private Random rnd = new Random();
 
