@@ -2,19 +2,21 @@ package atrem.Connect4.console;
 
 import atrem.Connect4.Game.board.Board;
 import atrem.Connect4.Game.board.HoleState;
-import atrem.Connect4.Game.player.Player;
+import atrem.Connect4.Game.player.PlayerAttributes;
 import atrem.Connect4.Game.player.PlayerController;
 
 /*
  * Klasa obs³uguj¹ca gracza konsolowego
  */
-public class PlayerConsole extends Player implements PlayerController {
+public class PlayerConsole implements PlayerController {
 
 	private KeyHandler keyHandler;
 	private int slots;
+	private PlayerAttributes playerAttributes;
 
 	public PlayerConsole(Board board, String name, HoleState playerId) {
-		super(board, name, playerId);
+		playerAttributes.setName(name);
+		playerAttributes.setPlayerId(playerId);
 		keyHandler = new KeyHandler(board);
 	}
 
@@ -26,17 +28,17 @@ public class PlayerConsole extends Player implements PlayerController {
 
 	@Override
 	public final void setName(String name) {
-		super.setName(name);
+		playerAttributes.setName(name);
 	}
 
 	@Override
 	public String getName() {
-		return name;
+		return playerAttributes.getName();
 	}
 
 	@Override
 	public HoleState getPlayerId() {
-		return playerId;
+		return playerAttributes.getPlayerId();
 	}
 
 }

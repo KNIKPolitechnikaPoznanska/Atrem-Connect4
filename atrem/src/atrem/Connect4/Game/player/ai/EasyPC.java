@@ -4,29 +4,33 @@ import java.util.Random;
 
 import atrem.Connect4.Game.board.Board;
 import atrem.Connect4.Game.board.HoleState;
+import atrem.Connect4.Game.player.PlayerAttributes;
 import atrem.Connect4.Game.player.PlayerController;
 
-public class EasyPC extends AI implements PlayerController {
+public class EasyPC implements PlayerController {
+
+	private PlayerAttributes playerAttributes;
+	private Board board;
 
 	public EasyPC(String name, HoleState playerId, Board board) {
-		this.name = name;
-		this.playerId = playerId;
+		playerAttributes.setName(name);
+		playerAttributes.setPlayerId(playerId);
 		this.board = board;
 	}
 
 	@Override
 	public String getName() {
-		return name;
+		return playerAttributes.getName();
 	}
 
 	@Override
 	public void setName(String name) {
-		this.name = name;
+		playerAttributes.setName(name);
 	}
 
 	@Override
 	public HoleState getPlayerId() {
-		return playerId;
+		return playerAttributes.getPlayerId();
 
 	}
 
