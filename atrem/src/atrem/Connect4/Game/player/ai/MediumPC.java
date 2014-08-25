@@ -2,7 +2,6 @@ package atrem.Connect4.Game.player.ai;
 
 import atrem.Connect4.Game.Game;
 import atrem.Connect4.Game.Logic;
-import atrem.Connect4.Game.board.Board;
 import atrem.Connect4.Game.board.HoleState;
 import atrem.Connect4.Game.player.PlayerController;
 
@@ -13,9 +12,6 @@ public class MediumPC extends AI implements PlayerController {
 	public MediumPC(String name, HoleState playerId, Game game) {
 		this.name = name;
 		this.playerId = playerId;
-		
-		
-	
 
 		this.game = game;
 		this.logic = new Logic(game);
@@ -26,7 +22,7 @@ public class MediumPC extends AI implements PlayerController {
 		return name;
 	}
 
-	public int simulatedGo(int slot) {
+	public int simulatedGo(int slot) { // czy jest przepelniony?
 
 		int emptySpot = board.findFreeSpot(slot);
 		if (emptySpot == -1) {
@@ -49,18 +45,43 @@ public class MediumPC extends AI implements PlayerController {
 
 	@Override
 	public int getSlotNumber() {
-		
-			
+
 		int simulatedRow;
-		for (int i = 0; i < board.getSlots(); i++) {
-			simulatedRow = simulatedGo(i);
+		HoleState opp;
+		if (this.playerId == HoleState.PLAYER1)
+			opp = HoleState.PLAYER2;
+		else
+			opp = HoleState.PLAYER1;
+		// wywakic ^^
+		for (int i = 0; i < board.getSlots(); i++) {// tu mamy x
+			simulatedRow = simulatedGo(i);// a tu y
 			if (simulatedRow == -1)
 				continue;
 			else {
-				// board.setHoleState(simulatedRow, i, HoleState.PLAYER1);
-
+				board.setHoleState(simulatedRow, i, this.playerId);
+				if (logic.checkIfWin() == true) {// wiem ze mozna lepiej
+					board.cleanSpot(simulatedRow, i);
+					return i;
+				} else
+					board.cleanSpot(simulatedRow, i);
 			}
 
 		}
+
+		for (int i = 0; i < board.getSlots(); i++) {
+			simulatedRow = simulatedGo(i);// a tu y
+			if (simulatedRow == -1)
+				continue;
+			else {
+				board.setHoleState(simulatedRow, i, opp);
+				if (logic.checkIfWin() == true) {// wiem ze mozna lepiej
+					board.cleanSpot(simulatedRow, i);
+					return i;
+				} else
+					board.cleanSpot(simulatedRow, i);
+			}
+
+		}
+
 	}
 }

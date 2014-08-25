@@ -1,5 +1,7 @@
 package atrem.Connect4.console;
 
+import java.util.concurrent.Executor;
+
 import atrem.Connect4.Game.board.Board;
 import atrem.Connect4.Game.board.HoleState;
 import atrem.Connect4.Game.player.Player;
@@ -11,6 +13,7 @@ import atrem.Connect4.Game.player.PlayerController;
 public class PlayerConsole extends Player implements PlayerController {
 
 	private KeyHandler keyHandler;
+	private Executor executor;
 	private int slots;
 
 	public PlayerConsole(Board board, String name, HoleState playerId) {
@@ -20,8 +23,8 @@ public class PlayerConsole extends Player implements PlayerController {
 
 	@Override
 	public int getSlotNumber() {
-		slots = keyHandler.getSlot();
-		return slots;
+		executor.execute(new ReadSlotNumber());
+		return 0;
 	}
 
 	@Override
@@ -39,4 +42,14 @@ public class PlayerConsole extends Player implements PlayerController {
 		return playerId;
 	}
 
+	// private void modyfikacjaGUII() {
+	// SwingUtilities.invokeLater(new Runnable() {
+	//
+	// @Override
+	// public void run() {
+	// // tutaj modyfikacje
+	//
+	// }
+	// });
+	// }
 }

@@ -42,8 +42,15 @@ public class GameFactory {
 			player2 = new EasyPC(im2, HoleState.PLAYER2, board);
 		else
 			player2 = new PlayerConsole(board, im2, HoleState.PLAYER2);
+<<<<<<< HEAD
 		player1 = new PlayerConsole(board, im1, HoleState.PLAYER1);
 
+=======
+		player1 = game.setBoard(board);
+		game.setPlayer1(player1);
+		game.setPlayer2(player2);
+		game.setResult(ResultState.NoWin);
+>>>>>>> branch 'master' of https://github.com/KNIKPolitechnikaPoznanska/AtremProject.git
 	}
 
 	public Game getGame() {

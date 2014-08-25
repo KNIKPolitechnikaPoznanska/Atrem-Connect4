@@ -1,7 +1,6 @@
 package atrem.Connect4.console;
 
 import atrem.Connect4.Game.Game;
-import atrem.Connect4.Game.ResultState;
 import atrem.Connect4.Game.board.Board;
 import atrem.Connect4.Game.board.HoleState;
 import atrem.Connect4.Game.player.PlayerController;
@@ -10,7 +9,7 @@ import atrem.Connect4.Game.player.PlayerController;
  * Rysowanie GUI konsolowego
  * w tym: planszy i jej objaœnieñ
  */
-public class GUI {
+public class GUIConsole {
 
 	public void displayGame(Game game) {
 		this.drawBoard(game.getBoard());
@@ -31,12 +30,12 @@ public class GUI {
 	}
 
 	private void drawBoard(Board BoardTmp) {
-		HoleState HoleTmp;
+		HoleState holeTmp;
 		for (int j = 0; j < BoardTmp.getRows(); j++) {
 			for (int i = 0; i < BoardTmp.getSlots(); i++) {
 
-				HoleTmp = BoardTmp.getHoleState(j, i);
-				System.out.print("| " + HoleTmp.getNumber() + " |");
+				holeTmp = BoardTmp.getHoleState(j, i);
+				System.out.print("| " + holeTmp.getNumber() + " |");
 			}
 			System.out.println("");
 		}
@@ -67,12 +66,18 @@ public class GUI {
 	}
 
 	public void showResult(Game game) {
-		if (game.getResult() == ResultState.Player1Win) {
-			System.out.println("	Wygrał: " + game.getNamePlayer1());
-		} else if (game.getResult() == ResultState.Player2Win) {
-			System.out.println("Wygrał " + game.getNamePlayer2());
-		} else if (game.getResult() == ResultState.Draw) {
+		switch (game.getResult()) {
+		case Draw:
 			System.out.println("Gra bez rostrzygniecia \n Remis.");
+			break;
+		case Player1Win:
+			System.out.println("	Wygrał: " + game.getNamePlayer1());
+			break;
+		case Player2Win:
+			System.out.println("Wygrał " + game.getNamePlayer2());
+			break;
+		default:
+			break;
 		}
 	}
 }
