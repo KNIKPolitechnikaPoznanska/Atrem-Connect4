@@ -1,6 +1,7 @@
 package atrem.Connect4.console;
 
 import atrem.Connect4.Game.Game;
+import atrem.Connect4.Game.ResultState;
 import atrem.Connect4.Game.board.Board;
 import atrem.Connect4.Game.board.HoleState;
 import atrem.Connect4.Game.player.PlayerController;
@@ -24,6 +25,7 @@ public class GUI {
 	}
 
 	public void displayResults(Game game) {
+		this.showResult(game);
 		this.drawBoard(game.getBoard());
 		this.displayParagraph();
 	}
@@ -64,17 +66,13 @@ public class GUI {
 		System.out.println("Slot jest pelen, podaj inny: ");
 	}
 
-	public boolean showWinner(HoleState holeState, Game game) {
-		if (holeState.name() == "PLAYER1") {
-			System.out.println("	Wygra³: " + game.getNamePlayer1());
-		} else if (holeState.name() == "PLAYER2") {
-			System.out.println("Wygra³ " + game.getNamePlayer2());
+	public void showResult(Game game) {
+		if (game.getResult() == ResultState.Player1Win) {
+			System.out.println("	Wygrał: " + game.getNamePlayer1());
+		} else if (game.getResult() == ResultState.Player2Win) {
+			System.out.println("Wygrał " + game.getNamePlayer2());
+		} else if (game.getResult() == ResultState.Draw) {
+			System.out.println("Gra bez rostrzygniecia \n Remis.");
 		}
-		return true;
 	}
-
-	public void showRemis() {
-		System.out.println("Gra bez rostrzygniecia \n Remis.");
-	}
-
 }
