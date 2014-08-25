@@ -18,7 +18,7 @@ public class Logic {
 		maxSlots = game.getBoardSlots();
 		maxRows = game.getBoardRows();
 		this.game = game;
-		this.checkIfWin();
+		// this.checkIfWin();
 	}
 
 	/*

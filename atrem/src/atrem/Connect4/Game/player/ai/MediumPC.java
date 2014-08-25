@@ -1,15 +1,22 @@
 package atrem.Connect4.Game.player.ai;
 
 import atrem.Connect4.Game.Board;
+import atrem.Connect4.Game.Game;
 import atrem.Connect4.Game.HoleState;
+import atrem.Connect4.Game.Logic;
 import atrem.Connect4.Game.player.PlayerController;
 
 public class MediumPC extends AI implements PlayerController {
 
-	public MediumPC(String name, HoleState playerId, Board board) {
+	private Logic logic;
+
+	public MediumPC(String name, HoleState playerId, Game game) {
 		this.name = name;
 		this.playerId = playerId;
-		this.board = board;
+		this.board = game.getBoard();
+		this.game = game;
+		logic = new Logic(game);
+
 	}
 
 	@Override
@@ -30,6 +37,8 @@ public class MediumPC extends AI implements PlayerController {
 
 	@Override
 	public int getSlotNumber() {
+		for(int i=0; i<board.getSlots(); i++)
+			
 
 	}
 }
