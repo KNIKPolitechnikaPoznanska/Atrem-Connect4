@@ -1,4 +1,4 @@
-package atrem.Connect4.Game;
+package atrem.Connect4.Game.board;
 
 /*
  * Tworzenie planszy 

@@ -1,4 +1,4 @@
-package atrem.Connect4.Game;
+package atrem.Connect4.Game.board;
 /*
  * Wykonywane przez Board
  * do stworzenia planszy z elementami Hole

@@ -1,5 +1,6 @@
 package atrem.Connect4.Game;
 
+import atrem.Connect4.Game.board.HoleState;
 import atrem.Connect4.console.GUI;
 
 /*

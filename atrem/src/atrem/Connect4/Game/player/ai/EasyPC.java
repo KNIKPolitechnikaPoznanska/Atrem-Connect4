@@ -2,8 +2,8 @@ package atrem.Connect4.Game.player.ai;
 
 import java.util.Random;
 
-import atrem.Connect4.Game.Board;
-import atrem.Connect4.Game.HoleState;
+import atrem.Connect4.Game.board.Board;
+import atrem.Connect4.Game.board.HoleState;
 import atrem.Connect4.Game.player.PlayerController;
 
 public class EasyPC extends AI implements PlayerController {

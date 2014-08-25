@@ -1,7 +1,7 @@
 package atrem.Connect4.Game.player;
 
-import atrem.Connect4.Game.Board;
-import atrem.Connect4.Game.HoleState;
+import atrem.Connect4.Game.board.Board;
+import atrem.Connect4.Game.board.HoleState;
 
 /*
  * Klasa obs³uguj¹ca dane graczy

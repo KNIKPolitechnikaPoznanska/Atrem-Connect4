@@ -2,9 +2,9 @@ package atrem.Connect4.console;
 
 import java.util.Random;
 
-import atrem.Connect4.Game.Board;
 import atrem.Connect4.Game.Game;
 import atrem.Connect4.Game.Logic;
+import atrem.Connect4.Game.board.Board;
 import atrem.Connect4.Game.player.PlayerController;
 
 /*

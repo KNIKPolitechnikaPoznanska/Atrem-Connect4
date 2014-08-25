@@ -3,7 +3,7 @@ package atrem.Connect4.console;
 import java.awt.event.KeyAdapter;
 import java.util.Scanner;
 
-import atrem.Connect4.Game.Board;
+import atrem.Connect4.Game.board.Board;
 
 /*
  * Klasa obs³uguj¹ca klawiaturê 

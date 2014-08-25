@@ -1,7 +1,7 @@
 package atrem.Connect4.console;
 
-import atrem.Connect4.Game.Board;
-import atrem.Connect4.Game.HoleState;
+import atrem.Connect4.Game.board.Board;
+import atrem.Connect4.Game.board.HoleState;
 import atrem.Connect4.Game.player.Player;
 import atrem.Connect4.Game.player.PlayerController;
 
