@@ -7,7 +7,7 @@ import atrem.Connect4.Game.player.PlayerController;
 
 /*
  * Rysowanie GUI konsolowego
- * w tym: planszy i jej objaúnieÒ
+ * w tym: planszy i jej obja≈ìnie√±
  */
 public class GUI {
 
@@ -42,7 +42,7 @@ public class GUI {
 	}
 
 	private void drawSlots(int slots) {
-		System.out.println("Numery slotÛw:");
+		System.out.println("Numery slot√≥w:");
 		for (int i = 1; i <= slots; i++) {
 			System.out.print("| " + i + " |");
 		}
@@ -66,9 +66,9 @@ public class GUI {
 
 	public boolean showWinner(HoleState holeState, Game game) {
 		if (holeState.name() == "PLAYER1") {
-			System.out.println("	Wygra≥: " + game.getNamePlayer1());
+			System.out.println("	Wygra¬≥: " + game.getNamePlayer1());
 		} else if (holeState.name() == "PLAYER2") {
-			System.out.println("Wygra≥ " + game.getNamePlayer2());
+			System.out.println("Wygra¬≥ " + game.getNamePlayer2());
 		}
 		return true;
 	}

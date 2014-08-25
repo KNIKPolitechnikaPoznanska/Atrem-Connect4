@@ -6,7 +6,7 @@ import atrem.Connect4.Game.player.Player;
 import atrem.Connect4.Game.player.PlayerController;
 
 /*
- * Klasa obs³uguj¹ca gracza konsolowego
+ * Klasa obsÂ³ugujÂ¹ca gracza konsolowego
  */
 public class PlayerConsole extends Player implements PlayerController {
 

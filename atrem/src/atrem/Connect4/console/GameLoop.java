@@ -8,9 +8,9 @@ import atrem.Connect4.Game.Logic;
 import atrem.Connect4.Game.player.PlayerController;
 
 /*
- * G³ówna pêtla gry
+ * GÂ³Ã³wna pÃªtla gry
  * wykorzystywana tylko w konsoli
- * obs³uguj¹ca kolejki graczy
+ * obsÂ³ugujÂ¹ca kolejki graczy
  */
 public class GameLoop {
 	private int doneMoves;

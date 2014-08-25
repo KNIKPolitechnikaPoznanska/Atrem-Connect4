@@ -34,10 +34,10 @@ public class Menu {
 
 		System.out.println("Witamy w grze connect 4");
 
-		System.out.println("Podaj liczbe wierszy (wiêksz¹ od 3)");
+		System.out.println("Podaj liczbe wierszy (wiêkszš od 3)");
 		rows = keyGo.getInt();
 
-		System.out.println("Podaj liczbe slotów, (wiêksz¹ od 3)");
+		System.out.println("Podaj liczbe slotów, (wiêkszš od 3)");
 		slots = keyGo.getInt();
 
 		System.out.println("Chcesz grac z komputerem czy cz³owiekiem (K/C)?");

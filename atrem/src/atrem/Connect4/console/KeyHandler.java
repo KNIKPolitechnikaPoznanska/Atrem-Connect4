@@ -6,8 +6,8 @@ import java.util.Scanner;
 import atrem.Connect4.Game.Board;
 
 /*
- * Klasa obs³uguj¹ca klawiaturê 
- * i pobieraj¹ca prawid³owe wartoœci
+ * Klasa obsÂ³ugujÂ¹ca klawiaturÃª 
+ * i pobierajÂ¹ca prawidÂ³owe wartoÅ“ci
  * podane przez graczy
  */
 public class KeyHandler extends KeyAdapter {
@@ -30,10 +30,10 @@ public class KeyHandler extends KeyAdapter {
 				if (inputInt > 3) {
 					return inputInt;
 				} else {
-					System.out.println("WprowadŸ liczbê z zakresu [4-n]");
+					System.out.println("WprowadÅ¸ liczbÃª z zakresu [4-n]");
 				}
 			} else {
-				System.out.println("WprowadŸ liczbê!!!");
+				System.out.println("WprowadÅ¸ liczbÃª!!!");
 				input.next();
 			}
 		}
@@ -48,11 +48,11 @@ public class KeyHandler extends KeyAdapter {
 				if (slot > 0 && slot <= maxSlots) {
 					return slot - 1;
 				} else {
-					System.out.println("WprowadŸ slot z zakresu [0-" + maxSlots
+					System.out.println("WprowadÅ¸ slot z zakresu [0-" + maxSlots
 							+ "]");
 				}
 			} else {
-				System.out.println("WprowadŸ liczbê!!!");
+				System.out.println("WprowadÅ¸ liczbÃª!!!");
 				input.next();
 			}
 		}
@@ -70,7 +70,7 @@ public class KeyHandler extends KeyAdapter {
 		Scanner input = new Scanner(System.in);
 		String string = input.next();
 		while (!string.equalsIgnoreCase("K") && !string.equalsIgnoreCase("C")) {
-			System.out.println("WprowadŸ K(komputer) lub C(cz³owiek)5");
+			System.out.println("WprowadÅ¸ K(komputer) lub C(czÂ³owiek)5");
 			string = input.next();
 		}
 		return string;
