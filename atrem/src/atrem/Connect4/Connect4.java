@@ -18,12 +18,11 @@ public class Connect4 {
 	public static void main(String[] args) {
 		gamefactory = new GameFactory();
 		menu = new Menu();
-		game = new Game();
 		menu.loadSettings();
+		gamefactory.setMenu(menu);
+		gamefactory.createGame();
+		game = gamefactory.getGame();
 
-		gamefactory.setGameFactory(game, menu.getRows(), menu.getSlots(),
-				menu.getPlayer1name(), menu.getPlayer2name(),
-				menu.getOpponent());
 		gameloop = new GameLoop(game);
 		gameloop.startLoop();
 

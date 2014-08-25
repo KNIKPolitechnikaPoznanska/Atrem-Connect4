@@ -10,7 +10,7 @@ public class Board {
 	private Hole[][] gameBoard;
 	private int totalSpots;
 	private int lastSlot;
-	private int lastSpot;
+	private int lastRow;
 
 	public Board() {
 
@@ -64,12 +64,12 @@ public class Board {
 		this.lastSlot = lastSlot;
 	}
 
-	public int getLastSpot() {
-		return lastSpot;
+	public int getLastRow() {
+		return lastRow;
 	}
 
-	public void setLastSpot(int lastSpot) {
-		this.lastSpot = lastSpot;
+	public void setLastSpot(int lastRow) {
+		this.lastRow = lastRow;
 	}
 
 	public int findFreeSpot(int slot) {
