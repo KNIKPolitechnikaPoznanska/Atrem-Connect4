@@ -7,7 +7,6 @@ import atrem.Connect4.console.GUI;
  * Logika gry
  */
 public class Logic {
-
 	private int maxRows;
 	private int maxSlots;
 	private Game game;
@@ -34,7 +33,8 @@ public class Logic {
 						&& token == game.getHoleState(row, slot + 1)
 						&& token == game.getHoleState(row, slot + 2)
 						&& token == game.getHoleState(row, slot + 3)) {
-					hasWinner = gui.showWinner(token, game);
+					// hasWinner = gui.showWinner(token, game);
+					setPlayerWon();
 				}
 			}
 		}
@@ -46,7 +46,7 @@ public class Logic {
 						&& token == game.getHoleState(row + 1, slot)
 						&& token == game.getHoleState(row + 2, slot)
 						&& token == game.getHoleState(row + 3, slot))
-					hasWinner = gui.showWinner(token, game);
+					setPlayerWon();
 			}
 		}
 
@@ -57,7 +57,7 @@ public class Logic {
 						&& token == game.getHoleState(row + 1, slot + 1)
 						&& token == game.getHoleState(row + 2, slot + 2)
 						&& token == game.getHoleState(row + 3, slot + 3))
-					hasWinner = gui.showWinner(token, game);
+					setPlayerWon();
 			}
 		}
 
@@ -68,10 +68,18 @@ public class Logic {
 						&& token == game.getHoleState(row - 1, slot + 1)
 						&& token == game.getHoleState(row - 2, slot + 2)
 						&& token == game.getHoleState(row - 3, slot + 3))
-					hasWinner = gui.showWinner(token, game);
+					setPlayerWon();
 			}
 		}
 		return hasWinner;
+	}
+
+	private void setPlayerWon() {
+		if (token.getNumber() == 1) {
+			game.setResult(ResultState.Player1Win);
+		} else if (token.getNumber() == 2) {
+			game.setResult(ResultState.Player2Win);
+		}
 	}
 
 	public boolean checkIfDraw(int doneMoves) {

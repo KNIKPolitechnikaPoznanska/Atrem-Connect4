@@ -12,6 +12,7 @@ public class Game {
 	private PlayerController player1;
 	private PlayerController player2;
 	private int playerTurn;
+	private ResultState result;
 
 	public Board getBoard() {
 		return board;
@@ -63,5 +64,13 @@ public class Game {
 
 	public String getNamePlayer2() {
 		return this.player2.getName();
+	}
+
+	public ResultState getResult() {
+		return result;
+	}
+
+	public void setResult(ResultState playerWin) {
+		this.result = playerWin;
 	}
 }
