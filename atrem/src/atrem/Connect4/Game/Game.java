@@ -1,5 +1,7 @@
 package atrem.Connect4.Game;
 
+import java.util.Random;
+
 import atrem.Connect4.Game.board.Board;
 import atrem.Connect4.Game.board.HoleState;
 import atrem.Connect4.Game.player.PlayerController;
@@ -13,6 +15,27 @@ public class Game {
 	private PlayerController player2;
 	private int playerTurn;
 	private ResultState result;
+	private Logic logic;
+	private int doneMoves;
+	private Random rnd = new Random();
+
+	public Game() {
+
+		setPlayerTurn(genFirstTurn());
+		logic = new Logic(this);
+	}
+
+	/**
+	 * 
+	 * @return gracz, ktory rozpoczyna gre
+	 */
+	private int genFirstTurn() {
+		if (rnd.nextGaussian() < 0.0D) {
+			return 1;
+		} else {
+			return 2;
+		}
+	}
 
 	public Board getBoard() {
 		return board;

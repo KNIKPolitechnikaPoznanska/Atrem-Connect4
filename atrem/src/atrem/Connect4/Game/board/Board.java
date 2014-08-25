@@ -1,5 +1,7 @@
 package atrem.Connect4.Game.board;
 
+import atrem.Connect4.Game.player.PlayerController;
+
 /*
  * Tworzenie planszy 
  * poprzez wype³nienie obiektami klasy Hole
@@ -85,5 +87,19 @@ public class Board {
 			}
 		}
 		return i - 1;
+	}
+
+	public void go(PlayerController player) { // wywalic z konsoli
+		// uniwersalne
+		int emptySlot;
+		int slot;
+		do {
+			slot = player.getSlotNumber(); // CKeyHandler.getSlot
+			emptySlot = findFreeSpot(slot);
+			if (emptySlot == -1) {
+				gui.writeFullSlots();
+			}
+		} while (emptySlot == -1);
+		setHoleState(emptySlot, slot, player.getPlayerId()); // gracz
 	}
 }
