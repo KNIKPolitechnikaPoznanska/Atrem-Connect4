@@ -18,6 +18,7 @@ public class PlayerConsole implements PlayerController {
 	private PlayerAttributes playerAttributes;
 
 	public PlayerConsole(Board board, String name, HoleState playerId) {
+		playerAttributes = new PlayerAttributes();
 		playerAttributes.setName(name);
 		playerAttributes.setPlayerId(playerId);
 		keyHandler = new KeyHandler(board);

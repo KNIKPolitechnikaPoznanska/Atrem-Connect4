@@ -13,6 +13,7 @@ public class EasyPC implements PlayerController {
 	private Board board;
 
 	public EasyPC(String name, HoleState playerId, Board board) {
+		playerAttributes = new PlayerAttributes();
 		playerAttributes.setName(name);
 		playerAttributes.setPlayerId(playerId);
 		this.board = board;
