@@ -25,11 +25,9 @@ public class PlayerConsole implements PlayerController {
 		keyHandler = new KeyHandler(board);
 	}
 
-	private int a;
-
 	@Override
 	public int getSlotNumber() {
-
+		return keyHandler.getSlot();
 	}
 
 	@Override
