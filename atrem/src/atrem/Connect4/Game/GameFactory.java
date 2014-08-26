@@ -3,7 +3,7 @@ package atrem.Connect4.Game;
 import atrem.Connect4.Game.board.Board;
 import atrem.Connect4.Game.board.HoleState;
 import atrem.Connect4.Game.player.PlayerController;
-import atrem.Connect4.Game.player.ai.EasyPC;
+import atrem.Connect4.Game.player.ai.MediumPC;
 import atrem.Connect4.console.Menu;
 import atrem.Connect4.console.PlayerConsole;
 
@@ -22,8 +22,9 @@ public class GameFactory {
 
 	public void createGame() {
 		this.readInfoMenu();
-		this.createPlayerGame();
+
 		this.game = new Game(this.board);
+		this.createPlayerGame();
 		// this.board = new Board(row, slot);
 		// this.game.setBoard(board);
 		this.game.setPlayer1(player1);
@@ -45,7 +46,8 @@ public class GameFactory {
 
 	public void createPlayerGame() {
 		if (opponent.equalsIgnoreCase("K"))
-			player2 = new EasyPC(im2, HoleState.PLAYER2, game.getBoard());
+
+			player2 = new MediumPC(im2, HoleState.PLAYER2, game);
 		else
 			player2 = new PlayerConsole(board, im2, HoleState.PLAYER2);
 		player1 = new PlayerConsole(board, im1, HoleState.PLAYER1);
