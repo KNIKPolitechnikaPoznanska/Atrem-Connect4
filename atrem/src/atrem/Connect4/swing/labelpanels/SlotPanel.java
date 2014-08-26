@@ -14,17 +14,11 @@ public class SlotPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public SlotPanel() {
-		JLabel lblNewLabel = new JLabel("New label");
-		// lblNewLabel.setIcon(new ImageIcon(SlotPanel.class
-		// .getResource("/icons/empty.png")));
-		lblNewLabel.setIcon(iconResource.get(0));
-		add(lblNewLabel);
-
 		JLabel[] HoleLabels = new JLabel[5];
 		for (int labelNumb = 0; labelNumb < HoleLabels.length; labelNumb++) {
-			HoleLabels[labelNumb] = new JLabel("0");
+			HoleLabels[labelNumb] = new JLabel();
 			add(HoleLabels[labelNumb]);
-			// HoleLabels[labelNumb].setIcon(iconResource);
+			HoleLabels[labelNumb].setIcon(iconResource.get(0));
 
 		}
 	}

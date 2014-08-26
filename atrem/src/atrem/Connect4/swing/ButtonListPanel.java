@@ -7,6 +7,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class ButtonListPanel extends JPanel {
+	private int buttNumber = 0;
+	JButton[] buttons;
 	/**
 	 * 
 	 */
@@ -16,15 +18,14 @@ public class ButtonListPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public ButtonListPanel() {
-		JButton[] buttons = new JButton[5];
-		String[] names = { "1", "2", "3", "4", "5" };
-		for (int buttNumber = 0; buttNumber < buttons.length; buttNumber++) {
-			buttons[buttNumber] = new JButton(names[buttNumber]);
+		buttons = new JButton[5];
+		for (buttNumber = 0; buttNumber < buttons.length; buttNumber++) {
+			buttons[buttNumber] = new JButton(Integer.toString(buttNumber + 1));
 			add(buttons[buttNumber]);
 			buttons[buttNumber].addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					// System.out.println(buttNumber);
+					;
 				}
 			});
 		}

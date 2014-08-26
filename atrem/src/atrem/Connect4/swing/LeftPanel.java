@@ -16,7 +16,7 @@ public class LeftPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public LeftPanel() {
-		setLayout(new GridLayout(1, 0, 0, 0));
+		setLayout(new GridLayout(2, 1, 0, 0));
 		add(buttonList);
 		add(boardPanel);
 	}
