@@ -1,6 +1,5 @@
 package atrem.Connect4.swing;
 
-import java.awt.EventQueue;
 import java.awt.GridLayout;
 
 import javax.swing.JFrame;
@@ -12,24 +11,6 @@ public class GameFrame extends JFrame {
 	private JPanel contentPane;
 	private LeftPanel leftPanel = new LeftPanel();
 	private RightPanel rightPanel = new RightPanel();
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					GameFrame frame = new GameFrame();
-					frame.setTitle("Connect 4");
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.

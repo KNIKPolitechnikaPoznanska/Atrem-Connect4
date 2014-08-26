@@ -6,6 +6,7 @@ import atrem.Connect4.Game.player.PlayerController;
 import atrem.Connect4.Game.player.ai.MediumPC;
 import atrem.Connect4.console.Menu;
 import atrem.Connect4.console.PlayerConsole;
+import atrem.Connect4.swing.SwingConfig;
 
 /*
  * Klasa tworz¹ca planszê (Board)
@@ -16,12 +17,14 @@ public class GameFactory {
 	private PlayerController player1, player2;
 	private Game game;
 	private Menu menu;
+	private SwingConfig swingconfig;
 	private String im2, im1;
 	private String opponent;
 	private int slot, row;
 
 	public void createGame() {
-		this.readInfoMenu();
+		// this.readInfoMenu();
+		this.readInfoConfig();
 
 		this.game = new Game(this.board);
 		this.createPlayerGame();
@@ -41,12 +44,19 @@ public class GameFactory {
 		opponent = menu.getOpponent();
 		slot = menu.getSlots();
 		row = menu.getRows();
+	}
 
+	public void readInfoConfig() {
+		this.board = new Board(swingconfig.getRows(), swingconfig.getSlots());
+		im1 = swingconfig.getPlayer1name();
+		im2 = swingconfig.getPlayer2name();
+		opponent = swingconfig.getOpponent();
+		slot = swingconfig.getSlots();
+		row = swingconfig.getRows();
 	}
 
 	public void createPlayerGame() {
 		if (opponent.equalsIgnoreCase("K"))
-
 			player2 = new MediumPC(im2, HoleState.PLAYER2, game);
 		else
 			player2 = new PlayerConsole(board, im2, HoleState.PLAYER2);
@@ -63,6 +73,14 @@ public class GameFactory {
 
 	public void setMenu(Menu menu) {
 		this.menu = menu;
+	}
+
+	public SwingConfig getSwingconfig() {
+		return swingconfig;
+	}
+
+	public void setSwingconfig(SwingConfig swingconfig) {
+		this.swingconfig = swingconfig;
 	}
 
 }
