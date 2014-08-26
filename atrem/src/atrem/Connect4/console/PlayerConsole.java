@@ -27,9 +27,12 @@ public class PlayerConsole implements PlayerController {
 
 	}
 
+	//
+	// @Override
 	// public int getSlotNumber() {
-	// return keyHandler.getSlot();
+	//
 	// }
+
 	@Override
 	public final void setName(String name) {
 		playerAttributes.setName(name);
