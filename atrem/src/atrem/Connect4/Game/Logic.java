@@ -13,9 +13,10 @@ public class Logic {
 	private boolean hasWinner = false;
 
 	public Logic(Game game) {
+		this.game = game;
 		maxSlots = game.getBoardSlots();
 		maxRows = game.getBoardRows();
-		this.game = game;
+		// this.game = game;
 		// this.checkIfWin();
 	}
 

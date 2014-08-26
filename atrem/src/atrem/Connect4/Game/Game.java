@@ -1,5 +1,7 @@
 package atrem.Connect4.Game;
 
+import java.util.Random;
+
 import atrem.Connect4.Game.board.Board;
 import atrem.Connect4.Game.board.HoleState;
 import atrem.Connect4.Game.player.PlayerController;
@@ -13,17 +15,20 @@ public class Game {
 	private PlayerController player2;
 	private int playerTurn;
 	private ResultState result;
-<<<<<<< HEAD
 	private Logic logic;
 	private int doneMoves;
 	private Random rnd = new Random();
 	private GameController gameController;
 
-	public Game() {
-
+	public Game(Board board) {
+		this.board = board;
 		setPlayerTurn(genFirstTurn());
-		logic = new Logic(this);
+		// logic = new Logic(this);
 
+	}
+
+	public void createLogic() {
+		logic = new Logic(this);
 	}
 
 	public Logic getLogic() {
@@ -41,8 +46,6 @@ public class Game {
 			return 2;
 		}
 	}
-=======
->>>>>>> branch 'master' of https://github.com/KNIKPolitechnikaPoznanska/AtremProject.git
 
 	public Board getBoard() {
 		return board;

@@ -3,7 +3,7 @@ package atrem.Connect4.Game;
 import atrem.Connect4.Game.board.Board;
 import atrem.Connect4.Game.board.HoleState;
 import atrem.Connect4.Game.player.PlayerController;
-import atrem.Connect4.Game.player.ai.MediumPC;
+import atrem.Connect4.Game.player.ai.EasyPC;
 import atrem.Connect4.console.Menu;
 import atrem.Connect4.console.PlayerConsole;
 
@@ -18,15 +18,18 @@ public class GameFactory {
 	private Menu menu;
 	private String im2, im1;
 	private String opponent;
+	private int slot, row;
 
 	public void createGame() {
 		this.readInfoMenu();
 		this.createPlayerGame();
-		this.game = new Game();
-		this.game.setBoard(board);
+		this.game = new Game(this.board);
+		// this.board = new Board(row, slot);
+		// this.game.setBoard(board);
 		this.game.setPlayer1(player1);
 		this.game.setPlayer2(player2);
 		this.game.setResult(ResultState.NoWin);
+		this.game.createLogic();
 
 	}
 
@@ -35,12 +38,14 @@ public class GameFactory {
 		im1 = menu.getPlayer1name();
 		im2 = menu.getPlayer2name();
 		opponent = menu.getOpponent();
+		slot = menu.getSlots();
+		row = menu.getRows();
 
 	}
 
 	public void createPlayerGame() {
 		if (opponent.equalsIgnoreCase("K"))
-			player2 = new MediumPC(im2, HoleState.PLAYER2, game);
+			player2 = new EasyPC(im2, HoleState.PLAYER2, game.getBoard());
 		else
 			player2 = new PlayerConsole(board, im2, HoleState.PLAYER2);
 		player1 = new PlayerConsole(board, im1, HoleState.PLAYER1);
@@ -57,4 +62,5 @@ public class GameFactory {
 	public void setMenu(Menu menu) {
 		this.menu = menu;
 	}
+
 }
