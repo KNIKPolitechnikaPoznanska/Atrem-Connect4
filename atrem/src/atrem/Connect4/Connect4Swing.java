@@ -1,31 +1,43 @@
 package atrem.Connect4;
 
+import java.awt.EventQueue;
+
 import atrem.Connect4.Game.Game;
 import atrem.Connect4.Game.GameController;
 import atrem.Connect4.Game.GameFactory;
-import atrem.Connect4.console.Menu;
+import atrem.Connect4.swing.GameFrame;
+import atrem.Connect4.swing.SwingConfig;
 
 /*
  * Klasa main uruchamiaj¹ca grê Connect4
  */
-public class Connect4 {
-
+public class Connect4Swing {
 	private static GameFactory gamefactory;
-	private static Menu menu;
+	private static SwingConfig config;
 	private static Game game;
 	private static GameController gameController;
 
 	public static void main(String[] args) {
-		System.out.println("test");
 		gamefactory = new GameFactory();
-		menu = new Menu();
-		menu.loadSettings();
-		gamefactory.setMenu(menu);
+		config = new SwingConfig();
+		gamefactory.setSwingconfig(config);
 		gamefactory.createGame();
 		game = gamefactory.getGame();
 		gameController = new GameController();
 		gameController.setGameController(game);
-		gameController.Loop();
+		// gameController.Loop();
+		EventQueue.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					GameFrame frame = new GameFrame();
+					frame.setTitle("Connect 4");
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 
 	}
 }

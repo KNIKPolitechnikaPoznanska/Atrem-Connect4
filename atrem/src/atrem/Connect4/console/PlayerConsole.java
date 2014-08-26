@@ -8,7 +8,7 @@ import atrem.Connect4.Game.player.PlayerAttributes;
 import atrem.Connect4.Game.player.PlayerController;
 
 /*
- * Klasa obs³uguj¹ca gracza konsolowego
+ *
  */
 public class PlayerConsole implements PlayerController {
 
@@ -53,6 +53,20 @@ public class PlayerConsole implements PlayerController {
 	//
 	// }
 	// });
+	// }
+
+	// public int getSlotNumber() {
+	// ExecutorService thread = Executors.newSingleThreadExecutor();
+	// thread.execute(new Runnable() {
+	//
+	// @Override
+	// public void run() {
+	// currentSlot = keyHandler.getSlot();
+	// System.out.println("watek");
+	// }
+	// });
+	// thread.shutdown();
+	// return currentSlot;
 	// }
 
 }

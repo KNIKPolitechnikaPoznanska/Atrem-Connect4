@@ -16,17 +16,19 @@ public class GameFactory {
 	private PlayerController player1, player2;
 	private Game game;
 	private Menu menu;
+	// private SwingConfig swingconfig; // swing
 	private String im2, im1;
 	private String opponent;
 	private int slot, row;
 
 	public void createGame() {
 		this.readInfoMenu();
+		// this.readInfoConfig(); // swing
 
 		this.game = new Game(this.board);
 		this.createPlayerGame();
-		// this.board = new Board(row, slot);
-		// this.game.setBoard(board);
+		this.board = new Board(row, slot);
+		this.game.setBoard(board);
 		this.game.setPlayer1(player1);
 		this.game.setPlayer2(player2);
 		this.game.setResult(ResultState.NoWin);
@@ -41,12 +43,19 @@ public class GameFactory {
 		opponent = menu.getOpponent();
 		slot = menu.getSlots();
 		row = menu.getRows();
-
 	}
+
+	// public void readInfoConfig() { // swing
+	// this.board = new Board(swingconfig.getRows(), swingconfig.getSlots());
+	// im1 = swingconfig.getPlayer1name();
+	// im2 = swingconfig.getPlayer2name();
+	// opponent = swingconfig.getOpponent();
+	// slot = swingconfig.getSlots();
+	// row = swingconfig.getRows();
+	// }
 
 	public void createPlayerGame() {
 		if (opponent.equalsIgnoreCase("K"))
-
 			player2 = new MediumPC(im2, HoleState.PLAYER2, game);
 		else
 			player2 = new PlayerConsole(board, im2, HoleState.PLAYER2);
@@ -64,5 +73,13 @@ public class GameFactory {
 	public void setMenu(Menu menu) {
 		this.menu = menu;
 	}
+
+	// //public SwingConfig getSwingconfig() { // swing
+	// return swingconfig;
+	// }
+	//
+	// //public void setSwingconfig(SwingConfig swingconfig) {
+	// this.swingconfig = swingconfig;
+	// }
 
 }
