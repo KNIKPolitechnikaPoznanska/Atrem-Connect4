@@ -16,6 +16,7 @@ public class PlayerConsole implements PlayerController {
 	private Executor executor;
 	private int slots;
 	private PlayerAttributes playerAttributes;
+	private int currentSlot;
 
 	public PlayerConsole(Board board, String name, HoleState playerId) {
 		playerAttributes = new PlayerAttributes();
@@ -24,9 +25,11 @@ public class PlayerConsole implements PlayerController {
 		keyHandler = new KeyHandler(board);
 	}
 
+	private int a;
+
 	@Override
 	public int getSlotNumber() {
-		return keyHandler.getSlot();
+
 	}
 
 	@Override
