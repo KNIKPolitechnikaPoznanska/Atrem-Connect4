@@ -18,11 +18,17 @@ public class Game {
 	private Logic logic;
 	private int doneMoves;
 	private Random rnd = new Random();
+	private GameController gameController;
 
 	public Game() {
 
 		setPlayerTurn(genFirstTurn());
 		logic = new Logic(this);
+
+	}
+
+	public Logic getLogic() {
+		return logic;
 	}
 
 	/**

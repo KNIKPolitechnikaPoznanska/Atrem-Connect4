@@ -1,8 +1,8 @@
 package atrem.Connect4;
 
 import atrem.Connect4.Game.Game;
+import atrem.Connect4.Game.GameController;
 import atrem.Connect4.Game.GameFactory;
-import atrem.Connect4.console.GameLoop;
 import atrem.Connect4.console.Menu;
 
 /*
@@ -13,7 +13,7 @@ public class Connect4 {
 	private static GameFactory gamefactory;
 	private static Menu menu;
 	private static Game game;
-	private static GameLoop gameloop;
+	private static GameController gameController;
 
 	public static void main(String[] args) {
 		gamefactory = new GameFactory();
@@ -22,9 +22,9 @@ public class Connect4 {
 		gamefactory.setMenu(menu);
 		gamefactory.createGame();
 		game = gamefactory.getGame();
-
-		gameloop = new GameLoop(game);
-		gameloop.startLoop();
+		gameController = new GameController();
+		gameController.setGameController(game);
+		gameController.Loop();
 
 	}
 }

@@ -97,7 +97,7 @@ public class Board {
 			slot = player.getSlotNumber(); // CKeyHandler.getSlot
 			emptySlot = findFreeSpot(slot);
 			if (emptySlot == -1) {
-				gui.writeFullSlots();
+				System.out.println("Slot jest pelen, podaj inny: ");
 			}
 		} while (emptySlot == -1);
 		setHoleState(emptySlot, slot, player.getPlayerId()); // gracz

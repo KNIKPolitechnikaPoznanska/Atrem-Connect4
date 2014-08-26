@@ -1,6 +1,7 @@
 package atrem.Connect4.Game;
 
 import atrem.Connect4.Game.board.Board;
+import atrem.Connect4.Game.player.PlayerController;
 import atrem.Connect4.console.GUIConsole;
 
 public class GameController {
@@ -10,17 +11,22 @@ public class GameController {
 	private Board board;
 	private int doneMoves;
 	private GUIConsole gui;
+	private PlayerController player1, player2;
 
-	public void setGameController(Game game, Logic logic, Board board) {
+	public void setGameController(Game game) {
 		this.game = game;
-		this.logic = logic;
-		this.board = board;
+		this.logic = game.getLogic();
+		this.board = game.getBoard();
+		this.player1 = game.getPlayer1();
+		this.player2 = game.getPlayer2();
+		gui = new GUIConsole();
+
 	}
 
 	public void Loop() { // wywalic z konsoli
 		doneMoves = 0;
 		while (!logic.checkResult(doneMoves)) {
-			// gui.displayGame(game);
+			gui.displayGame(game);
 			if (game.getPlayerTurn() == 1) {
 				board.go(player1);
 				game.setPlayerTurn(2);
@@ -30,6 +36,6 @@ public class GameController {
 			}
 			doneMoves++;
 		}
-		// gui.displayResults(game);
+		gui.displayResults(game);
 	}
 }

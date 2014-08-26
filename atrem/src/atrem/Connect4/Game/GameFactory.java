@@ -27,6 +27,7 @@ public class GameFactory {
 		this.game.setPlayer1(player1);
 		this.game.setPlayer2(player2);
 		this.game.setResult(ResultState.NoWin);
+
 	}
 
 	public void readInfoMenu() {
