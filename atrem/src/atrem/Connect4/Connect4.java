@@ -16,6 +16,7 @@ public class Connect4 {
 	private static GameController gameController;
 
 	public static void main(String[] args) {
+		System.out.println("test");
 		gamefactory = new GameFactory();
 		menu = new Menu();
 		menu.loadSettings();
