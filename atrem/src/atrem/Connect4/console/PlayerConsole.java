@@ -26,8 +26,7 @@ public class PlayerConsole implements PlayerController {
 
 	@Override
 	public int getSlotNumber() {
-		executor.execute(new ReadSlotNumber());
-		return 0;
+		return keyHandler.getSlot();
 	}
 
 	@Override
