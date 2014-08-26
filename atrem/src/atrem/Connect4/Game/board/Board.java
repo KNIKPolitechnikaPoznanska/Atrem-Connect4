@@ -97,11 +97,9 @@ public class Board {
 			slot = player.getSlotNumber(); // CKeyHandler.getSlot
 			emptySlot = findFreeSpot(slot);
 			if (emptySlot == -1) {
-<<<<<<< HEAD
+
 				System.out.println("Slot jest pelen, podaj inny: ");
-=======
-				// gui.writeFullSlots();
->>>>>>> branch 'master' of https://github.com/KNIKPolitechnikaPoznanska/AtremProject.git
+
 			}
 		} while (emptySlot == -1);
 		setHoleState(emptySlot, slot, player.getPlayerId()); // gracz
