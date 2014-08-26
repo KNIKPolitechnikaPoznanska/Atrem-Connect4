@@ -22,15 +22,9 @@ public class Connect4 {
 		gamefactory.setMenu(menu);
 		gamefactory.createGame();
 		game = gamefactory.getGame();
-<<<<<<< HEAD
 		gameController = new GameController();
 		gameController.setGameController(game);
 		gameController.Loop();
-=======
-
-		gameloop = new GameLoop(game);
-		// gameloop.startLoop();
->>>>>>> branch 'master' of https://github.com/KNIKPolitechnikaPoznanska/AtremProject.git
 
 	}
 }

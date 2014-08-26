@@ -19,6 +19,7 @@ public class MediumPC implements PlayerController {
 	private Random rand;
 
 	public MediumPC(String name, HoleState playerId, Game game) {
+		playerAttributes = new PlayerAttributes();
 		playerAttributes.setName(name);
 		playerAttributes.setPlayerId(playerId);
 		this.game = game;
