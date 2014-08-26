@@ -1,5 +1,7 @@
 package atrem.Connect4.Game.player.ai;
 
+import java.util.Random;
+
 import atrem.Connect4.Game.Game;
 import atrem.Connect4.Game.Logic;
 import atrem.Connect4.Game.board.Board;
@@ -14,6 +16,7 @@ public class MediumPC implements PlayerController {
 	private PlayerAttributes playerAttributes;
 	private Game game;
 	private Board board;
+	private Random rand;
 
 	public MediumPC(String name, HoleState playerId, Game game) {
 		playerAttributes.setName(name);
@@ -21,6 +24,7 @@ public class MediumPC implements PlayerController {
 		this.game = game;
 		this.logic = new Logic(game);
 		board = game.getBoard();
+		rand = new Random();
 	}
 
 	@Override
@@ -52,6 +56,7 @@ public class MediumPC implements PlayerController {
 	@Override
 	public int getSlotNumber() {
 
+		System.out.println("MEDIUMPC");
 		int simulatedRow;
 		HoleState opp;
 		if (playerAttributes.getPlayerId() == HoleState.PLAYER1)
@@ -74,7 +79,6 @@ public class MediumPC implements PlayerController {
 			}
 
 		}
-
 		for (int i = 0; i < board.getSlots(); i++) {
 			simulatedRow = simulatedGo(i);// a tu y
 			if (simulatedRow == -1)
@@ -89,6 +93,34 @@ public class MediumPC implements PlayerController {
 			}
 
 		}
+		for (int i = 0; i < board.getSlots(); i++) {
+			simulatedRow = simulatedGo(i);// a tu y
+			if (simulatedRow == -1)
+				continue;
+			if (simulatedRow == board.getLastRow() // sprawdzanei ten sam level
+					&& (i == board.getLastSlot() - 1 || i == board
+							.getLastSlot() + 1)) {
+				return i;
+			}
+
+		}
+		for (int i = 0; i < board.getSlots(); i++) {
+			simulatedRow = simulatedGo(i);// a tu y
+			if (simulatedRow == -1)
+				continue;
+			if (i == board.getLastSlot() - 1 || i == board.getLastSlot() + 1) {
+				return i;
+			}
+
+		}
+		int randomSlot;
+		int choosenSlot;
+		do {
+
+			randomSlot = rand.nextInt(board.getSlots());
+			choosenSlot = board.findFreeSpot(randomSlot);
+		} while (choosenSlot == -1);
+		return choosenSlot;
 
 	}
 }

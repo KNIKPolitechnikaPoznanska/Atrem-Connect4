@@ -1,4 +1,4 @@
-package atrem.Connect4.Game.AI_adv;
+package atrem.Connect4.Game.player.ai.AI_adv;
 
 import atrem.Connect4.Game.Game;
 import atrem.Connect4.Game.Logic;

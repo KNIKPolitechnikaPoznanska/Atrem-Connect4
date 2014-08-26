@@ -36,6 +36,7 @@ public class EasyPC implements PlayerController {
 
 	@Override
 	public int getSlotNumber() {
+		System.out.println("EASYPC");
 		int randomSlot;
 		int choosenSlot;
 		Random rand = new Random();
