@@ -96,4 +96,52 @@ public class Logic {
 		return false;
 	}
 
+	public boolean checkIfWinPC() {
+		for (int row = 0; row < maxRows; row++) { // slot\kolumna
+			for (int slot = 0; slot < maxSlots - 3; slot++) {
+				token = game.getHoleState(row, slot);
+				if (token.getNumber() > 0
+						&& token == game.getHoleState(row, slot + 1)
+						&& token == game.getHoleState(row, slot + 2)
+						&& token == game.getHoleState(row, slot + 3)) {
+					// hasWinner = gui.showWinner(token, game);
+					return true;
+				}
+			}
+		}
+
+		for (int slot = 0; slot < maxSlots; slot++) { // wiersz
+			for (int row = 0; row < maxRows - 3; row++) {
+				token = game.getBoard().getHoleState(row, slot);
+				if (token.getNumber() > 0
+						&& token == game.getHoleState(row + 1, slot)
+						&& token == game.getHoleState(row + 2, slot)
+						&& token == game.getHoleState(row + 3, slot))
+					return true;
+			}
+		}
+
+		for (int row = 0; row < maxRows - 3; row++) { // skos /
+			for (int slot = 0; slot < maxSlots - 3; slot++) {
+				token = game.getBoard().getHoleState(row, slot);
+				if (token.getNumber() > 0
+						&& token == game.getHoleState(row + 1, slot + 1)
+						&& token == game.getHoleState(row + 2, slot + 2)
+						&& token == game.getHoleState(row + 3, slot + 3))
+					return true;
+			}
+		}
+
+		for (int row = maxRows - 1; row >= 3; row--) { // skos \
+			for (int slot = 0; slot < maxSlots - 3; slot++) {
+				HoleState token = game.getHoleState(row, slot);
+				if (token.getNumber() > 0
+						&& token == game.getHoleState(row - 1, slot + 1)
+						&& token == game.getHoleState(row - 2, slot + 2)
+						&& token == game.getHoleState(row - 3, slot + 3))
+					return true;
+			}
+		}
+		return false;
+	}
 }

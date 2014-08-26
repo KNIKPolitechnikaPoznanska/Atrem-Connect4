@@ -72,7 +72,7 @@ public class MediumPC implements PlayerController {
 			else {
 				board.setHoleState(simulatedRow, i,
 						playerAttributes.getPlayerId());
-				if (logic.checkIfWin() == true) {// wiem ze mozna lepiej
+				if (logic.checkIfWinPC() == true) {// wiem ze mozna lepiej
 					board.cleanSpot(simulatedRow, i);
 					return i;
 				} else
@@ -86,7 +86,7 @@ public class MediumPC implements PlayerController {
 				continue;
 			else {
 				board.setHoleState(simulatedRow, i, opp);
-				if (logic.checkIfWin() == true) {// wiem ze mozna lepiej
+				if (logic.checkIfWinPC() == true) {// wiem ze mozna lepiej
 					board.cleanSpot(simulatedRow, i);
 					return i;
 				} else

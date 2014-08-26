@@ -103,5 +103,7 @@ public class Board {
 			}
 		} while (emptySlot == -1);
 		setHoleState(emptySlot, slot, player.getPlayerId()); // gracz
+		setLastSlot(slot);
+		setLastSpot(emptySlot);
 	}
 }
