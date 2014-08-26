@@ -19,7 +19,7 @@ public class GameLoop {// to ju¿ nie jest potrzebne
 
 	public GameLoop(Game game) {
 		this.game = game;
-		logic = new Logic(game);
+		// logic = new Logic(game);
 		game.setPlayerTurn(genFirstTurn());
 	}
 

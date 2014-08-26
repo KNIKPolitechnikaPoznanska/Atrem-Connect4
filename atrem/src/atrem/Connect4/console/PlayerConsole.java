@@ -18,6 +18,7 @@ public class PlayerConsole implements PlayerController {
 	private PlayerAttributes playerAttributes;
 
 	public PlayerConsole(Board board, String name, HoleState playerId) {
+		playerAttributes = new PlayerAttributes();
 		playerAttributes.setName(name);
 		playerAttributes.setPlayerId(playerId);
 		keyHandler = new KeyHandler(board);
@@ -25,8 +26,7 @@ public class PlayerConsole implements PlayerController {
 
 	@Override
 	public int getSlotNumber() {
-		executor.execute(new ReadSlotNumber());
-		return 0;
+		return keyHandler.getSlot();
 	}
 
 	@Override
@@ -54,6 +54,5 @@ public class PlayerConsole implements PlayerController {
 	// }
 	// });
 	// }
-	// private class watek implements Runnable
 
 }
