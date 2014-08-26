@@ -24,7 +24,7 @@ public class Connect4 {
 		game = gamefactory.getGame();
 
 		gameloop = new GameLoop(game);
-		gameloop.startLoop();
+		// gameloop.startLoop();
 
 	}
 }
