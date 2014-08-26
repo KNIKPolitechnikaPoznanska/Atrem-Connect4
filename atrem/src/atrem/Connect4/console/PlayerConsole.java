@@ -1,7 +1,6 @@
 package atrem.Connect4.console;
 
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import atrem.Connect4.Game.board.Board;
 import atrem.Connect4.Game.board.HoleState;
@@ -27,11 +26,10 @@ public class PlayerConsole implements PlayerController {
 
 	}
 
-	//
-	// @Override
-	// public int getSlotNumber() {
-	//
-	// }
+	@Override
+	public int getSlotNumber() {
+		return keyHandler.getSlot();
+	}
 
 	@Override
 	public final void setName(String name) {
@@ -58,19 +56,19 @@ public class PlayerConsole implements PlayerController {
 	// }
 	// });
 	// }
-	@Override
-	public int getSlotNumber() {
-		ExecutorService thread = Executors.newSingleThreadExecutor();
-		thread.execute(new Runnable() {
 
-			@Override
-			public void run() {
-				currentSlot = keyHandler.getSlot();
-
-			}
-		});
-		thread.shutdown();
-		return currentSlot;
-	}
+	// public int getSlotNumber() {
+	// ExecutorService thread = Executors.newSingleThreadExecutor();
+	// thread.execute(new Runnable() {
+	//
+	// @Override
+	// public void run() {
+	// currentSlot = keyHandler.getSlot();
+	// System.out.println("watek");
+	// }
+	// });
+	// thread.shutdown();
+	// return currentSlot;
+	// }
 
 }
