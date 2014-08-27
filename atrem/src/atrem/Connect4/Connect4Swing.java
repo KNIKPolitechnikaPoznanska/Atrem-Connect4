@@ -25,12 +25,12 @@ public class Connect4Swing {
 		game = gamefactory.getGame();
 		gameController = new GameController();
 		gameController.setGameController(game);
-		// gameController.Loop();
+
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
 				try {
-					GameFrame frame = new GameFrame();
+					GameFrame frame = new GameFrame(game);
 					frame.setTitle("Connect 4");
 					frame.setVisible(true);
 				} catch (Exception e) {

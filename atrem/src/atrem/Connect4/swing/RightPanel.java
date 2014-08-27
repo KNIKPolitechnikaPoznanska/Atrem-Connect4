@@ -2,6 +2,8 @@ package atrem.Connect4.swing;
 
 import javax.swing.JPanel;
 
+import atrem.Connect4.Game.Game;
+
 public class RightPanel extends JPanel {
 
 	/**
@@ -11,8 +13,10 @@ public class RightPanel extends JPanel {
 
 	/**
 	 * Create the panel.
+	 * 
+	 * @param game
 	 */
-	public RightPanel() {
+	public RightPanel(Game game) {
 
 	}
 
