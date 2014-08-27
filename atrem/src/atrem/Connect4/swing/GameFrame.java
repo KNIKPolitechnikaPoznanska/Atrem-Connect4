@@ -34,6 +34,7 @@ public class GameFrame extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(0, 2, 0, 0));
+
 		contentPane.add(leftPanel);
 		contentPane.add(rightPanel);
 	}
