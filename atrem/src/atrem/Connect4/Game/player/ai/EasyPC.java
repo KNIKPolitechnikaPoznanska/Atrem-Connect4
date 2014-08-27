@@ -42,13 +42,13 @@ public class EasyPC implements PlayerController {
 		int choosenSlot;
 		Random rand = new Random();
 		do {
-
+			System.out.println("losowanie");
 			randomSlot = rand.nextInt(board.getSlots());
 			choosenSlot = board.findFreeSpot(randomSlot);
 		} while (choosenSlot == -1);
 		System.out.println(choosenSlot);
 
-		return choosenSlot;
+		return randomSlot;
 	}
 
 }

@@ -82,7 +82,9 @@ public class Board {
 				return -1;
 			if (holeState != HoleState.EMPTY) {
 				{
+					System.out.println("findfs");
 					return i - 1;
+
 				}
 			}
 		}
@@ -95,6 +97,7 @@ public class Board {
 		int slot;
 		do {
 			slot = player.getSlotNumber(); // CKeyHandler.getSlot
+			System.out.println(slot + " z go");
 			emptySlot = findFreeSpot(slot);
 			if (emptySlot == -1) {
 

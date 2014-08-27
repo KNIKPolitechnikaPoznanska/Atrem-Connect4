@@ -18,12 +18,12 @@ public class MediumPC implements PlayerController {
 	private Board board;
 	private Random rand;
 
-	public MediumPC(String name, HoleState playerId, Game game) {
+	public MediumPC(String name, HoleState playerId, Game game, Logic logic) {
 		playerAttributes = new PlayerAttributes();
 		playerAttributes.setName(name);
 		playerAttributes.setPlayerId(playerId);
 		this.game = game;
-		this.logic = new Logic(game);
+		this.logic = logic;
 		board = game.getBoard();
 		rand = new Random();
 	}
@@ -49,8 +49,8 @@ public class MediumPC implements PlayerController {
 		int emptySpot = board.findFreeSpot(slot);
 		if (emptySpot == -1) {
 			return -1;
-		}
-		return emptySpot;
+		} else
+			return emptySpot;
 
 	}
 
@@ -58,6 +58,7 @@ public class MediumPC implements PlayerController {
 	public int getSlotNumber() {
 
 		System.out.println("MEDIUMPC");
+
 		int simulatedRow;
 		HoleState opp;
 		if (playerAttributes.getPlayerId() == HoleState.PLAYER1)
@@ -70,13 +71,18 @@ public class MediumPC implements PlayerController {
 			if (simulatedRow == -1)
 				continue;
 			else {
+
 				board.setHoleState(simulatedRow, i,
 						playerAttributes.getPlayerId());
+
 				if (logic.checkIfWinPC() == true) {// wiem ze mozna lepiej
 					board.cleanSpot(simulatedRow, i);
+					System.out.println("chuj");
 					return i;
-				} else
+				} else {
 					board.cleanSpot(simulatedRow, i);
+
+				}
 			}
 
 		}
@@ -88,6 +94,7 @@ public class MediumPC implements PlayerController {
 				board.setHoleState(simulatedRow, i, opp);
 				if (logic.checkIfWinPC() == true) {// wiem ze mozna lepiej
 					board.cleanSpot(simulatedRow, i);
+
 					return i;
 				} else
 					board.cleanSpot(simulatedRow, i);
@@ -101,6 +108,7 @@ public class MediumPC implements PlayerController {
 			if (simulatedRow == board.getLastRow() // sprawdzanei ten sam level
 					&& (i == board.getLastSlot() - 1 || i == board
 							.getLastSlot() + 1)) {
+
 				return i;
 			}
 
@@ -110,7 +118,9 @@ public class MediumPC implements PlayerController {
 			if (simulatedRow == -1)
 				continue;
 			if (i == board.getLastSlot() - 1 || i == board.getLastSlot() + 1) {
+				System.out.println(board.getLastSlot());
 				return i;
+
 			}
 
 		}
@@ -121,7 +131,8 @@ public class MediumPC implements PlayerController {
 			randomSlot = rand.nextInt(board.getSlots());
 			choosenSlot = board.findFreeSpot(randomSlot);
 		} while (choosenSlot == -1);
-		return choosenSlot;
+
+		return randomSlot;
 
 	}
 }
