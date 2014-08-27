@@ -1,4 +1,4 @@
-package Test;
+package atrem.Connect4.swing;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -11,12 +11,12 @@ public class ResourceLoader {
 
 	public ResourceLoader() {
 
-		iconEmpty = new ImageIcon(C4gui.class.getResource(iconSource
+		iconEmpty = new ImageIcon(GameFrame.class.getResource(iconSource
 				+ imageName[0]));
 		// iconEmpty.getImage().s
-		iconPl1 = new ImageIcon(C4gui.class.getResource(iconSource
+		iconPl1 = new ImageIcon(GameFrame.class.getResource(iconSource
 				+ imageName[1]));
-		iconPl2 = new ImageIcon(C4gui.class.getResource(iconSource
+		iconPl2 = new ImageIcon(GameFrame.class.getResource(iconSource
 				+ imageName[2]));
 	}
 

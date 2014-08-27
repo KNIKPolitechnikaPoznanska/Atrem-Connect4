@@ -15,14 +15,14 @@ public class ButtonListPanel extends JPanel {
 	JButton[] button;
 	Game game;
 	private int slots;
-	private int buttonNumber;
+	private int btNumber;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 280580025464003711L;
 
 	/**
-	 * Create the panel.
+	 * Create the panel with button list on LeftPanel.
 	 * 
 	 * @param game
 	 */
@@ -31,7 +31,7 @@ public class ButtonListPanel extends JPanel {
 		slots = game.getBoardSlots();
 		button = new JButton[slots];
 
-		for (buttonNumber = 0; buttonNumber < button.length; buttonNumber++) {
+		for (int buttonNumber = 0; buttonNumber < button.length; buttonNumber++) {
 			button[buttonNumber] = new JButton(
 					Integer.toString(buttonNumber + 1));
 			add(button[buttonNumber]);
@@ -56,8 +56,13 @@ public class ButtonListPanel extends JPanel {
 				PlayerController player = game.getPlayer1();
 				// board.go(player);
 				System.out.println(player.getName());
+
 			}
 		}
+
+	}
+
+	public void setPlayer1() {
 
 	}
 }

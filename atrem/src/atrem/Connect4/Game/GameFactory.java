@@ -6,7 +6,7 @@ import atrem.Connect4.Game.player.PlayerController;
 import atrem.Connect4.Game.player.ai.MediumPC;
 import atrem.Connect4.console.Menu;
 import atrem.Connect4.console.PlayerConsole;
-import atrem.Connect4.swing2.SwingConfig;
+import atrem.Connect4.swing.SwingConfig;
 
 /*
  * Klasa tworz¹ca planszê (Board)

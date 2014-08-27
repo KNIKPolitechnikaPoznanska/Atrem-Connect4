@@ -1,62 +1,36 @@
-package Test;
+package atrem.Connect4.swing;
 
-import java.awt.Container;
-import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class C4gui extends JFrame {
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					C4gui frame = new C4gui();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public C4gui() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 549, 300);
-
-		Container mainContainer = getContentPane();
-		Test.Panel panel = new Panel();
-		mainContainer.add(panel);
-
-	}
-}
+import atrem.Connect4.Game.Game;
 
 class Panel extends JPanel {
 
-	int rows = 6;
-	int slots = 7;
-	JLabel[][] Plansza = new JLabel[rows][slots];
-	JButton[] button = new JButton[slots];
+	/**
+	 * Serial
+	 */
+	private static final long serialVersionUID = -7328887218009010574L;
+	int rows;
+	int slots;
+	JLabel[][] Plansza;
+	JButton[] button;
 	// private ResourceLoader iconResource;
 	// ActionListener newMouve = new placeToken();
 	ResourceLoader iconResource = new ResourceLoader();
 
-	public Panel() {
-
+	public Panel(Game game) {
+		rows = game.getBoardRows();
+		slots = game.getBoardSlots();
 		setLayout(new GridLayout(rows + 1, slots));
+
+		Plansza = new JLabel[rows][slots];
+		button = new JButton[slots];
 
 		for (int tempSlot = 0; tempSlot < slots; tempSlot++) {
 			button[tempSlot] = new JButton("" + (tempSlot + 1));

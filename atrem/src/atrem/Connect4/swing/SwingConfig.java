@@ -1,4 +1,4 @@
-package atrem.Connect4.swing2;
+package atrem.Connect4.swing;
 
 /*
  * Pobiera od gracza wszystkie informacje
@@ -6,7 +6,7 @@ package atrem.Connect4.swing2;
  */
 public class SwingConfig {
 	private String player1name = "Gracz1", player2name = "Gracz2";
-	private int slots = 3, rows = 7;
+	private int slots = 5, rows = 6;
 	private String opponent = "K";
 
 	public SwingConfig() {
