@@ -13,7 +13,6 @@ public class Game {
 	private Board board;
 	private PlayerController player1;
 	private PlayerController player2;
-	private int playerTurn;
 	private ResultState result;
 	private Logic logic;
 	private int doneMoves;
@@ -22,7 +21,7 @@ public class Game {
 
 	public Game(Board board) {
 		this.board = board;
-		setPlayerTurn(genFirstTurn());
+		// setPlayerTurn(genFirstTurn()); // grzebanei z watkiem
 		// logic = new Logic(this);
 
 	}
@@ -39,12 +38,19 @@ public class Game {
 	 * 
 	 * @return gracz, ktory rozpoczyna gre
 	 */
-	private int genFirstTurn() {
-		if (rnd.nextGaussian() < 0.0D) {
-			return 1;
-		} else {
-			return 2;
-		}
+	// private int genFirstTurn() { // grzebanie z watkiem
+	// if (rnd.nextGaussian() < 0.0D) {
+	// return 1;
+	// } else {
+	// return 2;
+	// }
+	// }
+	public GameController getGameController() {
+		return gameController;
+	}
+
+	public void setGameController(GameController gameController) {
+		this.gameController = gameController;
 	}
 
 	public Board getBoard() {
@@ -59,10 +65,6 @@ public class Game {
 		return player2;
 	}
 
-	public int getPlayerTurn() {
-		return playerTurn;
-	}
-
 	public void setBoard(Board board) {
 		this.board = board;
 	}
@@ -73,10 +75,6 @@ public class Game {
 
 	public void setPlayer2(PlayerController player2) {
 		this.player2 = player2;
-	}
-
-	public void setPlayerTurn(int playerTurn) {
-		this.playerTurn = playerTurn;
 	}
 
 	public HoleState getHoleState(int rows, int slots) {

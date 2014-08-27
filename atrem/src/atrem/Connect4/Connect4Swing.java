@@ -5,8 +5,8 @@ import java.awt.EventQueue;
 import atrem.Connect4.Game.Game;
 import atrem.Connect4.Game.GameController;
 import atrem.Connect4.Game.GameFactory;
-import atrem.Connect4.swing.GameFrame;
-import atrem.Connect4.swing.SwingConfig;
+import atrem.Connect4.swing2.GameFrame;
+import atrem.Connect4.swing2.SwingConfig;
 
 /*
  * Klasa main uruchamiaj¹ca grê Connect4
@@ -21,7 +21,7 @@ public class Connect4Swing {
 		gamefactory = new GameFactory();
 		config = new SwingConfig();
 		gamefactory.setSwingconfig(config);
-		gamefactory.createGame();
+		gamefactory.createGame("swing");
 		game = gamefactory.getGame();
 		gameController = new GameController();
 		gameController.setGameController(game);

@@ -4,7 +4,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import atrem.Connect4.Game.player.PlayerController;
-import atrem.Connect4.console.Task;
 
 /*
  * Tworzenie planszy 
@@ -105,7 +104,15 @@ public class Board {
 
 			// slot = player.getCurrentSlot(); // CKeyHandler.getSlot
 
-			thread.execute(new Task(player, this));
+			
+			thread.execute(new Runnable() { // bla
+				@Override
+				public void run() {
+					player2.getSlotNumber();
+					done();
+
+				}
+			});
 			try {
 				System.out.println("przed wait");
 				wait();

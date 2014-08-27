@@ -55,7 +55,7 @@ public class MediumPC implements PlayerController {
 	}
 
 	@Override
-	public int getSlotNumber() {
+	public void getSlotNumber() {
 
 		System.out.println("MEDIUMPC");
 
@@ -77,8 +77,8 @@ public class MediumPC implements PlayerController {
 
 				if (logic.checkIfWinPC() == true) {// wiem ze mozna lepiej
 					board.cleanSpot(simulatedRow, i);
-					System.out.println("chuj");
-					return i;
+					game.getGameController().setChoosedSlot(i);
+					return;
 				} else {
 					board.cleanSpot(simulatedRow, i);
 
@@ -94,8 +94,8 @@ public class MediumPC implements PlayerController {
 				board.setHoleState(simulatedRow, i, opp);
 				if (logic.checkIfWinPC() == true) {// wiem ze mozna lepiej
 					board.cleanSpot(simulatedRow, i);
-
-					return i;
+					game.getGameController().setChoosedSlot(i);
+					return;
 				} else
 					board.cleanSpot(simulatedRow, i);
 			}
@@ -108,8 +108,8 @@ public class MediumPC implements PlayerController {
 			if (simulatedRow == board.getLastRow() // sprawdzanei ten sam level
 					&& (i == board.getLastSlot() - 1 || i == board
 							.getLastSlot() + 1)) {
-
-				return i;
+				game.getGameController().setChoosedSlot(i);
+				return;
 			}
 
 		}
@@ -118,8 +118,8 @@ public class MediumPC implements PlayerController {
 			if (simulatedRow == -1)
 				continue;
 			if (i == board.getLastSlot() - 1 || i == board.getLastSlot() + 1) {
-				System.out.println(board.getLastSlot());
-				return i;
+				game.getGameController().setChoosedSlot(i);
+				return;
 
 			}
 
@@ -132,7 +132,8 @@ public class MediumPC implements PlayerController {
 			choosenSlot = board.findFreeSpot(randomSlot);
 		} while (choosenSlot == -1);
 
-		return randomSlot;
+		game.getGameController().setChoosedSlot(randomSlot);
+		return;
 
 	}
 }

@@ -12,7 +12,7 @@ public class SlotPanel extends JPanel {
 	private static final long serialVersionUID = -1429466827813271904L;
 	private ResourceLoader iconResource = new ResourceLoader();
 	private Game game;
-	private JLabel[] holeLabels;
+	private JLabel[] holeIcon;
 	private int rows;
 
 	/**
@@ -21,17 +21,17 @@ public class SlotPanel extends JPanel {
 	public SlotPanel(Game game) {
 		this.game = game;
 		rows = game.getBoardRows();
-		holeLabels = new JLabel[rows];
-		for (int labelNumb = 0; labelNumb < holeLabels.length; labelNumb++) {
-			holeLabels[labelNumb] = new JLabel();
-			add(holeLabels[labelNumb]);
-			holeLabels[labelNumb].setIcon(iconResource.get(0));
+		holeIcon = new JLabel[rows];
+		for (int labelNumb = 0; labelNumb < holeIcon.length; labelNumb++) {
+			holeIcon[labelNumb] = new JLabel();
+			add(holeIcon[labelNumb]);
+			holeIcon[labelNumb].setIcon(iconResource.get(0));
 		}
 	}
 
 	public void refreshPanel() {
-		for (int labelNumb = 0; labelNumb < holeLabels.length; labelNumb++) {
-
+		for (int labelNumb = 0; labelNumb < holeIcon.length; labelNumb++) {
+			// if()
 		}
 	}
 }
