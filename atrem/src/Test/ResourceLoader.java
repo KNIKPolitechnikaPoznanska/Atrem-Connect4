@@ -4,7 +4,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 public class ResourceLoader {
-	String iconSource = "/assets/icons/";
+	String iconSource = "/icons/";
 	String[] imageName = { "empty.png", "token1.png", "token2.png" };
 	ImageIcon iconEmpty, iconPl1, iconPl2;
 	private int labelH, labelW;

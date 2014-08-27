@@ -42,7 +42,6 @@ public class C4gui extends JFrame {
 		mainContainer.add(panel);
 
 	}
-
 }
 
 class Panel extends JPanel {
@@ -53,24 +52,16 @@ class Panel extends JPanel {
 	JButton[] button = new JButton[slots];
 	// private ResourceLoader iconResource;
 	// ActionListener newMouve = new placeToken();
-
 	ResourceLoader iconResource = new ResourceLoader();
 
 	public Panel() {
 
-		// ImageIcon pole = createImageIcon("/src/Test/pole.png"); osobna klasa
 		setLayout(new GridLayout(rows + 1, slots));
-		// for (int i = 0; i < slots; i++) {
-		// int a = i;
-		// a++;
-		// JButton button = new JButton("" + a);
-		// button.addActionListener(newMouve);
-		// add(button);
-		// }
 
 		for (int tempSlot = 0; tempSlot < slots; tempSlot++) {
 			button[tempSlot] = new JButton("" + (tempSlot + 1));
 			add(button[tempSlot]);
+
 			button[tempSlot].addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent TokenPlaced) {
@@ -78,18 +69,15 @@ class Panel extends JPanel {
 					for (int tempSlot = 0; tempSlot < slots; tempSlot++) {
 						if (s == button[tempSlot]) {
 							Plansza[0][tempSlot].setIcon(iconResource.get(2));
-							// System.out.println(tempSlot + 1);
 						}
 					}
 				}
 			});
 		}
-
-		for (int tempRow = 0; tempRow < rows; tempRow++) // rowsy z slotsami
-															// zamienione
-															// miejscami na
-															// potrzebe jlabela
-		{
+		/**
+		 * rowsy z slotsami zamienione miejscami na potrzebe jlabela
+		 */
+		for (int tempRow = 0; tempRow < rows; tempRow++) {
 			for (int tempSlot = 0; tempSlot < slots; tempSlot++) {
 				Plansza[tempRow][tempSlot] = new JLabel();
 				add(Plansza[tempRow][tempSlot]);
@@ -98,7 +86,6 @@ class Panel extends JPanel {
 				iconResource.setLabelW((int) Plansza[tempRow][tempSlot]
 						.getSize().getWidth());
 				Plansza[tempRow][tempSlot].setIcon(iconResource.get(0));
-				// Plansza[i][j].setText("c");
 			}
 		}
 
