@@ -48,7 +48,7 @@ public class C4gui extends JFrame {
 class Panel extends JPanel {
 
 	int rows = 6;
-	int slots = 7;
+	int slots = 10;
 	JLabel[][] Plansza = new JLabel[rows][slots];
 	JButton[] button = new JButton[slots];
 	// private ResourceLoader iconResource;
@@ -77,7 +77,8 @@ class Panel extends JPanel {
 					Object s = TokenPlaced.getSource();
 					for (int i = 0; i < slots; i++) {
 						if (s == button[i])
-							System.out.println(i + 1);
+							Plansza[0][i - 1].setIcon(iconResource.get(2));
+						// System.out.println(i + 1);
 					}
 				}
 			});
@@ -87,6 +88,10 @@ class Panel extends JPanel {
 			for (int i = 0; i < rows; i++) {
 				Plansza[i][j] = new JLabel();
 				add(Plansza[i][j]); // tu moze byc blad typu rows na slots !
+				iconResource.setLabelH((int) Plansza[i][j].getSize()
+						.getHeight());
+				iconResource
+						.setLabelW((int) Plansza[i][j].getSize().getWidth());
 				Plansza[i][j].setIcon(iconResource.get(0));
 				// Plansza[i][j].setText("c");
 			}
