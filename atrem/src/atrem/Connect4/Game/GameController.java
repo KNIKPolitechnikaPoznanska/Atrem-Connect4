@@ -13,6 +13,9 @@ public class GameController {
 	private GUIConsole gui;
 	private PlayerController player1, player2;
 
+	private int choosedSlot;
+	private int PlayerTurn;
+
 	public void setGameController(Game game) {
 		this.game = game;
 		this.logic = game.getLogic();
@@ -27,15 +30,31 @@ public class GameController {
 		doneMoves = 0;
 		while (!logic.checkResult(doneMoves)) {
 			gui.displayGame(game);
-			if (game.getPlayerTurn() == 1) {
+			if (getPlayerTurn() == 1) {
 				board.go(player1);
-				game.setPlayerTurn(2);
-			} else if (game.getPlayerTurn() == 2) {
+				setPlayerTurn(2);
+			} else if (getPlayerTurn() == 2) {
 				board.go(player2);
-				game.setPlayerTurn(1);
+				setPlayerTurn(1);
 			}
 			doneMoves++;
 		}
 		gui.displayResults(game);
+	}
+
+	public int getChoosedSlot() {
+		return choosedSlot;
+	}
+
+	public void setChoosedSlot(int choosedSlot) {
+		this.choosedSlot = choosedSlot;
+	}
+
+	public int getPlayerTurn() {
+		return PlayerTurn;
+	}
+
+	public void setPlayerTurn(int playerTurn) {
+		PlayerTurn = playerTurn;
 	}
 }
