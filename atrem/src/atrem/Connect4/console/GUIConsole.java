@@ -1,6 +1,7 @@
 package atrem.Connect4.console;
 
 import atrem.Connect4.Game.Game;
+import atrem.Connect4.Game.GameController;
 import atrem.Connect4.Game.board.Board;
 import atrem.Connect4.Game.board.HoleState;
 import atrem.Connect4.Game.player.PlayerController;
@@ -11,13 +12,14 @@ import atrem.Connect4.Game.player.PlayerController;
  */
 public class GUIConsole {
 
-	public void displayGame(Game game) {
+	public void displayGame(Game game, GameController gamecontroller) {
+		// GameController gamecontroller = game.getGameController();
 		this.drawBoard(game.getBoard());
 		this.drawSlots(game.getBoard().getSlots());
-		if (game.getPlayerTurn() == 1) {
+		if (gamecontroller.getPlayerTurn() == 1) {
 			this.writeCurrentPlayer(game.getPlayer1());
 		}
-		if (game.getPlayerTurn() == 2) {
+		if (gamecontroller.getPlayerTurn() == 2) {
 			this.writeCurrentPlayer(game.getPlayer2());
 		}
 		this.displayParagraph();

@@ -17,7 +17,8 @@ public class Game {
 	private Logic logic;
 	private int doneMoves;
 	private Random rnd = new Random();
-	private GameController gameController;
+
+	// private GameController gameController;
 
 	public Game(Board board) {
 		this.board = board;
@@ -45,13 +46,13 @@ public class Game {
 	// return 2;
 	// }
 	// }
-	public GameController getGameController() {
-		return gameController;
-	}
-
-	public void setGameController(GameController gameController) {
-		this.gameController = gameController;
-	}
+	// public GameController getGameController() {
+	// return gameController;
+	// }
+	//
+	// public void setGameController(GameController gameController) {
+	// this.gameController = gameController;
+	// }
 
 	public Board getBoard() {
 		return board;

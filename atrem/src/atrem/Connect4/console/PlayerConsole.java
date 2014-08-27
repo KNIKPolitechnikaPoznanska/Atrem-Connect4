@@ -4,7 +4,8 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import atrem.Connect4.Game.board.Board;
+import atrem.Connect4.Game.Game;
+import atrem.Connect4.Game.GameController;
 import atrem.Connect4.Game.board.HoleState;
 import atrem.Connect4.Game.player.PlayerAttributes;
 import atrem.Connect4.Game.player.PlayerController;
@@ -18,15 +19,16 @@ public class PlayerConsole implements PlayerController {
 	private Executor executor;
 	private int slots;
 	private PlayerAttributes playerAttributes;
-	private int currentSlot;
+	private GameController gamecontroller;
 
 	private ExecutorService thread = Executors.newSingleThreadExecutor();
 
-	public PlayerConsole(Board board, String name, HoleState playerId) {
+	public PlayerConsole(Game game, String name, HoleState playerId) {
 		playerAttributes = new PlayerAttributes();
 		playerAttributes.setName(name);
 		playerAttributes.setPlayerId(playerId);
-		keyHandler = new KeyHandler(board);
+		keyHandler = new KeyHandler(game.getBoard());
+		// this.gamecontroller = game.getGameController();
 	}
 
 	// @Override
@@ -48,6 +50,11 @@ public class PlayerConsole implements PlayerController {
 		return playerAttributes.getPlayerId();
 	}
 
+	@Override
+	public void setGamecontroller(GameController gamecontroller) {
+		this.gamecontroller = gamecontroller;
+	}
+
 	// private void modyfikacjaGUII() {
 	// SwingUtilities.invokeLater(new Runnable() {
 	//
@@ -60,16 +67,11 @@ public class PlayerConsole implements PlayerController {
 	// }
 
 	@Override
-	public synchronized int getSlotNumber() {
-		System.out.println("watek w");
-		currentSlot = keyHandler.getSlot();
+	public synchronized void getSlotNumber() {
+		int choosedSlot = keyHandler.getSlot();
+		gamecontroller.setChoosedSlot(choosedSlot);
 		// return keyHandler.getSlot();
-		return currentSlot;
 
-	}
-
-	public int getCurrentSlot() {
-		return currentSlot;
 	}
 
 }

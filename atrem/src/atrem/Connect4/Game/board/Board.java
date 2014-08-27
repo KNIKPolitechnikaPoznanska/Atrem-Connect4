@@ -1,10 +1,5 @@
 package atrem.Connect4.Game.board;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-import atrem.Connect4.Game.player.PlayerController;
-
 /*
  * Tworzenie planszy 
  * poprzez wype³nienie obiektami klasy Hole
@@ -16,7 +11,7 @@ public class Board {
 	private int totalSpots;
 	private int lastSlot;
 	private int lastRow;
-	private ExecutorService thread = Executors.newSingleThreadExecutor();
+	private int choosedSlot;
 
 	public Board() {
 
@@ -86,7 +81,6 @@ public class Board {
 				return -1;
 			if (holeState != HoleState.EMPTY) {
 				{
-					System.out.println("findfs");
 					return i - 1;
 
 				}
@@ -95,45 +89,4 @@ public class Board {
 		return i - 1;
 	}
 
-	public synchronized void go(PlayerController player) { // wywalic z konsoli
-		// uniwersalne
-
-		int emptySlot;
-		int slot = 4;
-		do {
-
-			// slot = player.getCurrentSlot(); // CKeyHandler.getSlot
-
-			
-			thread.execute(new Runnable() { // bla
-				@Override
-				public void run() {
-					player2.getSlotNumber();
-					done();
-
-				}
-			});
-			try {
-				System.out.println("przed wait");
-				wait();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			slot = player.getCurrentSlot();
-			emptySlot = findFreeSpot(slot);
-			if (emptySlot == -1) {
-
-				System.out.println("Slot jest pelen, podaj inny: ");
-
-			}
-		} while (emptySlot == -1);
-		setHoleState(emptySlot, slot, player.getPlayerId()); // gracz
-		setLastSlot(slot);
-		setLastSpot(emptySlot);
-	}
-
-	public synchronized void done() {
-		notifyAll();
-	}
 }

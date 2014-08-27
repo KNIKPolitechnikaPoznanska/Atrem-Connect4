@@ -24,7 +24,7 @@ public class Connect4Swing {
 		gamefactory.createGame("swing");
 		game = gamefactory.getGame();
 		gameController = new GameController();
-		gameController.setGameController(game);
+		gameController.loadGameController(game);
 
 		EventQueue.invokeLater(new Runnable() {
 			@Override

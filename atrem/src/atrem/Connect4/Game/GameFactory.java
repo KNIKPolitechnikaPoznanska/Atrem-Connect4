@@ -21,6 +21,7 @@ public class GameFactory {
 	private String im2, im1;
 	private String opponent;
 	private int slot, row;
+	private GameController gameController;
 
 	public void createGame(String gameType) {
 		if (gameType == "console")
@@ -37,6 +38,10 @@ public class GameFactory {
 		this.game.setPlayer1(player1);
 		this.game.setPlayer2(player2);
 		this.game.setResult(ResultState.NoWin);
+		this.gameController = new GameController();
+		this.gameController.loadGameController(game);
+		player1.setGamecontroller(gameController);
+		player2.setGamecontroller(gameController);
 
 	}
 
@@ -63,8 +68,8 @@ public class GameFactory {
 			player2 = new MediumPC(im2, HoleState.PLAYER2, game,
 					game.getLogic());
 		else
-			player2 = new PlayerConsole(board, im2, HoleState.PLAYER2);
-		player1 = new PlayerConsole(board, im1, HoleState.PLAYER1);
+			player2 = new PlayerConsole(game, im2, HoleState.PLAYER2);
+		player1 = new PlayerConsole(game, im1, HoleState.PLAYER1);
 	}
 
 	public void setOpponent(String opponent) {
@@ -73,6 +78,10 @@ public class GameFactory {
 
 	public Game getGame() {
 		return game;
+	}
+
+	public GameController getGameController() {
+		return gameController;
 	}
 
 	public void setMenu(Menu menu) {

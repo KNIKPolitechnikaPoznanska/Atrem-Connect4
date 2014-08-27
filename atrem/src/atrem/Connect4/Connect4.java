@@ -22,9 +22,9 @@ public class Connect4 {
 		menu.loadSettings();
 		gamefactory.setMenu(menu);
 		gamefactory.createGame("console");
-		game = gamefactory.getGame();
-		gameController = new GameController();
-		gameController.setGameController(game);
+		// game = gamefactory.getGame();
+		gameController = gamefactory.getGameController();
+		// game.setGameController(gameController);
 		gameController.Loop();
 
 	}

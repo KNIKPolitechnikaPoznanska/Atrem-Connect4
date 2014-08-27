@@ -1,5 +1,6 @@
 package atrem.Connect4.Game.player;
 
+import atrem.Connect4.Game.GameController;
 import atrem.Connect4.Game.board.HoleState;
 
 public interface PlayerController {
@@ -11,5 +12,7 @@ public interface PlayerController {
 	public abstract HoleState getPlayerId();
 
 	public abstract void getSlotNumber();
+
+	public abstract void setGamecontroller(GameController gamecontroller);
 
 }
