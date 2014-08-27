@@ -6,6 +6,7 @@ import atrem.Connect4.Game.player.PlayerController;
 import atrem.Connect4.Game.player.ai.MediumPC;
 import atrem.Connect4.console.Menu;
 import atrem.Connect4.console.PlayerConsole;
+import atrem.Connect4.swing.SwingConfig;
 
 /*
  * Klasa tworz¹ca planszê (Board)
@@ -15,8 +16,8 @@ public class GameFactory {
 	private Board board;
 	private PlayerController player1, player2;
 	private Game game;
-	private Menu menu;
-	// private SwingConfig swingconfig; // swing
+	private Menu menu; // console opt
+	private SwingConfig swingconfig; // swing opt
 	private String im2, im1;
 	private String opponent;
 	private int slot, row;
@@ -46,14 +47,14 @@ public class GameFactory {
 		row = menu.getRows();
 	}
 
-	// public void readInfoConfig() { // swing
-	// this.board = new Board(swingconfig.getRows(), swingconfig.getSlots());
-	// im1 = swingconfig.getPlayer1name();
-	// im2 = swingconfig.getPlayer2name();
-	// opponent = swingconfig.getOpponent();
-	// slot = swingconfig.getSlots();
-	// row = swingconfig.getRows();
-	// }
+	public void readInfoConfig() { // swing
+		this.board = new Board(swingconfig.getRows(), swingconfig.getSlots());
+		im1 = swingconfig.getPlayer1name();
+		im2 = swingconfig.getPlayer2name();
+		opponent = swingconfig.getOpponent();
+		slot = swingconfig.getSlots();
+		row = swingconfig.getRows();
+	}
 
 	public void createPlayerGame() {
 		if (opponent.equalsIgnoreCase("K"))
@@ -76,12 +77,12 @@ public class GameFactory {
 		this.menu = menu;
 	}
 
-	// //public SwingConfig getSwingconfig() { // swing
-	// return swingconfig;
-	// }
-	//
-	// //public void setSwingconfig(SwingConfig swingconfig) {
-	// this.swingconfig = swingconfig;
-	// }
+	public SwingConfig getSwingconfig() { // swing
+		return swingconfig;
+	}
+
+	public void setSwingconfig(SwingConfig swingconfig) {
+		this.swingconfig = swingconfig;
+	}
 
 }
