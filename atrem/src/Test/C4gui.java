@@ -77,7 +77,7 @@ class Panel extends JPanel {
 					Object s = TokenPlaced.getSource();
 					for (int i = 0; i < slots; i++) {
 						if (s == button[i])
-							System.out.println(i+1);
+							System.out.println(i + 1);
 					}
 				}
 			});
@@ -88,7 +88,7 @@ class Panel extends JPanel {
 				Plansza[i][j] = new JLabel();
 				add(Plansza[i][j]); // tu moze byc blad typu rows na slots !
 				Plansza[i][j].setIcon(iconResource.get(0));
-				// Plansza[i][j].setText("chuj");
+				// Plansza[i][j].setText("c");
 			}
 		}
 
