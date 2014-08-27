@@ -104,7 +104,7 @@ public class Board {
 
 			// slot = player.getCurrentSlot(); // CKeyHandler.getSlot
 
-			thread.execute(new Runnable() {
+			thread.execute(new Runnable() { // bla
 				@Override
 				public void run() {
 					player2.getSlotNumber();
