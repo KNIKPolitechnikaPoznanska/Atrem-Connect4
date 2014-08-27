@@ -1,4 +1,4 @@
-package atrem.Connect4.swing.labelpanels;
+package atrem.Connect4.swing2;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;

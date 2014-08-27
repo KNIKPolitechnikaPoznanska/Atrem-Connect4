@@ -6,7 +6,7 @@ package atrem.Connect4.swing2;
  */
 public class SwingConfig {
 	private String player1name = "Gracz1", player2name = "Gracz2";
-	private int slots = 6, rows = 7;
+	private int slots = 3, rows = 7;
 	private String opponent = "K";
 
 	public SwingConfig() {
