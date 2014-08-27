@@ -87,7 +87,9 @@ public class Board {
 				return -1;
 			if (holeState != HoleState.EMPTY) {
 				{
+					System.out.println("findfs");
 					return i - 1;
+
 				}
 			}
 		}
@@ -100,6 +102,7 @@ public class Board {
 		int emptySlot;
 		int slot = 4;
 		do {
+<<<<<<< HEAD
 			// slot = player.getCurrentSlot(); // CKeyHandler.getSlot
 
 			thread.execute(new Task(player, this));
@@ -111,6 +114,10 @@ public class Board {
 				e.printStackTrace();
 			}
 			slot = player.getCurrentSlot();
+=======
+			slot = player.getSlotNumber(); // CKeyHandler.getSlot
+			System.out.println(slot + " z go");
+>>>>>>> branch 'master' of https://github.com/KNIKPolitechnikaPoznanska/AtremProject.git
 			emptySlot = findFreeSpot(slot);
 			if (emptySlot == -1) {
 

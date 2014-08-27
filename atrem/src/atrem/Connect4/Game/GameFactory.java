@@ -26,13 +26,14 @@ public class GameFactory {
 		// this.readInfoConfig(); // swing
 
 		this.game = new Game(this.board);
-		this.createPlayerGame();
+
 		this.board = new Board(row, slot);
 		this.game.setBoard(board);
+		this.game.createLogic();
+		this.createPlayerGame();
 		this.game.setPlayer1(player1);
 		this.game.setPlayer2(player2);
 		this.game.setResult(ResultState.NoWin);
-		this.game.createLogic();
 
 	}
 
@@ -56,7 +57,8 @@ public class GameFactory {
 
 	public void createPlayerGame() {
 		if (opponent.equalsIgnoreCase("K"))
-			player2 = new MediumPC(im2, HoleState.PLAYER2, game);
+			player2 = new MediumPC(im2, HoleState.PLAYER2, game,
+					game.getLogic());
 		else
 			player2 = new PlayerConsole(board, im2, HoleState.PLAYER2);
 		player1 = new PlayerConsole(board, im1, HoleState.PLAYER1);

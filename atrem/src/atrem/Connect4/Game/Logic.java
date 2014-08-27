@@ -105,6 +105,7 @@ public class Logic {
 						&& token == game.getHoleState(row, slot + 2)
 						&& token == game.getHoleState(row, slot + 3)) {
 					// hasWinner = gui.showWinner(token, game);
+
 					return true;
 				}
 			}

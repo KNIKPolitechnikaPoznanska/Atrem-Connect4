@@ -1,6 +1,6 @@
 package atrem.Connect4.swing;
 
-import java.awt.GridLayout;
+import java.awt.FlowLayout;
 
 import javax.swing.JPanel;
 
@@ -18,10 +18,11 @@ public class LeftPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public LeftPanel(Game game) {
-		setLayout(new GridLayout(2, 1, 0, 0));
+		setLayout(new FlowLayout(2, 0, 0));
 		buttonList = new ButtonListPanel(game);
-		boardPane = new BoardPanel();
+		boardPane = new BoardPanel(game);
 		add(buttonList);
+		// buttonList.setLayout(new GridLayout(1, 6));
 		add(boardPane);
 	}
 }
