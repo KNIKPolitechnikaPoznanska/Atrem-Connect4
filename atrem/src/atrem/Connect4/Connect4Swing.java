@@ -21,7 +21,7 @@ public class Connect4Swing {
 		gamefactory = new GameFactory();
 		config = new SwingConfig();
 		gamefactory.setSwingconfig(config);
-		gamefactory.createGame();
+		gamefactory.createGame("swing");
 		game = gamefactory.getGame();
 		gameController = new GameController();
 		gameController.setGameController(game);

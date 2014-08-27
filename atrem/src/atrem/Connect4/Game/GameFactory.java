@@ -22,9 +22,11 @@ public class GameFactory {
 	private String opponent;
 	private int slot, row;
 
-	public void createGame() {
-		this.readInfoMenu();
-		// this.readInfoConfig(); // swing
+	public void createGame(String gameType) {
+		if (gameType == "console")
+			this.readInfoMenu();
+		else if (gameType == "swing")
+			this.readInfoConfig();
 
 		this.game = new Game(this.board);
 

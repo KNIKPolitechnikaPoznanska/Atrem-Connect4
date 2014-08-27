@@ -21,7 +21,7 @@ public class Connect4 {
 		menu = new Menu();
 		menu.loadSettings();
 		gamefactory.setMenu(menu);
-		gamefactory.createGame();
+		gamefactory.createGame("console");
 		game = gamefactory.getGame();
 		gameController = new GameController();
 		gameController.setGameController(game);
