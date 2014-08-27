@@ -48,7 +48,7 @@ public class C4gui extends JFrame {
 class Panel extends JPanel {
 
 	int rows = 6;
-	int slots = 10;
+	int slots = 7;
 	JLabel[][] Plansza = new JLabel[rows][slots];
 	JButton[] button = new JButton[slots];
 	// private ResourceLoader iconResource;
@@ -68,31 +68,36 @@ class Panel extends JPanel {
 		// add(button);
 		// }
 
-		for (int i = 0; i < slots; i++) {
-			button[i] = new JButton("" + (i + 1));
-			add(button[i]);
-			button[i].addActionListener(new ActionListener() {
+		for (int tempSlot = 0; tempSlot < slots; tempSlot++) {
+			button[tempSlot] = new JButton("" + (tempSlot + 1));
+			add(button[tempSlot]);
+			button[tempSlot].addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent TokenPlaced) {
 					Object s = TokenPlaced.getSource();
-					for (int i = 0; i < slots; i++) {
-						if (s == button[i])
-							Plansza[0][i - 1].setIcon(iconResource.get(2));
-						// System.out.println(i + 1);
+					for (int tempSlot = 0; tempSlot < slots; tempSlot++) {
+						if (s == button[tempSlot]) {
+							Plansza[0][tempSlot].setIcon(iconResource.get(2));
+							// System.out.println(tempSlot + 1);
+						}
 					}
 				}
 			});
 		}
 
-		for (int j = 0; j < slots; j++) {
-			for (int i = 0; i < rows; i++) {
-				Plansza[i][j] = new JLabel();
-				add(Plansza[i][j]); // tu moze byc blad typu rows na slots !
-				iconResource.setLabelH((int) Plansza[i][j].getSize()
-						.getHeight());
-				iconResource
-						.setLabelW((int) Plansza[i][j].getSize().getWidth());
-				Plansza[i][j].setIcon(iconResource.get(0));
+		for (int tempRow = 0; tempRow < rows; tempRow++) // rowsy z slotsami
+															// zamienione
+															// miejscami na
+															// potrzebe jlabela
+		{
+			for (int tempSlot = 0; tempSlot < slots; tempSlot++) {
+				Plansza[tempRow][tempSlot] = new JLabel();
+				add(Plansza[tempRow][tempSlot]);
+				iconResource.setLabelH((int) Plansza[tempRow][tempSlot]
+						.getSize().getHeight());
+				iconResource.setLabelW((int) Plansza[tempRow][tempSlot]
+						.getSize().getWidth());
+				Plansza[tempRow][tempSlot].setIcon(iconResource.get(0));
 				// Plansza[i][j].setText("c");
 			}
 		}
@@ -103,8 +108,8 @@ class Panel extends JPanel {
 		// }
 	}
 
-	void placeTokenInSlot(int slot) {
-		// Plansza[1][1].setIcon(iconResource.get(1));
-		Plansza[i][j].setText("chuj");
-	}
+	// void placeTokenInSlot(int slot) {
+	// // Plansza[1][1].setIcon(iconResource.get(1));
+	// Plansza[i][j].setText("chuj");
+	// }
 }
