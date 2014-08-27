@@ -12,4 +12,6 @@ public interface PlayerController {
 
 	public abstract int getSlotNumber();
 
+	public abstract int getCurrentSlot();
+
 }

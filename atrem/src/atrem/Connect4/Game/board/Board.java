@@ -1,6 +1,10 @@
 package atrem.Connect4.Game.board;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import atrem.Connect4.Game.player.PlayerController;
+import atrem.Connect4.console.Task;
 
 /*
  * Tworzenie planszy 
@@ -13,6 +17,7 @@ public class Board {
 	private int totalSpots;
 	private int lastSlot;
 	private int lastRow;
+	private ExecutorService thread = Executors.newSingleThreadExecutor();
 
 	public Board() {
 
@@ -82,19 +87,33 @@ public class Board {
 				return -1;
 			if (holeState != HoleState.EMPTY) {
 				{
+					System.out.println("findfs");
 					return i - 1;
+
 				}
 			}
 		}
 		return i - 1;
 	}
 
-	public void go(PlayerController player) { // wywalic z konsoli
+	public synchronized void go(PlayerController player) { // wywalic z konsoli
 		// uniwersalne
+
 		int emptySlot;
-		int slot;
+		int slot = 4;
 		do {
-			slot = player.getSlotNumber(); // CKeyHandler.getSlot
+
+			// slot = player.getCurrentSlot(); // CKeyHandler.getSlot
+
+			thread.execute(new Task(player, this));
+			try {
+				System.out.println("przed wait");
+				wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			slot = player.getCurrentSlot();
 			emptySlot = findFreeSpot(slot);
 			if (emptySlot == -1) {
 
@@ -105,5 +124,9 @@ public class Board {
 		setHoleState(emptySlot, slot, player.getPlayerId()); // gracz
 		setLastSlot(slot);
 		setLastSpot(emptySlot);
+	}
+
+	public synchronized void done() {
+		notifyAll();
 	}
 }
