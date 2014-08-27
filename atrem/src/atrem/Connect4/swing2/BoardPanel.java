@@ -1,4 +1,4 @@
-package atrem.Connect4.swing;
+package atrem.Connect4.swing2;
 
 import java.awt.GridLayout;
 
