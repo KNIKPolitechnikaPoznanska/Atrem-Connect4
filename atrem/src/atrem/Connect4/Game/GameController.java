@@ -3,7 +3,6 @@ package atrem.Connect4.Game;
 import atrem.Connect4.Game.board.Board;
 import atrem.Connect4.Game.player.PlayerController;
 import atrem.Connect4.console.GUIConsole;
-import atrem.Connect4.swing.SwingPresenter;
 
 public class GameController {
 	// public void wykonalemRuch(HoleState playerId, int slot);\
@@ -17,7 +16,6 @@ public class GameController {
 	private int emptySpot;
 	private int choosedSlot;
 	private int PlayerTurn = 1;
-	private SwingPresenter swingPresenter;
 
 	public void loadGameController(Game game) {
 		this.game = game;
@@ -27,23 +25,6 @@ public class GameController {
 		this.player2 = game.getPlayer2();
 		gui = new GUIConsole();
 
-	}
-
-	public void move() { // wywalic z konsoli
-		doneMoves = 0;
-
-		// gui.displayGame(game, this);
-		if (getPlayerTurn() == 1) {
-
-			this.go(player1);
-			setPlayerTurn(2);
-		} else if (getPlayerTurn() == 2) {
-			this.go(player2);
-			setPlayerTurn(1);
-		}
-		doneMoves++;
-
-		// gui.displayResults(game);
 	}
 
 	public int getChoosedSlot() {
@@ -70,28 +51,41 @@ public class GameController {
 		return game;
 	}
 
-	public void setSwingPresenter(SwingPresenter swingPresenter) {
-		this.swingPresenter = swingPresenter;
-	}
-
 	public synchronized void go(PlayerController player) { // wywalic z konsoli
 		// uniwersalne
 		// final PlayerController player2 = player;
 		int slot;
 		// System.out.println("test2");
-		do {
-
-			slot = choosedSlot;
-			emptySpot = board.findFreeSpot(slot);
-			if (emptySpot == -1) {
-
-			}
-
-		} while (emptySpot == -1);
+		slot = choosedSlot;
+		emptySpot = board.findFreeSpot(slot);
+		if (emptySpot == -1) {
+			return;
+		}
 		board.setHoleState(emptySpot, slot, player.getPlayerId()); // gracz
 		board.setLastSlot(slot);
 		board.setLastSpot(emptySpot);
-		player.tokenPlaced();
+
+	}
+
+	public void move(int slot) { // wywalic z konsoli
+		choosedSlot = slot;
+		doneMoves = 0;
+
+		if (getPlayerTurn() == 1) {
+
+			this.go(player1);
+			setPlayerTurn(2);
+
+		} else if (getPlayerTurn() == 2) {
+			this.go(player2);
+			setPlayerTurn(1);
+
+		}
+		doneMoves++;
+		if (logic.checkResult(doneMoves)) {
+
+		}
+
 	}
 	// public void madeMouve
 
