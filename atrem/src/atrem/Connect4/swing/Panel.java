@@ -18,14 +18,16 @@ class Panel extends JPanel {
 	private int Slots;
 	private JLabel[][] Plansza;
 	private JButton[] button;
-	private int FillingSlot;
+	private int PlayerID;
 	private SwingPresenter swingPresenter;
 	private int chosenSlot;
 	private ResourceLoader iconResource = new ResourceLoader();
+	private int freeRow;
 
 	public Panel(SwingPresenter swingPresenter) {
 		this.Rows = swingPresenter.getRows();
 		this.Slots = swingPresenter.getSlots();
+		this.swingPresenter = swingPresenter;
 
 		setLayout(new GridLayout(Rows + 1, Slots));
 
@@ -43,8 +45,7 @@ class Panel extends JPanel {
 					for (int tempSlot = 0; tempSlot < Slots; tempSlot++) {
 						if (s == button[tempSlot]) {
 							chosenSlot = tempSlot;
-							int PlayerID = 1;
-							int freeRow = 4;
+							getGUISlot();
 							Plansza[freeRow][tempSlot].setIcon(iconResource
 									.get(PlayerID));
 						}
@@ -74,7 +75,12 @@ class Panel extends JPanel {
 	}
 
 	public void getGUISlot() {
-		swingPresenter.getSlotFromView(FillingSlot);
+		swingPresenter.getSlotFromView(chosenSlot);
+	}
+
+	public void setFreeRow(int row, int slot, int ID) {
+		this.freeRow = row;
+		this.PlayerID = ID;
 	}
 
 	// void placeTokenInSlot(int slot) {
