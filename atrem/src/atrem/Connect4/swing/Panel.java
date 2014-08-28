@@ -8,33 +8,32 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import atrem.Connect4.Game.Game;
-
 class Panel extends JPanel {
 
 	/**
 	 * Serial
 	 */
 	private static final long serialVersionUID = -7328887218009010574L;
-	int rows;
-	int slots;
+	int Rows;
+	int Slots;
 	JLabel[][] Plansza;
 	JButton[] button;
 	int FillingSlot;
+	private SwingPresenter swingPresenter;
 
 	// private ResourceLoader iconResource;
 	// ActionListener newMouve = new placeToken();
 	ResourceLoader iconResource = new ResourceLoader();
 
-	public Panel(Game game) {
-		rows = game.getBoardRows();
-		slots = game.getBoardSlots();
-		setLayout(new GridLayout(rows + 1, slots));
+	public Panel(SwingPresenter swingPresenter) {
+		this.Rows = swingPresenter.getRows();
+		this.Slots = swingPresenter.getSlots();
+		setLayout(new GridLayout(Rows + 1, Slots));
 
-		Plansza = new JLabel[rows][slots];
-		button = new JButton[slots];
+		Plansza = new JLabel[Rows][Slots];
+		button = new JButton[Slots];
 
-		for (int tempSlot = 0; tempSlot < slots; tempSlot++) {
+		for (int tempSlot = 0; tempSlot < Slots; tempSlot++) {
 			button[tempSlot] = new JButton("" + (tempSlot + 1));
 			add(button[tempSlot]);
 
@@ -42,7 +41,7 @@ class Panel extends JPanel {
 				@Override
 				public void actionPerformed(ActionEvent TokenPlaced) {
 					Object s = TokenPlaced.getSource();
-					for (int tempSlot = 0; tempSlot < slots; tempSlot++) {
+					for (int tempSlot = 0; tempSlot < Slots; tempSlot++) {
 						if (s == button[tempSlot]) {
 							Plansza[0][tempSlot].setIcon(iconResource.get(2));
 						}
@@ -53,8 +52,8 @@ class Panel extends JPanel {
 		/**
 		 * rowsy z slotsami zamienione miejscami na potrzebe jlabela
 		 */
-		for (int tempRow = 0; tempRow < rows; tempRow++) {
-			for (int tempSlot = 0; tempSlot < slots; tempSlot++) {
+		for (int tempRow = 0; tempRow < Rows; tempRow++) {
+			for (int tempSlot = 0; tempSlot < Slots; tempSlot++) {
 				Plansza[tempRow][tempSlot] = new JLabel();
 				add(Plansza[tempRow][tempSlot]);
 				iconResource.setLabelH((int) Plansza[tempRow][tempSlot]
@@ -71,8 +70,8 @@ class Panel extends JPanel {
 		// }
 	}
 
-	public int getGUISlot() {
-		return FillingSlot;
+	public void getGUISlot() {
+		swingPresenter.getSlotFromView(FillingSlot);
 	}
 
 	// void placeTokenInSlot(int slot) {
