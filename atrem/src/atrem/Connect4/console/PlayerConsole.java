@@ -20,8 +20,9 @@ public class PlayerConsole implements PlayerController {
 	private int slots;
 	private PlayerAttributes playerAttributes;
 	private GameController gamecontroller;
-
+	private ConsolePresenter consolePresenter;
 	private ExecutorService thread = Executors.newSingleThreadExecutor();
+	private int choosedTmp;
 
 	public PlayerConsole(Game game, String name, HoleState playerId) {
 		playerAttributes = new PlayerAttributes();
@@ -29,6 +30,8 @@ public class PlayerConsole implements PlayerController {
 		playerAttributes.setPlayerId(playerId);
 		keyHandler = new KeyHandler(game.getBoard());
 		// this.gamecontroller = game.getGameController();
+		consolePresenter = new ConsolePresenter(this);
+
 	}
 
 	// @Override
@@ -53,6 +56,11 @@ public class PlayerConsole implements PlayerController {
 	@Override
 	public void setGamecontroller(GameController gamecontroller) {
 		this.gamecontroller = gamecontroller;
+		consolePresenter.setGamecontroller(gamecontroller);
+	}
+
+	public void setChoosedTmp(int choosedTmp) {
+		this.choosedTmp = choosedTmp;
 	}
 
 	// private void modyfikacjaGUII() {
@@ -68,10 +76,38 @@ public class PlayerConsole implements PlayerController {
 
 	@Override
 	public synchronized void getSlotNumber() {
-		int choosedSlot = keyHandler.getSlot();
-		gamecontroller.setChoosedSlot(choosedSlot);
-		// return keyHandler.getSlot();
 
+		System.out.println("test2");
+		thread.execute(new Runnable() { // bla
+			@Override
+			public void run() {
+				PlayerConsole.this.choosedTmp = PlayerConsole.this.keyHandler
+						.getSlot();
+				PlayerConsole.this.done();
+			}
+		});
+		try {
+
+			wait();
+
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("test1");
+		gamecontroller.setChoosedSlot(choosedTmp);
+
+	}
+
+	@Override
+	public void tokenPlaced() {
+		System.out.println("test2");
+		consolePresenter.mouveDone();
+
+	}
+
+	public synchronized void done() {
+		notifyAll();
 	}
 
 }
