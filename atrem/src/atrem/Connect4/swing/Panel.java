@@ -47,9 +47,8 @@ class Panel extends JPanel {
 							chosenSlot = tempSlot;
 							getGUISlot();
 							int PlayerID = 1;
-							// setFreeRow();
-							Plansza[getFreeRow()][tempSlot]
-									.setIcon(iconResource.get(PlayerID));
+							Plansza[freeRow][tempSlot].setIcon(iconResource
+									.get(PlayerID));
 						}
 					}
 				}
