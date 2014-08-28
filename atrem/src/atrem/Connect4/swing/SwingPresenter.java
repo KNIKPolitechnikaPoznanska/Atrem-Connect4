@@ -22,6 +22,7 @@ public class SwingPresenter {
 	public void setPresenter(Game game, GameController gameController) {
 		this.game = game;
 		this.gameController = gameController;
+		setSettings();
 	}
 
 	public void runSettingsView() { // wywowlujemy okno dialogowe z ustawieniamy
@@ -29,15 +30,15 @@ public class SwingPresenter {
 
 	}
 
-	public void setSettings(int Rows, int Slots) {
-		this.Rows = Rows;
-		this.Slots = Slots;
+	public void setSettings() {
+		Rows = game.getBoardRows();
+		Slots = game.getBoardSlots();
 
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
 				try {
-					GameFrame frame = new GameFrame(game);
+					GameFrame frame = new GameFrame(Rows, Slots);
 					frame.setTitle("Connect 4");
 					frame.setVisible(true);
 				} catch (Exception e) {
