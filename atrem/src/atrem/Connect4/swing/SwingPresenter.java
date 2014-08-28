@@ -46,6 +46,8 @@ public class SwingPresenter {
 			}
 		});
 
+		panel = gameFrame.getPanel();
+
 	}
 
 	public void runGameView(int Rows, int Slots, Board board) { // wyowlujemy
