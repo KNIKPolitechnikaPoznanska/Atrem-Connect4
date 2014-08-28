@@ -87,6 +87,10 @@ public class GameController {
 		}
 
 	}
+
+	public ResultState getResult() {
+		return game.getResult();
+	}
 	// public void madeMouve
 
 	// public synchronized void done() {
