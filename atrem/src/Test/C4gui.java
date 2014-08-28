@@ -48,12 +48,12 @@ class Panel extends JPanel {
 
 	int rows = 6;
 	int slots = 7;
+	int chosenSlot;
 	JLabel[][] Plansza = new JLabel[rows][slots];
 	JButton[] button = new JButton[slots];
 	// private ResourceLoader iconResource;
 	// ActionListener newMouve = new placeToken();
 	ResourceLoader iconResource = new ResourceLoader();
-	int FillingSlot;
 
 	public Panel() {
 
@@ -69,8 +69,11 @@ class Panel extends JPanel {
 					Object s = TokenPlaced.getSource();
 					for (int tempSlot = 0; tempSlot < slots; tempSlot++) {
 						if (s == button[tempSlot]) {
-							tempSlot = FillingSlot;
-							Plansza[0][tempSlot].setIcon(iconResource.get(2));
+							chosenSlot = tempSlot;
+							int PlayerID = 1;
+							int freeRow = 4;
+							Plansza[freeRow][tempSlot].setIcon(iconResource
+									.get(PlayerID));
 							// w miejsce 0 - method nextFreeRow()
 						}
 					}
@@ -98,13 +101,14 @@ class Panel extends JPanel {
 		// }
 	}
 
-	public int getGUISlot() {
-		return FillingSlot;
-	}
 	// void placeTokenInSlot(int slot) {
 	// // Plansza[1][1].setIcon(iconResource.get(1));
 	// Plansza[i][j].setText("chuj");
 	// }
+
+	public int getGUISlot() {
+		return chosenSlot;
+	}
 }
 
 /*
