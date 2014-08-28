@@ -25,10 +25,10 @@ public class GameFrame extends JFrame {
 		Container mainContainer = getContentPane();
 		mainContainer.setLayout(new GridBagLayout());
 		panel = new Panel(swingPresenter);
-		// statsPanel = new StatsPanel();
+		statsPanel = new StatsPanel(swingPresenter);
 		mainContainer.add(panel);
 		swingPresenter.getFrame(this);
-		// mainContainer.add(statsPanel);
+		mainContainer.add(statsPanel);
 	}
 
 	public Panel getPanel() {
