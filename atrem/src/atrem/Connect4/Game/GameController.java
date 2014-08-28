@@ -1,10 +1,9 @@
 package atrem.Connect4.Game;
 
-import java.util.concurrent.ExecutorService;
-
 import atrem.Connect4.Game.board.Board;
 import atrem.Connect4.Game.player.PlayerController;
 import atrem.Connect4.console.GUIConsole;
+import atrem.Connect4.swing.SwingPresenter;
 
 public class GameController {
 	// public void wykonalemRuch(HoleState playerId, int slot);\
@@ -15,11 +14,10 @@ public class GameController {
 	private int doneMoves;
 	private GUIConsole gui;
 	private PlayerController player1, player2;
-	private ExecutorService thread;
-
 	private int emptySpot;
 	private int choosedSlot;
 	private int PlayerTurn = 1;
+	private SwingPresenter swingPresenter;
 
 	public void loadGameController(Game game) {
 		this.game = game;
@@ -31,20 +29,20 @@ public class GameController {
 
 	}
 
-	public void Loop() { // wywalic z konsoli
+	public void move() { // wywalic z konsoli
 		doneMoves = 0;
-		while (!logic.checkResult(doneMoves)) {
-			// gui.displayGame(game, this);
-			if (getPlayerTurn() == 1) {
 
-				this.go(player1);
-				setPlayerTurn(2);
-			} else if (getPlayerTurn() == 2) {
-				this.go(player2);
-				setPlayerTurn(1);
-			}
-			doneMoves++;
+		// gui.displayGame(game, this);
+		if (getPlayerTurn() == 1) {
+
+			this.go(player1);
+			setPlayerTurn(2);
+		} else if (getPlayerTurn() == 2) {
+			this.go(player2);
+			setPlayerTurn(1);
 		}
+		doneMoves++;
+
 		// gui.displayResults(game);
 	}
 
@@ -72,6 +70,10 @@ public class GameController {
 		return game;
 	}
 
+	public void setSwingPresenter(SwingPresenter swingPresenter) {
+		this.swingPresenter = swingPresenter;
+	}
+
 	public synchronized void go(PlayerController player) { // wywalic z konsoli
 		// uniwersalne
 		// final PlayerController player2 = player;
@@ -79,12 +81,10 @@ public class GameController {
 		// System.out.println("test2");
 		do {
 
-			player.getSlotNumber();
-
 			slot = choosedSlot;
 			emptySpot = board.findFreeSpot(slot);
 			if (emptySpot == -1) {
-				// pelny slot podaj inny
+
 			}
 
 		} while (emptySpot == -1);
@@ -93,10 +93,11 @@ public class GameController {
 		board.setLastSpot(emptySpot);
 		player.tokenPlaced();
 	}
+	// public void madeMouve
 
-	public synchronized void done() {
-		notifyAll();
-	}
+	// public synchronized void done() {
+	// notifyAll();
+	// }
 
 	// public synchronized void go(PlayerController player) { // wywalic z
 	// konsoli

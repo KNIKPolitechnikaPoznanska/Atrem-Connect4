@@ -101,7 +101,6 @@ public class PlayerConsole implements PlayerController {
 
 	@Override
 	public void tokenPlaced() {
-		System.out.println("test2");
 		consolePresenter.mouveDone();
 
 	}
