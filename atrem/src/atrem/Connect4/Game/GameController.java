@@ -15,7 +15,7 @@ public class GameController {
 	private PlayerController player1, player2;
 	private int emptySpot;
 	private int choosedSlot;
-	private int PlayerTurn = 1;
+	private int playerTurn = 1;
 
 	public void loadGameController(Game game) {
 		this.game = game;
@@ -36,11 +36,11 @@ public class GameController {
 	}
 
 	public int getPlayerTurn() {
-		return PlayerTurn;
+		return playerTurn;
 	}
 
 	public void setPlayerTurn(int playerTurn) {
-		PlayerTurn = playerTurn;
+		this.playerTurn = playerTurn;
 	}
 
 	public int getEmptySpot() {
