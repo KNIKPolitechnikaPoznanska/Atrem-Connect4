@@ -18,7 +18,7 @@ class Panel extends JPanel {
 	private int Slots;
 	private JLabel[][] Plansza;
 	private JButton[] button;
-
+	private int PlayerID;
 	private SwingPresenter swingPresenter;
 	private int chosenSlot;
 	private ResourceLoader iconResource = new ResourceLoader();
@@ -46,7 +46,6 @@ class Panel extends JPanel {
 						if (s == button[tempSlot]) {
 							chosenSlot = tempSlot;
 							getGUISlot();
-							int PlayerID = 1;
 							Plansza[freeRow][tempSlot].setIcon(iconResource
 									.get(PlayerID));
 						}
@@ -79,15 +78,9 @@ class Panel extends JPanel {
 		swingPresenter.getSlotFromView(chosenSlot);
 	}
 
-	public void setFreeRow(int row, int slot) {
-
+	public void setFreeRow(int row, int slot, int ID) {
 		this.freeRow = row;
-
-	}
-
-	public int getFreeRow() {
-		int row = freeRow;
-		return row;
+		this.PlayerID = ID;
 	}
 
 	// void placeTokenInSlot(int slot) {
