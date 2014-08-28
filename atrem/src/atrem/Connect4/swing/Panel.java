@@ -20,6 +20,7 @@ class Panel extends JPanel {
 	int slots;
 	JLabel[][] Plansza;
 	JButton[] button;
+
 	// private ResourceLoader iconResource;
 	// ActionListener newMouve = new placeToken();
 	ResourceLoader iconResource = new ResourceLoader();
