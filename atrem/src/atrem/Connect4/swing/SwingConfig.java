@@ -11,6 +11,15 @@ public class SwingConfig {
 	private String player1name = "Gracz1", player2name = "Gracz2";
 	private int slots = 7, rows = 6;
 	private String opponent = "K";
+	private boolean loaded = false;
+
+	private void setLoaded(boolean loaded) {
+		this.loaded = loaded;
+	}
+
+	public boolean isLoaded() {
+		return loaded;
+	}
 
 	public SwingConfig() {
 
@@ -40,7 +49,8 @@ public class SwingConfig {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		if (dialogBox.isLoaded())
+			setLoaded(true);
 	}
 
 	public String getOpponent() {

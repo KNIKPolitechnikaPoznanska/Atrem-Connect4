@@ -22,6 +22,7 @@ public class DialogSettingsBox extends JDialog {
 	 */
 	private static final long serialVersionUID = 973461278407448042L;
 	private final JPanel contentPanel = new JPanel();
+	private SwingConfig config;
 	private static DialogSettingsBox dialog;
 	private JTextField pl2Txt, pl1Txt, TxtSlots, TxtRows;
 	private JButton okButton, btnDefault, cancelButton;
@@ -34,20 +35,9 @@ public class DialogSettingsBox extends JDialog {
 	private int defSlots = 7, defRows = 6, slots, rows;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			dialog = new DialogSettingsBox();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
 	 * Create the dialog.
+	 * 
+	 * @param gamefactory
 	 */
 	public DialogSettingsBox() {
 		setTitle("Connect4 Settings");
@@ -131,10 +121,11 @@ public class DialogSettingsBox extends JDialog {
 			{
 				okButton = new JButton("Start");
 				okButton.addActionListener(new ActionListener() {
+
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						if (saveSettings()) {
-							sendSettings();
+							System.out.println("h");
 						}
 					}
 				});
@@ -169,17 +160,6 @@ public class DialogSettingsBox extends JDialog {
 		}
 	}
 
-	protected void sendSettings() {
-
-	}
-
-	protected void setDefaults() {
-		pl1Txt.setText(defPl1Name);
-		pl2Txt.setText(defPl2Name);
-		TxtSlots.setText(Integer.toString(defSlots));
-		TxtRows.setText(Integer.toString(defRows));
-	}
-
 	protected boolean saveSettings() {
 		pl1Name = pl1Txt.getText();
 		pl2Name = pl2Txt.getText();
@@ -191,7 +171,17 @@ public class DialogSettingsBox extends JDialog {
 			return false;
 		}
 		return true;
-
 	}
 
+	protected void setDefaults() {
+		pl1Txt.setText(defPl1Name);
+		pl2Txt.setText(defPl2Name);
+		TxtSlots.setText(Integer.toString(defSlots));
+		TxtRows.setText(Integer.toString(defRows));
+	}
+
+	public boolean isLoaded() {
+		return loaded;
+		return false;
+	}
 }
