@@ -44,10 +44,10 @@ class Panel extends JPanel {
 					for (int tempSlot = 0; tempSlot < Slots; tempSlot++) {
 						if (s == button[tempSlot]) {
 							chosenSlot = tempSlot;
+							getGUISlot();
 							int PlayerID = 1;
-							// setFreeRow();
-							Plansza[getFreeRow()][tempSlot]
-									.setIcon(iconResource.get(PlayerID));
+							Plansza[freeRow][tempSlot].setIcon(iconResource
+									.get(PlayerID));
 						}
 					}
 				}
