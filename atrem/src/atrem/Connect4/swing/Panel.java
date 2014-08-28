@@ -14,20 +14,19 @@ class Panel extends JPanel {
 	 * Serial
 	 */
 	private static final long serialVersionUID = -7328887218009010574L;
-	int Rows;
-	int Slots;
-	JLabel[][] Plansza;
-	JButton[] button;
-	int FillingSlot;
+	private int Rows;
+	private int Slots;
+	private JLabel[][] Plansza;
+	private JButton[] button;
+	private int FillingSlot;
 	private SwingPresenter swingPresenter;
-
-	// private ResourceLoader iconResource;
-	// ActionListener newMouve = new placeToken();
-	ResourceLoader iconResource = new ResourceLoader();
+	private int chosenSlot;
+	private ResourceLoader iconResource = new ResourceLoader();
 
 	public Panel(SwingPresenter swingPresenter) {
 		this.Rows = swingPresenter.getRows();
 		this.Slots = swingPresenter.getSlots();
+
 		setLayout(new GridLayout(Rows + 1, Slots));
 
 		Plansza = new JLabel[Rows][Slots];
@@ -43,7 +42,11 @@ class Panel extends JPanel {
 					Object s = TokenPlaced.getSource();
 					for (int tempSlot = 0; tempSlot < Slots; tempSlot++) {
 						if (s == button[tempSlot]) {
-							Plansza[0][tempSlot].setIcon(iconResource.get(2));
+							chosenSlot = tempSlot;
+							int PlayerID = 1;
+							int freeRow = 4;
+							Plansza[freeRow][tempSlot].setIcon(iconResource
+									.get(PlayerID));
 						}
 					}
 				}
