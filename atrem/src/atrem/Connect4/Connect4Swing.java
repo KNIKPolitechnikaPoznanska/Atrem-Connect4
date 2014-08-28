@@ -19,6 +19,7 @@ public class Connect4Swing {
 	public static void main(String[] args) {
 		gamefactory = new GameFactory();
 		config = new SwingConfig();
+		config.loadSettings();
 		gamefactory.setSwingconfig(config);
 		gamefactory.createGame("swing");
 		game = gamefactory.getGame();
