@@ -1,22 +1,21 @@
 package atrem.Connect4.swing;
 
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
 
 public class ResourceLoader {
 	String iconSource = "/icons/";
 	String[] imageName = { "empty.png", "token1.png", "token2.png" };
-	ImageIcon iconEmpty, iconPl1, iconPl2;
+	StretchIcon iconEmpty, iconPl1, iconPl2;
 	private int labelH, labelW;
 
 	public ResourceLoader() {
 
-		iconEmpty = new ImageIcon(GameFrame.class.getResource(iconSource
+		iconEmpty = new StretchIcon(GameFrame.class.getResource(iconSource
 				+ imageName[0]));
 		// iconEmpty.getImage().s
-		iconPl1 = new ImageIcon(GameFrame.class.getResource(iconSource
+		iconPl1 = new StretchIcon(GameFrame.class.getResource(iconSource
 				+ imageName[1]));
-		iconPl2 = new ImageIcon(GameFrame.class.getResource(iconSource
+		iconPl2 = new StretchIcon(GameFrame.class.getResource(iconSource
 				+ imageName[2]));
 	}
 
