@@ -27,6 +27,7 @@ class Panel extends JPanel {
 	public Panel(SwingPresenter swingPresenter) {
 		this.Rows = swingPresenter.getRows();
 		this.Slots = swingPresenter.getSlots();
+		this.swingPresenter = swingPresenter;
 
 		setLayout(new GridLayout(Rows + 1, Slots));
 
@@ -44,6 +45,7 @@ class Panel extends JPanel {
 					for (int tempSlot = 0; tempSlot < Slots; tempSlot++) {
 						if (s == button[tempSlot]) {
 							chosenSlot = tempSlot;
+							getGUISlot();
 							int PlayerID = 1;
 							// setFreeRow();
 							Plansza[getFreeRow()][tempSlot]

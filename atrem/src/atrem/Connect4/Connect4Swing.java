@@ -23,10 +23,11 @@ public class Connect4Swing {
 		gamefactory.setSwingconfig(config);
 		gamefactory.createGame("swing");
 		game = gamefactory.getGame();
-		swingPresenter = new SwingPresenter();
-		swingPresenter.setPresenter(game, gameController);
+
 		gameController = new GameController();
 		gameController.loadGameController(game);
+		swingPresenter = new SwingPresenter();
+		swingPresenter.setPresenter(game, gameController);
 
 	}
 }

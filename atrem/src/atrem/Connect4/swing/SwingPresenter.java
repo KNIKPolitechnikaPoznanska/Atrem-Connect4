@@ -15,6 +15,7 @@ public class SwingPresenter {
 	private int PlayerTurn;
 	private int LastRow;
 	private int LastSlot;
+	private int emptySpot;
 	private ResultState result;
 	private GameController gameController;
 	private Panel panel;
@@ -68,12 +69,19 @@ public class SwingPresenter {
 
 	}
 
-	public void goView(int LastRow, int LastSlot, ResultState result) {
+	public void goView(int Row, int Slot) {
 		changeDispTurn();
+		panel.setFreeRow(Row, Slot);
+
 	}
 
 	public void getSlotFromView(int LastSlot) {
-		gameController.setChoosedSlot(LastSlot);
+		gameController.move(LastSlot);
+		emptySpot = gameController.getEmptySpot();
+		result = gameController.getResult();
+		goView(emptySpot, LastSlot);
+		// System.out.println("elo");
+
 	}
 
 	public void setPanels() {
