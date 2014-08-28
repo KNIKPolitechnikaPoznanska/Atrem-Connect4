@@ -2,6 +2,8 @@ package atrem.Connect4.swing;
 
 import java.awt.EventQueue;
 
+import javax.swing.JLabel;
+
 import atrem.Connect4.Game.Game;
 import atrem.Connect4.Game.GameController;
 import atrem.Connect4.Game.ResultState;
@@ -16,7 +18,9 @@ public class SwingPresenter {
 	private ResultState result;
 	private GameController gameController;
 	private Panel panel;
+	private StatsPanel statsPanel;
 	private GameFrame gameFrame;
+	private JLabel pl1Label, pl2Label;
 
 	public int getSlots() {
 		return Slots;
@@ -65,20 +69,33 @@ public class SwingPresenter {
 	}
 
 	public void goView(int LastRow, int LastSlot, ResultState result) {
-
+		changeDispTurn();
 	}
 
 	public void getSlotFromView(int LastSlot) {
 		gameController.setChoosedSlot(LastSlot);
 	}
 
-	public void setpanel() {
+	public void setPanels() {
 		panel = gameFrame.getPanel();
+		statsPanel = gameFrame.getStatsPanel();
+		pl1Label = statsPanel.getPl1Label();
+		pl2Label = statsPanel.getPl2Label();
 	}
 
 	public void getFrame(GameFrame gameFrame) {
 		this.gameFrame = gameFrame;
-		setpanel();
+		setPanels();
+	}
+
+	public void changeDispTurn() {
+		if (pl1Label.isVisible()) {
+			pl1Label.setVisible(false);
+			pl2Label.setVisible(true);
+		} else if (pl2Label.isVisible()) {
+			pl2Label.setVisible(false);
+			pl1Label.setVisible(true);
+		}
 	}
 
 }
