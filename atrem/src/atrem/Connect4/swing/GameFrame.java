@@ -1,6 +1,7 @@
 package atrem.Connect4.swing;
 
 import java.awt.Container;
+import java.awt.GridBagLayout;
 
 import javax.swing.JFrame;
 
@@ -23,19 +24,15 @@ public class GameFrame extends JFrame {
 	public GameFrame(Game game) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(200, 200, 550, 300);
-
 		Container mainContainer = getContentPane();
-
-		// GridBagLayout gridBagLayout = new GridBagLayout();
-		// gridBagLayout.columnWidths = new int[] { 0 };
-		// gridBagLayout.rowHeights = new int[] { 0 };
-		// gridBagLayout.columnWeights = new double[] { Double.MIN_VALUE };
-		// gridBagLayout.rowWeights = new double[] { Double.MIN_VALUE };
-
-		// mainContainer.setLayout(Layout);
+		mainContainer.setLayout(new GridBagLayout());
 		panel = new Panel(game);
 		statsPanel = new StatsPanel(game);
 		mainContainer.add(panel);
-		// mainContainer.add(statsPanel, 1);
+		mainContainer.add(statsPanel);
+	}
+
+	public Panel getPanel() {
+		return panel;
 	}
 }
