@@ -94,7 +94,7 @@ public class GameController {
 	// public void madeMouve
 
 	// public synchronized void done() {
-	// notifyAll();
+	// notifyAll();ryt
 	// }
 
 	// public synchronized void go(PlayerController player) { // wywalic z
