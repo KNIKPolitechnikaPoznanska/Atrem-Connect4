@@ -19,15 +19,16 @@ public class GameFrame extends JFrame {
 	 * 
 	 * @param game
 	 */
-	public GameFrame(int Rows, int Slots) {
+	public GameFrame(SwingPresenter swingPresenter) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(200, 200, 550, 300);
 		Container mainContainer = getContentPane();
 		mainContainer.setLayout(new GridBagLayout());
-		panel = new Panel(Rows, Slots);
-		statsPanel = new StatsPanel();
+		panel = new Panel(swingPresenter);
+		// statsPanel = new StatsPanel();
 		mainContainer.add(panel);
-		mainContainer.add(statsPanel);
+		swingPresenter.getFrame(this);
+		// mainContainer.add(statsPanel);
 	}
 
 	public Panel getPanel() {

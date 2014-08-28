@@ -5,7 +5,6 @@ import java.awt.EventQueue;
 import atrem.Connect4.Game.Game;
 import atrem.Connect4.Game.GameController;
 import atrem.Connect4.Game.ResultState;
-import atrem.Connect4.Game.board.Board;
 
 public class SwingPresenter {
 	private Game game;
@@ -18,6 +17,22 @@ public class SwingPresenter {
 	private GameController gameController;
 	private Panel panel;
 	private GameFrame gameFrame;
+
+	public int getSlots() {
+		return Slots;
+	}
+
+	public void setSlots(int slots) {
+		Slots = slots;
+	}
+
+	public int getRows() {
+		return Rows;
+	}
+
+	public void setRows(int rows) {
+		Rows = rows;
+	}
 
 	public void setPresenter(Game game, GameController gameController) {
 		this.game = game;
@@ -38,7 +53,7 @@ public class SwingPresenter {
 			@Override
 			public void run() {
 				try {
-					GameFrame frame = new GameFrame(Rows, Slots);
+					GameFrame frame = new GameFrame(SwingPresenter.this);
 					frame.setTitle("Connect 4");
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -47,21 +62,23 @@ public class SwingPresenter {
 			}
 		});
 
-		panel = gameFrame.getPanel();
-
-	}
-
-	public void runGameView(int Rows, int Slots, Board board) { // wyowlujemy
-																// okno gry
-
 	}
 
 	public void goView(int LastRow, int LastSlot, ResultState result) {
 
 	}
 
-	public void getTurnFromView(int LastSlot) {
+	public void getSlotFromView(int LastSlot) {
 		gameController.setChoosedSlot(LastSlot);
+	}
+
+	public void setpanel() {
+		panel = gameFrame.getPanel();
+	}
+
+	public void getFrame(GameFrame gameFrame) {
+		this.gameFrame = gameFrame;
+		setpanel();
 	}
 
 }
