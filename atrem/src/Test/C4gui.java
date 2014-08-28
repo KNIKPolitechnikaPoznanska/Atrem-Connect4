@@ -53,6 +53,7 @@ class Panel extends JPanel {
 	// private ResourceLoader iconResource;
 	// ActionListener newMouve = new placeToken();
 	ResourceLoader iconResource = new ResourceLoader();
+	int FillingSlot;
 
 	public Panel() {
 
@@ -68,7 +69,9 @@ class Panel extends JPanel {
 					Object s = TokenPlaced.getSource();
 					for (int tempSlot = 0; tempSlot < slots; tempSlot++) {
 						if (s == button[tempSlot]) {
+							tempSlot = FillingSlot;
 							Plansza[0][tempSlot].setIcon(iconResource.get(2));
+							// w miejsce 0 - method nextFreeRow()
 						}
 					}
 				}
@@ -95,8 +98,19 @@ class Panel extends JPanel {
 		// }
 	}
 
+	public int getGUISlot() {
+		return FillingSlot;
+	}
 	// void placeTokenInSlot(int slot) {
 	// // Plansza[1][1].setIcon(iconResource.get(1));
 	// Plansza[i][j].setText("chuj");
 	// }
 }
+
+/*
+ * int PlayerID; switch(PlayerID){ case 0:
+ * Plansza[0][tempSlot].setIcon(iconResource.get(0)); return; case 1:
+ * Plansza[0][tempSlot].setIcon(iconResource.get(1)); return; case 2:
+ * Plansza[0][tempSlot].setIcon(iconResource.get(2)); return; default:
+ * System.out.println("Tu nie powinniœmy siê nigdy znaleŸæ..."); return;
+ */
