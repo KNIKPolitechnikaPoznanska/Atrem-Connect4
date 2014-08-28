@@ -1,9 +1,11 @@
 package atrem.Connect4.swing;
 
+import Test.C4gui;
 import atrem.Connect4.Game.Game;
 import atrem.Connect4.Game.GameController;
 import atrem.Connect4.Game.ResultState;
 import atrem.Connect4.Game.board.Board;
+import atrem.Connect4.
 
 public class SwingPresenter {
 	private Game game;
@@ -14,6 +16,8 @@ public class SwingPresenter {
 	private int LastSlot;
 	private ResultState result;
 	private GameController gameController;
+	private C4gui c4gui;
+	
 
 	public void setPresenter(Game game, GameController gameController) {
 		this.game = game;
@@ -36,7 +40,7 @@ public class SwingPresenter {
 	}
 
 	public void goView(int LastRow, int LastSlot, ResultState result) {
-
+			
 	}
 
 	public void getTurnFromView(int LastSlot) {

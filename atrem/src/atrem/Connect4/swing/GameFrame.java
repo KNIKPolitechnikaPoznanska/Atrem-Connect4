@@ -1,6 +1,7 @@
 package atrem.Connect4.swing;
 
 import java.awt.Container;
+import java.awt.GridBagLayout;
 
 import javax.swing.JFrame;
 
@@ -12,6 +13,8 @@ public class GameFrame extends JFrame {
 	 * Serial
 	 */
 	private static final long serialVersionUID = 9162854519449667347L;
+	Panel panel;
+	private StatsPanel statsPanel;
 
 	/**
 	 * Create the frame.
@@ -20,11 +23,16 @@ public class GameFrame extends JFrame {
 	 */
 	public GameFrame(Game game) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 549, 300);
-
+		setBounds(200, 200, 550, 300);
 		Container mainContainer = getContentPane();
-		Panel panel = new Panel(game);
+		mainContainer.setLayout(new GridBagLayout());
+		panel = new Panel(game);
+		statsPanel = new StatsPanel(game);
 		mainContainer.add(panel);
+		mainContainer.add(statsPanel);
+	}
 
+	public Panel getPanel() {
+		return panel;
 	}
 }
