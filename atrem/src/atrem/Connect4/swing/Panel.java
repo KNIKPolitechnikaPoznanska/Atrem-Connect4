@@ -20,6 +20,7 @@ class Panel extends JPanel {
 	int slots;
 	JLabel[][] Plansza;
 	JButton[] button;
+	int FillingSlot;
 
 	// private ResourceLoader iconResource;
 	// ActionListener newMouve = new placeToken();
@@ -68,6 +69,10 @@ class Panel extends JPanel {
 		// {
 		//
 		// }
+	}
+
+	public int getGUISlot() {
+		return FillingSlot;
 	}
 
 	// void placeTokenInSlot(int slot) {
