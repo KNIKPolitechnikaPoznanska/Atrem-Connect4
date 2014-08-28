@@ -1,28 +1,30 @@
 package Test;
 
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
+
+import atrem.Connect4.swing.StretchIcon;
 
 public class ResourceLoader {
 	String iconSource = "/icons/";
 	String[] imageName = { "empty.png", "token1.png", "token2.png" };
-	ImageIcon iconEmpty, iconPl1, iconPl2;
+	StretchIcon iconEmpty, iconPl1, iconPl2;
 	private int labelH, labelW;
 
 	public ResourceLoader() {
 
-		iconEmpty = new ImageIcon(C4gui.class.getResource(iconSource
+		iconEmpty = new StretchIcon(C4gui.class.getResource(iconSource
 				+ imageName[0]));
 		// iconEmpty.getImage().s
-		iconPl1 = new ImageIcon(C4gui.class.getResource(iconSource
+		iconPl1 = new StretchIcon(C4gui.class.getResource(iconSource
 				+ imageName[1]));
-		iconPl2 = new ImageIcon(C4gui.class.getResource(iconSource
+		iconPl2 = new StretchIcon(C4gui.class.getResource(iconSource
 				+ imageName[2]));
 	}
 
 	public Icon get(int numb) {
 		switch (numb) {
 		case 0:
+			// changeSizeOfIcon()
 			return iconEmpty;
 		case 1:
 			return iconPl1;
@@ -50,6 +52,8 @@ public class ResourceLoader {
 		this.labelW = labelW;
 	}
 }
+
+// changeSizeOfIcon();
 
 /*
  * ImageIcon zwracany;
