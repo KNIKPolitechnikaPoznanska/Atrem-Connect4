@@ -120,7 +120,7 @@ public class GameController {
 	//
 	// wait();
 	// } catch (InterruptedException e) {
-	// // TODO Auto-generated catch block
+	//
 	// e.printStackTrace();
 	// }
 	// slot = choosedSlot;
