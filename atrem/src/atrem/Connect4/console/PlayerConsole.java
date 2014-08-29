@@ -75,7 +75,7 @@ public class PlayerConsole implements PlayerController {
 	// }
 
 	@Override
-	public synchronized void getSlotNumber() {
+	public synchronized int loadSlotNumber() {
 
 		System.out.println("test2");
 		thread.execute(new Runnable() { // bla
@@ -96,10 +96,14 @@ public class PlayerConsole implements PlayerController {
 		}
 		System.out.println("test1");
 		gamecontroller.setChoosedSlot(choosedTmp);
+		return 0; // do zrobienia
 
 	}
 
+<<<<<<< HEAD
 	// @Override
+=======
+>>>>>>> branch 'master' of https://github.com/KNIKPolitechnikaPoznanska/AtremProject.git
 	public void tokenPlaced() {
 		consolePresenter.mouveDone();
 

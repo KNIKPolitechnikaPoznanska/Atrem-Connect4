@@ -51,6 +51,10 @@ public class GameController {
 		return game;
 	}
 
+	public ResultState getResult() {
+		return game.getResult();
+	}
+
 	public synchronized void go(PlayerController player) { // wywalic z konsoli
 		// uniwersalne
 		// final PlayerController player2 = player;
@@ -88,9 +92,32 @@ public class GameController {
 
 	}
 
-	public ResultState getResult() {
-		return game.getResult();
+	public void movePtoC(int slot) { // wywalic z konsoli
+		choosedSlot = slot;
+		doneMoves = 0;
+
+		if (getPlayerTurn() == 1) {
+
+			this.go(player1);
+			setPlayerTurn(2);
+
+		} else if (getPlayerTurn() == 2) {
+			this.go(player2);
+			setPlayerTurn(1);
+
+		}
+		doneMoves++;
+		if (logic.checkResult(doneMoves)) {
+
+		}
+
 	}
+
+	public void computerMove() {
+		player2.loadSlotNumber();
+		go(player2);
+	}
+
 	// public void madeMouve
 
 	// public synchronized void done() {
@@ -120,7 +147,7 @@ public class GameController {
 	//
 	// wait();
 	// } catch (InterruptedException e) {
-	// // TODO Auto-generated catch block
+	//
 	// e.printStackTrace();
 	// }
 	// slot = choosedSlot;
