@@ -75,14 +75,6 @@ public class SwingPresenter implements PlayerController {
 		panel.setFreeRow(Row, Slot, playerTurn);
 	}
 
-	public void getSlotFromView(int LastSlot) {
-		gameController.move(LastSlot);
-		emptySpot = gameController.getEmptySpot();
-		result = gameController.getResult();
-		playerTurn = gameController.getPlayerTurn();
-		goView(emptySpot, LastSlot, playerTurn);
-	}
-
 	public void setPanels() {
 		panel = gameFrame.getPanel();
 		statsPanel = gameFrame.getStatsPanel();
@@ -129,13 +121,17 @@ public class SwingPresenter implements PlayerController {
 
 	@Override
 	public int loadSlotNumber() {
-		// TODO Auto-generated method stub
-		return 0;
+		return LastSlot;
 	}
 
 	@Override
 	public void setGamecontroller(GameController gamecontroller) {
 		this.gameController = gamecontroller;
+
+	}
+
+	public void getSlotFromView(int LastSlot) {
+		this.LastSlot = LastSlot;
 
 	}
 

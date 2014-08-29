@@ -2,7 +2,6 @@ package atrem.Connect4.Game;
 
 import atrem.Connect4.Game.board.Board;
 import atrem.Connect4.Game.player.PlayerController;
-import atrem.Connect4.console.GUIConsole;
 
 public class GameController {
 	// public void wykonalemRuch(HoleState playerId, int slot);\
@@ -11,10 +10,8 @@ public class GameController {
 	private Logic logic;
 	private Board board;
 	private int doneMoves;
-	private GUIConsole gui;
 	private PlayerController player1, player2;
 	private int emptySpot;
-	private int choosedSlot;
 	private int playerTurn = 1;
 
 	public void loadGameController(Game game) {
@@ -23,16 +20,6 @@ public class GameController {
 		this.board = game.getBoard();
 		this.player1 = game.getPlayer1();
 		this.player2 = game.getPlayer2();
-		gui = new GUIConsole();
-
-	}
-
-	public int getChoosedSlot() {
-		return choosedSlot;
-	}
-
-	public void setChoosedSlot(int choosedSlot) {
-		this.choosedSlot = choosedSlot;
 	}
 
 	public int getPlayerTurn() {
@@ -55,12 +42,7 @@ public class GameController {
 		return game.getResult();
 	}
 
-	public synchronized void go(PlayerController player) { // wywalic z konsoli
-		// uniwersalne
-		// final PlayerController player2 = player;
-		int slot;
-		// System.out.println("test2");
-		slot = choosedSlot;
+	public synchronized void go(PlayerController player, int slot) {
 		emptySpot = board.findFreeSpot(slot);
 		if (emptySpot == -1) {
 			return;
@@ -71,51 +53,21 @@ public class GameController {
 
 	}
 
-	public void move(int slot) { // wywalic z konsoli
-		choosedSlot = slot;
-		doneMoves = 0;
+	public void move() {
+		int currentSlot;
 
 		if (getPlayerTurn() == 1) {
-
-			this.go(player1);
+			currentSlot = player1.loadSlotNumber();
+			this.go(player1, currentSlot);
 			setPlayerTurn(2);
-
-		} else if (getPlayerTurn() == 2) {
-			this.go(player2);
+		}
+		if (getPlayerTurn() == 2) {
+			currentSlot = player2.loadSlotNumber();
+			this.go(player2, currentSlot);
 			setPlayerTurn(1);
-
+			doneMoves++;
+			logic.checkResult(currentSlot);
 		}
-		doneMoves++;
-		if (logic.checkResult(doneMoves)) {
-
-		}
-
-	}
-
-	public void movePtoC(int slot) { // wywalic z konsoli
-		choosedSlot = slot;
-		doneMoves = 0;
-
-		if (getPlayerTurn() == 1) {
-
-			this.go(player1);
-			setPlayerTurn(2);
-
-		} else if (getPlayerTurn() == 2) {
-			this.go(player2);
-			setPlayerTurn(1);
-
-		}
-		doneMoves++;
-		if (logic.checkResult(doneMoves)) {
-
-		}
-
-	}
-
-	public void computerMove() {
-		player2.loadSlotNumber();
-		go(player2);
 	}
 
 	// public void madeMouve
