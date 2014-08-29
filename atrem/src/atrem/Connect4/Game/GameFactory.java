@@ -15,7 +15,7 @@ public class GameFactory {
 
 	private Board board;
 	private PlayerController player1, player2;
-	private Game game;
+	// private Game game;
 	private Menu menu; // console opt
 	private SwingConfig swingconfig; // swing opt
 	private String im2, im1;
@@ -29,19 +29,19 @@ public class GameFactory {
 		else if (gameType == "swing")
 			this.readInfoConfig();
 
-		this.game = new Game(this.board);
-
-		this.board = new Board(row, slot);
-		this.game.setBoard(board);
-		this.game.createLogic();
-		this.createPlayerGame();
-		this.game.setPlayer1(player1);
-		this.game.setPlayer2(player2);
-		this.game.setResult(ResultState.NoWin);
-		this.gameController = new GameController();
-		this.gameController.loadGameController(game);
-		player1.setGamecontroller(gameController);
-		player2.setGamecontroller(gameController);
+		// this.game = new Game(this.board);
+		//
+		// this.board = new Board(row, slot);
+		// this.game.setBoard(board);
+		// this.game.createLogic();
+		// this.createPlayerGame();
+		// this.game.setPlayer1(player1);
+		// this.game.setPlayer2(player2);
+		// this.game.setResult(ResultState.NoWin);
+		// this.gameController = new GameController();
+		// this.gameController.loadGameController(game);
+		// player1.setGamecontroller(gameController);
+		// player2.setGamecontroller(gameController);
 
 	}
 
@@ -65,19 +65,19 @@ public class GameFactory {
 
 	public void createPlayerGame() {
 		if (opponent.equalsIgnoreCase("K"))
-			player2 = new MediumPC(im2, HoleState.PLAYER2, game,
-					game.getLogic());
+			player2 = new MediumPC(im2, HoleState.PLAYER2, gameController,
+					gameController.getLogic());
 		else
-			player2 = new PlayerConsole(game, im2, HoleState.PLAYER2);
-		player1 = new PlayerConsole(game, im1, HoleState.PLAYER1);
+			player2 = new PlayerConsole(gameController, im2, HoleState.PLAYER2);
+		player1 = new PlayerConsole(gameController, im1, HoleState.PLAYER1);
 	}
 
 	public void setOpponent(String opponent) {
 		this.opponent = opponent;
 	}
 
-	public Game getGame() {
-		return game;
+	public GameController getGame() {
+		return gameController;
 	}
 
 	public GameController getGameController() {

@@ -3,7 +3,6 @@ package atrem.Connect4.Game;
 import java.util.Random;
 
 import atrem.Connect4.Game.board.Board;
-import atrem.Connect4.Game.board.HoleState;
 import atrem.Connect4.Game.player.PlayerController;
 
 /*
@@ -13,8 +12,7 @@ public class Game {
 	private Board board;
 	private PlayerController player1;
 	private PlayerController player2;
-	private ResultState result;
-	private Logic logic;
+
 	private int doneMoves;
 	private Random rnd = new Random();
 
@@ -25,14 +23,6 @@ public class Game {
 		// setPlayerTurn(genFirstTurn()); // grzebanei z watkiem
 		// logic = new Logic(this);
 
-	}
-
-	public void createLogic() {
-		logic = new Logic(this);
-	}
-
-	public Logic getLogic() {
-		return logic;
 	}
 
 	/**
@@ -78,10 +68,6 @@ public class Game {
 		this.player2 = player2;
 	}
 
-	public HoleState getHoleState(int rows, int slots) {
-		return this.board.getHoleState(rows, slots);
-	}
-
 	public int getBoardSlots() {
 		return this.board.getSlots();
 	}
@@ -98,11 +84,4 @@ public class Game {
 		return this.player2.getName();
 	}
 
-	public ResultState getResult() {
-		return result;
-	}
-
-	public void setResult(ResultState playerWin) {
-		this.result = playerWin;
-	}
 }
