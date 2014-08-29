@@ -7,9 +7,12 @@ import javax.swing.JLabel;
 import atrem.Connect4.Game.Game;
 import atrem.Connect4.Game.GameController;
 import atrem.Connect4.Game.ResultState;
+import atrem.Connect4.Game.board.HoleState;
+import atrem.Connect4.Game.player.PlayerAttributes;
 import atrem.Connect4.Game.player.PlayerController;
 
 public class SwingPresenter implements PlayerController {
+
 	private Game game;
 	private int Slots;
 	private int Rows;
@@ -23,6 +26,7 @@ public class SwingPresenter implements PlayerController {
 	private StatsPanel statsPanel;
 	private GameFrame gameFrame;
 	private JLabel pl1Label, pl2Label;
+	private PlayerAttributes playerAttributes;
 
 	public int getSlots() {
 		return Slots;
@@ -105,6 +109,34 @@ public class SwingPresenter implements PlayerController {
 	public void setNames() {
 		pl1Label.setText(game.getNamePlayer1());
 		pl2Label.setText(game.getNamePlayer2());
+	}
+
+	@Override
+	public String getName() {
+		return playerAttributes.getName();
+	}
+
+	@Override
+	public void setName(String name) {
+		playerAttributes.setName(name);
+
+	}
+
+	@Override
+	public HoleState getPlayerId() {
+		return playerAttributes.getPlayerId();
+	}
+
+	@Override
+	public int loadSlotNumber() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setGamecontroller(GameController gamecontroller) {
+		this.gameController = gamecontroller;
+
 	}
 
 }
