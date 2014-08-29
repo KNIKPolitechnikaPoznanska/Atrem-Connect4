@@ -15,31 +15,38 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-public class DialogSettingsBox extends JDialog {
+import atrem.Connect4.Connect4Swing;
+
+public class DialogSettingsBox extends JDialog implements ActionListener {
 
 	/**
 	 * Serial
 	 */
 	private static final long serialVersionUID = 973461278407448042L;
 	private final JPanel contentPanel = new JPanel();
-	private SwingConfig config;
+	/**
+	 * Okno dialgowe wyswietlajace "zle podana liczbe".
+	 */
 	private static DialogSettingsBox dialog;
 	private JTextField pl2Txt, pl1Txt, TxtSlots, TxtRows;
-	private JButton okButton, btnDefault, cancelButton;
+	private JButton startButton, btnDefault, cancelButton;
 	private JPanel buttonPane;
 	private JLabel pl1NameLab, pl2NameLab, LabelSlotSet, LabelRowSet,
 			labSpacer, LabelsetBoard, LabelSetPlayers;
-	private JCheckBox isCPU;
+	private JCheckBox CPUmark;
 	private String defPl1Name = "Gracz 1", defPl2Name = "Gracz 2", pl1Name,
 			pl2Name;
 	private int defSlots = 7, defRows = 6, slots, rows;
+	private boolean CPU;
+	private SwingConfig swingConfig;
 
 	/**
-	 * Create the dialog.
+	 * Create the settings dialog.
 	 * 
-	 * @param gamefactory
+	 * @param swingConfig
 	 */
-	public DialogSettingsBox() {
+	public DialogSettingsBox(SwingConfig swingConfig) {
+		this.swingConfig = swingConfig;
 		setTitle("Connect4 Settings");
 		setBounds(100, 100, 404, 380);
 		getContentPane().setLayout(new BorderLayout());
@@ -76,9 +83,11 @@ public class DialogSettingsBox extends JDialog {
 			pl2Txt.setColumns(10);
 		}
 		{
-			isCPU = new JCheckBox("Gracz 2 - CPU");
-			isCPU.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			contentPanel.add(isCPU);
+			CPUmark = new JCheckBox("Gracz 2 - CPU");
+			CPUmark.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			CPUmark.addActionListener(this);
+			CPUmark.setActionCommand("markCPU");
+			contentPanel.add(CPUmark);
 		}
 		{
 			labSpacer = new JLabel("                      ");
@@ -91,7 +100,7 @@ public class DialogSettingsBox extends JDialog {
 			contentPanel.add(LabelsetBoard);
 		}
 		{
-			LabelSlotSet = new JLabel("Ilo\u015B\u0107 slot\u00F3w:");
+			LabelSlotSet = new JLabel("Ilo\u015B\u0107 slot\u00F3w (> 4):");
 			LabelSlotSet.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			contentPanel.add(LabelSlotSet);
 		}
@@ -103,7 +112,7 @@ public class DialogSettingsBox extends JDialog {
 			TxtSlots.setColumns(10);
 		}
 		{
-			LabelRowSet = new JLabel("Ilo\u015B\u0107 wierszy:");
+			LabelRowSet = new JLabel("Ilo\u015B\u0107 wierszy (> 4):");
 			LabelRowSet.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			contentPanel.add(LabelRowSet);
 		}
@@ -119,40 +128,23 @@ public class DialogSettingsBox extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				okButton = new JButton("Start");
-				okButton.addActionListener(new ActionListener() {
-
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						if (saveSettings()) {
-							System.out.println("h");
-						}
-					}
-				});
-				okButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				startButton = new JButton("Start");
+				startButton.addActionListener(this);
+				startButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
+				startButton.setActionCommand("Start");
+				buttonPane.add(startButton);
+				getRootPane().setDefaultButton(startButton);
 			}
 			{
 				btnDefault = new JButton("Default");
-				btnDefault.addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						setDefaults();
-					}
-				});
+				btnDefault.addActionListener(this);
 				btnDefault.setFont(new Font("Tahoma", Font.PLAIN, 20));
+				btnDefault.setActionCommand("default");
 				buttonPane.add(btnDefault);
 			}
 			{
 				cancelButton = new JButton("Anuluj");
-				cancelButton.addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						System.exit(0);
-					}
-				});
+				cancelButton.addActionListener(this);
 				cancelButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
@@ -160,17 +152,45 @@ public class DialogSettingsBox extends JDialog {
 		}
 	}
 
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String cmd = e.getActionCommand();
+		switch (cmd) {
+		case "Start":
+			if (saveSettings()) {
+				swingConfig.setSettings();
+				new Connect4Swing().run();
+				dispose();
+			}
+			break;
+		case "default":
+			setDefaults();
+			break;
+		case "Cancel":
+			System.exit(0);
+			break;
+		case "markCPU":
+			setCPU(CPUmark.getModel().isSelected());
+			break;
+		}
+	}
+
 	protected boolean saveSettings() {
-		pl1Name = pl1Txt.getText();
-		pl2Name = pl2Txt.getText();
+		setPl1Name(pl1Txt.getText());
+		setPl2Name(pl2Txt.getText());
 		try {
-			slots = Integer.parseInt(TxtSlots.getText());
-			rows = Integer.parseInt(TxtRows.getText());
+			setSlots(Integer.parseInt(TxtSlots.getText()));
+			setRows(Integer.parseInt(TxtRows.getText()));
 		} catch (NumberFormatException e) {
-			JOptionPane.showMessageDialog(dialog, "Wpisz poprawn¹ liczbê!");
+			JOptionPane.showMessageDialog(dialog,
+					"Wpisz poprawn¹ wartoœæ pola!");
 			return false;
 		}
-		return true;
+		if (getSlots() < 4 || getRows() < 4) {
+			JOptionPane.showMessageDialog(dialog, "Sloty i Wiersze > 4!");
+			return false;
+		} else
+			return true;
 	}
 
 	protected void setDefaults() {
@@ -180,8 +200,51 @@ public class DialogSettingsBox extends JDialog {
 		TxtRows.setText(Integer.toString(defRows));
 	}
 
-	public boolean isLoaded() {
-		return loaded;
-		return false;
+	public JCheckBox getIsCPU() {
+		return CPUmark;
+	}
+
+	public void setIsCPU(JCheckBox isCPU) {
+		this.CPUmark = isCPU;
+	}
+
+	public String getPl1Name() {
+		return pl1Name;
+	}
+
+	public void setPl1Name(String pl1Name) {
+		this.pl1Name = pl1Name;
+	}
+
+	public String getPl2Name() {
+		return pl2Name;
+	}
+
+	public void setPl2Name(String pl2Name) {
+		this.pl2Name = pl2Name;
+	}
+
+	public int getSlots() {
+		return slots;
+	}
+
+	public void setSlots(int slots) {
+		this.slots = slots;
+	}
+
+	public int getRows() {
+		return rows;
+	}
+
+	public void setRows(int rows) {
+		this.rows = rows;
+	}
+
+	public boolean isCPU() {
+		return CPU;
+	}
+
+	public void setCPU(boolean cPU) {
+		CPU = cPU;
 	}
 }

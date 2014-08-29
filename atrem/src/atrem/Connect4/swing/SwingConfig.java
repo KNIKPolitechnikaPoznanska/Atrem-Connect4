@@ -8,21 +8,39 @@ import javax.swing.JDialog;
  */
 public class SwingConfig {
 	private DialogSettingsBox dialogBox;
-	private String player1name = "Gracz1", player2name = "Gracz2";
-	private int slots = 7, rows = 6;
-	private String opponent = "K";
-	private boolean loaded = false;
+	private String player1name, player2name;
+	private int slots, rows;
+	private String opponent;
+	private boolean CPUmark;
 
-	private void setLoaded(boolean loaded) {
-		this.loaded = loaded;
+	public void setDBox() {
+		try {
+			dialogBox = new DialogSettingsBox(this);
+			dialogBox.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialogBox.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
-	public boolean isLoaded() {
-		return loaded;
+	public void setSettings() {
+		player1name = dialogBox.getPl1Name();
+		player2name = dialogBox.getPl2Name();
+		rows = dialogBox.getRows();
+		slots = dialogBox.getSlots();
+		setCPUmark(dialogBox.isCPU());
+		if (isCPUmark()) {
+			setOpponent("K");
+		} else
+			setOpponent("C");
 	}
 
-	public SwingConfig() {
+	public String getOpponent() {
+		return opponent;
+	}
 
+	public void setOpponent(String opponent) {
+		this.opponent = opponent;
 	}
 
 	public String getPlayer1name() {
@@ -33,6 +51,14 @@ public class SwingConfig {
 		return player2name;
 	}
 
+	public void setPlayer1name(String player1name) {
+		this.player1name = player1name;
+	}
+
+	public void setPlayer2name(String player2name) {
+		this.player2name = player2name;
+	}
+
 	public int getRows() {
 		return rows;
 	}
@@ -41,19 +67,19 @@ public class SwingConfig {
 		return slots;
 	}
 
-	public void loadSettings() {
-		try {
-			dialogBox = new DialogSettingsBox();
-			dialogBox.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialogBox.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		if (dialogBox.isLoaded())
-			setLoaded(true);
+	public void setRows(int rows) {
+		this.rows = rows;
 	}
 
-	public String getOpponent() {
-		return opponent;
+	public void setSlots(int slots) {
+		this.slots = slots;
+	}
+
+	public boolean isCPUmark() {
+		return CPUmark;
+	}
+
+	private void setCPUmark(boolean isCPU) {
+		this.CPUmark = isCPU;
 	}
 }
