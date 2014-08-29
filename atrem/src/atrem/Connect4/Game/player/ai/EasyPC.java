@@ -46,7 +46,7 @@ public class EasyPC implements PlayerController {
 	}
 
 	@Override
-	public void getSlotNumber() {
+	public int loadSlotNumber() {
 		System.out.println("EASYPC");
 		int randomSlot;
 		int choosenRow;
@@ -57,8 +57,7 @@ public class EasyPC implements PlayerController {
 			choosenRow = board.findFreeSpot(randomSlot);
 		} while (choosenRow == -1);
 
-		gamecontroller.setChoosedSlot(randomSlot);
-		return;
+		return randomSlot;
 	}
 
 }

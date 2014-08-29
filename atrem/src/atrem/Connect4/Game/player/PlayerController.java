@@ -11,9 +11,7 @@ public interface PlayerController {
 
 	public abstract HoleState getPlayerId();
 
-	public abstract void getSlotNumber();
+	public abstract int loadSlotNumber();
 
 	public abstract void setGamecontroller(GameController gamecontroller);
-
-	// public abstract void tokenPlaced();
 }
