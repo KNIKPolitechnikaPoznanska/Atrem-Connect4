@@ -45,11 +45,6 @@ public class SwingPresenter {
 		setSettings();
 	}
 
-	public void runSettingsView() { // wywowlujemy okno dialogowe z ustawieniamy
-									// row slot
-
-	}
-
 	public void setSettings() {
 		Rows = game.getBoardRows();
 		Slots = game.getBoardSlots();
@@ -61,18 +56,18 @@ public class SwingPresenter {
 					GameFrame frame = new GameFrame(SwingPresenter.this);
 					frame.setTitle("Connect 4");
 					frame.setVisible(true);
+					playerTurn = gameController.getPlayerTurn();
+					changeDispTurn(playerTurn);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-
 	}
 
 	public void goView(int Row, int Slot, int playerTurn) {
-		changeDispTurn();
+		changeDispTurn(playerTurn);
 		panel.setFreeRow(Row, Slot, playerTurn);
-
 	}
 
 	public void getSlotFromView(int LastSlot) {
@@ -81,8 +76,6 @@ public class SwingPresenter {
 		result = gameController.getResult();
 		playerTurn = gameController.getPlayerTurn();
 		goView(emptySpot, LastSlot, playerTurn);
-		// System.out.println("elo");
-
 	}
 
 	public void setPanels() {
@@ -90,6 +83,7 @@ public class SwingPresenter {
 		statsPanel = gameFrame.getStatsPanel();
 		pl1Label = statsPanel.getPl1Label();
 		pl2Label = statsPanel.getPl2Label();
+		setNames();
 	}
 
 	public void getFrame(GameFrame gameFrame) {
@@ -97,14 +91,19 @@ public class SwingPresenter {
 		setPanels();
 	}
 
-	public void changeDispTurn() {
-		if (pl1Label.isVisible()) {
+	public void changeDispTurn(int playerTurn) {
+		if (playerTurn == 1) {
 			pl1Label.setVisible(false);
 			pl2Label.setVisible(true);
-		} else if (pl2Label.isVisible()) {
+		} else if (playerTurn == 2) {
 			pl2Label.setVisible(false);
 			pl1Label.setVisible(true);
 		}
+	}
+
+	public void setNames() {
+		pl1Label.setText(game.getNamePlayer1());
+		pl2Label.setText(game.getNamePlayer2());
 	}
 
 }

@@ -178,6 +178,7 @@ public class DialogSettingsBox extends JDialog implements ActionListener {
 	protected boolean saveSettings() {
 		setPl1Name(pl1Txt.getText());
 		setPl2Name(pl2Txt.getText());
+		System.out.println(getPl1Name());
 		try {
 			setSlots(Integer.parseInt(TxtSlots.getText()));
 			setRows(Integer.parseInt(TxtRows.getText()));
