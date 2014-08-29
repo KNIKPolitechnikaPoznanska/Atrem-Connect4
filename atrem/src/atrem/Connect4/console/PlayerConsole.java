@@ -99,7 +99,7 @@ public class PlayerConsole implements PlayerController {
 
 	}
 
-	@Override
+	// @Override
 	public void tokenPlaced() {
 		consolePresenter.mouveDone();
 

@@ -7,8 +7,9 @@ import javax.swing.JLabel;
 import atrem.Connect4.Game.Game;
 import atrem.Connect4.Game.GameController;
 import atrem.Connect4.Game.ResultState;
+import atrem.Connect4.Game.player.PlayerController;
 
-public class SwingPresenter {
+public class SwingPresenter implements PlayerController {
 	private Game game;
 	private int Slots;
 	private int Rows;
