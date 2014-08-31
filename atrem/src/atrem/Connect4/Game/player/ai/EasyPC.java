@@ -3,7 +3,6 @@ package atrem.Connect4.Game.player.ai;
 import java.util.Random;
 
 import atrem.Connect4.Game.Game;
-import atrem.Connect4.Game.GameController;
 import atrem.Connect4.Game.board.Board;
 import atrem.Connect4.Game.board.HoleState;
 import atrem.Connect4.Game.player.PlayerAttributes;
@@ -14,7 +13,6 @@ public class EasyPC implements PlayerController {
 	private PlayerAttributes playerAttributes;
 	private Board board;
 	private Game game;
-	private GameController gamecontroller;
 
 	public EasyPC(String name, HoleState playerId, Game game) {
 		playerAttributes = new PlayerAttributes();
@@ -41,11 +39,6 @@ public class EasyPC implements PlayerController {
 	}
 
 	@Override
-	public void setGamecontroller(GameController gamecontroller) {
-		this.gamecontroller = gamecontroller;
-	}
-
-	@Override
 	public void getSlotNumber() {
 		System.out.println("EASYPC");
 		int randomSlot;
@@ -57,7 +50,7 @@ public class EasyPC implements PlayerController {
 			choosenRow = board.findFreeSpot(randomSlot);
 		} while (choosenRow == -1);
 
-		gamecontroller.setChoosedSlot(randomSlot);
+		// game.getGameController().setChoosedSlot(randomSlot);
 		return;
 	}
 
