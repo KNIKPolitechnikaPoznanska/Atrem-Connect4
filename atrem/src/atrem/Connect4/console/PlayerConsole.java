@@ -56,35 +56,31 @@ public class PlayerConsole implements PlayerController {
 		this.choosedTmp = choosedTmp;
 	}
 
-	@Override
-	public synchronized int loadSlotNumber() {
+	private void makeMove() {
+		int slot = keyHandler.getSlot();
+		int emptySpot = gamecontroller.move(slot);
+	}
 
-		System.out.println("test2");
-		executor.execute(new Runnable() {
-			@Override
-			public void run() {
-				int slot = PlayerConsole.this.keyHandler.getSlot();
-				PlayerConsole.this.gamecontroller.move(slot);
-				PlayerConsole.this.gamecontroller.notifyAll();
-
-			}
-		});
-		try {
-
-			wait();
-
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("test1");
-		// gamecontroller.setChoosedSlot(choosedTmp);
-		return 0; // do zrobienia
-
+	private void displayGame() {
+		guiConsole.displayGame(gamecontroller);
 	}
 
 	public synchronized void done() {
 		notifyAll();
 	}
 
+	@Override
+	public void yourTurn() {
+		System.out.println("test2");
+		executor.execute(new Runnable() {
+			@Override
+			public void run() {
+				PlayerConsole.this.makeMove();
+				PlayerConsole.this.displayGame();
+				PlayerConsole.this.gamecontroller.notifyAll();
+
+			}
+		});
+
+	}
 }
