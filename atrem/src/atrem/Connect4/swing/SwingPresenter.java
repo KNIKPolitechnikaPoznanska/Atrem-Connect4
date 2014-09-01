@@ -36,7 +36,7 @@ public class SwingPresenter implements PlayerController {
 	public void yourTurn() {
 		LastSlot = loadSlotNumber();
 		emptySpot = gameController.move(LastSlot);
-		goView(LastSlot, emptySpot, playerTurn);
+		goView(emptySpot, LastSlot);
 	}
 
 	public int getSlots() {
