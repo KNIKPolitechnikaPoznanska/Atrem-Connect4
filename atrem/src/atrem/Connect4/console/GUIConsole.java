@@ -12,16 +12,17 @@ import atrem.Connect4.Game.player.PlayerController;
 public class GUIConsole {
 
 	public void displayGame(GameController gameController) {
-		// GameController gamecontroller = game.getGameController();
 		drawBoard(gameController.getBoard());
 		drawSlots(gameController.getBoard().getSlots());
-		if (gameController.getPlayerTurn() == 1) {
+		switch (gameController.getPlayerTurn()) {
+		case Player1:
 			this.writeCurrentPlayer(gameController.getPlayer1());
-		}
-		if (gameController.getPlayerTurn() == 2) {
+		case Player2:
 			this.writeCurrentPlayer(gameController.getPlayer2());
+		default:
+			this.displayParagraph();
 		}
-		this.displayParagraph();
+
 	}
 
 	public void displayResults(GameController gameController) {
@@ -44,7 +45,7 @@ public class GUIConsole {
 	}
 
 	private void drawSlots(int slots) {
-		System.out.println("Numery slotów:");
+		System.out.println("Numery slotow:");
 		for (int i = 1; i <= slots; i++) {
 			System.out.print("| " + i + " |");
 		}

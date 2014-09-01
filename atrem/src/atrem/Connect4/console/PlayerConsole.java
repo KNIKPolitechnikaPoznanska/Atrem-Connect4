@@ -1,6 +1,5 @@
 package atrem.Connect4.console;
 
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -15,11 +14,10 @@ import atrem.Connect4.Game.player.PlayerController;
 public class PlayerConsole implements PlayerController {
 
 	private KeyHandler keyHandler;
-	private Executor executor;
 	private int slots;
 	private PlayerAttributes playerAttributes;
 	private GameController gamecontroller;
-	private ExecutorService thread = Executors.newSingleThreadExecutor();
+	private ExecutorService executor = Executors.newSingleThreadExecutor();
 	private int choosedTmp;
 	private GUIConsole guiConsole;
 
@@ -58,27 +56,17 @@ public class PlayerConsole implements PlayerController {
 		this.choosedTmp = choosedTmp;
 	}
 
-	// private void modyfikacjaGUII() {
-	// SwingUtilities.invokeLater(new Runnable() {
-	//
-	// @Override
-	// public void run() {
-	// // tutaj modyfikacje
-	//
-	// }
-	// });
-	// }
-
 	@Override
 	public synchronized int loadSlotNumber() {
 
 		System.out.println("test2");
-		thread.execute(new Runnable() { // bla
+		executor.execute(new Runnable() {
 			@Override
 			public void run() {
-				PlayerConsole.this.choosedTmp = PlayerConsole.this.keyHandler
-						.getSlot();
-				PlayerConsole.this.done();
+				int slot = PlayerConsole.this.keyHandler.getSlot();
+				PlayerConsole.this.gamecontroller.move();
+				PlayerConsole.this.gamecontroller.notifyAll();
+
 			}
 		});
 		try {
