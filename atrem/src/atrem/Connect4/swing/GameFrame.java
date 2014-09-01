@@ -2,32 +2,18 @@ package atrem.Connect4.swing;
 
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
 public class GameFrame extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1454524828392484548L;
 	SwingPresenter swingPresenter;
 	private Panel panel;
-	private StatsPanel statsPanel;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					GameFrame frame = new GameFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	Boczny boczny;
 
 	/**
 	 * Create the frame.
@@ -38,11 +24,11 @@ public class GameFrame extends JFrame {
 
 		Container mainContainer = getContentPane();
 		getContentPane().setLayout(null);
-		Panel panel = new Panel(swingPresenter);
+		panel = new Panel(swingPresenter);
 		panel.setBackground(new Color(255, 255, 255));
 		panel.setBounds(10, 0, 330, 282);
 		mainContainer.add(panel);
-		Boczny boczny = new Boczny();
+		boczny = new Boczny();
 		boczny.setBounds(340, 0, 186, 262);
 
 		getContentPane().add(boczny);
@@ -53,11 +39,11 @@ public class GameFrame extends JFrame {
 		return panel;
 	}
 
-	public StatsPanel getStatsPanel() {
-		return statsPanel;
+	public Boczny getBoczny() {
+		return boczny;
 	}
 
-	public void setStatsPanel(StatsPanel statsPanel) {
-		this.statsPanel = statsPanel;
+	public void setBoczny(Boczny boczny) {
+		this.boczny = boczny;
 	}
 }

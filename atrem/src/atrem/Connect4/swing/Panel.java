@@ -14,8 +14,8 @@ public class Panel extends JPanel {
 	 * Serial
 	 */
 	private static final long serialVersionUID = -7328887218009010574L;
-	private int Rows;
-	private int Slots;
+	private int rows;
+	private int slots;
 	private JLabel[][] Plansza;
 	private JButton[] button;
 	private int PlayerID;
@@ -25,16 +25,18 @@ public class Panel extends JPanel {
 	private int freeRow;
 
 	public Panel(SwingPresenter swingPresenter) {
-		this.Rows = swingPresenter.getRows();
-		this.Slots = swingPresenter.getSlots();
+		rows = 6;
+		slots = 7;
+		// this.rows = swingPresenter.getRows();
+		// this.slots = swingPresenter.getSlots();
 		this.swingPresenter = swingPresenter;
 
-		setLayout(new GridLayout(Rows + 1, Slots));
+		setLayout(new GridLayout(rows + 1, slots));
 
-		Plansza = new JLabel[Rows][Slots];
-		button = new JButton[Slots];
+		Plansza = new JLabel[rows][slots];
+		button = new JButton[slots];
 
-		for (int tempSlot = 0; tempSlot < Slots; tempSlot++) {
+		for (int tempSlot = 0; tempSlot < slots; tempSlot++) {
 			button[tempSlot] = new JButton("" + (tempSlot + 1));
 			add(button[tempSlot]);
 
@@ -42,7 +44,7 @@ public class Panel extends JPanel {
 				@Override
 				public void actionPerformed(ActionEvent TokenPlaced) {
 					Object s = TokenPlaced.getSource();
-					for (int tempSlot = 0; tempSlot < Slots; tempSlot++) {
+					for (int tempSlot = 0; tempSlot < slots; tempSlot++) {
 						if (s == button[tempSlot]) {
 							chosenSlot = tempSlot;
 							getGUISlot();
@@ -56,8 +58,8 @@ public class Panel extends JPanel {
 		/**
 		 * rowsy z slotsami zamienione miejscami na potrzebe jlabela
 		 */
-		for (int tempRow = 0; tempRow < Rows; tempRow++) {
-			for (int tempSlot = 0; tempSlot < Slots; tempSlot++) {
+		for (int tempRow = 0; tempRow < rows; tempRow++) {
+			for (int tempSlot = 0; tempSlot < slots; tempSlot++) {
 				Plansza[tempRow][tempSlot] = new JLabel();
 				add(Plansza[tempRow][tempSlot]);
 				// iconResource.setLabelH((int) Plansza[tempRow][tempSlot]

@@ -2,6 +2,7 @@ package atrem.Connect4;
 
 import atrem.Connect4.Game.GameController;
 import atrem.Connect4.Game.GameFactory;
+import atrem.Connect4.swing.GameFrame;
 import atrem.Connect4.swing.SwingConfig;
 import atrem.Connect4.swing.SwingPresenter;
 
@@ -24,6 +25,12 @@ public class Connect4Swing implements Runnable {
 		gameFactory.createGame("swing");
 		gameFactory.loadGameController();
 		gameController = gameFactory.getGameController();
+		try {
+			GameFrame frame = new GameFrame();
+			frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		// gameController.gameLoop();
 	}
 

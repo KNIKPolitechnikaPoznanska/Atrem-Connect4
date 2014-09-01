@@ -6,6 +6,11 @@ import javax.swing.SwingConstants;
 
 public class Boczny extends JPanel {
 
+	/**
+	 * Serial
+	 */
+	private static final long serialVersionUID = 9208904490186715373L;
+
 	public Boczny() {
 
 		ResourceLoader iconResource = new ResourceLoader();

@@ -162,7 +162,9 @@ public class DialogSettingsBox extends JDialog implements ActionListener {
 				/**
 				 * okno znikajace po 'start' - dispose
 				 */
+
 				new Connect4Swing().run();
+
 				dispose();
 			}
 			break;

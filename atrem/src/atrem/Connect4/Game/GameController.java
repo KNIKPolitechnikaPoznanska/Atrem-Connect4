@@ -94,32 +94,38 @@ public class GameController {
 		boolean result = false;
 		while (!result) {
 			player.yourTurn();
-			try {
-				wait();// zabezpiecz sie!
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			waitThread();
 			doneMoves++;
 			result = logic.checkResult(doneMoves);
 			changePlayer();
 		}
-
-		// // int currentSlot;
-		// switch (playerTurn) { //ten switch zly
-		// case Player1:
-		// player1.teraztwojruch(); wait();
-		// setPlayerTurn(PlayerTurn.Player1);
-		// break;
-		// case Player2:
-		// currentSlot = player2.loadSlotNumber();
-		// setPlayerTurn(PlayerTurn.Player2);
-		// break;
-		// default:
-		// doneMoves++;
-		// logic.checkResult(doneMoves);
-		// }
 	}
+
+	private void waitThread() {
+		while (true) {
+			try {
+				wait();// zabezpiecz sie!-while
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
+	// // int currentSlot;
+	// switch (playerTurn) { //ten switch zly
+	// case Player1:
+	// player1.teraztwojruch(); wait();
+	// setPlayerTurn(PlayerTurn.Player1);
+	// break;
+	// case Player2:
+	// currentSlot = player2.loadSlotNumber();
+	// setPlayerTurn(PlayerTurn.Player2);
+	// break;
+	// default:
+	// doneMoves++;
+	// logic.checkResult(doneMoves);
+	// }
 
 	private void changePlayer() {
 		if (playerTurn == PlayerTurn.Player1) {
