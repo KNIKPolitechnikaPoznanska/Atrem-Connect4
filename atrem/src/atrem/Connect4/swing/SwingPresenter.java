@@ -4,8 +4,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JLabel;
 
-import atrem.Connect4.Game.Game;
 import atrem.Connect4.Game.GameController;
+import atrem.Connect4.Game.PlayerTurn;
 import atrem.Connect4.Game.ResultState;
 import atrem.Connect4.Game.board.HoleState;
 import atrem.Connect4.Game.player.PlayerAttributes;
@@ -13,10 +13,9 @@ import atrem.Connect4.Game.player.PlayerController;
 
 public class SwingPresenter implements PlayerController {
 
-	private Game game;
 	private int Slots;
 	private int Rows;
-	private int playerTurn;
+	private PlayerTurn playerTurn;
 	private int LastRow;
 	private int LastSlot;
 	private int emptySpot;
@@ -55,14 +54,14 @@ public class SwingPresenter implements PlayerController {
 	}
 
 	public void setSettings() {
-		Rows = game.getBoardRows();
-		Slots = game.getBoardSlots();
+		Rows = gameController.getBoard().getRows();
+		Slots = gameController.getBoard().getSlots();
 
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
 				try {
-					GameFrame frame = new GameFrame(SwingPresenter.this);
+					GameFrame frame = new GameFrame();
 					frame.setTitle("Connect 4");
 					frame.setVisible(true);
 					playerTurn = gameController.getPlayerTurn();

@@ -2,7 +2,6 @@ package atrem.Connect4.Game.player.ai;
 
 import java.util.Random;
 
-import atrem.Connect4.Game.Game;
 import atrem.Connect4.Game.GameController;
 import atrem.Connect4.Game.Logic;
 import atrem.Connect4.Game.board.Board;
@@ -15,18 +14,19 @@ public class MediumPC implements PlayerController {
 	private Logic logic;
 
 	private PlayerAttributes playerAttributes;
-	private Game game;
+
 	private Board board;
 	private Random rand;
 	private GameController gamecontroller;
 
-	public MediumPC(String name, HoleState playerId, Game game, Logic logic) {
+	public MediumPC(String name, HoleState playerId,
+			GameController gameController, Logic logic) {
 		playerAttributes = new PlayerAttributes();
 		playerAttributes.setName(name);
 		playerAttributes.setPlayerId(playerId);
-		this.game = game;
+
 		this.logic = logic;
-		board = game.getBoard();
+		board = gamecontroller.getBoard();
 		rand = new Random();
 	}
 
