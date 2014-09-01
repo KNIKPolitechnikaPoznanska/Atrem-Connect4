@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import Test.GameBoard;
+import atrem.Connect4.Connect4Swing;
 
 public class DialogSettingsBox extends JDialog implements ActionListener {
 
@@ -162,7 +162,9 @@ public class DialogSettingsBox extends JDialog implements ActionListener {
 				/**
 				 * okno znikajace po 'start' - dispose
 				 */
-				new GameBoard().start();
+
+				new Connect4Swing().run();
+
 				dispose();
 			}
 			break;
