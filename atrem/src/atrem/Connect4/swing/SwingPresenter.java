@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JLabel;
 
+import Test.GameBoard;
 import atrem.Connect4.Game.GameController;
 import atrem.Connect4.Game.PlayerTurn;
 import atrem.Connect4.Game.ResultState;
@@ -68,8 +69,8 @@ public class SwingPresenter implements PlayerController {
 			@Override
 			public void run() {
 				try {
-					GameFrame frame = new GameFrame();
-					frame.setTitle("Connect 4");
+					GameBoard frame = new GameBoard();
+					frame.setTitle(playerAttributes.getName());
 					frame.setVisible(true);
 					playerTurn = gameController.getPlayerTurn();
 					changeDispTurn(playerTurn.getNumber());

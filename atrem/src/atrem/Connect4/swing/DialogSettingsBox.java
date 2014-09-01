@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import Test.C4gui;
+import Test.GameBoard;
 
 public class DialogSettingsBox extends JDialog implements ActionListener {
 
@@ -162,7 +162,7 @@ public class DialogSettingsBox extends JDialog implements ActionListener {
 				/**
 				 * okno znikajace po 'start' - dispose
 				 */
-				new C4gui().start();
+				new GameBoard().start();
 				dispose();
 			}
 			break;

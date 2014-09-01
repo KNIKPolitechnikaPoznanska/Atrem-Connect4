@@ -12,12 +12,12 @@ public class ResourceLoader {
 
 	public ResourceLoader() {
 
-		iconEmpty = new StretchIcon(C4gui.class.getResource(iconSource
+		iconEmpty = new StretchIcon(GameBoard.class.getResource(iconSource
 				+ imageName[0]));
 		// iconEmpty.getImage().s
-		iconPl1 = new StretchIcon(C4gui.class.getResource(iconSource
+		iconPl1 = new StretchIcon(GameBoard.class.getResource(iconSource
 				+ imageName[1]));
-		iconPl2 = new StretchIcon(C4gui.class.getResource(iconSource
+		iconPl2 = new StretchIcon(GameBoard.class.getResource(iconSource
 				+ imageName[2]));
 	}
 
