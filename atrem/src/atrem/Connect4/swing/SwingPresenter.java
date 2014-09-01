@@ -65,7 +65,7 @@ public class SwingPresenter implements PlayerController {
 					frame.setTitle("Connect 4");
 					frame.setVisible(true);
 					playerTurn = gameController.getPlayerTurn();
-					changeDispTurn(playerTurn);
+					changeDispTurn(playerTurn.getNumber());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -91,19 +91,19 @@ public class SwingPresenter implements PlayerController {
 		setPanels();
 	}
 
-	public void changeDispTurn(int playerTurn) {
-		if (playerTurn == 1) {
+	public void changeDispTurn(int plTurnNumb) {
+		if (plTurnNumb == 1) {
 			pl1Label.setVisible(false);
 			pl2Label.setVisible(true);
-		} else if (playerTurn == 2) {
+		} else if (plTurnNumb == 2) {
 			pl2Label.setVisible(false);
 			pl1Label.setVisible(true);
 		}
 	}
 
 	public void setNames() {
-		pl1Label.setText(game.getNamePlayer1());
-		pl2Label.setText(game.getNamePlayer2());
+		pl1Label.setText(gameController.getPlayer1().getName());
+		pl2Label.setText(gameController.getPlayer2().getName());
 	}
 
 	@Override
