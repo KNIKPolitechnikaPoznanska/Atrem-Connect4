@@ -11,7 +11,6 @@ import atrem.Connect4.swing.SwingPresenter;
 public class Connect4Swing implements Runnable {
 	private static GameFactory gamefactory;
 	private static SwingConfig config;
-
 	private static GameController gameController;
 	private static SwingPresenter swingPresenter;
 
@@ -23,14 +22,13 @@ public class Connect4Swing implements Runnable {
 	private static synchronized void runGame() {
 		gamefactory.setSwingconfig(config);
 		gamefactory.createGame("swing");
-		// game = gamefactory.getGame();
 		gamefactory.loadGameController();
 		// swingPresenter = new SwingPresenter(config);
-		swingPresenter.setPresenter(gamefactory.getGameController());
+		// swingPresenter.setPresenter(gamefactory.getGameController());
 	}
 
 	private static void InitializeConfig() {
-		config = new SwingConfig(swingPresenter);
+		config = new SwingConfig();
 		config.setDBox();
 	}
 
