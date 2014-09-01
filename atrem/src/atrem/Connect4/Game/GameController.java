@@ -1,108 +1,98 @@
 package atrem.Connect4.Game;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 import atrem.Connect4.Game.board.Board;
+import atrem.Connect4.Game.board.HoleState;
 import atrem.Connect4.Game.player.PlayerController;
-import atrem.Connect4.console.GUIConsole;
 
 public class GameController {
 	// public void wykonalemRuch(HoleState playerId, int slot);\
 	private Game game;
+
 	private Logic logic;
 	private Board board;
 	private int doneMoves;
-	private GUIConsole gui;
 	private PlayerController player1, player2;
-	private ExecutorService thread;
+	private int emptySpot;
+	private int playerTurn = 1;
+	private ResultState result;
 
-	private int choosedSlot;
-	private int PlayerTurn = 1;
-
-	public void loadGameController(Game game) {
-		this.game = game;
-		this.logic = game.getLogic();
-		this.board = game.getBoard();
-		this.player1 = game.getPlayer1();
-		this.player2 = game.getPlayer2();
-		gui = new GUIConsole();
-
-	}
-
-	public void Loop() { // wywalic z konsoli
-		doneMoves = 0;
-		while (!logic.checkResult(doneMoves)) {
-			gui.displayGame(game, this);
-			if (getPlayerTurn() == 1) {
-
-				this.go(player1);
-				setPlayerTurn(2);
-			} else if (getPlayerTurn() == 2) {
-				this.go(player2);
-				setPlayerTurn(1);
-			}
-			doneMoves++;
-		}
-		gui.displayResults(game);
-	}
-
-	public int getChoosedSlot() {
-		return choosedSlot;
-	}
-
-	public void setChoosedSlot(int choosedSlot) {
-		this.choosedSlot = choosedSlot;
+	public void setResult(ResultState result) {
+		this.result = result;
 	}
 
 	public int getPlayerTurn() {
-		return PlayerTurn;
+		return playerTurn;
 	}
 
 	public void setPlayerTurn(int playerTurn) {
-		PlayerTurn = playerTurn;
+		this.playerTurn = playerTurn;
 	}
 
-	public synchronized void go(PlayerController player) { // wywalic z konsoli
-		// uniwersalne
-		thread = Executors.newSingleThreadExecutor();
-		final PlayerController player2 = player;
-		int emptySlot;
-		int slot;
-		do {
+	public int getEmptySpot() {
+		return emptySpot;
+	}
 
-			// slot = player.getCurrentSlot(); // CKeyHandler.getSlot
+	public Game getGame() {
+		return game;
+	}
 
-			thread.execute(new Runnable() { // bla
-				@Override
-				public void run() {
-					player2.getSlotNumber();
-					done();
+	public ResultState getResult() {
+		return result;
+	}
 
-				}
-			});
-			try {
+	public Board getBoard() {
+		return board;
+	}
 
-				wait();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			slot = choosedSlot;
-			emptySlot = board.findFreeSpot(slot);
-			if (emptySlot == -1) {
+	public void setBoard(Board board) {
+		this.board = board;
+	}
 
-				System.out.println("Slot jest pelen, podaj inny: ");
+	public PlayerController getPlayer1() {
+		return player1;
+	}
 
-			}
-		} while (emptySlot == -1);
-		board.setHoleState(emptySlot, slot, player.getPlayerId()); // gracz
+	public void setPlayer1(PlayerController player1) {
+		this.player1 = player1;
+	}
+
+	public PlayerController getPlayer2() {
+		return player2;
+	}
+
+	public void setPlayer2(PlayerController player2) {
+		this.player2 = player2;
+	}
+
+	public synchronized void go(PlayerController player, int slot) {
+		emptySpot = board.findFreeSpot(slot);
+		if (emptySpot == -1) {
+			return;
+		}
+		board.setHoleState(emptySpot, slot, player.getPlayerId()); // gracz
 		board.setLastSlot(slot);
-		board.setLastSpot(emptySlot);
-		thread.shutdown();
+		board.setLastSpot(emptySpot);
+
 	}
 
-	public synchronized void done() {
-		notifyAll();
+	public void move() {
+		int currentSlot;
+
+		if (getPlayerTurn() == 1) {
+			currentSlot = player1.loadSlotNumber();
+			this.go(player1, currentSlot);
+			setPlayerTurn(2);
+		}
+		if (getPlayerTurn() == 2) {
+			currentSlot = player2.loadSlotNumber();
+			this.go(player2, currentSlot);
+			setPlayerTurn(1);
+			doneMoves++;
+			logic.checkResult(currentSlot);
+		}
+	}
+
+	public HoleState getHoleState(int rows, int slots) {
+		return this.board.getHoleState(rows, slots);
 	}
 }

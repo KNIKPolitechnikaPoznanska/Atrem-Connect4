@@ -25,7 +25,7 @@ public class Connect4 {
 		// game = gamefactory.getGame();
 		gameController = gamefactory.getGameController();
 		// game.setGameController(gameController);
-		gameController.Loop();
+		// gameController.Loop();
 
 	}
 }
