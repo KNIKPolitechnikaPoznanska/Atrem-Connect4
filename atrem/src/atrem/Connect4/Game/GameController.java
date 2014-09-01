@@ -58,33 +58,35 @@ public class GameController {
 		this.player2 = player2;
 	}
 
-	public void go(PlayerController player, int slot) {
+	public int move(PlayerController player, int slot) {
 		emptySpot = board.findFreeSpot(slot);
 		if (emptySpot == -1) {
-			return;
+			return emptySpot;
 		}
 		board.setHoleState(emptySpot, slot, player.getPlayerId()); // gracz
 		board.setLastSlot(slot);
 		board.setLastSpot(emptySpot);
+		return emptySpot;
 
 	}
 
-	public int move(int currentSlot) {//
+	public void move1(int currentSlot) {//
 
 		// int currentSlot;
 		switch (playerTurn) {
 		case Player1:
 			currentSlot = player1.loadSlotNumber();
-			this.go(player1, currentSlot);
+			// this.go(player1, currentSlot);
 			setPlayerTurn(PlayerTurn.Player2);
+			break;
 		case Player2:
 			currentSlot = player2.loadSlotNumber();
-			this.go(player2, currentSlot);
+			// this.go(player2, currentSlot);
 			setPlayerTurn(PlayerTurn.Player2);
+			break;
 		default:
 			doneMoves++;
 			logic.checkResult(currentSlot);
-			return emptySpot;
 		}
 	}
 
