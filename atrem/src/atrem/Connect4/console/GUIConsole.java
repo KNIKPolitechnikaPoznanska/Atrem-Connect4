@@ -17,8 +17,10 @@ public class GUIConsole {
 		switch (gameController.getPlayerTurn()) {
 		case Player1:
 			this.writeCurrentPlayer(gameController.getPlayer1());
+			break;
 		case Player2:
 			this.writeCurrentPlayer(gameController.getPlayer2());
+			break;
 		default:
 			this.displayParagraph();
 		}
