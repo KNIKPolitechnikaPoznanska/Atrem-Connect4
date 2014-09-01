@@ -31,8 +31,11 @@ public class SwingPresenter implements PlayerController {
 		playerAttributes = new PlayerAttributes(im, playerId);
 	}
 
+	@Override
 	public void yourTurn() {
-		gameController.move(loadSlotNumber());
+		LastSlot = loadSlotNumber();
+		emptySpot = gameController.move(LastSlot);
+		goView(LastSlot, emptySpot, playerTurn);
 	}
 
 	public int getSlots() {
@@ -77,9 +80,9 @@ public class SwingPresenter implements PlayerController {
 		});
 	}
 
-	public void goView(int Row, int Slot, int playerTurn) {
-		changeDispTurn(playerTurn);
-		panel.setFreeRow(Row, Slot, playerTurn);
+	public void goView(int Row, int Slot) {
+		changeDispTurn(gameController.getPlayerTurn().getNumber());
+		panel.setFreeRow(Row, Slot, gameController.getPlayerTurn().getNumber());
 	}
 
 	public void setPanels() {
@@ -126,8 +129,7 @@ public class SwingPresenter implements PlayerController {
 		return playerAttributes.getPlayerId();
 	}
 
-	@Override
-	public int loadSlotNumber() {
+	private int loadSlotNumber() {
 		return panel.giveSlot();
 	}
 
