@@ -65,10 +65,6 @@ public class PlayerConsole implements PlayerController {
 		guiConsole.displayGame(gamecontroller);
 	}
 
-	public synchronized void done() {
-		notifyAll();
-	}
-
 	@Override
 	public void yourTurn() {
 		System.out.println("test2");
@@ -77,8 +73,6 @@ public class PlayerConsole implements PlayerController {
 			public void run() {
 				PlayerConsole.this.makeMove();
 				PlayerConsole.this.displayGame();
-				PlayerConsole.this.gamecontroller.notifyAll();
-
 			}
 		});
 

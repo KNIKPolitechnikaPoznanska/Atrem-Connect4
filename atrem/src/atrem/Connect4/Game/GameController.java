@@ -12,7 +12,7 @@ public class GameController {
 	private int emptySpot;
 	private PlayerTurn playerTurn;
 
-	private ResultState result;
+	private ResultState result;// zmiana nazwy na stan
 
 	public void setResult(ResultState result) {
 		this.result = result;
@@ -58,7 +58,20 @@ public class GameController {
 		this.player2 = player2;
 	}
 
-	public int move(PlayerController player, int slot) {
+	private PlayerController currentPlayer() {
+		switch (playerTurn) {
+		case Player1:
+			return player1;
+		case Player2:
+			return player2;
+		default:
+			return player1;
+		}
+	}
+
+	public synchronized int move(int slot) {
+		PlayerController player = currentPlayer();
+
 		emptySpot = board.findFreeSpot(slot);
 		if (emptySpot == -1) {
 			return emptySpot;
@@ -66,28 +79,50 @@ public class GameController {
 		board.setHoleState(emptySpot, slot, player.getPlayerId()); // gracz
 		board.setLastSlot(slot);
 		board.setLastSpot(emptySpot);
+		notifyAll();
 		return emptySpot;
 
 	}
 
-	public void move1(int currentSlot) {//
-
-		// int currentSlot;
-		switch (playerTurn) {
-		case Player1:
-			currentSlot = player1.loadSlotNumber();
-			// this.go(player1, currentSlot);
-			setPlayerTurn(PlayerTurn.Player2);
-			break;
-		case Player2:
-			currentSlot = player2.loadSlotNumber();
-			// this.go(player2, currentSlot);
-			setPlayerTurn(PlayerTurn.Player2);
-			break;
-		default:
+	public synchronized void gameLoop() {//
+		PlayerController player = currentPlayer();
+		boolean result = false;
+		while (!result) {
+			player.yourTurn();
+			try {
+				wait();// zabezpiecz sie!
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			doneMoves++;
-			logic.checkResult(currentSlot);
+			result = logic.checkResult(doneMoves);
+			changePlayer();
 		}
+
+		// // int currentSlot;
+		// switch (playerTurn) { //ten switch zly
+		// case Player1:
+		// player1.teraztwojruch(); wait();
+		// setPlayerTurn(PlayerTurn.Player1);
+		// break;
+		// case Player2:
+		// currentSlot = player2.loadSlotNumber();
+		// setPlayerTurn(PlayerTurn.Player2);
+		// break;
+		// default:
+		// doneMoves++;
+		// logic.checkResult(doneMoves);
+		// }
+	}
+
+	private void changePlayer() {
+		if (playerTurn == PlayerTurn.Player1) {
+			setPlayerTurn(PlayerTurn.Player2);
+		} else {
+			setPlayerTurn(PlayerTurn.Player1);
+		}
+
 	}
 
 	public HoleState getHoleState(int rows, int slots) {
