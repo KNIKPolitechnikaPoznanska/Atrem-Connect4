@@ -77,4 +77,9 @@ public class PlayerConsole implements PlayerController {
 		});
 
 	}
+
+	@Override
+	public void goView(int row, int slot) {
+		displayGame();
+	}
 }
