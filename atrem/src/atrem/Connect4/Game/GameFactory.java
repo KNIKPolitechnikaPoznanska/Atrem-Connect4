@@ -5,8 +5,8 @@ import atrem.Connect4.Game.board.HoleState;
 import atrem.Connect4.Game.player.PlayerController;
 import atrem.Connect4.Game.player.ai.MediumPC;
 import atrem.Connect4.console.Menu;
-import atrem.Connect4.console.PlayerConsole;
 import atrem.Connect4.swing.SwingConfig;
+import atrem.Connect4.swing.SwingPresenter;
 
 /*
  * Klasa tworz¹ca planszê (Board)
@@ -45,6 +45,14 @@ public class GameFactory {
 
 	}
 
+	public void loadGameController() {
+		gameController = new GameController();
+		gameController.setBoard(board);
+		gameController.setPlayer1(player1);
+		gameController.setPlayer2(player2);
+
+	}
+
 	public void readInfoMenu() {
 		this.board = new Board(menu.getRows(), menu.getSlots());
 		im1 = menu.getPlayer1name();
@@ -61,15 +69,19 @@ public class GameFactory {
 		opponent = swingconfig.getOpponent();
 		slot = swingconfig.getSlots();
 		row = swingconfig.getRows();
+
 	}
 
 	public void createPlayerGame() {
+
 		if (opponent.equalsIgnoreCase("K"))
 			player2 = new MediumPC(im2, HoleState.PLAYER2, gameController,
 					gameController.getLogic());
 		else
-			player2 = new PlayerConsole(gameController, im2, HoleState.PLAYER2);
-		player1 = new PlayerConsole(gameController, im1, HoleState.PLAYER1);
+			player2 = new SwingPresenter(swingconfig.getPlayer2name(),
+					HoleState.PLAYER2);
+		player1 = new SwingPresenter(swingconfig.getPlayer1name(),
+				HoleState.PLAYER1);
 	}
 
 	public void setOpponent(String opponent) {
