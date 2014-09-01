@@ -31,6 +31,10 @@ public class SwingPresenter implements PlayerController {
 		playerAttributes = new PlayerAttributes(im, playerId);
 	}
 
+	public void yourTurn() {
+		gameController.move(loadSlotNumber());
+	}
+
 	public int getSlots() {
 		return Slots;
 	}
@@ -124,7 +128,7 @@ public class SwingPresenter implements PlayerController {
 
 	@Override
 	public int loadSlotNumber() {
-		return LastSlot;
+		return panel.giveSlot();
 	}
 
 	@Override
