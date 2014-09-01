@@ -9,22 +9,22 @@ import atrem.Connect4.swing.SwingPresenter;
  * Klasa main uruchamiaj¹ca grê Connect4
  */
 public class Connect4Swing implements Runnable {
-	private static GameFactory gamefactory;
+	private static GameFactory gameFactory;
 	private static SwingConfig config;
 	private static GameController gameController;
-	private static SwingPresenter swingPresenter;
+	private static SwingPresenter swingPresenter1, swingPresenter2;
 
 	public static void main(String[] args) {
-		gamefactory = new GameFactory();
+		gameFactory = new GameFactory();
 		InitializeConfig();
 	}
 
 	private static synchronized void runGame() {
-		gamefactory.setSwingconfig(config);
-		gamefactory.createGame("swing");
-		gamefactory.loadGameController();
-		// swingPresenter = new SwingPresenter(config);
-		// swingPresenter.setPresenter(gamefactory.getGameController());
+		gameFactory.setSwingconfig(config);
+		gameFactory.createGame("swing");
+		gameFactory.loadGameController();
+		gameController = gameFactory.getGameController();
+		// gameController.gameLoop();
 	}
 
 	private static void InitializeConfig() {
