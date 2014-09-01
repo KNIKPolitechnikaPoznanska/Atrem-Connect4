@@ -8,7 +8,7 @@ import atrem.Connect4.Game.board.HoleState;
 
 public class PlayerAttributes {
 	private String name;
-	private HoleState playerId;
+	private HoleState playerId; // duplikat
 
 	public PlayerAttributes() {
 	};

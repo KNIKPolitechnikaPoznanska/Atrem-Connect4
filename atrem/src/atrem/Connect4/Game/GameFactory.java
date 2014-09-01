@@ -15,7 +15,6 @@ public class GameFactory {
 
 	private Board board;
 	private PlayerController player1, player2;
-	// private Game game;
 	private Menu menu; // console opt
 	private SwingConfig swingconfig; // swing opt
 	private String im2, im1;
@@ -28,21 +27,6 @@ public class GameFactory {
 			this.readInfoMenu();
 		else if (gameType == "swing")
 			this.readInfoConfig();
-
-		// this.game = new Game(this.board);
-		//
-		// this.board = new Board(row, slot);
-		// this.game.setBoard(board);
-		// this.game.createLogic();
-		// this.createPlayerGame();
-		// this.game.setPlayer1(player1);
-		// this.game.setPlayer2(player2);
-		// this.game.setResult(ResultState.NoWin);
-		// this.gameController = new GameController();
-		// this.gameController.loadGameController(game);
-		// player1.setGamecontroller(gameController);
-		// player2.setGamecontroller(gameController);
-
 	}
 
 	public void loadGameController() {
@@ -100,7 +84,7 @@ public class GameFactory {
 		this.menu = menu;
 	}
 
-	public SwingConfig getSwingconfig() { // swing
+	public SwingConfig getSwingconfig() {
 		return swingconfig;
 	}
 

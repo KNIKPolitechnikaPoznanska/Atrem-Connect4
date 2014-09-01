@@ -129,9 +129,16 @@ public class DialogSettingsBox extends JDialog implements ActionListener {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				startButton = new JButton("Start");
-				startButton.addActionListener(this);
+				startButton.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						startButtonPressed();
+
+					}
+				});
 				startButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
-				startButton.setActionCommand("Start");
+
 				buttonPane.add(startButton);
 				getRootPane().setDefaultButton(startButton);
 			}
@@ -153,21 +160,10 @@ public class DialogSettingsBox extends JDialog implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e) { // zrobiæ w³asne listenrery
 		String cmd = e.getActionCommand();
 		switch (cmd) {
-		case "Start":
-			if (saveSettings()) {
-				swingConfig.setSettings();
-				/**
-				 * okno znikajace po 'start' - dispose
-				 */
 
-				new Connect4Swing().run();
-
-				dispose();
-			}
-			break;
 		case "default":
 			setDefaults();
 			break;
@@ -179,6 +175,14 @@ public class DialogSettingsBox extends JDialog implements ActionListener {
 		case "markCPU":
 			setCPU(CPUmark.getModel().isSelected());
 			break;
+		}
+	}
+
+	private void startButtonPressed() {
+		if (saveSettings()) {
+			swingConfig.setSettings();
+			new Connect4Swing().run();
+			dispose();
 		}
 	}
 

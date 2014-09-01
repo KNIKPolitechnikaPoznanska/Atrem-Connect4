@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 public class GameFrame extends JFrame {
 
 	/**
-	 * 
+	 * Serial
 	 */
 	private static final long serialVersionUID = -1454524828392484548L;
 	SwingPresenter swingPresenter;

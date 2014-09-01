@@ -47,8 +47,9 @@ public class Panel extends JPanel {
 					for (int tempSlot = 0; tempSlot < slots; tempSlot++) {
 						if (s == button[tempSlot]) {
 							chosenSlot = tempSlot;
-							getGUISlot();
-							Plansza[freeRow][tempSlot].setIcon(iconResource
+							getGUISlot(); // zmieniæ na send
+							Plansza[freeRow][tempSlot].setIcon(iconResource // male
+																			// litery
 									.get(PlayerID));
 						}
 					}
