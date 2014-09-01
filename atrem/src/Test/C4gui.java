@@ -11,7 +11,7 @@ public class C4gui extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public void start() {
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {

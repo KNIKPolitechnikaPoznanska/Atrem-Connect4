@@ -14,9 +14,9 @@ public class SwingConfig {
 	private boolean CPUmark;
 	private SwingPresenter swingPresenter;
 
-	public SwingConfig(SwingPresenter swingPresenter) {
-		this.swingPresenter = swingPresenter;
-	}
+	// public SwingConfig(SwingPresenter swingPresenter) {
+	// this.swingPresenter = swingPresenter;
+	// }
 
 	public void setDBox() {
 		try {
