@@ -24,11 +24,10 @@ public class Connect4Swing implements Runnable {
 	private static synchronized void runGame() {
 		gamefactory.setSwingconfig(config);
 		gamefactory.createGame("swing");
-		game = gamefactory.getGame();
-		gameController = new GameController();
-		gameController.loadGameController(game);
-		swingPresenter = new SwingPresenter();
-		swingPresenter.setPresenter(game, gameController);
+		// game = gamefactory.getGame();
+		gamefactory.loadGameController();
+		// swingPresenter = new SwingPresenter(config);
+		swingPresenter.setPresenter(gamefactory.getGameController());
 	}
 
 	private static void InitializeConfig() {
