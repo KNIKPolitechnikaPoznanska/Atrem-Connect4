@@ -30,7 +30,7 @@ public class Connect4Swing implements Runnable {
 	}
 
 	private static void InitializeConfig() {
-		config = new SwingConfig();
+		config = new SwingConfig(swingPresenter);
 		config.setDBox();
 	}
 
