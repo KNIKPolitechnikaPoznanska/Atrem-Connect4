@@ -15,8 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import atrem.Connect4.Connect4Swing;
-
 public class DialogSettingsBox extends JDialog implements ActionListener {
 
 	/**
@@ -159,7 +157,10 @@ public class DialogSettingsBox extends JDialog implements ActionListener {
 		case "Start":
 			if (saveSettings()) {
 				swingConfig.setSettings();
-				new Connect4Swing().run();
+				/**
+				 * okno znikajace po 'start' - dispose
+				 */
+				// new Connect4Swing().run();
 				dispose();
 			}
 			break;
@@ -169,6 +170,8 @@ public class DialogSettingsBox extends JDialog implements ActionListener {
 		case "Cancel":
 			System.exit(0);
 			break;
+		// nie wiadomo czy po odznaczniu zmieni sie wartosc - sprawdzanie przy
+		// kliknieciu start ?
 		case "markCPU":
 			setCPU(CPUmark.getModel().isSelected());
 			break;
@@ -179,6 +182,7 @@ public class DialogSettingsBox extends JDialog implements ActionListener {
 		setPl1Name(pl1Txt.getText());
 		setPl2Name(pl2Txt.getText());
 		System.out.println(getPl1Name());
+		// pytanie do Tomka/£ukasza
 		try {
 			setSlots(Integer.parseInt(TxtSlots.getText()));
 			setRows(Integer.parseInt(TxtRows.getText()));

@@ -1,6 +1,5 @@
 package atrem.Connect4;
 
-import atrem.Connect4.Game.Game;
 import atrem.Connect4.Game.GameController;
 import atrem.Connect4.Game.GameFactory;
 import atrem.Connect4.swing.SwingConfig;
@@ -12,7 +11,7 @@ import atrem.Connect4.swing.SwingPresenter;
 public class Connect4Swing implements Runnable {
 	private static GameFactory gamefactory;
 	private static SwingConfig config;
-	private static Game game;
+	// private static Game game;
 	private static GameController gameController;
 	private static SwingPresenter swingPresenter;
 
