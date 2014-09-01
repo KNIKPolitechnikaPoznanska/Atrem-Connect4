@@ -5,35 +5,29 @@ import atrem.Connect4.Game.board.HoleState;
 import atrem.Connect4.Game.player.PlayerController;
 
 public class GameController {
-	// public void wykonalemRuch(HoleState playerId, int slot);\
-	private Game game;
-
 	private Logic logic;
 	private Board board;
 	private int doneMoves;
 	private PlayerController player1, player2;
 	private int emptySpot;
-	private int playerTurn = 1;
+	private PlayerTurn playerTurn;
+
 	private ResultState result;
 
 	public void setResult(ResultState result) {
 		this.result = result;
 	}
 
-	public int getPlayerTurn() {
+	public PlayerTurn getPlayerTurn() {
 		return playerTurn;
 	}
 
-	public void setPlayerTurn(int playerTurn) {
+	public void setPlayerTurn(PlayerTurn playerTurn) {
 		this.playerTurn = playerTurn;
 	}
 
 	public int getEmptySpot() {
 		return emptySpot;
-	}
-
-	public Game getGame() {
-		return game;
 	}
 
 	public ResultState getResult() {
@@ -64,7 +58,7 @@ public class GameController {
 		this.player2 = player2;
 	}
 
-	public synchronized void go(PlayerController player, int slot) {
+	public void go(PlayerController player, int slot) {
 		emptySpot = board.findFreeSpot(slot);
 		if (emptySpot == -1) {
 			return;
@@ -75,20 +69,22 @@ public class GameController {
 
 	}
 
-	public void move() {
-		int currentSlot;
+	public int move(int currentSlot) {//
 
-		if (getPlayerTurn() == 1) {
+		// int currentSlot;
+		switch (playerTurn) {
+		case Player1:
 			currentSlot = player1.loadSlotNumber();
 			this.go(player1, currentSlot);
-			setPlayerTurn(2);
-		}
-		if (getPlayerTurn() == 2) {
+			setPlayerTurn(PlayerTurn.Player2);
+		case Player2:
 			currentSlot = player2.loadSlotNumber();
 			this.go(player2, currentSlot);
-			setPlayerTurn(1);
+			setPlayerTurn(PlayerTurn.Player2);
+		default:
 			doneMoves++;
 			logic.checkResult(currentSlot);
+			return emptySpot;
 		}
 	}
 
