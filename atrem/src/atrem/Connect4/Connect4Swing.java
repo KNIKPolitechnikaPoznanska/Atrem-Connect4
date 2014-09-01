@@ -15,21 +15,8 @@ public class Connect4Swing implements Runnable {
 	private static SwingPresenter swingPresenter1, swingPresenter2;
 
 	public static void main(String[] args) {
-<<<<<<< HEAD
-		gamefactory = new GameFactory();
-		config = new SwingConfig();
-		// InitializeConfig();
-		gamefactory.setSwingconfig(config);
-		gamefactory.createGame("swing");
-		game = gamefactory.getGame();
-		gameController = new GameController();
-		gameController.loadGameController(game);
-		swingPresenter = new SwingPresenter();
-		swingPresenter.setPresenter(game, gameController);
-=======
 		gameFactory = new GameFactory();
 		InitializeConfig();
->>>>>>> branch 'master' of https://github.com/KNIKPolitechnikaPoznanska/AtremProject.git
 	}
 
 	private static synchronized void runGame() {
