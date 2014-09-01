@@ -6,7 +6,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
-public class C4gui extends JFrame {
+public class GameBoard extends JFrame {
 
 	/**
 	 * Launch the application.
@@ -16,7 +16,7 @@ public class C4gui extends JFrame {
 			@Override
 			public void run() {
 				try {
-					C4gui frame = new C4gui();
+					GameBoard frame = new GameBoard();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -28,7 +28,7 @@ public class C4gui extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public C4gui() {
+	public GameBoard() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 552, 331);
 
