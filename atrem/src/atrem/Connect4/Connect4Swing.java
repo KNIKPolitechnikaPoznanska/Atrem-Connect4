@@ -11,7 +11,11 @@ import atrem.Connect4.swing.SwingPresenter;
 public class Connect4Swing implements Runnable {
 	private static GameFactory gamefactory;
 	private static SwingConfig config;
+<<<<<<< HEAD
 
+=======
+	// private static Game game;
+>>>>>>> branch 'master' of https://github.com/KNIKPolitechnikaPoznanska/AtremProject.git
 	private static GameController gameController;
 	private static SwingPresenter swingPresenter;
 
