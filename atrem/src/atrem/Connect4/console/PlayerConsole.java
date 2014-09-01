@@ -64,7 +64,7 @@ public class PlayerConsole implements PlayerController {
 			@Override
 			public void run() {
 				int slot = PlayerConsole.this.keyHandler.getSlot();
-				PlayerConsole.this.gamecontroller.move();
+				PlayerConsole.this.gamecontroller.move(slot);
 				PlayerConsole.this.gamecontroller.notifyAll();
 
 			}

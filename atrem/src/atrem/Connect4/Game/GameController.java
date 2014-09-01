@@ -5,7 +5,6 @@ import atrem.Connect4.Game.board.HoleState;
 import atrem.Connect4.Game.player.PlayerController;
 
 public class GameController {
-	// public void wykonalemRuch(HoleState playerId, int slot);
 	private Logic logic;
 	private Board board;
 	private int doneMoves;
