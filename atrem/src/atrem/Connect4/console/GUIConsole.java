@@ -1,6 +1,5 @@
 package atrem.Connect4.console;
 
-import atrem.Connect4.Game.Game;
 import atrem.Connect4.Game.GameController;
 import atrem.Connect4.Game.board.Board;
 import atrem.Connect4.Game.board.HoleState;
@@ -12,22 +11,23 @@ import atrem.Connect4.Game.player.PlayerController;
  */
 public class GUIConsole {
 
-	public void displayGame(Game game, GameController gamecontroller) {
-		// GameController gamecontroller = game.getGameController();
-		this.drawBoard(game.getBoard());
-		this.drawSlots(game.getBoard().getSlots());
-		if (gamecontroller.getPlayerTurn() == 1) {
-			this.writeCurrentPlayer(game.getPlayer1());
+	public void displayGame(GameController gameController) {
+		drawBoard(gameController.getBoard());
+		drawSlots(gameController.getBoard().getSlots());
+		switch (gameController.getPlayerTurn()) {
+		case Player1:
+			this.writeCurrentPlayer(gameController.getPlayer1());
+		case Player2:
+			this.writeCurrentPlayer(gameController.getPlayer2());
+		default:
+			this.displayParagraph();
 		}
-		if (gamecontroller.getPlayerTurn() == 2) {
-			this.writeCurrentPlayer(game.getPlayer2());
-		}
-		this.displayParagraph();
+
 	}
 
-	public void displayResults(Game game) {
-		this.showResult(game);
-		this.drawBoard(game.getBoard());
+	public void displayResults(GameController gameController) {
+		this.showResult(gameController);
+		this.drawBoard(gameController.getBoard());
 		this.displayParagraph();
 	}
 
@@ -45,7 +45,7 @@ public class GUIConsole {
 	}
 
 	private void drawSlots(int slots) {
-		System.out.println("Numery slot√≥w:");
+		System.out.println("Numery slotow:");
 		for (int i = 1; i <= slots; i++) {
 			System.out.print("| " + i + " |");
 		}
@@ -67,20 +67,21 @@ public class GUIConsole {
 		System.out.println("Slot jest pelen, podaj inny: ");
 	}
 
-	public void showResult(Game game) {
-		switch (game.getResult()) {
+	public void showResult(GameController gameController) {
+		switch (gameController.getResult()) {
 		case Draw:
 			System.out.println("Gra bez rostrzygniecia \n Remis.");
 			break;
 		case Player1Win:
-			System.out.println("	Wygra≈Ç: " + game.getNamePlayer1());
+			System.out.println("	WygralÇ: "
+					+ gameController.getPlayer1().getName());
 			break;
 		case Player2Win:
-			System.out.println("Wygra≈Ç " + game.getNamePlayer2());
+			System.out.println("WygralÇ "
+					+ gameController.getPlayer2().getName());
 			break;
 		default:
 			break;
 		}
 	}
-
 }

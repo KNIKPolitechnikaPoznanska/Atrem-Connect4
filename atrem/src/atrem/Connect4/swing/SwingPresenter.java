@@ -28,6 +28,10 @@ public class SwingPresenter implements PlayerController {
 	private JLabel pl1Label, pl2Label;
 	private PlayerAttributes playerAttributes;
 
+	public SwingPresenter(String im, HoleState playerId) {
+		playerAttributes = new PlayerAttributes(im, playerId);
+	}
+
 	public int getSlots() {
 		return Slots;
 	}
@@ -44,8 +48,8 @@ public class SwingPresenter implements PlayerController {
 		Rows = rows;
 	}
 
-	public void setPresenter(Game game, GameController gameController) {
-		this.game = game;
+	public void setPresenter(GameController gameController) {
+
 		this.gameController = gameController;
 		setSettings();
 	}

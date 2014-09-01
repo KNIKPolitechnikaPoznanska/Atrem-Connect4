@@ -8,7 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-class Panel extends JPanel {
+public class Panel extends JPanel {
 
 	/**
 	 * Serial
@@ -60,10 +60,10 @@ class Panel extends JPanel {
 			for (int tempSlot = 0; tempSlot < Slots; tempSlot++) {
 				Plansza[tempRow][tempSlot] = new JLabel();
 				add(Plansza[tempRow][tempSlot]);
-				iconResource.setLabelH((int) Plansza[tempRow][tempSlot]
-						.getSize().getHeight());
-				iconResource.setLabelW((int) Plansza[tempRow][tempSlot]
-						.getSize().getWidth());
+				// iconResource.setLabelH((int) Plansza[tempRow][tempSlot]
+				// .getSize().getHeight());
+				// iconResource.setLabelW((int) Plansza[tempRow][tempSlot]
+				// .getSize().getWidth());
 				Plansza[tempRow][tempSlot].setIcon(iconResource.get(0));
 			}
 		}
