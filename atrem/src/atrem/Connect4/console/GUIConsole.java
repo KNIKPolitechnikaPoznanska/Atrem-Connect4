@@ -1,6 +1,5 @@
 package atrem.Connect4.console;
 
-import atrem.Connect4.Game.Game;
 import atrem.Connect4.Game.GameController;
 import atrem.Connect4.Game.board.Board;
 import atrem.Connect4.Game.board.HoleState;
@@ -12,22 +11,22 @@ import atrem.Connect4.Game.player.PlayerController;
  */
 public class GUIConsole {
 
-	public void displayGame(Game game, GameController gamecontroller) {
+	public void displayGame(GameController gameController) {
 		// GameController gamecontroller = game.getGameController();
-		this.drawBoard(game.getBoard());
-		this.drawSlots(game.getBoard().getSlots());
-		if (gamecontroller.getPlayerTurn() == 1) {
-			this.writeCurrentPlayer(game.getPlayer1());
+		drawBoard(gameController.getBoard());
+		drawSlots(gameController.getBoard().getSlots());
+		if (gameController.getPlayerTurn() == 1) {
+			this.writeCurrentPlayer(gameController.getPlayer1());
 		}
-		if (gamecontroller.getPlayerTurn() == 2) {
-			this.writeCurrentPlayer(game.getPlayer2());
+		if (gameController.getPlayerTurn() == 2) {
+			this.writeCurrentPlayer(gameController.getPlayer2());
 		}
 		this.displayParagraph();
 	}
 
-	public void displayResults(Game game) {
-		this.showResult(game);
-		this.drawBoard(game.getBoard());
+	public void displayResults(GameController gameController) {
+		this.showResult(gameController);
+		this.drawBoard(gameController.getBoard());
 		this.displayParagraph();
 	}
 
@@ -67,20 +66,21 @@ public class GUIConsole {
 		System.out.println("Slot jest pelen, podaj inny: ");
 	}
 
-	public void showResult(Game game) {
-		switch (game.getResult()) {
+	public void showResult(GameController gameController) {
+		switch (gameController.getResult()) {
 		case Draw:
 			System.out.println("Gra bez rostrzygniecia \n Remis.");
 			break;
 		case Player1Win:
-			System.out.println("	WygraÅ‚: " + game.getNamePlayer1());
+			System.out.println("	Wygral‚: "
+					+ gameController.getPlayer1().getName());
 			break;
 		case Player2Win:
-			System.out.println("WygraÅ‚ " + game.getNamePlayer2());
+			System.out.println("Wygral‚ "
+					+ gameController.getPlayer2().getName());
 			break;
 		default:
 			break;
 		}
 	}
-
 }

@@ -4,7 +4,6 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import atrem.Connect4.Game.Game;
 import atrem.Connect4.Game.GameController;
 import atrem.Connect4.Game.board.HoleState;
 import atrem.Connect4.Game.player.PlayerAttributes;
@@ -20,24 +19,21 @@ public class PlayerConsole implements PlayerController {
 	private int slots;
 	private PlayerAttributes playerAttributes;
 	private GameController gamecontroller;
-	private ConsolePresenter consolePresenter;
 	private ExecutorService thread = Executors.newSingleThreadExecutor();
 	private int choosedTmp;
+	private GUIConsole guiConsole;
 
-	public PlayerConsole(Game game, String name, HoleState playerId) {
+	public PlayerConsole(GameController gamecontroller, String name,
+			HoleState playerId) {
 		playerAttributes = new PlayerAttributes();
 		playerAttributes.setName(name);
 		playerAttributes.setPlayerId(playerId);
-		keyHandler = new KeyHandler(game.getBoard());
+		keyHandler = new KeyHandler(gamecontroller.getBoard());
 		// this.gamecontroller = game.getGameController();
-		consolePresenter = new ConsolePresenter(this);
+		guiConsole = new GUIConsole();
 
 	}
 
-	// @Override
-	// public int getSlotNumber() {
-	// return keyHandler.getSlot();
-	// }
 	@Override
 	public final void setName(String name) {
 		playerAttributes.setName(name);
@@ -56,7 +52,6 @@ public class PlayerConsole implements PlayerController {
 	@Override
 	public void setGamecontroller(GameController gamecontroller) {
 		this.gamecontroller = gamecontroller;
-		consolePresenter.setGamecontroller(gamecontroller);
 	}
 
 	public void setChoosedTmp(int choosedTmp) {
@@ -95,17 +90,8 @@ public class PlayerConsole implements PlayerController {
 			e.printStackTrace();
 		}
 		System.out.println("test1");
-		gamecontroller.setChoosedSlot(choosedTmp);
+		// gamecontroller.setChoosedSlot(choosedTmp);
 		return 0; // do zrobienia
-
-	}
-
-<<<<<<< HEAD
-	// @Override
-=======
->>>>>>> branch 'master' of https://github.com/KNIKPolitechnikaPoznanska/AtremProject.git
-	public void tokenPlaced() {
-		consolePresenter.mouveDone();
 
 	}
 
