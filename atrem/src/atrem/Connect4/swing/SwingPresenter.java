@@ -61,7 +61,7 @@ public class SwingPresenter implements PlayerController {
 			@Override
 			public void run() {
 				try {
-					GameFrame frame = new GameFrame(SwingPresenter.this);
+					GameFrame frame = new GameFrame();
 					frame.setTitle("Connect 4");
 					frame.setVisible(true);
 					playerTurn = gameController.getPlayerTurn();

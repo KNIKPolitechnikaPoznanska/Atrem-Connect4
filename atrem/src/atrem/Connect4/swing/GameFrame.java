@@ -9,6 +9,8 @@ import javax.swing.JFrame;
 public class GameFrame extends JFrame {
 
 	SwingPresenter swingPresenter;
+	private Panel panel;
+	private StatsPanel statsPanel;
 
 	/**
 	 * Launch the application.
@@ -45,5 +47,17 @@ public class GameFrame extends JFrame {
 
 		getContentPane().add(boczny);
 
+	}
+
+	public Panel getPanel() {
+		return panel;
+	}
+
+	public StatsPanel getStatsPanel() {
+		return statsPanel;
+	}
+
+	public void setStatsPanel(StatsPanel statsPanel) {
+		this.statsPanel = statsPanel;
 	}
 }
