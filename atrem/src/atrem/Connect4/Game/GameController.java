@@ -9,7 +9,7 @@ public class GameController {
 	private Board board;
 	private int doneMoves;
 	private PlayerController player1, player2;
-	private int emptySpot;
+	private int emptySpot, slot;
 	private PlayerTurn playerTurn;
 
 	private ResultState result;// zmiana nazwy na stan
@@ -76,7 +76,7 @@ public class GameController {
 
 	public synchronized int move(int slot) {
 		PlayerController player = currentPlayer();
-
+		this.slot = slot;
 		emptySpot = board.findFreeSpot(slot);
 		if (emptySpot == -1) {
 			return emptySpot;
@@ -98,6 +98,8 @@ public class GameController {
 			doneMoves++;
 			result = logic.checkResult(doneMoves);
 			changePlayer();
+			player.goView(emptySpot, slot);
+
 		}
 	}
 
