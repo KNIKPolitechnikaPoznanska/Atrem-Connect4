@@ -12,6 +12,11 @@ public class SwingConfig {
 	private int slots, rows;
 	private String opponent;
 	private boolean CPUmark;
+	private SwingPresenter swingPresenter;
+
+	// public SwingConfig(SwingPresenter swingPresenter) {
+	// this.swingPresenter = swingPresenter;
+	// }
 
 	public void setDBox() {
 		try {

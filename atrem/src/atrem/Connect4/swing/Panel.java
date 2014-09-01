@@ -78,6 +78,10 @@ public class Panel extends JPanel {
 		swingPresenter.getSlotFromView(chosenSlot);
 	}
 
+	public int giveSlot() {
+		return chosenSlot;
+	}
+
 	public void setFreeRow(int row, int slot, int ID) {
 		this.freeRow = row;
 		this.PlayerID = ID;

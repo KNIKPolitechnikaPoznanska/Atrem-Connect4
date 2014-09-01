@@ -18,6 +18,11 @@ public class GameController {
 		this.result = result;
 	}
 
+	public Logic getLogic() {
+		logic = new Logic(this);
+		return logic;
+	}
+
 	public PlayerTurn getPlayerTurn() {
 		return playerTurn;
 	}
