@@ -99,4 +99,9 @@ public class GameBoard extends JPanel {
 		// Plansza[i][j].setText("chuj");
 		// }
 	}
+
+	public void disableButtons(boolean parameter) {
+		for (int tempSlot = 0; tempSlot < slots; tempSlot++)
+			button[tempSlot].setEnabled(parameter);
+	}
 }
