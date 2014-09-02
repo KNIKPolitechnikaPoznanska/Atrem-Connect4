@@ -9,7 +9,7 @@ public class Logic {
 	private int maxRows;
 	private int maxSlots;
 	private GameController gameController;
-	HoleState token;
+	private HoleState token;
 	private boolean hasWinner = false;
 	private boolean cpuWin = false;
 	private String human = "human", cpu = "cpu";
@@ -17,9 +17,15 @@ public class Logic {
 	public Logic(GameController gameController) {
 		this.gameController = gameController;
 		maxSlots = gameController.getBoard().getSlots();
-		maxRows = gameController.getBoard().getLastRow();
+		maxRows = gameController.getBoard().getRows();
 	}
-
+	/**
+	 * Funkcja sprawdza stan gry czy jest remis
+	 * 
+	 * @param doneMoves
+	 *            - wykonane ruchy
+	 * @return zwraca true je¿eli jest remis(wszystkie sloty pe³ne)
+	 */
 	public boolean checkIfDraw(int doneMoves) {
 		if (doneMoves == gameController.getBoard().getTotalSpots()) {
 			gameController.setResult(ResultState.Draw);
@@ -28,8 +34,10 @@ public class Logic {
 		return false;
 	}
 
-	/*
+	/**
 	 * Sprawdzenie u³o¿enia 4 w 4 wariantach
+	 * 
+	 * @return true je¿eli gracz wygra³
 	 */
 	public boolean checkIfWin() {
 		columnWin(human);
@@ -38,7 +46,11 @@ public class Logic {
 		diagonalWin2(human);
 		return hasWinner;
 	}
-
+	/**
+	 * SprawdŸ czy wygra³ PC
+	 * 
+	 * @return true je¿eli wygra³
+	 */
 	public boolean checkIfWinPC() {
 		columnWin(cpu);
 		rowWin(cpu);
@@ -46,7 +58,13 @@ public class Logic {
 		diagonalWin2(cpu);
 		return cpuWin;
 	}
-
+	/**
+	 * Sprawdzenie wyniku gry
+	 * 
+	 * @param doneMoves
+	 *            wykonane ruchy
+	 * @return true je¿eli win lub draw
+	 */
 	public boolean checkResult(int doneMoves) {
 		checkIfWin();
 		checkIfDraw(doneMoves);
@@ -59,7 +77,7 @@ public class Logic {
 		for (int row = 0; row < maxRows; row++) { // slot\kolumna
 			for (int slot = 0; slot < maxSlots - 3; slot++) {
 				token = gameController.getHoleState(row, slot);
-				if (token.getNumber() > 0
+				if (token != HoleState.EMPTY
 						&& token == gameController.getHoleState(row, slot + 1)
 						&& token == gameController.getHoleState(row, slot + 2)
 						&& token == gameController.getHoleState(row, slot + 3)) {
@@ -69,11 +87,16 @@ public class Logic {
 		}
 	}
 
+	// potem zamieniæ za warunki
+	// private boolean checkNextHole(int row, int slot) {
+	// return token == gameController.getHoleState(row, slot);
+	// }
+
 	private void diagonalWin1(String playerType) {
 		for (int row = 0; row < maxRows - 3; row++) { // skos /
 			for (int slot = 0; slot < maxSlots - 3; slot++) {
 				token = gameController.getBoard().getHoleState(row, slot);
-				if (token.getNumber() > 0
+				if (token != HoleState.EMPTY
 						&& token == gameController.getHoleState(row + 1,
 								slot + 1)
 						&& token == gameController.getHoleState(row + 2,
@@ -89,7 +112,7 @@ public class Logic {
 		for (int row = maxRows - 1; row >= 3; row--) { // skos \
 			for (int slot = 0; slot < maxSlots - 3; slot++) {
 				HoleState token = gameController.getHoleState(row, slot);
-				if (token.getNumber() > 0
+				if (token != HoleState.EMPTY
 						&& token == gameController.getHoleState(row - 1,
 								slot + 1)
 						&& token == gameController.getHoleState(row - 2,
@@ -105,7 +128,7 @@ public class Logic {
 		for (int slot = 0; slot < maxSlots; slot++) { // wiersz
 			for (int row = 0; row < maxRows - 3; row++) {
 				token = gameController.getBoard().getHoleState(row, slot);
-				if (token.getNumber() > 0
+				if (token != HoleState.EMPTY
 						&& token == gameController.getHoleState(row + 1, slot)
 						&& token == gameController.getHoleState(row + 2, slot)
 						&& token == gameController.getHoleState(row + 3, slot))
@@ -118,9 +141,9 @@ public class Logic {
 		if (playerType == cpu) {
 			cpuWin = true;
 		}
-		if (token.getNumber() == 1) {
+		if (token == HoleState.PLAYER1) {
 			gameController.setResult(ResultState.Player1Win);
-		} else if (token.getNumber() == 2) {
+		} else if (token == HoleState.PLAYER2) {
 			gameController.setResult(ResultState.Player2Win);
 		}
 	}

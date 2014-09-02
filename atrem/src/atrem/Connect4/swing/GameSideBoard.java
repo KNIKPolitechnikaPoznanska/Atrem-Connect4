@@ -4,6 +4,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import atrem.Connect4.Game.board.HoleState;
+
 public class GameSideBoard extends JPanel {
 	String message;
 	/**
@@ -16,7 +18,6 @@ public class GameSideBoard extends JPanel {
 	String pl2Name = "Gracz2";
 
 	public GameSideBoard() {
-
 		setLayout(null);
 
 		JPanel namesAndColours = new JPanel();
@@ -31,8 +32,9 @@ public class GameSideBoard extends JPanel {
 		JLabel token1 = new JLabel("");
 		token1.setBounds(119, 3, 40, 40);
 		namesAndColours.add(token1);
-		token1.setIcon(iconResource.get(PlayerID)); // obrazek widzoczny arg
-													// plID [0-2] BARTEK
+		token1.setIcon(iconResource.get(HoleState.EMPTY)); // obrazek widoczny
+															// arg plID [0-2]
+															// BARTEK
 
 		JLabel player2 = new JLabel(pl2Name);
 		player2.setBounds(5, 78, 91, 14);
@@ -63,8 +65,8 @@ public class GameSideBoard extends JPanel {
 
 	public void displayToken(int i) {
 		switch (i) {
-		case 1:
-			return setIcon(iconResource.get(1));
+			case 1 :
+				// setIcon(iconResource.get(HoleState.PLAYER1)); break;
 		}
 
 	}

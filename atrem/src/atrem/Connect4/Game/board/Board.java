@@ -13,13 +13,10 @@ public class Board {
 	private int totalSpots;
 	private int lastSlot;
 	private int lastRow;
-	private int choosedSlot;
 
 	public Board() {
-
 		for (int i = 0; i < slots; i++)
 			for (int j = 0; j < rows; j++)
-
 				gameBoard[j][i] = new Hole();
 	}
 
@@ -32,29 +29,26 @@ public class Board {
 				gameBoard[j][i] = new Hole();
 		totalSpots = slots * rows;
 	}
-
-	public void cleanSpot(int row, int slot)
-
-	{
+	/**
+	 * Ustawia 'dziurê' na EMPTY
+	 * 
+	 * @param row
+	 * @param slot
+	 */
+	public void cleanSpot(int row, int slot) {
 		setHoleState(row, slot, HoleState.EMPTY);
 	}
 
-	private void setHoleState(int Rows, int Slots, HoleState holeState) {
-		gameBoard[Rows][Slots].setHoleState(holeState);
-
-	}
-
-	public int getTotalSpots() {
-		return totalSpots;
-	}
-
-	public HoleState getHoleState(int Rows, int Slots) {
-		return gameBoard[Rows][Slots].getHoleState();
-	}
-
-	public void setHoleState(int Rows, int Slots, PlayerId playerId) {
+	/**
+	 * Ustawia stan 'dziury'
+	 * 
+	 * @param row
+	 * @param slot
+	 * @param playerId
+	 */
+	public void setHoleState(int row, int slot, PlayerId playerId) {
 		HoleState holeState = playerIdtoHoleState(playerId);
-		gameBoard[Rows][Slots].setHoleState(holeState);
+		gameBoard[row][slot].setHoleState(holeState);
 	}
 
 	public HoleState playerIdtoHoleState(PlayerId playerId) {
@@ -63,7 +57,18 @@ public class Board {
 		} else {
 			return HoleState.PLAYER2;
 		}
+	}
 
+	private void setHoleState(int Rows, int Slots, HoleState holeState) {
+		gameBoard[Rows][Slots].setHoleState(holeState);
+	}
+
+	public int getTotalSpots() {
+		return totalSpots;
+	}
+
+	public HoleState getHoleState(int Rows, int Slots) {
+		return gameBoard[Rows][Slots].getHoleState();
 	}
 
 	public int getSlots() {
@@ -99,11 +104,9 @@ public class Board {
 			if (holeState != HoleState.EMPTY) {
 				{
 					return i - 1;
-
 				}
 			}
 		}
 		return i - 1;
 	}
-
 }

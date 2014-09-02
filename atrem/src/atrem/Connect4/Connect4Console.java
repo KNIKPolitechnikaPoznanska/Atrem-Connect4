@@ -12,24 +12,12 @@ public class Connect4Console {
 	private static Menu menu;
 	private static GameController gameController;
 
-	public static void main(String[] args) {
-		gameFactory = new GameFactory();
-		menu = new Menu();
-		menu.loadSettings();
-		gameFactory.setMenu(menu);
-		gameFactory.createGame("console");
-		gameFactory.loadGameController();
-		gameController = gameFactory.getGameController();
-		gameController.gameLoop();
-	}
-
 	public static void init() {
 		gameFactory = new GameFactory();
-		menu = new Menu();
-		menu.loadSettings();
-		gameFactory.setMenu(menu);
-		gameFactory.createGame("console");
-		gameFactory.loadGameController();
+		// menu = new Menu();
+		// menu.loadSettings();
+		// gameFactory.setMenu(menu);
+		gameFactory.createGameController();
 		gameController = gameFactory.getGameController();
 		gameController.gameLoop();
 	}
