@@ -8,6 +8,7 @@ public class GameController {
 	private Logic logic;
 	private Board board;
 	private int doneMoves;
+	private LastMove lastMove;
 	private PlayerController player1, player2;
 	private int emptySpot, slot;
 	private PlayerId playerTurn;
@@ -71,6 +72,10 @@ public class GameController {
 
 	public GameState getGamestate() {
 		return gamestate;
+	}
+
+	public LastMove getLastMove() {
+		return lastMove;
 	}
 
 	public void setGamestate(GameState gamestate) {
