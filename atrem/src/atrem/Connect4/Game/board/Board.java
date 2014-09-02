@@ -1,5 +1,7 @@
 package atrem.Connect4.Game.board;
 
+import atrem.Connect4.Game.PlayerId;
+
 /*
  * Tworzenie planszy 
  * poprzez wype³nienie obiektami klasy Hole
@@ -37,6 +39,11 @@ public class Board {
 		setHoleState(row, slot, HoleState.EMPTY);
 	}
 
+	private void setHoleState(int Rows, int Slots, HoleState holeState) {
+		gameBoard[Rows][Slots].setHoleState(holeState);
+
+	}
+
 	public int getTotalSpots() {
 		return totalSpots;
 	}
@@ -45,8 +52,18 @@ public class Board {
 		return gameBoard[Rows][Slots].getHoleState();
 	}
 
-	public void setHoleState(int Rows, int Slots, HoleState holeState) {
+	public void setHoleState(int Rows, int Slots, PlayerId playerId) {
+		HoleState holeState = playerIdtoHoleState(playerId);
 		gameBoard[Rows][Slots].setHoleState(holeState);
+	}
+
+	private HoleState playerIdtoHoleState(PlayerId playerId) {
+		if (playerId == PlayerId.Player1) {
+			return HoleState.PLAYER1;
+		} else {
+			return HoleState.PLAYER2;
+		}
+
 	}
 
 	public int getSlots() {
