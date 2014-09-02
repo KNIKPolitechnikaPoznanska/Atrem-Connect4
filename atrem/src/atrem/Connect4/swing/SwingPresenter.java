@@ -14,18 +14,17 @@ import atrem.Connect4.Game.player.PlayerController;
 
 public class SwingPresenter implements PlayerController {
 
-	private int Slots;
-	private int Rows;
-	private PlayerTurn playerTurn;
-	private int LastRow;
-	private int LastSlot;
-	private int emptySpot;
-	private ResultState result;
+	private int Slots; // niepotrzebne. wystarczy odnosnik na GC
+	private int Rows;//
+	private PlayerTurn playerTurn;//
+	private int LastRow;//
+	private int LastSlot; // do GC
+	private int emptySpot;//
+	private ResultState result;//
 	private GameController gameController;
-	private Panel panel;
-	private StatsPanel statsPanel;
+	private Panel panel; // wywaliæ
 	private GameFrame gameFrame;
-	private JLabel pl1Label, pl2Label;
+	private JLabel pl1Label, pl2Label; // do View
 	private PlayerAttributes playerAttributes;
 
 	public SwingPresenter(String im, HoleState playerId) {
@@ -35,7 +34,7 @@ public class SwingPresenter implements PlayerController {
 	@Override
 	public void yourTurn() {
 		LastSlot = loadSlotNumber();
-		emptySpot = gameController.move(LastSlot);
+		emptySpot = gameController.move(LastSlot); // do GC(zmienic)
 		goView(emptySpot, LastSlot);
 	}
 
@@ -72,8 +71,12 @@ public class SwingPresenter implements PlayerController {
 					GameBoard frame = new GameBoard();
 					frame.setTitle(playerAttributes.getName());
 					frame.setVisible(true);
-					playerTurn = gameController.getPlayerTurn();
-					changeDispTurn(playerTurn.getNumber());
+					playerTurn = gameController.getPlayerTurn(); // po³¹czyæ
+																	// playerturn
+																	// do
+																	// playercontroller
+					changeDispTurn(playerTurn.getNumber()); // number
+															// niepotrzebne
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -81,8 +84,10 @@ public class SwingPresenter implements PlayerController {
 		});
 	}
 
+	@Override
 	public void goView(int Row, int Slot) {
-		changeDispTurn(gameController.getPlayerTurn().getNumber());
+		changeDispTurn(gameController.getPlayerTurn().getNumber()); // bez
+																	// numeru
 		panel.setFreeRow(Row, Slot, gameController.getPlayerTurn().getNumber());
 	}
 
@@ -141,7 +146,7 @@ public class SwingPresenter implements PlayerController {
 	}
 
 	public void getSlotFromView(int LastSlot) {
-		this.LastSlot = LastSlot;
+		this.LastSlot = LastSlot;// wybrakowany kod. Powiino byæ na GC
 
 	}
 
