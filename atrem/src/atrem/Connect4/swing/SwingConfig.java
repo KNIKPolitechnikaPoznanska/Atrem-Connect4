@@ -12,23 +12,19 @@ public class SwingConfig {
 	private int slots, rows;
 	private String opponent;
 	private boolean CPUmark;
-	private SwingPresenter swingPresenter;
-
-	// public SwingConfig(SwingPresenter swingPresenter) {
-	// this.swingPresenter = swingPresenter;
-	// }
 
 	public void setDBox() {
 		try {
 			dialogBox = new DialogSettingsBox(this);
-			dialogBox.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialogBox.setVisible(true);
+			dialogBox.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE); // do
+																			// DialogSettingsBox
+			dialogBox.setVisible(true); //
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	public void setSettings() {
+	public void setSettings() { // zmieniæ nazwe na setup
 		player1name = dialogBox.getPl1Name();
 		player2name = dialogBox.getPl2Name();
 		rows = dialogBox.getRows();

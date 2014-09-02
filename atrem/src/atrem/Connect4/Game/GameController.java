@@ -18,7 +18,13 @@ public class GameController {
 		this.result = result;
 	}
 
-	public Logic getLogic() {
+	public Logic getLogic() { // czy powienien sie tworzyc w getterze nowy
+								// obiekt logic? PAWE£ w Call Hierarchy widac ze
+								// logica tworzy sie tylko przy stworzeniu
+								// kompa, do tego logica w konstrukotrze pobiera
+								// slot i rows z boarda w GC. Teraz logica jest
+								// tworzona(?) przed boardem
+								// PAWEL
 		logic = new Logic(this);
 		return logic;
 	}
@@ -81,7 +87,9 @@ public class GameController {
 		if (emptySpot == -1) {
 			return emptySpot;
 		}
-		board.setHoleState(emptySpot, slot, player.getPlayerId()); // gracz
+		board.setHoleState(emptySpot, slot, player.getPlayerId()); // zmienic id
+																	// na
+																	// plyerTurn
 		board.setLastSlot(slot);
 		board.setLastSpot(emptySpot);
 		notifyAll();
@@ -89,7 +97,7 @@ public class GameController {
 
 	}
 
-	public synchronized void gameLoop() {//
+	public synchronized void gameLoop() {// ma odczytywaæ GameState
 		PlayerController player = currentPlayer();
 		boolean result = false;
 		while (!result) {
@@ -104,7 +112,7 @@ public class GameController {
 	}
 
 	private void waitThread() {
-		while (true) {
+		while (true) { // zmienic warunek na enum gamestate
 			try {
 				wait();// zabezpiecz sie!-while
 			} catch (InterruptedException e) {

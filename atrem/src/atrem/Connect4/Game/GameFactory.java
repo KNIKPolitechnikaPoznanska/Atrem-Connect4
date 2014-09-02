@@ -15,34 +15,18 @@ public class GameFactory {
 
 	private Board board;
 	private PlayerController player1, player2;
-	// private Game game;
 	private Menu menu; // console opt
 	private SwingConfig swingconfig; // swing opt
-	private String im2, im1;
+	private String im2, im1; // niejasna nazwa PAWE£
 	private String opponent;
 	private int slot, row;
 	private GameController gameController;
 
 	public void createGame(String gameType) {
 		if (gameType == "console")
-			this.readInfoMenu();
+			this.readInfoMenu(); // niejasna nazwa PAWE£
 		else if (gameType == "swing")
-			this.readInfoConfig();
-
-		// this.game = new Game(this.board);
-		//
-		// this.board = new Board(row, slot);
-		// this.game.setBoard(board);
-		// this.game.createLogic();
-		// this.createPlayerGame();
-		// this.game.setPlayer1(player1);
-		// this.game.setPlayer2(player2);
-		// this.game.setResult(ResultState.NoWin);
-		// this.gameController = new GameController();
-		// this.gameController.loadGameController(game);
-		// player1.setGamecontroller(gameController);
-		// player2.setGamecontroller(gameController);
-
+			this.readInfoConfig(); // niejasna nazwa PAWE£
 	}
 
 	public void loadGameController() {
@@ -69,12 +53,15 @@ public class GameFactory {
 		opponent = swingconfig.getOpponent();
 		slot = swingconfig.getSlots();
 		row = swingconfig.getRows();
-
+		// nie lepiej "wypelnic" row i slot i z tego utworzyc plansze zamiast
+		// get ze swinga 2 razy?
 	}
 
-	public void createPlayerGame() {
+	public void createPlayerGame() { // nigdzie nie jest wywolywane dlatego
+										// pleyer 1 null MIELOCH
 
-		if (opponent.equalsIgnoreCase("K"))
+		if (opponent.equalsIgnoreCase("K")) // pytanie czy jak to dizala i czy
+											// dziala z DialogBoxem MIELOCH
 			player2 = new MediumPC(im2, HoleState.PLAYER2, gameController,
 					gameController.getLogic());
 		else
@@ -88,11 +75,12 @@ public class GameFactory {
 		this.opponent = opponent;
 	}
 
-	public GameController getGame() {
+	public GameController getGame() { // niejasna nazwa PAWE£
 		return gameController;
 	}
 
-	public GameController getGameController() {
+	public GameController getGameController() { // po co drugi getter do
+												// powyzej?
 		return gameController;
 	}
 
@@ -100,7 +88,7 @@ public class GameFactory {
 		this.menu = menu;
 	}
 
-	public SwingConfig getSwingconfig() { // swing
+	public SwingConfig getSwingconfig() {
 		return swingconfig;
 	}
 
