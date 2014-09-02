@@ -12,22 +12,88 @@ public class GameController {
 	private PlayerController player1, player2;
 	private int emptySpot, slot;
 	private PlayerId playerTurn;
-	private ResultState result;// zmiana nazwy na stan
+	private ResultState gameState;// zmiana nazwy na stan
 	private GameState gamestate;
 
-	public void setResult(ResultState result) {
-		this.result = result;
+	public void createLogic() {
+		logic = new Logic(this);
 	}
 
-	public Logic getLogic() { // czy powienien sie tworzyc w getterze nowy
-								// obiekt logic? PAWE£ w Call Hierarchy widac ze
-								// logica tworzy sie tylko przy stworzeniu
-								// kompa, do tego logica w konstrukotrze pobiera
-								// slot i rows z boarda w GC. Teraz logica jest
-								// tworzona(?) przed boardem
-								// PAWEL
-		logic = new Logic(this);
-		return logic;
+	private PlayerController currentPlayer() {
+		switch (playerTurn) {
+		case Player1:
+			return player1;
+		case Player2:
+			return player2;
+		default:
+			return player1;
+		}
+	}
+
+	/**
+	 * @param slot
+	 * @return puste miejsce w Board
+	 */
+	public synchronized int move(int slot) {
+		PlayerController player = currentPlayer();
+		this.slot = slot;
+		emptySpot = board.findFreeSpot(slot);
+		if (emptySpot == -1) {
+			return emptySpot;
+		}
+		board.setHoleState(emptySpot, slot, player.getPlayerId());
+		board.setLastSlot(slot);
+		board.setLastSpot(emptySpot);
+		lastMove.saveLastMove(slot, emptySpot);
+		gamestate = GameState.moveDone;
+		notifyAll();
+		return emptySpot;
+
+	}
+
+	/**
+	 * glowna petla gry
+	 */
+	public synchronized void gameLoop() {// ma odczytywaæ GameState
+		PlayerController player = currentPlayer();
+		boolean result = false;
+		while (!result) {
+			player.yourTurn();
+			gamestate = GameState.waitingForMove;
+			waitForMove();
+			doneMoves++;
+			result = logic.checkResult(doneMoves);
+			changePlayer();
+			// player.goView(emptySpot, slot);
+
+		}
+	}
+
+	private void waitForMove() {
+		while (gamestate != GameState.moveDone) {
+			try {
+				wait();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	private void changePlayer() {
+		if (playerTurn == PlayerId.Player1) {
+			setPlayerTurn(PlayerId.Player2);
+		} else {
+			setPlayerTurn(PlayerId.Player1);
+		}
+
+	}
+
+	public HoleState getHoleState(int rows, int slots) {
+		return this.board.getHoleState(rows, slots);
+	}
+
+	public void setResult(ResultState result) {
+		this.gameState = result;
 	}
 
 	public PlayerId getPlayerTurn() {
@@ -43,7 +109,7 @@ public class GameController {
 	}
 
 	public ResultState getResult() {
-		return result;
+		return gameState;
 	}
 
 	public Board getBoard() {
@@ -80,72 +146,5 @@ public class GameController {
 
 	public void setGamestate(GameState gamestate) {
 		this.gamestate = gamestate;
-	}
-
-	private PlayerController currentPlayer() {
-		switch (playerTurn) {
-		case Player1:
-			return player1;
-		case Player2:
-			return player2;
-		default:
-			return player1;
-		}
-	}
-
-	public synchronized int move(int slot) {
-		PlayerController player = currentPlayer();
-		this.slot = slot;
-		emptySpot = board.findFreeSpot(slot);
-		if (emptySpot == -1) {
-			return emptySpot;
-		}
-		board.setHoleState(emptySpot, slot, player.getPlayerId()); // zmienic id
-																	// na
-																	// plyerTurn
-		board.setLastSlot(slot);
-		board.setLastSpot(emptySpot);
-		gamestate = GameState.moveDone;
-		notifyAll();
-		return emptySpot;
-
-	}
-
-	public synchronized void gameLoop() {// ma odczytywaæ GameState
-		PlayerController player = currentPlayer();
-		boolean result = false;
-		while (!result) {
-			player.yourTurn();
-			gamestate = GameState.waitingForMove;
-			waitForMove();
-			doneMoves++;
-			result = logic.checkResult(doneMoves);
-			changePlayer();
-			player.goView(emptySpot, slot);
-
-		}
-	}
-
-	private void waitForMove() {
-		while (gamestate != GameState.moveDone) {
-			try {
-				wait();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
-	private void changePlayer() {
-		if (playerTurn == PlayerId.Player1) {
-			setPlayerTurn(PlayerId.Player2);
-		} else {
-			setPlayerTurn(PlayerId.Player1);
-		}
-
-	}
-
-	public HoleState getHoleState(int rows, int slots) {
-		return this.board.getHoleState(rows, slots);
 	}
 }

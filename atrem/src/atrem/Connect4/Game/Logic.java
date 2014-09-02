@@ -18,7 +18,6 @@ public class Logic {
 		this.gameController = gameController;
 		maxSlots = gameController.getBoard().getSlots();
 		maxRows = gameController.getBoard().getLastRow();
-		// this.checkIfWin();
 	}
 
 	public boolean checkIfDraw(int doneMoves) {
