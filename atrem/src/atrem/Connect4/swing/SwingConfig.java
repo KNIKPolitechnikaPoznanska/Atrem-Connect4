@@ -1,7 +1,5 @@
 package atrem.Connect4.swing;
 
-import javax.swing.JDialog;
-
 import atrem.Connect4.Game.GameFactory;
 
 /*
@@ -14,19 +12,22 @@ public class SwingConfig {
 	private int slots, rows;
 	private String opponent;
 	private boolean CPUmark;
+	private GameFactory gameFactory;
+
+	public SwingConfig(GameFactory gameFactory) {
+		this.gameFactory = gameFactory;
+	}
 
 	public void setDBox() {
 		try {
 			dialogBox = new DialogSettingsBox(this);
-			dialogBox.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE); // do
-																			// DialogSettingsBox
-			dialogBox.setVisible(true); //
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	public void setSettings() { // zmieniæ nazwe na setup
+	public void setupSettings() {
 		player1name = dialogBox.getPl1Name();
 		player2name = dialogBox.getPl2Name();
 		rows = dialogBox.getRows();
@@ -38,7 +39,7 @@ public class SwingConfig {
 			setOpponent("C");
 	}
 
-	public void setupGameFactory(GameFactory gameFactory) {
+	public void setupGameFactory() {
 		gameFactory.setRows(rows);
 		gameFactory.setSlots(slots);
 		gameFactory.setOpponent(opponent);
