@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import atrem.Connect4.Game.board.HoleState;
+
 public class SwingBoard extends JPanel { // nazwa niejasna PAWE£
 
 	/**
@@ -23,9 +25,11 @@ public class SwingBoard extends JPanel { // nazwa niejasna PAWE£
 	private int chosenSlot;
 	private ResourceLoader iconResource = new ResourceLoader();
 	private int freeRow;
+	private HoleState holeState;
 
-	public SwingBoard(SwingPresenter swingPresenter) { // SZTYWNE. ZAMIENIC/DOKONCZYC
-													// PAWE£
+	public SwingBoard(SwingPresenter swingPresenter) { // SZTYWNE.
+														// ZAMIENIC/DOKONCZYC
+														// PAWE£
 		rows = 6;
 		slots = 7;
 		// this.rows = swingPresenter.getRows(); //swingPresenter ma stracic te
@@ -51,9 +55,8 @@ public class SwingBoard extends JPanel { // nazwa niejasna PAWE£
 						if (s == button[tempSlot]) {
 							chosenSlot = tempSlot;
 							getGUISlot(); // zmieniæ na send
-							Plansza[freeRow][tempSlot].setIcon(iconResource // male
-																			// litery
-									.get(PlayerID));
+							Plansza[freeRow][tempSlot].setIcon(iconResource
+									.get(holeState));
 						}
 					}
 				}
@@ -72,7 +75,8 @@ public class SwingBoard extends JPanel { // nazwa niejasna PAWE£
 				// .getSize().getHeight());
 				// iconResource.setLabelW((int) Plansza[tempRow][tempSlot]
 				// .getSize().getWidth());
-				Plansza[tempRow][tempSlot].setIcon(iconResource.get(0));
+				Plansza[tempRow][tempSlot].setIcon(iconResource
+						.get(holeState.EMPTY));
 			}
 		}
 
@@ -84,10 +88,6 @@ public class SwingBoard extends JPanel { // nazwa niejasna PAWE£
 
 	public void getGUISlot() {
 		swingPresenter.getSlotFromView(chosenSlot);
-	}
-
-	public int giveSlot() {
-		return chosenSlot;
 	}
 
 	public void setFreeRow(int row, int slot, int ID) {

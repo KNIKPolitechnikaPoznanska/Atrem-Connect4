@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import atrem.Connect4.Game.board.HoleState;
+
 public class GameBoard extends JPanel {
 
 	/**
@@ -16,13 +18,14 @@ public class GameBoard extends JPanel {
 	private static final long serialVersionUID = -7328887218009010574L;
 	private int rows;
 	private int slots;
-	private JLabel[][] board;
+	private JLabel[][] swingBoard;
 	private JButton[] button;
 	private int playerID;
 	private SwingPresenter swingPresenter;
 	private int chosenSlot = 1;
 	private ResourceLoader iconResource = new ResourceLoader();
 	private int freeRow;
+	private HoleState holeState;
 
 	public GameBoard(SwingPresenter swingPresenter) {
 		rows = 6;
@@ -33,7 +36,7 @@ public class GameBoard extends JPanel {
 
 		setLayout(new GridLayout(rows + 1, slots));
 
-		board = new JLabel[rows][slots];
+		swingBoard = new JLabel[rows][slots];
 		button = new JButton[slots];
 
 		for (int tempSlot = 0; tempSlot < slots; tempSlot++) {
@@ -47,10 +50,10 @@ public class GameBoard extends JPanel {
 					for (int tempSlot = 0; tempSlot < slots; tempSlot++) {
 						if (s == button[tempSlot]) {
 							chosenSlot = tempSlot;
-							// getGUISlot(); // zmieniæ na send
+							sendGUISlot();
 
-							board[freeRow][tempSlot].setIcon(iconResource
-									.get(playerID));
+							swingBoard[freeRow][tempSlot].setIcon(iconResource
+									.get(holeState));
 						}
 					}
 				}
@@ -61,13 +64,14 @@ public class GameBoard extends JPanel {
 		 */
 		for (int tempRow = 0; tempRow < rows; tempRow++) {
 			for (int tempSlot = 0; tempSlot < slots; tempSlot++) {
-				board[tempRow][tempSlot] = new JLabel();
-				add(board[tempRow][tempSlot]);
+				swingBoard[tempRow][tempSlot] = new JLabel();
+				add(swingBoard[tempRow][tempSlot]);
 				// iconResource.setLabelH((int) Plansza[tempRow][tempSlot]
 				// .getSize().getHeight());
 				// iconResource.setLabelW((int) Plansza[tempRow][tempSlot]
 				// .getSize().getWidth());
-				board[tempRow][tempSlot].setIcon(iconResource.get(0));
+				swingBoard[tempRow][tempSlot].setIcon(iconResource
+						.get(holeState.EMPTY));
 			}
 		}
 
@@ -77,7 +81,7 @@ public class GameBoard extends JPanel {
 		// }
 	}
 
-	public void getGUISlot() {
+	public void sendGUISlot() {
 		swingPresenter.getSlotFromView(chosenSlot);
 	}
 
