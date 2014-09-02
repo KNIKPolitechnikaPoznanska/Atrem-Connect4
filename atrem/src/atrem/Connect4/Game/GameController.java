@@ -10,9 +10,9 @@ public class GameController {
 	private int doneMoves;
 	private PlayerController player1, player2;
 	private int emptySpot, slot;
-	private PlayerTurn playerTurn;
-
+	private PlayerId playerTurn;
 	private ResultState result;// zmiana nazwy na stan
+	private GameState gamestate;
 
 	public void setResult(ResultState result) {
 		this.result = result;
@@ -29,11 +29,11 @@ public class GameController {
 		return logic;
 	}
 
-	public PlayerTurn getPlayerTurn() {
+	public PlayerId getPlayerTurn() {
 		return playerTurn;
 	}
 
-	public void setPlayerTurn(PlayerTurn playerTurn) {
+	public void setPlayerTurn(PlayerId playerTurn) {
 		this.playerTurn = playerTurn;
 	}
 
@@ -69,6 +69,14 @@ public class GameController {
 		this.player2 = player2;
 	}
 
+	public GameState getGamestate() {
+		return gamestate;
+	}
+
+	public void setGamestate(GameState gamestate) {
+		this.gamestate = gamestate;
+	}
+
 	private PlayerController currentPlayer() {
 		switch (playerTurn) {
 		case Player1:
@@ -92,6 +100,7 @@ public class GameController {
 																	// plyerTurn
 		board.setLastSlot(slot);
 		board.setLastSpot(emptySpot);
+		gamestate = GameState.moveDone;
 		notifyAll();
 		return emptySpot;
 
@@ -102,7 +111,8 @@ public class GameController {
 		boolean result = false;
 		while (!result) {
 			player.yourTurn();
-			waitThread();
+			gamestate = GameState.waitingForMove;
+			waitForMove();
 			doneMoves++;
 			result = logic.checkResult(doneMoves);
 			changePlayer();
@@ -111,37 +121,21 @@ public class GameController {
 		}
 	}
 
-	private void waitThread() {
-		while (true) { // zmienic warunek na enum gamestate
+	private void waitForMove() {
+		while (gamestate != GameState.moveDone) {
 			try {
-				wait();// zabezpiecz sie!-while
+				wait();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 	}
 
-	// // int currentSlot;
-	// switch (playerTurn) { //ten switch zly
-	// case Player1:
-	// player1.teraztwojruch(); wait();
-	// setPlayerTurn(PlayerTurn.Player1);
-	// break;
-	// case Player2:
-	// currentSlot = player2.loadSlotNumber();
-	// setPlayerTurn(PlayerTurn.Player2);
-	// break;
-	// default:
-	// doneMoves++;
-	// logic.checkResult(doneMoves);
-	// }
-
 	private void changePlayer() {
-		if (playerTurn == PlayerTurn.Player1) {
-			setPlayerTurn(PlayerTurn.Player2);
+		if (playerTurn == PlayerId.Player1) {
+			setPlayerTurn(PlayerId.Player2);
 		} else {
-			setPlayerTurn(PlayerTurn.Player1);
+			setPlayerTurn(PlayerId.Player1);
 		}
 
 	}
