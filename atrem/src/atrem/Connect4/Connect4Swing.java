@@ -14,7 +14,7 @@ public class Connect4Swing {
 
 	public static void main(String[] args) {
 		gameFactory = new GameFactory();
-		config = new SwingConfig();
+		config = new SwingConfig(gameFactory);
 		config.setDBox();
 	}
 
@@ -23,7 +23,7 @@ public class Connect4Swing {
 	}
 
 	public static void runGame() {
-		config.setupGameFactory(gameFactory);
+		config.setupGameFactory();
 		gameFactory.createGame("swing");
 		gameFactory.loadGameController();
 		gameController = gameFactory.getGameController();
