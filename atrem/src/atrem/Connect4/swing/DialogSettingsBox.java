@@ -67,6 +67,7 @@ public class DialogSettingsBox extends JDialog {
 	 */
 	public DialogSettingsBox(SwingConfig swingConfig) {
 		this.swingConfig = swingConfig;
+		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setTitle("Connect4 Settings");
 		setBounds(100, 100, 400, 450);
 		getContentPane().setLayout(new BorderLayout());
@@ -241,6 +242,7 @@ public class DialogSettingsBox extends JDialog {
 				pl2BoardType.add(rdbtnSwing2);
 				pl2BoardType.add(rdbtnNet2);
 			}
+			this.setVisible(true);
 		}
 	}
 
@@ -344,7 +346,7 @@ public class DialogSettingsBox extends JDialog {
 
 	private void startButtonPressed() {
 		if (saveSettings()) {
-			swingConfig.setSettings();
+			swingConfig.setupSettings();
 			new Connect4Swing().init();
 			dispose();
 		}

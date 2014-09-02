@@ -6,6 +6,7 @@ import atrem.Connect4.Game.player.PlayerController;
 
 public class GameController {
 	private Logic logic;
+
 	private Board board;
 	private int doneMoves;
 	private LastMove lastMove;
@@ -146,5 +147,9 @@ public class GameController {
 
 	public void setGamestate(GameState gamestate) {
 		this.gamestate = gamestate;
+	}
+
+	public Logic getLogic() {
+		return logic;
 	}
 }
