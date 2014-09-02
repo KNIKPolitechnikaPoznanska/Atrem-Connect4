@@ -57,7 +57,7 @@ public class Board {
 		gameBoard[Rows][Slots].setHoleState(holeState);
 	}
 
-	private HoleState playerIdtoHoleState(PlayerId playerId) {
+	public HoleState playerIdtoHoleState(PlayerId playerId) {
 		if (playerId == PlayerId.Player1) {
 			return HoleState.PLAYER1;
 		} else {

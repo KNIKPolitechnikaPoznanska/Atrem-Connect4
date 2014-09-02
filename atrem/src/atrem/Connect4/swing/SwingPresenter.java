@@ -3,7 +3,6 @@ package atrem.Connect4.swing;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
-import Test.GameBoard;
 import atrem.Connect4.Game.GameController;
 import atrem.Connect4.Game.PlayerId;
 import atrem.Connect4.Game.player.PlayerAttributes;
@@ -17,6 +16,7 @@ public class SwingPresenter implements PlayerController {
 	private GameController gameController;
 	private JLabel pl1Label, pl2Label; // do View
 	private PlayerAttributes playerAttributes;
+	private GameBoard gameBoard;
 
 	public SwingPresenter(String im, PlayerId playerId) {
 		playerAttributes = new PlayerAttributes(im, playerId);
@@ -51,9 +51,10 @@ public class SwingPresenter implements PlayerController {
 			@Override
 			public void run() {
 				try {
-					GameBoard frame = new GameBoard();
+					GameFrame frame = new GameFrame(SwingPresenter.this);
 					frame.setTitle(playerAttributes.getName());
 					frame.setVisible(true);
+					gameBoard = frame.getGameBoard();
 					// po³¹czyæ
 					// playerturn
 					// do
@@ -71,7 +72,9 @@ public class SwingPresenter implements PlayerController {
 	public void goView(int Row, int Slot) {
 		// changeDispTurn(gameController.getPlayerTurn); // bez
 		// numeru
-		panel.setFreeRow(Row, Slot, gameController.getPlayerTurn());
+		gameBoard.setFreeRow(Row, Slot, gameController.getBoard()
+				.playerIdtoHoleState(gameController.getPlayerTurn())); // nie
+																		// pytajcie
 	}
 
 	// public void setPanels() {

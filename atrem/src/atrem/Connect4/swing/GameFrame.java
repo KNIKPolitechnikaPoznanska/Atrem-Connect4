@@ -18,7 +18,7 @@ public class GameFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public GameFrame() {
+	public GameFrame(SwingPresenter swingPresenter) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 552, 331);
@@ -36,7 +36,7 @@ public class GameFrame extends JFrame {
 
 	}
 
-	public GameBoard getPanel() {
+	public GameBoard getGameBoard() {
 		return board;
 	}
 

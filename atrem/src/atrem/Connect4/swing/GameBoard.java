@@ -20,7 +20,7 @@ public class GameBoard extends JPanel {
 	private int slots;
 	private JLabel[][] swingBoard;
 	private JButton[] button;
-	private int playerID;
+
 	private SwingPresenter swingPresenter;
 	private int chosenSlot = 1;
 	private ResourceLoader iconResource = new ResourceLoader();
@@ -85,9 +85,9 @@ public class GameBoard extends JPanel {
 		swingPresenter.getSlotFromView(chosenSlot);
 	}
 
-	public void setFreeRow(int row, int slot, int ID) {
+	public void setFreeRow(int row, int slot, HoleState holeState) {
 		this.freeRow = row;
-		this.playerID = ID;
+		this.holeState = holeState;
 	}
 
 	public void setBoardSize(int rows, int slots) {
