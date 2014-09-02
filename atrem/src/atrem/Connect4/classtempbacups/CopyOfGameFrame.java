@@ -1,9 +1,13 @@
-package atrem.Connect4.swing;
+package atrem.Connect4.classtempbacups;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
 
 import javax.swing.JFrame;
+
+import atrem.Connect4.swing.StatsPanel;
+import atrem.Connect4.swing.SwingBoard;
+import atrem.Connect4.swing.SwingPresenter;
 
 public class CopyOfGameFrame extends JFrame {
 

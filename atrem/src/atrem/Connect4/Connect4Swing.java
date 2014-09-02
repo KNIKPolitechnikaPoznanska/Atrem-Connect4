@@ -5,34 +5,29 @@ import atrem.Connect4.Game.GameFactory;
 import atrem.Connect4.swing.SwingConfig;
 
 /*
- * Klasa main uruchamiaj¹ca grê Connect4
+ * Uruchomienie gry Connect4 w konsoli
  */
-public class Connect4Swing implements Runnable {
+public class Connect4Swing {
 	private static GameFactory gameFactory;
 	private static SwingConfig config;
 	private static GameController gameController;
 
 	public static void main(String[] args) {
 		gameFactory = new GameFactory();
-		InitializeConfig();
+		config = new SwingConfig();
+		config.setDBox();
 	}
 
-	private static void runGame() {
+	public void init() {
+
+	}
+
+	public static void runGame() {
 		gameFactory.setSwingconfig(config);
 		gameFactory.createGame("swing");
 		gameFactory.createPlayerGame();
 		gameFactory.loadGameController();
 		gameController = gameFactory.getGameController();
 		gameController.gameLoop();
-	}
-
-	private static void InitializeConfig() {
-		config = new SwingConfig();
-		config.setDBox();
-	}
-
-	@Override
-	public void run() {
-		runGame();
 	}
 }
