@@ -12,7 +12,7 @@ public class GameFrame extends JFrame {
 	 */
 	private static final long serialVersionUID = -1454524828392484548L;
 	SwingPresenter swingPresenter;
-	private SwingBoard board;
+	private GameBoard board;
 	GameSideBoard sideBoard;
 
 	/**
@@ -25,7 +25,7 @@ public class GameFrame extends JFrame {
 
 		Container mainContainer = getContentPane();
 		getContentPane().setLayout(null);
-		board = new SwingBoard(swingPresenter);
+		board = new GameBoard(swingPresenter);
 		board.setBackground(new Color(255, 255, 255));
 		board.setBounds(10, 0, 330, 282);
 		mainContainer.add(board);
@@ -36,7 +36,7 @@ public class GameFrame extends JFrame {
 
 	}
 
-	public SwingBoard getPanel() {
+	public GameBoard getPanel() {
 		return board;
 	}
 
