@@ -15,7 +15,6 @@ public class GameFactory {
 
 	private Board board;
 	private PlayerController player1, player2;
-	// private Game game;
 	private Menu menu; // console opt
 	private SwingConfig swingconfig; // swing opt
 	private String im2, im1;
@@ -28,25 +27,11 @@ public class GameFactory {
 			this.readInfoMenu();
 		else if (gameType == "swing")
 			this.readInfoConfig();
-
-		// this.game = new Game(this.board);
-		//
-		// this.board = new Board(row, slot);
-		// this.game.setBoard(board);
-		// this.game.createLogic();
-		// this.createPlayerGame();
-		// this.game.setPlayer1(player1);
-		// this.game.setPlayer2(player2);
-		// this.game.setResult(ResultState.NoWin);
-		// this.gameController = new GameController();
-		// this.gameController.loadGameController(game);
-		// player1.setGamecontroller(gameController);
-		// player2.setGamecontroller(gameController);
-
 	}
 
 	public void loadGameController() {
 		gameController = new GameController();
+		createPlayerGame();
 		gameController.setBoard(board);
 		gameController.setPlayer1(player1);
 		gameController.setPlayer2(player2);
@@ -78,10 +63,9 @@ public class GameFactory {
 			player2 = new MediumPC(im2, HoleState.PLAYER2, gameController,
 					gameController.getLogic());
 		else
-			player2 = new SwingPresenter(swingconfig.getPlayer2name(),
+			player2 = new SwingPresenter(menu.getPlayer2name(),
 					HoleState.PLAYER2);
-		player1 = new SwingPresenter(swingconfig.getPlayer1name(),
-				HoleState.PLAYER1);
+		player1 = new SwingPresenter(menu.getPlayer1name(), HoleState.PLAYER1);
 	}
 
 	public void setOpponent(String opponent) {
