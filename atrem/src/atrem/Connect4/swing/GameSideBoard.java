@@ -4,17 +4,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class SideBoard extends JPanel {
+public class GameSideBoard extends JPanel {
 	String message;
 	/**
 	 * Serial
 	 */
 	private static final long serialVersionUID = 9208904490186715373L;
+	ResourceLoader iconResource = new ResourceLoader();
+	int PlayerID = 1;
 
-	public SideBoard() {
-
-		ResourceLoader iconResource = new ResourceLoader();
-		int PlayerID = 1;
+	public GameSideBoard() {
 
 		setLayout(null);
 
@@ -64,6 +63,10 @@ public class SideBoard extends JPanel {
 	}
 
 	public void displayToken(int i) {
+		switch (i) {
+		case 1:
+			return setIcon(iconResource.get(1));
+		}
 
 	}
 }
