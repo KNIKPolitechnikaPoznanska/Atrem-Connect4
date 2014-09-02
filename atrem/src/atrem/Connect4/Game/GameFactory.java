@@ -104,8 +104,8 @@ public class GameFactory {
 					gameController, gameController.getLogic());
 		else
 			player2 = new SwingPresenter(menu.getPlayer2name(),
-					HoleState.PLAYER2);
-		player1 = new SwingPresenter(menu.getPlayer1name(), HoleState.PLAYER1);
+					PlayerId.Player2);
+		player1 = new SwingPresenter(menu.getPlayer1name(), PlayerId.Player1);
 	}
 
 	public void setOpponent(String opponent) {
