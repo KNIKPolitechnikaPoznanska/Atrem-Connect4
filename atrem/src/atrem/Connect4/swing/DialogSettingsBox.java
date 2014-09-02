@@ -17,7 +17,7 @@ import javax.swing.border.EmptyBorder;
 
 import atrem.Connect4.Connect4Swing;
 
-public class DialogSettingsBox extends JDialog implements ActionListener {
+public class DialogSettingsBox extends JDialog {
 
 	/**
 	 * Serial
@@ -85,7 +85,14 @@ public class DialogSettingsBox extends JDialog implements ActionListener {
 		{
 			CPUmark = new JCheckBox("Gracz 2 - CPU");
 			CPUmark.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			CPUmark.addActionListener(this);
+			CPUmark.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					cpuCheckBoxCheck();
+
+				}
+			});
 			CPUmark.setActionCommand("markCPU");
 			contentPanel.add(CPUmark);
 		}
@@ -144,38 +151,43 @@ public class DialogSettingsBox extends JDialog implements ActionListener {
 			}
 			{
 				btnDefault = new JButton("Default");
-				btnDefault.addActionListener(this);
+				btnDefault.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						defalutButtonPressed();
+
+					}
+				});
 				btnDefault.setFont(new Font("Tahoma", Font.PLAIN, 20));
-				btnDefault.setActionCommand("default");
 				buttonPane.add(btnDefault);
 			}
 			{
 				cancelButton = new JButton("Anuluj");
-				cancelButton.addActionListener(this);
+				cancelButton.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						cancelButtonPressed();
+					}
+				});
 				cancelButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
-				cancelButton.setActionCommand("Cancel");
+
 				buttonPane.add(cancelButton);
 			}
 		}
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) { // zrobiæ w³asne listenrery
-		String cmd = e.getActionCommand();
-		switch (cmd) {
+	private void cpuCheckBoxCheck() {
+		setCPU(CPUmark.getModel().isSelected());
+	}
 
-		case "default":
-			setDefaults();
-			break;
-		case "Cancel":
-			System.exit(0);
-			break;
-		// nie wiadomo czy po odznaczniu zmieni sie wartosc - sprawdzanie przy
-		// kliknieciu start ? PAWE£&BARTEK
-		case "markCPU":
-			setCPU(CPUmark.getModel().isSelected());
-			break;
-		}
+	private void cancelButtonPressed() {
+		System.exit(0);
+	}
+
+	private void defalutButtonPressed() {
+		setDefaults();
 	}
 
 	private void startButtonPressed() {
