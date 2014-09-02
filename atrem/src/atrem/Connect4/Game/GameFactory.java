@@ -106,9 +106,10 @@ public class GameFactory {
 			player2 = new MediumPC(player2name, HoleState.PLAYER2,
 					gameController, gameController.getLogic());
 		else
-			player2 = new SwingPresenter(menu.getPlayer2name(),
+			player2 = new SwingPresenter(swingconfig.getPlayer2name(),
 					PlayerId.Player2);
-		player1 = new SwingPresenter(menu.getPlayer1name(), PlayerId.Player1);
+		player1 = new SwingPresenter(swingconfig.getPlayer1name(),
+				PlayerId.Player1);
 
 	}
 
