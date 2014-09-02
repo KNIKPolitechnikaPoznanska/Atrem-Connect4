@@ -16,11 +16,14 @@ public class Connect4 {
 
 	public static void main(String[] args) {
 		gameFactory = new GameFactory();
-		config = new SwingConfig();
-		config.setDBox(gameFactory);
+		config = new SwingConfig(gameFactory);
+		config.setDBox();
 		gameFactory.createPlayerGame();
 		while (!saved) {
-			Thread.currentThread().wait();
+			try {
+				Thread.currentThread().wait();
+			} catch (InterruptedException e) {
+			}
 		}
 		gameFactory.loadGameController();
 		gameController = gameFactory.getGameController();

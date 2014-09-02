@@ -56,14 +56,10 @@ public class DialogSettingsBox extends JDialog {
 	}
 
 	private SwingConfig swingConfig;
-	private JLabel PlayerLbl1;
-	private JLabel playerLbl2;
-	private JRadioButton rdbtnConsole1;
-	private JRadioButton rdbtnSwing1;
-	private JRadioButton rdbtnNet1;
-	private JRadioButton rdbtnConsole2;
-	private JRadioButton rdbtnSwing2;
-	private JRadioButton rdbtnNet2;
+	private JLabel PlayerLbl1, playerLbl2;
+	private JRadioButton rdbtnConsole1, rdbtnSwing1, rdbtnNet1, rdbtnConsole2,
+			rdbtnSwing2, rdbtnNet2;
+	ButtonGroup pl1BoardType, pl2BoardType;
 
 	/**
 	 * Create the settings dialog.
@@ -73,23 +69,11 @@ public class DialogSettingsBox extends JDialog {
 	public DialogSettingsBox(SwingConfig swingConfig) {
 		this.swingConfig = swingConfig;
 		setTitle("Connect4 Settings");
-		setBounds(100, 100, 404, 443);
+		setBounds(100, 100, 400, 450);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		ButtonGroup pl1BoardType = new ButtonGroup();
-		{
-			pl1BoardType.add(rdbtnConsole1);
-			pl1BoardType.add(rdbtnSwing1);
-			pl1BoardType.add(rdbtnNet1);
-		}
-		ButtonGroup pl2BoardType = new ButtonGroup();
-		{
-			pl1BoardType.add(rdbtnConsole2);
-			pl1BoardType.add(rdbtnSwing2);
-			pl1BoardType.add(rdbtnNet2);
-		}
 		{
 			LabelSetPlayers = new JLabel("     Ustawienia graczy      ");
 			LabelSetPlayers.setFont(new Font("Tahoma", Font.PLAIN, 24));
@@ -168,7 +152,7 @@ public class DialogSettingsBox extends JDialog {
 			TxtRows.setColumns(10);
 		}
 		{
-			PlayerLbl1 = new JLabel("Gracz 1:");
+			PlayerLbl1 = new JLabel("Gracz 1: ");
 			contentPanel.add(PlayerLbl1);
 		}
 		{
@@ -180,11 +164,11 @@ public class DialogSettingsBox extends JDialog {
 			contentPanel.add(rdbtnSwing1);
 		}
 		{
-			rdbtnNet1 = new JRadioButton("Multi");
+			rdbtnNet1 = new JRadioButton("Multiplayer");
 			contentPanel.add(rdbtnNet1);
 		}
 		{
-			playerLbl2 = new JLabel("Gracz 2:");
+			playerLbl2 = new JLabel("Gracz 2: ");
 			contentPanel.add(playerLbl2);
 		}
 		{
@@ -196,7 +180,7 @@ public class DialogSettingsBox extends JDialog {
 			contentPanel.add(rdbtnSwing2);
 		}
 		{
-			rdbtnNet2 = new JRadioButton("Multi");
+			rdbtnNet2 = new JRadioButton("Multiplayer");
 			contentPanel.add(rdbtnNet2);
 		}
 		{
@@ -243,6 +227,20 @@ public class DialogSettingsBox extends JDialog {
 				cancelButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
 				buttonPane.add(cancelButton);
+			}
+			{
+				pl1BoardType = new ButtonGroup();
+				pl2BoardType = new ButtonGroup();
+			}
+			{
+				pl1BoardType.add(rdbtnConsole1);
+				pl1BoardType.add(rdbtnSwing1);
+				pl1BoardType.add(rdbtnNet1);
+			}
+			{
+				pl2BoardType.add(rdbtnConsole2);
+				pl2BoardType.add(rdbtnSwing2);
+				pl2BoardType.add(rdbtnNet2);
 			}
 		}
 	}
