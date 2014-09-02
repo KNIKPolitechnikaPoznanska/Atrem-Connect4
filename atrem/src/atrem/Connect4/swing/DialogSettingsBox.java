@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import atrem.Connect4.Connect4Swing;
+import atrem.Connect4.Game.GameFactory;
 
 public class DialogSettingsBox extends JDialog {
 	/**
@@ -59,14 +60,16 @@ public class DialogSettingsBox extends JDialog {
 	private JRadioButton rdbtnConsole1, rdbtnSwing1, rdbtnNet1, rdbtnConsole2,
 			rdbtnSwing2, rdbtnNet2;
 	ButtonGroup pl1BoardType, pl2BoardType;
+	private GameFactory gameFactory;
 
 	/**
 	 * Create the settings dialog.
 	 * 
 	 * @param swingConfig
 	 */
-	public DialogSettingsBox(SwingConfig swingConfig) {
+	public DialogSettingsBox(SwingConfig swingConfig, GameFactory gameFactory) {
 		this.swingConfig = swingConfig;
+		this.gameFactory = gameFactory;
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setTitle("Connect4 Settings");
 		setBounds(100, 100, 400, 450);
@@ -347,7 +350,7 @@ public class DialogSettingsBox extends JDialog {
 	private void startButtonPressed() {
 		if (saveSettings()) {
 			swingConfig.setupSettings();
-			new Connect4Swing().init();
+			new Connect4Swing().init(swingConfig, gameFactory);
 			dispose();
 		}
 	}

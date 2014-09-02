@@ -100,7 +100,7 @@ public class GameFactory {
 	}
 
 	public void createPlayerGame() {
-
+		System.out.println(opponent);
 		if (opponent.equalsIgnoreCase("K")) // pytanie czy jak to dizala i czy
 											// dziala z DialogBoxem MIELOCH
 			player2 = new MediumPC(player2name, HoleState.PLAYER2,

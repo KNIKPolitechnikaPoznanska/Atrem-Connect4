@@ -18,11 +18,9 @@ public class Connect4Swing {
 		config.setDBox();
 	}
 
-	public void init() {
-
-	}
-
-	public static void runGame() {
+	public void init(SwingConfig config, GameFactory gameFactory) {
+		// this.config = config;
+		// this.gameFactory = gameFactory;
 		config.setupGameFactory();
 		gameFactory.createGame("swing");
 		gameFactory.loadGameController();
