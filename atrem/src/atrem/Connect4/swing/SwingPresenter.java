@@ -6,7 +6,7 @@ import javax.swing.JLabel;
 
 import Test.GameBoard;
 import atrem.Connect4.Game.GameController;
-import atrem.Connect4.Game.PlayerTurn;
+import atrem.Connect4.Game.PlayerId;
 import atrem.Connect4.Game.ResultState;
 import atrem.Connect4.Game.board.HoleState;
 import atrem.Connect4.Game.player.PlayerAttributes;
@@ -16,7 +16,7 @@ public class SwingPresenter implements PlayerController {
 
 	private int Slots; // niepotrzebne. wystarczy odnosnik na GC
 	private int Rows;//
-	private PlayerTurn playerTurn;//
+	private PlayerId playerTurn;//
 	private int LastRow;//
 	private int LastSlot; // do GC
 	private int emptySpot;//
@@ -27,7 +27,7 @@ public class SwingPresenter implements PlayerController {
 	private JLabel pl1Label, pl2Label; // do View
 	private PlayerAttributes playerAttributes;
 
-	public SwingPresenter(String im, HoleState playerId) {
+	public SwingPresenter(String im, PlayerId playerId) {
 		playerAttributes = new PlayerAttributes(im, playerId);
 	}
 
@@ -75,8 +75,8 @@ public class SwingPresenter implements PlayerController {
 																	// playerturn
 																	// do
 																	// playercontroller
-					changeDispTurn(playerTurn.getNumber()); // number
-															// niepotrzebne
+					changeDispTurn(playerTurn); // number
+												// niepotrzebne
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

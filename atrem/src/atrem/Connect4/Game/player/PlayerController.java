@@ -1,7 +1,7 @@
 package atrem.Connect4.Game.player;
 
 import atrem.Connect4.Game.GameController;
-import atrem.Connect4.Game.board.HoleState;
+import atrem.Connect4.Game.PlayerId;
 
 public interface PlayerController {
 
@@ -9,7 +9,7 @@ public interface PlayerController {
 
 	public abstract void setName(String name);
 
-	public abstract HoleState getPlayerId();
+	public abstract PlayerId getPlayerId();
 
 	public abstract void yourTurn();
 
