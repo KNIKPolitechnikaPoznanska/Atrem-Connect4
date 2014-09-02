@@ -2,6 +2,8 @@ package atrem.Connect4.swing;
 
 import javax.swing.JDialog;
 
+import atrem.Connect4.Game.GameFactory;
+
 /*
  * Pobiera od gracza wszystkie informacje
  * wymagane do uruchomienia gry
@@ -34,6 +36,16 @@ public class SwingConfig {
 			setOpponent("K");
 		} else
 			setOpponent("C");
+	}
+
+	public void setupGameFactory(GameFactory gameFactory) {
+		gameFactory.setRows(rows);
+		gameFactory.setSlots(slots);
+		gameFactory.setOpponent(opponent);
+		gameFactory.setPlayer1Name(player1name);
+		gameFactory.setPlayer2Name(player2name);
+		gameFactory.setBoard();
+
 	}
 
 	public String getOpponent() {
