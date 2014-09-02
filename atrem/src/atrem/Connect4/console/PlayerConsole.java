@@ -4,7 +4,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import atrem.Connect4.Game.GameController;
-import atrem.Connect4.Game.board.HoleState;
+import atrem.Connect4.Game.PlayerId;
 import atrem.Connect4.Game.player.PlayerAttributes;
 import atrem.Connect4.Game.player.PlayerController;
 
@@ -22,7 +22,7 @@ public class PlayerConsole implements PlayerController {
 	private GUIConsole guiConsole;
 
 	public PlayerConsole(GameController gamecontroller, String name,
-			HoleState playerId) {
+			PlayerId playerId) {
 		playerAttributes = new PlayerAttributes();
 		playerAttributes.setName(name);
 		playerAttributes.setPlayerId(playerId);
@@ -43,7 +43,7 @@ public class PlayerConsole implements PlayerController {
 	}
 
 	@Override
-	public HoleState getPlayerId() {
+	public PlayerId getPlayerId() {
 		return playerAttributes.getPlayerId();
 	}
 
