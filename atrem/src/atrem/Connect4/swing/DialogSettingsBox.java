@@ -18,7 +18,6 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import atrem.Connect4.Connect4Swing;
-import atrem.Connect4.classtempbacups.DBoxSettPrev;
 
 public class DialogSettingsBox extends JDialog {
 	/**
@@ -26,7 +25,7 @@ public class DialogSettingsBox extends JDialog {
 	 */
 	private static final long serialVersionUID = 973461278407448042L;
 	private final JPanel contentPanel = new JPanel();
-	private static DBoxSettPrev dialog;
+	private static DialogSettingsBox dialog;
 	private JTextField pl2Txt, pl1Txt, TxtSlots, TxtRows;
 	private JButton startButton, btnDefault, cancelButton;
 	private JPanel buttonPane;
