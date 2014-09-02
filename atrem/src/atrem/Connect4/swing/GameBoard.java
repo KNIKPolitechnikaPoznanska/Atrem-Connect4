@@ -104,4 +104,8 @@ public class GameBoard extends JPanel {
 		for (int tempSlot = 0; tempSlot < slots; tempSlot++)
 			button[tempSlot].setEnabled(parameter);
 	}
+
+	public void changeTokenVisibility() {
+
+	}
 }
