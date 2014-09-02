@@ -18,7 +18,13 @@ public class GameController {
 		this.result = result;
 	}
 
-	public Logic getLogic() {
+	public Logic getLogic() { // czy powienien sie tworzyc w getterze nowy
+								// obiekt logic? PAWE£ w Call Hierarchy widac ze
+								// logica tworzy sie tylko przy stworzeniu
+								// kompa, do tego logica w konstrukotrze pobiera
+								// slot i rows z boarda w GC. Teraz logica jest
+								// tworzona(?) przed boardem
+								// PAWEL
 		logic = new Logic(this);
 		return logic;
 	}

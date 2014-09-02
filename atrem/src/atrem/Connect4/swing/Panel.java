@@ -8,7 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Panel extends JPanel {
+public class Panel extends JPanel { // nazwa niejasna PAWE£
 
 	/**
 	 * Serial
@@ -24,10 +24,13 @@ public class Panel extends JPanel {
 	private ResourceLoader iconResource = new ResourceLoader();
 	private int freeRow;
 
-	public Panel(SwingPresenter swingPresenter) {
+	public Panel(SwingPresenter swingPresenter) { // SZTYWNE. ZAMIENIC/DOKONCZYC
+													// PAWE£
 		rows = 6;
 		slots = 7;
-		// this.rows = swingPresenter.getRows();
+		// this.rows = swingPresenter.getRows(); //swingPresenter ma stracic te
+		// pola i ma byc to w GC. Tak, wlasnie skomentowalem komentarz...
+		// PAWE£
 		// this.slots = swingPresenter.getSlots();
 		this.swingPresenter = swingPresenter;
 
@@ -59,9 +62,16 @@ public class Panel extends JPanel {
 		/**
 		 * rowsy z slotsami zamienione miejscami na potrzebe jlabela
 		 */
-		for (int tempRow = 0; tempRow < rows; tempRow++) {
+		for (int tempRow = 0; tempRow < rows; tempRow++) { // czy to jest
+															// jednorazowe
+															// rysowanie? bo
+															// jest to w
+															// konsrtuktorze
+															// PAWE£
 			for (int tempSlot = 0; tempSlot < slots; tempSlot++) {
-				Plansza[tempRow][tempSlot] = new JLabel();
+				Plansza[tempRow][tempSlot] = new JLabel();// SZTYWNE.
+															// ZAMIENIC/DOKONCZYC
+															// PAWE£
 				add(Plansza[tempRow][tempSlot]);
 				// iconResource.setLabelH((int) Plansza[tempRow][tempSlot]
 				// .getSize().getHeight());

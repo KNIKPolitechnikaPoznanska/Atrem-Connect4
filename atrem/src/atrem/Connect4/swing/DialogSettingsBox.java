@@ -171,7 +171,7 @@ public class DialogSettingsBox extends JDialog implements ActionListener {
 			System.exit(0);
 			break;
 		// nie wiadomo czy po odznaczniu zmieni sie wartosc - sprawdzanie przy
-		// kliknieciu start ?
+		// kliknieciu start ? PAWE£&BARTEK
 		case "markCPU":
 			setCPU(CPUmark.getModel().isSelected());
 			break;
@@ -190,7 +190,7 @@ public class DialogSettingsBox extends JDialog implements ActionListener {
 		setPl1Name(pl1Txt.getText());
 		setPl2Name(pl2Txt.getText());
 		System.out.println(getPl1Name());
-		// pytanie do Tomka/£ukasza
+		// pytanie do Tomka/£ukasza PAWE£&BARTEK
 		try {
 			setSlots(Integer.parseInt(TxtSlots.getText()));
 			setRows(Integer.parseInt(TxtRows.getText()));
