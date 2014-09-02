@@ -22,7 +22,7 @@ public class SwingPresenter implements PlayerController {
 	private int emptySpot;//
 	private ResultState result;//
 	private GameController gameController;
-	private Panel panel; // wywaliæ
+	private SwingBoard panel; // wywaliæ
 	private GameFrame gameFrame;
 	private JLabel pl1Label, pl2Label; // do View
 	private PlayerAttributes playerAttributes;

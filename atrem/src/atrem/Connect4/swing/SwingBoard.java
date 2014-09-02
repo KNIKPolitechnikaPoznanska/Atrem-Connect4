@@ -8,7 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Panel extends JPanel { // nazwa niejasna PAWE£
+public class SwingBoard extends JPanel { // nazwa niejasna PAWE£
 
 	/**
 	 * Serial
@@ -24,7 +24,7 @@ public class Panel extends JPanel { // nazwa niejasna PAWE£
 	private ResourceLoader iconResource = new ResourceLoader();
 	private int freeRow;
 
-	public Panel(SwingPresenter swingPresenter) { // SZTYWNE. ZAMIENIC/DOKONCZYC
+	public SwingBoard(SwingPresenter swingPresenter) { // SZTYWNE. ZAMIENIC/DOKONCZYC
 													// PAWE£
 		rows = 6;
 		slots = 7;
@@ -62,12 +62,7 @@ public class Panel extends JPanel { // nazwa niejasna PAWE£
 		/**
 		 * rowsy z slotsami zamienione miejscami na potrzebe jlabela
 		 */
-		for (int tempRow = 0; tempRow < rows; tempRow++) { // czy to jest
-															// jednorazowe
-															// rysowanie? bo
-															// jest to w
-															// konsrtuktorze
-															// PAWE£
+		for (int tempRow = 0; tempRow < rows; tempRow++) {
 			for (int tempSlot = 0; tempSlot < slots; tempSlot++) {
 				Plansza[tempRow][tempSlot] = new JLabel();// SZTYWNE.
 															// ZAMIENIC/DOKONCZYC

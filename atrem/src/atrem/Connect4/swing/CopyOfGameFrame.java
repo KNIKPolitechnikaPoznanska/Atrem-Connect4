@@ -11,7 +11,7 @@ public class CopyOfGameFrame extends JFrame {
 	 * Serial
 	 */
 	private static final long serialVersionUID = 9162854519449667347L;
-	private Panel panel;
+	private SwingBoard panel;
 	private StatsPanel statsPanel;
 
 	/**
@@ -23,7 +23,7 @@ public class CopyOfGameFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(200, 200, 550, 300);
 		Container mainContainer = getContentPane();
-		panel = new Panel(swingPresenter);
+		panel = new SwingBoard(swingPresenter);
 		statsPanel = new StatsPanel(swingPresenter);
 		mainContainer.setLayout(new BorderLayout(0, 0));
 		mainContainer.add(panel, BorderLayout.CENTER);
@@ -31,7 +31,7 @@ public class CopyOfGameFrame extends JFrame {
 		swingPresenter.getFrame(this);
 	}
 
-	public Panel getPanel() {
+	public SwingBoard getPanel() {
 		return panel;
 	}
 

@@ -19,7 +19,7 @@ public class GameFactory {
 	private SwingConfig swingconfig; // swing opt
 	private String im2, im1; // niejasna nazwa PAWE£
 	private String opponent;
-	private int slot, row;
+	private int slots, rows;
 	private GameController gameController;
 
 	public void createGame(String gameType) {
@@ -42,24 +42,20 @@ public class GameFactory {
 		im1 = menu.getPlayer1name();
 		im2 = menu.getPlayer2name();
 		opponent = menu.getOpponent();
-		slot = menu.getSlots();
-		row = menu.getRows();
+		slots = menu.getSlots();
+		rows = menu.getRows();
 	}
 
 	public void readInfoConfig() { // swing
-		this.board = new Board(swingconfig.getRows(), swingconfig.getSlots());
+		slots = swingconfig.getSlots();
+		rows = swingconfig.getRows();
+		this.board = new Board(rows, slots);
 		im1 = swingconfig.getPlayer1name();
 		im2 = swingconfig.getPlayer2name();
 		opponent = swingconfig.getOpponent();
-		slot = swingconfig.getSlots();
-		row = swingconfig.getRows();
-		// nie lepiej "wypelnic" row i slot i z tego utworzyc plansze zamiast
-		// get ze swinga 2 razy?
 	}
 
-	public void createPlayerGame() { // nigdzie nie jest wywolywane dlatego
-										// pleyer 1 null MIELOCH
-
+	public void createPlayerGame() {
 		if (opponent.equalsIgnoreCase("K")) // pytanie czy jak to dizala i czy
 											// dziala z DialogBoxem MIELOCH
 			player2 = new MediumPC(im2, HoleState.PLAYER2, gameController,

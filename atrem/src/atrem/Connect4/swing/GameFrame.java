@@ -12,7 +12,7 @@ public class GameFrame extends JFrame {
 	 */
 	private static final long serialVersionUID = -1454524828392484548L;
 	SwingPresenter swingPresenter;
-	private Panel panel;
+	private SwingBoard panel;
 	Boczny boczny;
 
 	/**
@@ -24,7 +24,7 @@ public class GameFrame extends JFrame {
 
 		Container mainContainer = getContentPane();
 		getContentPane().setLayout(null);
-		panel = new Panel(swingPresenter);
+		panel = new SwingBoard(swingPresenter);
 		panel.setBackground(new Color(255, 255, 255));
 		panel.setBounds(10, 0, 330, 282);
 		mainContainer.add(panel);
@@ -35,7 +35,7 @@ public class GameFrame extends JFrame {
 
 	}
 
-	public Panel getPanel() {
+	public SwingBoard getPanel() {
 		return panel;
 	}
 
