@@ -18,10 +18,6 @@ public class Connect4Swing {
 		config.setDBox();
 	}
 
-	public void init() {
-
-	}
-
 	public static void runGame() {
 		config.setupGameFactory();
 		gameFactory.createGame("swing");

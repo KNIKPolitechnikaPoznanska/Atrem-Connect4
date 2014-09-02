@@ -1,9 +1,7 @@
 package atrem.Connect4.Game;
 
 import atrem.Connect4.Game.board.Board;
-import atrem.Connect4.Game.board.HoleState;
 import atrem.Connect4.Game.player.PlayerController;
-import atrem.Connect4.Game.player.ai.MediumPC;
 import atrem.Connect4.console.Menu;
 import atrem.Connect4.swing.SwingConfig;
 import atrem.Connect4.swing.SwingPresenter;
@@ -101,13 +99,14 @@ public class GameFactory {
 
 	public void createPlayerGame() {
 
-		if (opponent.equalsIgnoreCase("K")) // pytanie czy jak to dizala i czy
-											// dziala z DialogBoxem MIELOCH
-			player2 = new MediumPC(player2name, HoleState.PLAYER2,
-					gameController, gameController.getLogic());
-		else
-			player2 = new SwingPresenter(swingconfig.getPlayer2name(),
-					PlayerId.Player2, gameController);
+		// // if (opponent.equalsIgnoreCase("K")) // pytanie czy jak to dizala i
+		// czy
+		// // // dziala z DialogBoxem MIELOCH
+		// // player2 = new MediumPC(player2name, HoleState.PLAYER2,
+		// // gameController, gameController.getLogic());
+		// else
+		player2 = new SwingPresenter(swingconfig.getPlayer2name(),
+				PlayerId.Player2, gameController);
 		player1 = new SwingPresenter(swingconfig.getPlayer1name(),
 				PlayerId.Player1, gameController);
 
