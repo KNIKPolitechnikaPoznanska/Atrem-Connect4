@@ -6,27 +6,25 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import atrem.Connect4.Connect4Swing;
 
 public class DialogSettingsBox extends JDialog {
-
 	/**
 	 * Serial
 	 */
 	private static final long serialVersionUID = 973461278407448042L;
 	private final JPanel contentPanel = new JPanel();
-	/**
-	 * Okno dialgowe wyswietlajace "zle podana liczbe".
-	 */
 	private static DialogSettingsBox dialog;
 	private JTextField pl2Txt, pl1Txt, TxtSlots, TxtRows;
 	private JButton startButton, btnDefault, cancelButton;
@@ -38,7 +36,29 @@ public class DialogSettingsBox extends JDialog {
 			pl2Name;
 	private int defSlots = 7, defRows = 6, slots, rows;
 	private boolean CPU;
+	private String pl1GameType, pl2GameType;
+
+	public String getPl1GameType() {
+		return pl1GameType;
+	}
+
+	public void setPl1GameType(String pl1GameType) {
+		this.pl1GameType = pl1GameType;
+	}
+
+	public String getPl2GameType() {
+		return pl2GameType;
+	}
+
+	public void setPl2GameType(String pl2GameType) {
+		this.pl2GameType = pl2GameType;
+	}
+
 	private SwingConfig swingConfig;
+	private JLabel PlayerLbl1, playerLbl2;
+	private JRadioButton rdbtnConsole1, rdbtnSwing1, rdbtnNet1, rdbtnConsole2,
+			rdbtnSwing2, rdbtnNet2;
+	ButtonGroup pl1BoardType, pl2BoardType;
 
 	/**
 	 * Create the settings dialog.
@@ -48,7 +68,7 @@ public class DialogSettingsBox extends JDialog {
 	public DialogSettingsBox(SwingConfig swingConfig) {
 		this.swingConfig = swingConfig;
 		setTitle("Connect4 Settings");
-		setBounds(100, 100, 404, 380);
+		setBounds(100, 100, 400, 450);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -131,6 +151,38 @@ public class DialogSettingsBox extends JDialog {
 			TxtRows.setColumns(10);
 		}
 		{
+			PlayerLbl1 = new JLabel("Gracz 1: ");
+			contentPanel.add(PlayerLbl1);
+		}
+		{
+			rdbtnConsole1 = new JRadioButton("Console");
+			contentPanel.add(rdbtnConsole1);
+		}
+		{
+			rdbtnSwing1 = new JRadioButton("Swing");
+			contentPanel.add(rdbtnSwing1);
+		}
+		{
+			rdbtnNet1 = new JRadioButton("Multiplayer");
+			contentPanel.add(rdbtnNet1);
+		}
+		{
+			playerLbl2 = new JLabel("Gracz 2: ");
+			contentPanel.add(playerLbl2);
+		}
+		{
+			rdbtnConsole2 = new JRadioButton("Console");
+			contentPanel.add(rdbtnConsole2);
+		}
+		{
+			rdbtnSwing2 = new JRadioButton("Swing");
+			contentPanel.add(rdbtnSwing2);
+		}
+		{
+			rdbtnNet2 = new JRadioButton("Multiplayer");
+			contentPanel.add(rdbtnNet2);
+		}
+		{
 			buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
@@ -175,34 +227,64 @@ public class DialogSettingsBox extends JDialog {
 
 				buttonPane.add(cancelButton);
 			}
+			{
+				pl1BoardType = new ButtonGroup();
+				pl2BoardType = new ButtonGroup();
+			}
+			{
+				pl1BoardType.add(rdbtnConsole1);
+				pl1BoardType.add(rdbtnSwing1);
+				pl1BoardType.add(rdbtnNet1);
+			}
+			{
+				pl2BoardType.add(rdbtnConsole2);
+				pl2BoardType.add(rdbtnSwing2);
+				pl2BoardType.add(rdbtnNet2);
+			}
 		}
-	}
-
-	private void cpuCheckBoxCheck() {
-		setCPU(CPUmark.getModel().isSelected());
 	}
 
 	private void cancelButtonPressed() {
 		System.exit(0);
 	}
 
+	private void cpuCheckBoxCheck() {
+		setCPU(CPUmark.getModel().isSelected());
+	}
+
 	private void defalutButtonPressed() {
 		setDefaults();
 	}
 
-	private void startButtonPressed() {
-		if (saveSettings()) {
-			swingConfig.setSettings();
-			new Connect4Swing().run();
-			dispose();
-		}
+	public JCheckBox getIsCPU() {
+		return CPUmark;
+	}
+
+	public String getPl1Name() {
+		return pl1Name;
+	}
+
+	public String getPl2Name() {
+		return pl2Name;
+	}
+
+	public int getRows() {
+		return rows;
+	}
+
+	public int getSlots() {
+		return slots;
+	}
+
+	public boolean isCPU() {
+		return CPU;
 	}
 
 	protected boolean saveSettings() {
 		setPl1Name(pl1Txt.getText());
 		setPl2Name(pl2Txt.getText());
-		System.out.println(getPl1Name());
-		// pytanie do Tomka/£ukasza PAWE£&BARTEK
+
+		// mo¿na bez wyj¹tku? PAWE£&BARTEK
 		try {
 			setSlots(Integer.parseInt(TxtSlots.getText()));
 			setRows(Integer.parseInt(TxtRows.getText()));
@@ -211,11 +293,26 @@ public class DialogSettingsBox extends JDialog {
 					"Wpisz poprawn¹ wartoœæ pola!");
 			return false;
 		}
+
 		if (getSlots() < 4 || getRows() < 4) {
 			JOptionPane.showMessageDialog(dialog, "Sloty i Wiersze > 4!");
 			return false;
-		} else
-			return true;
+		}
+
+		if (rdbtnConsole1.isSelected())
+			setPl1GameType("console");
+		if (rdbtnConsole2.isSelected())
+			setPl2GameType("console");
+		if (rdbtnSwing1.isSelected())
+			setPl1GameType("swing");
+		if (rdbtnSwing2.isSelected())
+			setPl2GameType("swing");
+
+		return true;
+	}
+
+	public void setCPU(boolean cPU) {
+		CPU = cPU;
 	}
 
 	protected void setDefaults() {
@@ -225,51 +322,31 @@ public class DialogSettingsBox extends JDialog {
 		TxtRows.setText(Integer.toString(defRows));
 	}
 
-	public JCheckBox getIsCPU() {
-		return CPUmark;
-	}
-
 	public void setIsCPU(JCheckBox isCPU) {
 		this.CPUmark = isCPU;
-	}
-
-	public String getPl1Name() {
-		return pl1Name;
 	}
 
 	public void setPl1Name(String pl1Name) {
 		this.pl1Name = pl1Name;
 	}
 
-	public String getPl2Name() {
-		return pl2Name;
-	}
-
 	public void setPl2Name(String pl2Name) {
 		this.pl2Name = pl2Name;
-	}
-
-	public int getSlots() {
-		return slots;
-	}
-
-	public void setSlots(int slots) {
-		this.slots = slots;
-	}
-
-	public int getRows() {
-		return rows;
 	}
 
 	public void setRows(int rows) {
 		this.rows = rows;
 	}
 
-	public boolean isCPU() {
-		return CPU;
+	public void setSlots(int slots) {
+		this.slots = slots;
 	}
 
-	public void setCPU(boolean cPU) {
-		CPU = cPU;
+	private void startButtonPressed() {
+		if (saveSettings()) {
+			swingConfig.setSettings();
+			new Connect4Swing().init();
+			dispose();
+		}
 	}
 }

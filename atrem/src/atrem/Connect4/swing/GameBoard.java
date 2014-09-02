@@ -85,10 +85,6 @@ public class GameBoard extends JPanel {
 		swingPresenter.getSlotFromView(chosenSlot);
 	}
 
-	public int giveSlot() {
-		return chosenSlot;
-	}
-
 	public void setFreeRow(int row, int slot, int ID) {
 		this.freeRow = row;
 		this.playerID = ID;
@@ -102,5 +98,14 @@ public class GameBoard extends JPanel {
 		// // Plansza[1][1].setIcon(iconResource.get(1));
 		// Plansza[i][j].setText("chuj");
 		// }
+	}
+
+	public void disableButtons(boolean parameter) {
+		for (int tempSlot = 0; tempSlot < slots; tempSlot++)
+			button[tempSlot].setEnabled(parameter);
+	}
+
+	public void changeTokenVisibility() {
+
 	}
 }

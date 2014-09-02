@@ -12,8 +12,8 @@ public class GameFrame extends JFrame {
 	 */
 	private static final long serialVersionUID = -1454524828392484548L;
 	SwingPresenter swingPresenter;
-	private SwingBoard board;
-	SideBoard sideBoard;
+	private GameBoard board;
+	GameSideBoard sideBoard;
 
 	/**
 	 * Create the frame.
@@ -25,26 +25,26 @@ public class GameFrame extends JFrame {
 
 		Container mainContainer = getContentPane();
 		getContentPane().setLayout(null);
-		board = new SwingBoard(swingPresenter);
+		board = new GameBoard(swingPresenter);
 		board.setBackground(new Color(255, 255, 255));
 		board.setBounds(10, 0, 330, 282);
 		mainContainer.add(board);
-		sideBoard = new SideBoard();
+		sideBoard = new GameSideBoard();
 		sideBoard.setBounds(340, 0, 186, 262);
 
 		getContentPane().add(sideBoard);
 
 	}
 
-	public SwingBoard getPanel() {
+	public GameBoard getPanel() {
 		return board;
 	}
 
-	public SideBoard getBoczny() {
+	public GameSideBoard getBoczny() {
 		return sideBoard;
 	}
 
-	public void setBoczny(SideBoard boczny) {
+	public void setBoczny(GameSideBoard boczny) {
 		this.sideBoard = boczny;
 	}
 }
