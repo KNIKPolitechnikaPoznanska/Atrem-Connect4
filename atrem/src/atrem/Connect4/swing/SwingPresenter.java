@@ -23,7 +23,7 @@ public class SwingPresenter implements PlayerController {
 	private ResultState result;
 	private GameController gameController;
 	private Panel panel;
-	private StatsPanel statsPanel;
+	// private Boczny statsPanel;
 	private GameFrame gameFrame;
 	private JLabel pl1Label, pl2Label;
 	private PlayerAttributes playerAttributes;
@@ -81,6 +81,7 @@ public class SwingPresenter implements PlayerController {
 		});
 	}
 
+	@Override
 	public void goView(int Row, int Slot) {
 		changeDispTurn(gameController.getPlayerTurn().getNumber());
 		panel.setFreeRow(Row, Slot, gameController.getPlayerTurn().getNumber());
@@ -88,9 +89,9 @@ public class SwingPresenter implements PlayerController {
 
 	public void setPanels() {
 		panel = gameFrame.getPanel();
-		statsPanel = gameFrame.getStatsPanel();
-		pl1Label = statsPanel.getPl1Label();
-		pl2Label = statsPanel.getPl2Label();
+		// statsPanel = gameFrame.getBoczny();
+		// pl1Label = statsPanel.getPl1Label();
+		// pl2Label = statsPanel.getPl2Label();
 		setNames();
 	}
 

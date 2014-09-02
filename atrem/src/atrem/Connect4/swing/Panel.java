@@ -20,7 +20,7 @@ public class Panel extends JPanel {
 	private JButton[] button;
 	private int PlayerID;
 	private SwingPresenter swingPresenter;
-	private int chosenSlot;
+	private int chosenSlot = 1;
 	private ResourceLoader iconResource = new ResourceLoader();
 	private int freeRow;
 
@@ -47,7 +47,8 @@ public class Panel extends JPanel {
 					for (int tempSlot = 0; tempSlot < slots; tempSlot++) {
 						if (s == button[tempSlot]) {
 							chosenSlot = tempSlot;
-							getGUISlot();
+							// getGUISlot();
+							PlayerID = 1;
 							Plansza[freeRow][tempSlot].setIcon(iconResource
 									.get(PlayerID));
 						}
