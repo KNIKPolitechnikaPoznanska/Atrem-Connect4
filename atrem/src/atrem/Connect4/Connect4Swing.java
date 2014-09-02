@@ -23,9 +23,8 @@ public class Connect4Swing {
 	}
 
 	public static void runGame() {
-		gameFactory.setSwingconfig(config);
+		config.setupGameFactory(gameFactory);
 		gameFactory.createGame("swing");
-		gameFactory.createPlayerGame();
 		gameFactory.loadGameController();
 		gameController = gameFactory.getGameController();
 		gameController.gameLoop();

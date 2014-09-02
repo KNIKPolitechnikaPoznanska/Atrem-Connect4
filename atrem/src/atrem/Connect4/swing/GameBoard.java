@@ -8,7 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Panel extends JPanel {
+public class GameBoard extends JPanel {
 
 	/**
 	 * Serial
@@ -16,15 +16,15 @@ public class Panel extends JPanel {
 	private static final long serialVersionUID = -7328887218009010574L;
 	private int rows;
 	private int slots;
-	private JLabel[][] Plansza;
+	private JLabel[][] board;
 	private JButton[] button;
-	private int PlayerID;
+	private int playerID;
 	private SwingPresenter swingPresenter;
 	private int chosenSlot = 1;
 	private ResourceLoader iconResource = new ResourceLoader();
 	private int freeRow;
 
-	public Panel(SwingPresenter swingPresenter) {
+	public GameBoard(SwingPresenter swingPresenter) {
 		rows = 6;
 		slots = 7;
 		// this.rows = swingPresenter.getRows();
@@ -33,7 +33,7 @@ public class Panel extends JPanel {
 
 		setLayout(new GridLayout(rows + 1, slots));
 
-		Plansza = new JLabel[rows][slots];
+		board = new JLabel[rows][slots];
 		button = new JButton[slots];
 
 		for (int tempSlot = 0; tempSlot < slots; tempSlot++) {
@@ -48,9 +48,9 @@ public class Panel extends JPanel {
 						if (s == button[tempSlot]) {
 							chosenSlot = tempSlot;
 							// getGUISlot(); // zmieniæ na send
-							
-							Plansza[freeRow][tempSlot].setIcon(iconResource
-									.get(PlayerID));
+
+							board[freeRow][tempSlot].setIcon(iconResource
+									.get(playerID));
 						}
 					}
 				}
@@ -61,13 +61,13 @@ public class Panel extends JPanel {
 		 */
 		for (int tempRow = 0; tempRow < rows; tempRow++) {
 			for (int tempSlot = 0; tempSlot < slots; tempSlot++) {
-				Plansza[tempRow][tempSlot] = new JLabel();
-				add(Plansza[tempRow][tempSlot]);
+				board[tempRow][tempSlot] = new JLabel();
+				add(board[tempRow][tempSlot]);
 				// iconResource.setLabelH((int) Plansza[tempRow][tempSlot]
 				// .getSize().getHeight());
 				// iconResource.setLabelW((int) Plansza[tempRow][tempSlot]
 				// .getSize().getWidth());
-				Plansza[tempRow][tempSlot].setIcon(iconResource.get(0));
+				board[tempRow][tempSlot].setIcon(iconResource.get(0));
 			}
 		}
 
@@ -87,11 +87,21 @@ public class Panel extends JPanel {
 
 	public void setFreeRow(int row, int slot, int ID) {
 		this.freeRow = row;
-		this.PlayerID = ID;
+		this.playerID = ID;
 	}
 
-	// void placeTokenInSlot(int slot) {
-	// // Plansza[1][1].setIcon(iconResource.get(1));
-	// Plansza[i][j].setText("chuj");
-	// }
+	public void setBoardSize(int rows, int slots) {
+		this.rows = rows;
+		this.slots = slots;
+
+		// void placeTokenInSlot(int slot) {
+		// // Plansza[1][1].setIcon(iconResource.get(1));
+		// Plansza[i][j].setText("chuj");
+		// }
+	}
+
+	public void disableButtons(boolean parameter) {
+		for (int tempSlot = 0; tempSlot < slots; tempSlot++)
+			button[tempSlot].setEnabled(parameter);
+	}
 }

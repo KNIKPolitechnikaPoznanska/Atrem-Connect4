@@ -8,7 +8,6 @@ import Test.GameBoard;
 import atrem.Connect4.Game.GameController;
 import atrem.Connect4.Game.PlayerId;
 import atrem.Connect4.Game.ResultState;
-import atrem.Connect4.Game.board.HoleState;
 import atrem.Connect4.Game.player.PlayerAttributes;
 import atrem.Connect4.Game.player.PlayerController;
 
@@ -131,7 +130,7 @@ public class SwingPresenter implements PlayerController {
 	}
 
 	@Override
-	public HoleState getPlayerId() {
+	public PlayerId getPlayerId() {
 		return playerAttributes.getPlayerId();
 	}
 

@@ -17,7 +17,7 @@ public class GameFactory {
 	private PlayerController player1, player2;
 	private Menu menu; // console opt
 	private SwingConfig swingconfig; // swing opt
-	private String im2, im1; // niejasna nazwa PAWE£
+	private String player2name, player1name;
 	private String opponent;
 	private int slots, rows;
 	private GameController gameController;
@@ -25,10 +25,6 @@ public class GameFactory {
 	public void createGame(String gameType) {
 		if (gameType == "console")
 			this.readInfoMenu(); // niejasna nazwa PAWE£
-		else if (gameType == "swing")
-			this.readInfoConfig();
-
-		this.readInfoConfig(); // niejasna nazwa PAWE£
 	}
 
 	public void loadGameController() {
@@ -37,36 +33,84 @@ public class GameFactory {
 		gameController.setBoard(board);
 		gameController.setPlayer1(player1);
 		gameController.setPlayer2(player2);
+		gameController.setPlayerTurn(PlayerId.Player1); // narazie niech tak
+														// jest PAWEL
 
+	}
+
+	public Board getBoard() {
+		return board;
+	}
+
+	public void setBoard() {
+		board = new Board(rows, slots);
 	}
 
 	public void readInfoMenu() {
 		this.board = new Board(menu.getRows(), menu.getSlots());
-		im1 = menu.getPlayer1name();
-		im2 = menu.getPlayer2name();
+		player1name = menu.getPlayer1name();
+		player2name = menu.getPlayer2name();
 		opponent = menu.getOpponent();
 		slots = menu.getSlots();
 		rows = menu.getRows();
 	}
 
-	public void readInfoConfig() { // swing
-		slots = swingconfig.getSlots();
-		rows = swingconfig.getRows();
-		this.board = new Board(rows, slots);
-		im1 = swingconfig.getPlayer1name();
-		im2 = swingconfig.getPlayer2name();
-		opponent = swingconfig.getOpponent();
+	public String getPlayer2Name() {
+		return player2name;
+	}
+
+	public void setPlayer2Name(String player2Name) {
+		this.player2name = player2Name;
+	}
+
+	public String getPlayer1Name() {
+		return player1name;
+	}
+
+	public void setPlayer1Name(String player1Name) {
+		this.player1name = player1Name;
+	}
+
+	public int getSlots() {
+		return slots;
+	}
+
+	public void setSlots(int slots) {
+		this.slots = slots;
+	}
+
+	public int getRows() {
+		return rows;
+	}
+
+	public void setRows(int rows) {
+		this.rows = rows;
+	}
+
+	public PlayerController getPlayer1() {
+		return player1;
+	}
+
+	public PlayerController getPlayer2() {
+		return player2;
+	}
+
+	public String getOpponent() {
+		return opponent;
 	}
 
 	public void createPlayerGame() {
+
 		if (opponent.equalsIgnoreCase("K")) // pytanie czy jak to dizala i czy
 											// dziala z DialogBoxem MIELOCH
-			player2 = new MediumPC(im2, HoleState.PLAYER2, gameController,
-					gameController.getLogic());
+			player2 = new MediumPC(player2name, HoleState.PLAYER2,
+					gameController, gameController.getLogic());
 		else
-			player2 = new SwingPresenter(menu.getPlayer2name(),
-					HoleState.PLAYER2);
-		player1 = new SwingPresenter(menu.getPlayer1name(), HoleState.PLAYER1);
+			player2 = new SwingPresenter(swingconfig.getPlayer2name(),
+					PlayerId.Player2);
+		player1 = new SwingPresenter(swingconfig.getPlayer1name(),
+				PlayerId.Player1);
+
 	}
 
 	public void setOpponent(String opponent) {
