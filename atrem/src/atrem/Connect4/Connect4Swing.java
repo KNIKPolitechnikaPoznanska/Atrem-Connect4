@@ -20,7 +20,6 @@ public class Connect4Swing implements Runnable {
 	private static void runGame() {
 		gameFactory.setSwingconfig(config);
 		gameFactory.createGame("swing");
-		gameFactory.createPlayerGame();
 		gameFactory.loadGameController();
 		gameController = gameFactory.getGameController();
 		gameController.gameLoop();

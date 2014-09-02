@@ -37,6 +37,7 @@ public class GameFactory {
 		gameController.setBoard(board);
 		gameController.setPlayer1(player1);
 		gameController.setPlayer2(player2);
+		gameController.setPlayerTurn(PlayerTurn.Player1);
 
 	}
 
@@ -59,14 +60,16 @@ public class GameFactory {
 	}
 
 	public void createPlayerGame() {
+
 		if (opponent.equalsIgnoreCase("K")) // pytanie czy jak to dizala i czy
 											// dziala z DialogBoxem MIELOCH
 			player2 = new MediumPC(im2, HoleState.PLAYER2, gameController,
 					gameController.getLogic());
 		else
-			player2 = new SwingPresenter(menu.getPlayer2name(),
+			player2 = new SwingPresenter(swingconfig.getPlayer2name(),
 					HoleState.PLAYER2);
-		player1 = new SwingPresenter(menu.getPlayer1name(), HoleState.PLAYER1);
+		player1 = new SwingPresenter(swingconfig.getPlayer1name(),
+				HoleState.PLAYER1);
 	}
 
 	public void setOpponent(String opponent) {
