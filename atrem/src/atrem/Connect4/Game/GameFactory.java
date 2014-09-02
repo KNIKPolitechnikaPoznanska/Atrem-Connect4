@@ -107,9 +107,9 @@ public class GameFactory {
 					gameController, gameController.getLogic());
 		else
 			player2 = new SwingPresenter(swingconfig.getPlayer2name(),
-					PlayerId.Player2);
+					PlayerId.Player2, gameController);
 		player1 = new SwingPresenter(swingconfig.getPlayer1name(),
-				PlayerId.Player1);
+				PlayerId.Player1, gameController);
 
 	}
 
