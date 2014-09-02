@@ -33,6 +33,8 @@ public class GameFactory {
 		gameController.setBoard(board);
 		gameController.setPlayer1(player1);
 		gameController.setPlayer2(player2);
+		gameController.setPlayerTurn(PlayerId.Player1); // narazie niech tak
+														// jest PAWEL
 
 	}
 
@@ -98,6 +100,7 @@ public class GameFactory {
 	}
 
 	public void createPlayerGame() {
+
 		if (opponent.equalsIgnoreCase("K")) // pytanie czy jak to dizala i czy
 											// dziala z DialogBoxem MIELOCH
 			player2 = new MediumPC(player2name, HoleState.PLAYER2,
@@ -106,6 +109,7 @@ public class GameFactory {
 			player2 = new SwingPresenter(menu.getPlayer2name(),
 					PlayerId.Player2);
 		player1 = new SwingPresenter(menu.getPlayer1name(), PlayerId.Player1);
+
 	}
 
 	public void setOpponent(String opponent) {
