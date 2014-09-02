@@ -20,7 +20,7 @@ public class SwingConfig {
 
 	public void setDBox() {
 		try {
-			dialogBox = new DialogSettingsBox(this);
+			dialogBox = new DialogSettingsBox(this, gameFactory);
 
 		} catch (Exception e) {
 			e.printStackTrace();

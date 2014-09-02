@@ -98,6 +98,7 @@ public class GameFactory {
 	}
 
 	public void createPlayerGame() {
+<<<<<<< HEAD
 
 		// // if (opponent.equalsIgnoreCase("K")) // pytanie czy jak to dizala i
 		// czy
@@ -107,6 +108,16 @@ public class GameFactory {
 		// else
 		player2 = new SwingPresenter(swingconfig.getPlayer2name(),
 				PlayerId.Player2, gameController);
+=======
+		System.out.println(opponent);
+		if (opponent.equalsIgnoreCase("K")) // pytanie czy jak to dizala i czy
+											// dziala z DialogBoxem MIELOCH
+			player2 = new MediumPC(player2name, HoleState.PLAYER2,
+					gameController, gameController.getLogic());
+		else
+			player2 = new SwingPresenter(swingconfig.getPlayer2name(),
+					PlayerId.Player2, gameController);
+>>>>>>> branch 'master' of https://github.com/KNIKPolitechnikaPoznanska/AtremProject.git
 		player1 = new SwingPresenter(swingconfig.getPlayer1name(),
 				PlayerId.Player1, gameController);
 
