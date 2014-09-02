@@ -12,6 +12,8 @@ public class GameSideBoard extends JPanel {
 	private static final long serialVersionUID = 9208904490186715373L;
 	ResourceLoader iconResource = new ResourceLoader();
 	int PlayerID = 1;
+	String pl1Name = "Gracz1";
+	String pl2Name = "Gracz2";
 
 	public GameSideBoard() {
 
@@ -22,7 +24,7 @@ public class GameSideBoard extends JPanel {
 		add(namesAndColours);
 		namesAndColours.setLayout(null);
 
-		JLabel player1 = new JLabel("g1");
+		JLabel player1 = new JLabel(pl1Name);
 		player1.setBounds(5, 16, 91, 14);
 		namesAndColours.add(player1);
 
@@ -32,7 +34,7 @@ public class GameSideBoard extends JPanel {
 		token1.setIcon(iconResource.get(PlayerID)); // obrazek widzoczny arg
 													// plID [0-2] BARTEK
 
-		JLabel player2 = new JLabel("g2");
+		JLabel player2 = new JLabel(pl2Name);
 		player2.setBounds(5, 78, 91, 14);
 		namesAndColours.add(player2);
 
@@ -40,10 +42,6 @@ public class GameSideBoard extends JPanel {
 		token2.setBounds(119, 65, 40, 40);
 		namesAndColours.add(token2);
 		token2.setIcon(null); // do metody bez obrazka BARTEK
-
-		/**
-		 * do komunikacji z graczem ! BARTEK
-		 */
 
 		JLabel dialogWinow = new JLabel(message);
 		dialogWinow.setVerticalAlignment(SwingConstants.TOP);
@@ -55,8 +53,9 @@ public class GameSideBoard extends JPanel {
 	/**
 	 * 
 	 * METODY
+	 * 
+	 * do komunikacji z graczem ! BARTEK
 	 */
-
 	public void sendMessage(String message) {
 		message = "Witamy w Connect4!";
 		this.message = message;
@@ -68,5 +67,13 @@ public class GameSideBoard extends JPanel {
 			return setIcon(iconResource.get(1));
 		}
 
+	}
+
+	public void setPl1Name(String i) {
+		this.pl1Name = i;
+	}
+
+	public void setPl2Name(String i) {
+		this.pl2Name = i;
 	}
 }
