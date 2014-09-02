@@ -2,29 +2,40 @@ package atrem.Connect4;
 
 import atrem.Connect4.Game.GameController;
 import atrem.Connect4.Game.GameFactory;
-import atrem.Connect4.console.Menu;
+import atrem.Connect4.swing.SwingConfig;
 
 /*
  * Klasa main uruchamiaj¹ca grê Connect4
  */
 public class Connect4 {
-
-	private static GameFactory gamefactory;
-	private static Menu menu;
+	private static GameFactory gameFactory;
 	private static GameController gameController;
+	private static SwingConfig config; // zmieniæ nazwe SwingConfig na
+										// GameConfig
+	private static boolean saved = false;
 
 	public static void main(String[] args) {
-		System.out.println("test2");
-		gamefactory = new GameFactory();
-		menu = new Menu();
-		menu.loadSettings();
-		gamefactory.setMenu(menu);
-		gamefactory.createGame("console");
-		// game = gamefactory.getGame();
-		gamefactory.loadGameController();
-		gameController = gamefactory.getGameController();
-		
+		gameFactory = new GameFactory();
+		config = new SwingConfig(gameFactory);
+		config.setDBox();
+		gameFactory.createPlayerGame();
+		while (!saved) {
+			try {
+				Thread.currentThread().wait();
+			} catch (InterruptedException e) {
+			}
+		}
+		gameFactory.loadGameController();
+		gameController = gameFactory.getGameController();
 		gameController.gameLoop();
 
+	}
+
+	public static boolean isSaved() {
+		return saved;
+	}
+
+	public static void setSaved(boolean isSaved) {
+		Connect4.saved = isSaved;
 	}
 }
