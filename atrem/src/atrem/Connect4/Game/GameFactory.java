@@ -33,7 +33,8 @@ public class GameFactory {
 		gameController.setBoard(board);
 		gameController.setPlayer1(player1);
 		gameController.setPlayer2(player2);
-		gameController.setPlayerTurn(PlayerTurn.Player1);
+		gameController.setPlayerTurn(PlayerId.Player1); // narazie niech tak
+														// jest PAWEL
 
 	}
 
