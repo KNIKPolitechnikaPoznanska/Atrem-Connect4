@@ -18,8 +18,12 @@ public class SwingPresenter implements PlayerController {
 	private PlayerAttributes playerAttributes;
 	private GameBoard gameBoard;
 
-	public SwingPresenter(String im, PlayerId playerId) {
+	public SwingPresenter(String im, PlayerId playerId,
+			GameController gameController) {
 		playerAttributes = new PlayerAttributes(im, playerId);
+		this.gameController = gameController;
+		setSettings();
+
 	}
 
 	@Override
@@ -37,12 +41,6 @@ public class SwingPresenter implements PlayerController {
 												// przepelnionym zrobic !
 		goView(emptySpot, slot);
 
-	}
-
-	public void setPresenter(GameController gameController) {
-
-		this.gameController = gameController;
-		setSettings();
 	}
 
 	public void setSettings() {
