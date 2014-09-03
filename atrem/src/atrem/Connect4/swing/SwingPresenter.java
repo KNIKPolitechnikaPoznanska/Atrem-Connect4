@@ -38,13 +38,19 @@ public class SwingPresenter implements PlayerController {
 	public void yourTurn() {
 		// a w pierwszym ruchu nie ma last ...
 		// dlatego da³em na sprawdzenie if Lukas
+		System.out.println("hehe");
 		LastSlot = gameController.getLastMove().getLastSlot();
 		LastRow = gameController.getLastMove().getLastRow();
+<<<<<<< HEAD
 		if (firstTurn == true) {
 			firstTurn = false;
 
 			// return;
 		}
+=======
+		System.out.println(LastRow + " " + LastSlot);
+
+>>>>>>> branch 'master' of https://github.com/KNIKPolitechnikaPoznanska/AtremProject.git
 		refreshView(LastRow, LastSlot);
 		System.out.println("trolololo");
 	}
@@ -66,7 +72,7 @@ public class SwingPresenter implements PlayerController {
 					gameBoard = frame.getGameBoard();
 					gameController.endInitPlayer();
 					// changeDispTurn(playerTurn);
-					frame.setVisible(true);
+					// frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

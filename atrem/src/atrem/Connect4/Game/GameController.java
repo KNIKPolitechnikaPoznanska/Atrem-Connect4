@@ -60,7 +60,12 @@ public class GameController implements Runnable {
 		boolean result = false;
 		System.out.println("przed init");
 		waitForInit();
+<<<<<<< HEAD
 		while (true) {
+=======
+		System.out.println("ll");
+		while (!result) {
+>>>>>>> branch 'master' of https://github.com/KNIKPolitechnikaPoznanska/AtremProject.git
 			currentPlayer = currentPlayer();
 			currentPlayer.yourTurn();
 			System.out.println("po ");
