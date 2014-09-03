@@ -45,7 +45,7 @@ public class GameController implements Runnable {
 		board.setHoleState(emptySpot, slot, currentPlayer.getPlayerId());
 		board.setLastSlot(slot);
 		board.setLastSpot(emptySpot);
-		lastMove.saveLastMove(slot, emptySpot);
+		lastMove.saveLastMove(slot, emptySpot, playerTurn);
 		gameState = GameState.moveDone;
 		notifyAll();
 		return emptySpot;

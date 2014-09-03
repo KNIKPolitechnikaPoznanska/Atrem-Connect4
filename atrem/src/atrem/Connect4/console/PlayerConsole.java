@@ -16,19 +16,21 @@ public class PlayerConsole implements PlayerController {
 	private KeyHandler keyHandler;
 	private int slots;
 	private PlayerAttributes playerAttributes;
-	private GameController gamecontroller;
+	private GameController gameController;
 	private ExecutorService executor = Executors.newSingleThreadExecutor();
 	private int choosedTmp;
 	private GUIConsole guiConsole;
 
-	public PlayerConsole(GameController gamecontroller, String name,
+	public PlayerConsole(GameController gameController, String name,
 			PlayerId playerId) {
+		this.gameController = gameController;
 		playerAttributes = new PlayerAttributes();
 		playerAttributes.setName(name);
 		playerAttributes.setPlayerId(playerId);
-		keyHandler = new KeyHandler(gamecontroller.getBoard());
+		keyHandler = new KeyHandler(gameController.getBoard());
 		// this.gamecontroller = game.getGameController();
 		guiConsole = new GUIConsole();
+		gameController.endInitPlayer();
 
 	}
 
@@ -49,7 +51,7 @@ public class PlayerConsole implements PlayerController {
 
 	@Override
 	public void setGamecontroller(GameController gamecontroller) {
-		this.gamecontroller = gamecontroller;
+		this.gameController = gamecontroller;
 	}
 
 	public void setChoosedTmp(int choosedTmp) {
@@ -58,11 +60,11 @@ public class PlayerConsole implements PlayerController {
 
 	private void makeMove() {
 		int slot = keyHandler.getSlot();
-		int emptySpot = gamecontroller.move(slot);
+		int emptySpot = gameController.move(slot);
 	}
 
 	private void displayGame() {
-		guiConsole.displayGame(gamecontroller);
+		guiConsole.displayGame(gameController);
 	}
 
 	@Override
