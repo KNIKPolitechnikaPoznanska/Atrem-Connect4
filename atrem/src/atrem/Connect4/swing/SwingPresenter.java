@@ -53,6 +53,7 @@ public class SwingPresenter implements PlayerController {
 		refreshView(emptySpot, slot);
 	}
 
+	@Override
 	public void setSettings() {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
@@ -61,6 +62,7 @@ public class SwingPresenter implements PlayerController {
 					frame = new GameFrame(SwingPresenter.this);
 					frame.setTitle(playerAttributes.getName());
 					gameBoard = frame.getGameBoard();
+					gameController.endInitPlayer();
 					// changeDispTurn(playerTurn);
 				} catch (Exception e) {
 					e.printStackTrace();
