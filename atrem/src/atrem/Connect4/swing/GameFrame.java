@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Container;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 public class GameFrame extends JFrame {
 
@@ -11,14 +12,16 @@ public class GameFrame extends JFrame {
 	 * Serial
 	 */
 	private static final long serialVersionUID = -1454524828392484548L;
-	SwingPresenter swingPresenter;
+	private SwingPresenter swingPresenter;
 	private GameBoard board;
-	GameSideBoard sideBoard;
+	private SideBoard sideBoard;
+	private JLabel sideToken;
 
 	/**
 	 * Create the frame.
 	 */
 	public GameFrame(SwingPresenter swingPresenter) {
+		this.swingPresenter = swingPresenter;
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 552, 331);
@@ -29,10 +32,10 @@ public class GameFrame extends JFrame {
 		board.setBackground(new Color(255, 255, 255));
 		board.setBounds(10, 0, 330, 282);
 		mainContainer.add(board);
-		sideBoard = new GameSideBoard();
+		sideBoard = new SideBoard();
 		sideBoard.setBounds(340, 0, 186, 262);
-
 		getContentPane().add(sideBoard);
+		sideToken = sideBoard.getToken();
 		this.setVisible(true);
 	}
 
@@ -40,11 +43,11 @@ public class GameFrame extends JFrame {
 		return board;
 	}
 
-	public GameSideBoard getBoczny() {
+	public SideBoard getSideBoard() {
 		return sideBoard;
 	}
 
-	public void setBoczny(GameSideBoard boczny) {
-		this.sideBoard = boczny;
+	public JLabel getSideToken() {
+		return sideToken;
 	}
 }

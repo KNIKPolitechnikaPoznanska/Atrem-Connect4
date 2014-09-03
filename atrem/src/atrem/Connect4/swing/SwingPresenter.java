@@ -17,6 +17,9 @@ public class SwingPresenter implements PlayerController {
 	private GameFrame frame;
 	private boolean firstTurn = true;
 	private boolean blockButton;
+	private PlayerId playerId;
+	private SideBoard sideBoard;
+	protected JLabel token;
 
 	/**
 	 * Presenter MVP do GameFrame
@@ -30,7 +33,8 @@ public class SwingPresenter implements PlayerController {
 		playerAttributes = new PlayerAttributes(playerName, playerId);
 		this.gameController = gameController;
 		this.blockButton = block;
-		setSettings();
+		this.playerId = playerId;
+		setupFrame();
 	}
 
 	/**
@@ -61,8 +65,7 @@ public class SwingPresenter implements PlayerController {
 		refreshView(emptySpot, slot);
 	}
 
-	@Override
-	public void setSettings() {
+	private void setupFrame() {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -70,6 +73,9 @@ public class SwingPresenter implements PlayerController {
 					frame = new GameFrame(SwingPresenter.this);
 					frame.setTitle(playerAttributes.getName());
 					gameBoard = frame.getGameBoard();
+					sideBoard = frame.getSideBoard();
+					token = frame.getSideToken();
+					setNamesAndToken();
 					gameController.endInitPlayer();
 					gameBoard.disableButtons(blockButton);
 					// changeDispTurn(playerTurn);
@@ -106,23 +112,21 @@ public class SwingPresenter implements PlayerController {
 	 * @param playerId
 	 *            kolej gracza 1/2
 	 */
+
+	@Deprecated
 	public void changeDispTurn(PlayerId playerId) {
-		// Naprawiæ Label'e Lukas
-		// if (playerId == PlayerId.Player1) {
-		// pl1Label.setVisible(false);
-		// pl2Label.setVisible(true);
-		// } else if (playerId == PlayerId.Player2) {
-		// pl2Label.setVisible(false);
-		// pl1Label.setVisible(true);
-		// }
 	}
 
 	/**
 	 * Ustawia Imiona graczy na Labelach
 	 */
-	public void setNames() {
-		pl1Label.setText(gameController.getPlayer1().getName());
-		pl2Label.setText(gameController.getPlayer2().getName());
+	public void setNamesAndToken() {
+		// pl1Label.setText(gameController.getPlayer1().getName());
+		// pl2Label.setText(gameController.getPlayer2().getName());
+		// if (playerId == PlayerId.Player1)
+		// token.setIcon((sideBoard.iconResource.get(HoleState.PLAYER1)));
+		// else
+		// token.setIcon((sideBoard.iconResource.get(HoleState.PLAYER2)));
 	}
 
 	@Override

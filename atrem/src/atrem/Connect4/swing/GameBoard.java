@@ -16,7 +16,7 @@ public class GameBoard extends JPanel {
 	 * Serial
 	 */
 	private static final long serialVersionUID = -7328887218009010574L;
-	private int rows, slots, chosenSlot = 1, freeRow;
+	private int rows, slots, chosenSlot = 1, freeRow, slot;
 	private JLabel[][] swingBoard;
 	private JButton[] button;
 	private SwingPresenter swingPresenter;
@@ -24,24 +24,38 @@ public class GameBoard extends JPanel {
 	private HoleState holeState;
 
 	public GameBoard(SwingPresenter swingPresenter) {
-		rows = 6; // zamieni na config
+		rows = 6;
 		slots = 7;
-		// this.rows = gameController.getRows();
-		// this.slots = gameController.getSlots();
 		this.swingPresenter = swingPresenter;
-
 		setLayout(new GridLayout(rows + 1, slots));
-
 		swingBoard = new JLabel[rows][slots];
-
 		button = new JButton[slots];
 		createButtons();
 		createHoles();
 	}
 
-	// int changeIconInSlot(int slots, int rows, int iconNumber)
-	// {
-	// }
+	/**
+	 * Tworzy guziki nad slotami
+	 */
+	private void createButtons() {
+		for (int tempSlot = 0; tempSlot < slots; tempSlot++) {
+			button[tempSlot] = new JButton("" + (tempSlot + 1));
+
+			button[tempSlot].addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent TokenPlaced) {
+					Object s = TokenPlaced.getSource();
+					for (int tempSlot = 0; tempSlot < slots; tempSlot++) {
+						if (s == button[tempSlot]) {
+							chosenSlot = tempSlot;
+							sendGUINbSlot();
+						}
+					}
+				}
+			});
+			add(button[tempSlot]);
+		}
+	}
 
 	/**
 	 * Tworzy Labele w swing pokazuj¹ce 'dziury'. !!! rowsy z slotsami
@@ -62,28 +76,26 @@ public class GameBoard extends JPanel {
 		}
 	}
 
-	/**
-	 * Tworzy guziki nad slotami
-	 */
-	private void createButtons() {
-		for (int tempSlot = 0; tempSlot < slots; tempSlot++) {
-			button[tempSlot] = new JButton("" + (tempSlot + 1));
+	// int changeIconInSlot(int slots, int rows, int iconNumber)
+	// {}
 
-			button[tempSlot].addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent TokenPlaced) {
-					Object s = TokenPlaced.getSource();
-					for (int tempSlot = 0; tempSlot < slots; tempSlot++) {
-						if (s == button[tempSlot]) {
-							chosenSlot = tempSlot;
-							sendGUINbSlot();
+	public void setFreeRow(int row, int slot, HoleState holeState) {
+		this.freeRow = row;
+		this.holeState = holeState;
+		swingBoard[row][slot].setIcon(iconResource.get(holeState));
+	}
 
-						}
-					}
-				}
-			});
-			add(button[tempSlot]);
-		}
+	// void placeTokenInSlot(int slot) {
+	// Plansza[1][1].setIcon(iconResource.get(1));
+	// }
+
+	public void disableButtons(boolean parameter) {
+		for (int tempSlot = 0; tempSlot < slots; tempSlot++)
+			button[tempSlot].setEnabled(parameter);
+	}
+
+	public void placeOpponentToken(HoleState i, int oppRow, int oppSlot) {
+		swingBoard[oppRow][oppSlot].setIcon(iconResource.get(i));
 	}
 
 	/**
@@ -93,12 +105,6 @@ public class GameBoard extends JPanel {
 		swingPresenter.getSlotFromView(chosenSlot);
 	}
 
-	public void setFreeRow(int row, int slot, HoleState holeState) {
-		this.freeRow = row;
-		this.holeState = holeState;
-		swingBoard[row][slot].setIcon(iconResource.get(holeState));
-	}
-
 	public void setBoardSize(int rows, int slots) {
 		this.rows = rows;
 		this.slots = slots;
@@ -106,15 +112,13 @@ public class GameBoard extends JPanel {
 
 	// void placeTokenInSlot(int slot) {
 	// Plansza[1][1].setIcon(iconResource.get(1));
-	// Plansza[i][j].setText("chuj");
 	// }
 
-	public void disableButtons(boolean parameter) {
-		for (int tempSlot = 0; tempSlot < slots; tempSlot++)
-			button[tempSlot].setEnabled(parameter);
+	public void setRows(int rows) {
+		this.rows = rows;
 	}
 
-	public void placeOppontentsToken(HoleState i, int oppRow, int oppSlot) {
-		swingBoard[oppRow][oppSlot].setIcon(iconResource.get(i));
+	public void setSlots(int slots) {
+		this.slots = slots;
 	}
 }
