@@ -15,14 +15,14 @@ public class GUIConsole {
 		drawBoard(gameController.getBoard());
 		drawSlots(gameController.getBoard().getSlots());
 		switch (gameController.getPlayerTurn()) {
-			case Player1 :
-				this.writeCurrentPlayer(gameController.getPlayer1());
-				break;
-			case Player2 :
-				this.writeCurrentPlayer(gameController.getPlayer2());
-				break;
-			default :
-				this.displayParagraph();
+		case Player1:
+			this.writeCurrentPlayer(gameController.getPlayer1());
+			break;
+		case Player2:
+			this.writeCurrentPlayer(gameController.getPlayer2());
+			break;
+		default:
+			this.displayParagraph();
 		}
 
 	}
@@ -33,7 +33,7 @@ public class GUIConsole {
 		this.displayParagraph();
 	}
 
-	private void drawBoard(Board BoardTmp) {
+	public void drawBoard(Board BoardTmp) {
 		HoleState holeTmp;
 		for (int j = 0; j < BoardTmp.getRows(); j++) {
 			for (int i = 0; i < BoardTmp.getSlots(); i++) {
@@ -71,19 +71,19 @@ public class GUIConsole {
 
 	public void showResult(GameController gameController) {
 		switch (gameController.getResult()) {
-			case Draw :
-				System.out.println("Gra bez rostrzygniecia \n Remis.");
-				break;
-			case Player1Win :
-				System.out.println("	Wygral‚: "
-						+ gameController.getPlayer1().getName());
-				break;
-			case Player2Win :
-				System.out.println("Wygral‚ "
-						+ gameController.getPlayer2().getName());
-				break;
-			default :
-				break;
+		case Draw:
+			System.out.println("Gra bez rostrzygniecia \n Remis.");
+			break;
+		case Player1Win:
+			System.out.println("	Wygral‚: "
+					+ gameController.getPlayer1().getName());
+			break;
+		case Player2Win:
+			System.out.println("Wygral‚ "
+					+ gameController.getPlayer2().getName());
+			break;
+		default:
+			break;
 		}
 	}
 }
