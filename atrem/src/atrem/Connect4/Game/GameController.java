@@ -60,13 +60,16 @@ public class GameController implements Runnable {
 		boolean result = false;
 		System.out.println("przed init");
 		waitForInit();
-		System.out.println("ll");
-		while (!result) {
+		while (true) {
 			currentPlayer = currentPlayer();
 			currentPlayer.yourTurn();
 			System.out.println("po ");
 			gameState = GameState.waitingForMove;
-			waitForMove();
+			try {
+				wait();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			doneMoves++;
 			result = logic.checkResult(doneMoves);
 			changePlayer();
@@ -76,7 +79,7 @@ public class GameController implements Runnable {
 	/**
 	 * Metoda usypiaj¹ca w¹tek GC.
 	 */
-	private void waitForMove() {
+	private synchronized void waitForMove() {
 		while (gameState != GameState.moveDone) {
 			try {
 				wait();
@@ -86,7 +89,7 @@ public class GameController implements Runnable {
 		}
 	}
 
-	private void waitForInit() {
+	private synchronized void waitForInit() {
 		while (gameState != GameState.endInitAll) {
 			try {
 				wait();

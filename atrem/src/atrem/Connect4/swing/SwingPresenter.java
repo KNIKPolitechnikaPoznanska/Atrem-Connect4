@@ -42,9 +42,14 @@ public class SwingPresenter implements PlayerController {
 		System.out.println("hehe");
 		LastSlot = gameController.getLastMove().getLastSlot();
 		LastRow = gameController.getLastMove().getLastRow();
-		System.out.println(LastRow + " " + LastSlot);
+		if (firstTurn == true) {
+			firstTurn = false;
 
+			// return;
+		}
+		System.out.println(LastRow + " " + LastSlot);
 		refreshView(LastRow, LastSlot);
+		System.out.println("trolololo");
 	}
 
 	public void getSlotFromView(int slot) {
