@@ -19,6 +19,20 @@ public class Logic {
 		maxSlots = gameController.getBoard().getSlots();
 		maxRows = gameController.getBoard().getRows();
 	}
+
+	/**
+	 * Sprawdzenie u≥oøenia 4 w 4 wariantach
+	 * 
+	 * @return true jeøeli gracz wygra≥
+	 */
+	public boolean checkIfWin() {
+		columnWin(human);
+		rowWin(human);
+		diagonalWin1(human);
+		diagonalWin2(human);
+		return hasWinner;
+	}
+
 	/**
 	 * Funkcja sprawdza stan gry czy jest remis
 	 * 
@@ -35,18 +49,6 @@ public class Logic {
 	}
 
 	/**
-	 * Sprawdzenie u≥oøenia 4 w 4 wariantach
-	 * 
-	 * @return true jeøeli gracz wygra≥
-	 */
-	public boolean checkIfWin() {
-		columnWin(human);
-		rowWin(human);
-		diagonalWin1(human);
-		diagonalWin2(human);
-		return hasWinner;
-	}
-	/**
 	 * Sprawdü czy wygra≥ PC
 	 * 
 	 * @return true jeøeli wygra≥
@@ -58,6 +60,7 @@ public class Logic {
 		diagonalWin2(cpu);
 		return cpuWin;
 	}
+
 	/**
 	 * Sprawdzenie wyniku gry
 	 * 

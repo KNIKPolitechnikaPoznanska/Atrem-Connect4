@@ -57,10 +57,9 @@ public class GameController implements Runnable {
 	private synchronized void gameLoop() {// ma odczytywaæ GameState
 		logic = new Logic(this);
 		lastMove = new LastMove();
-		boolean result = false;
 		System.out.println("przed init");
 		waitForInit();
-		while (true) {
+		while (resultState != ResultState.NoWin) {
 			currentPlayer = currentPlayer();
 			currentPlayer.yourTurn();
 			System.out.println("po ");
@@ -71,7 +70,7 @@ public class GameController implements Runnable {
 				e.printStackTrace();
 			}
 			doneMoves++;
-			result = logic.checkResult(doneMoves);
+			logic.checkResult(doneMoves);
 			changePlayer();
 		}
 	}

@@ -16,7 +16,4 @@ public interface PlayerController {
 	public abstract void refreshView(int row, int slot);
 
 	public abstract void setGamecontroller(GameController gamecontroller);
-
-	public abstract void setupFrame();
-
 }

@@ -29,6 +29,7 @@ public class Board {
 				gameBoard[j][i] = new Hole();
 		totalSpots = slots * rows;
 	}
+
 	/**
 	 * Ustawia 'dziurê' na EMPTY
 	 * 
@@ -59,7 +60,7 @@ public class Board {
 		}
 	}
 
-	private void setHoleState(int Rows, int Slots, HoleState holeState) {
+	public void setHoleState(int Rows, int Slots, HoleState holeState) {
 		gameBoard[Rows][Slots].setHoleState(holeState);
 	}
 
