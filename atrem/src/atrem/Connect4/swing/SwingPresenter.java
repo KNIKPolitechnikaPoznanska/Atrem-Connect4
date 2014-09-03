@@ -43,8 +43,6 @@ public class SwingPresenter implements PlayerController {
 	 */
 	@Override
 	public void yourTurn() {
-		// a w pierwszym ruchu nie ma last ...
-		// dlatego da³em na sprawdzenie if Lukas
 		gameBoard.disableButtons(true);
 		System.out.println("hehe");
 		LastSlot = gameController.getLastMove().getLastSlot();
@@ -59,13 +57,14 @@ public class SwingPresenter implements PlayerController {
 	}
 
 	public void getSlotFromView(int slot) {
-		emptySpot = gameController.move(slot);
-		if (emptySpot == -1){
-			informationBoxes.fullSlotMessage();
-			
-		gameBoard.disableButtons(false);
 
-		refreshView(emptySpot, slot);
+		emptySpot = gameController.move(slot);
+		if (emptySpot == -1) {
+			informationBoxes.fullSlotMessage();
+		} else {
+			gameBoard.disableButtons(false);
+			refreshView(emptySpot, slot);
+		}
 	}
 
 	private void setupFrame() {
@@ -78,8 +77,6 @@ public class SwingPresenter implements PlayerController {
 					gameBoard = frame.getGameBoard();
 					informationBoxes = new DialogInformationBoxes();
 					sideBoard = frame.getSideBoard();
-					token = frame.getSideToken();
-					setNamesAndToken();
 					gameController.endInitPlayer();
 					gameBoard.disableButtons(blockButton);
 					// changeDispTurn(playerTurn);
@@ -102,14 +99,6 @@ public class SwingPresenter implements PlayerController {
 				.playerIdtoHoleState(gameController.getPlayerTurn()));
 	}
 
-	// public void setPanels() {
-	// panel = gameFrame.getPanel();
-	// statsPanel = gameFrame.getStatsPanel();
-	// pl1Label = statsPanel.getPl1Label();
-	// pl2Label = statsPanel.getPl2Label();
-	// setNames();
-	// }
-
 	/**
 	 * Funkcja zmienia Label gracza w ka¿zdej turze
 	 * 
@@ -125,12 +114,12 @@ public class SwingPresenter implements PlayerController {
 	 * Ustawia Imiona graczy na Labelach
 	 */
 	public void setNamesAndToken() {
-		// pl1Label.setText(gameController.getPlayer1().getName());
-		// pl2Label.setText(gameController.getPlayer2().getName());
-		// if (playerId == PlayerId.Player1)
-		// token.setIcon((sideBoard.iconResource.get(HoleState.PLAYER1)));
-		// else
-		// token.setIcon((sideBoard.iconResource.get(HoleState.PLAYER2)));
+		sideBoard.setPl1Name(gameController.getPlayer1().getName());
+		sideBoard.setPl1Name(gameController.getPlayer2().getName());
+		if (playerId == PlayerId.Player1)
+			sideBoard.setTokenPl1();
+		else
+			sideBoard.setTokenPl2();
 	}
 
 	@Override

@@ -35,7 +35,6 @@ public class GameFrame extends JFrame {
 		sideBoard = new SideBoard();
 		sideBoard.setBounds(340, 0, 186, 262);
 		getContentPane().add(sideBoard);
-		sideToken = sideBoard.getToken();
 		this.setVisible(true);
 	}
 
