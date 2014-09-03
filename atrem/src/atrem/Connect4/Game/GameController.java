@@ -70,11 +70,11 @@ public class GameController implements Runnable {
 			waitForMove();
 			doneMoves++;
 			resultGame = logic.checkResult(doneMoves);
-			if (resultGame == true) {
+			if (resultGame != true) {
 				player1.endOfGame(resultState);
 				// player2.endOfGame(resultState);
-			} else
-				changePlayer();
+			}
+			changePlayer();
 		}
 	}
 
