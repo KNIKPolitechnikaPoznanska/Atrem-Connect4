@@ -40,12 +40,12 @@ public class GameFactory {
 	 */
 	public void createGameController() {
 		gameController = new GameController();
+		createPlayerGame();
 		gameController.setBoard(board);
 		gameController.setPlayer1(player1);
 		gameController.setPlayer2(player2);
 		gameController.setPlayerTurn(PlayerId.Player1); // narazie niech tak
 														// jest PAWEL
-		createPlayerGame();
 	}
 
 	@Deprecated
