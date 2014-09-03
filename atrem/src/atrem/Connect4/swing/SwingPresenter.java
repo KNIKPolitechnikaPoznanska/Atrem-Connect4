@@ -5,6 +5,7 @@ import javax.swing.SwingUtilities;
 
 import atrem.Connect4.Game.GameController;
 import atrem.Connect4.Game.PlayerId;
+import atrem.Connect4.Game.ResultState;
 import atrem.Connect4.Game.player.PlayerAttributes;
 import atrem.Connect4.Game.player.PlayerController;
 
@@ -19,6 +20,8 @@ public class SwingPresenter implements PlayerController {
 	private boolean blockButton;
 	private PlayerId playerId;
 	private SideBoard sideBoard;
+	protected JLabel token;
+	private DialogInformationBoxes informationBoxes;
 
 	/**
 	 * Presenter MVP do GameFrame
@@ -52,13 +55,17 @@ public class SwingPresenter implements PlayerController {
 		}
 		System.out.println(LastRow + " " + LastSlot);
 
-		System.out.println("trolololo");
 	}
 
 	public void getSlotFromView(int slot) {
-		emptySpot = gameController.move(slot); // zrobic zab. przed overflow
-		gameBoard.disableButtons(false);
-		refreshView(emptySpot, slot);
+
+		emptySpot = gameController.move(slot);
+		if (emptySpot == -1) {
+			informationBoxes.fullSlotMessage();
+		} else {
+			gameBoard.disableButtons(false);
+			refreshView(emptySpot, slot);
+		}
 	}
 
 	private void setupFrame() {
@@ -69,6 +76,7 @@ public class SwingPresenter implements PlayerController {
 					frame = new GameFrame(SwingPresenter.this);
 					frame.setTitle(playerAttributes.getName());
 					gameBoard = frame.getGameBoard();
+					informationBoxes = new DialogInformationBoxes();
 					sideBoard = frame.getSideBoard();
 					gameController.endInitPlayer();
 					gameBoard.disableButtons(blockButton);
@@ -91,6 +99,14 @@ public class SwingPresenter implements PlayerController {
 		gameBoard.setFreeRow(row, slot, gameController.getBoard()
 				.playerIdtoHoleState(gameController.getPlayerTurn()));
 	}
+
+	@Override
+	public void endOfGame(ResultState resultGame) {
+		if (resultGame == resultGame.Player1Win)
+			informationBoxes.winMessage(playerId.Player1);
+		if (resultGame == resultGame.Player2Win)
+			informationBoxes.winMessage(playerId.Player2);
+	};
 
 	/**
 	 * Funkcja zmienia Label gracza w ka¿zdej turze

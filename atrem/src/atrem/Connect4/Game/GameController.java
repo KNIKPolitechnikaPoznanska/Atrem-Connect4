@@ -57,6 +57,7 @@ public class GameController implements Runnable {
 	 * Glowna petla gry
 	 */
 	private synchronized void gameLoop() {// ma odczytywaæ GameState
+		boolean resultGame;
 		logic = new Logic(this);
 		lastMove = new LastMove();
 		System.out.println("przed init");
@@ -66,13 +67,13 @@ public class GameController implements Runnable {
 			currentPlayer.yourTurn();
 			System.out.println("po ");
 			gameState = GameState.waitingForMove;
-			try {
-				wait();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			waitForMove();
 			doneMoves++;
-			logic.checkResult(doneMoves);
+			resultGame = logic.checkResult(doneMoves);
+			if (resultGame == true) {
+				player1.endOfGame(resultState);
+				// player2.endOfGame(resultState);
+			}
 			changePlayer();
 		}
 	}

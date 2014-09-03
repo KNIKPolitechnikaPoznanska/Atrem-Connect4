@@ -2,6 +2,7 @@ package atrem.Connect4.Game.player;
 
 import atrem.Connect4.Game.GameController;
 import atrem.Connect4.Game.PlayerId;
+import atrem.Connect4.Game.ResultState;
 
 public interface PlayerController {
 
@@ -16,4 +17,6 @@ public interface PlayerController {
 	public abstract void refreshView(int row, int slot);
 
 	public abstract void setGamecontroller(GameController gamecontroller);
+
+	public abstract void endOfGame(ResultState resultGame);
 }

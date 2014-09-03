@@ -5,6 +5,7 @@ import java.util.concurrent.Executors;
 
 import atrem.Connect4.Game.GameController;
 import atrem.Connect4.Game.PlayerId;
+import atrem.Connect4.Game.ResultState;
 import atrem.Connect4.Game.player.PlayerAttributes;
 import atrem.Connect4.Game.player.PlayerController;
 
@@ -73,6 +74,7 @@ public class PlayerConsole implements PlayerController {
 		executor.execute(new Runnable() {
 			@Override
 			public void run() {
+				displayGame();
 				makeMove();
 				displayGame();
 			}
@@ -83,6 +85,11 @@ public class PlayerConsole implements PlayerController {
 	@Override
 	public void refreshView(int row, int slot) {
 		displayGame();
+	}
+
+	@Override
+	public void endOfGame(ResultState resultGame) {
+		guiConsole.showResult(gameController);
 	}
 
 }
