@@ -19,10 +19,9 @@ public class GameBoard extends JPanel {
 	private int rows, slots, chosenSlot = 1, freeRow;
 	private JLabel[][] swingBoard;
 	private JButton[] button;
-
+	private SwingPresenter swingPresenter;
 	private ResourceLoader iconResource = new ResourceLoader();
 	private HoleState holeState;
-	private SwingPresenter swingPresenter;
 
 	public GameBoard(SwingPresenter swingPresenter) {
 		rows = 6; // zamieni na config

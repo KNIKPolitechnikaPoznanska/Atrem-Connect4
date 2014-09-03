@@ -38,6 +38,7 @@ public class SwingPresenter implements PlayerController {
 	public void yourTurn() {
 		// a w pierwszym ruchu nie ma last ...
 		// dlatego da³em na sprawdzenie if Lukas
+		gameBoard.disableButtons(false);
 		System.out.println("hehe");
 		LastSlot = gameController.getLastMove().getLastSlot();
 		LastRow = gameController.getLastMove().getLastRow();
@@ -53,7 +54,8 @@ public class SwingPresenter implements PlayerController {
 
 	public void getSlotFromView(int slot) {
 		emptySpot = gameController.move(slot); // zrobic zabezpieczenie przed
-												// przepelnionym !
+		gameBoard.disableButtons(true);
+		// przepelnionym !
 		refreshView(emptySpot, slot);
 	}
 
