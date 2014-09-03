@@ -41,16 +41,12 @@ public class SwingPresenter implements PlayerController {
 		System.out.println("hehe");
 		LastSlot = gameController.getLastMove().getLastSlot();
 		LastRow = gameController.getLastMove().getLastRow();
-<<<<<<< HEAD
 		if (firstTurn == true) {
 			firstTurn = false;
 
 			// return;
 		}
-=======
 		System.out.println(LastRow + " " + LastSlot);
-
->>>>>>> branch 'master' of https://github.com/KNIKPolitechnikaPoznanska/AtremProject.git
 		refreshView(LastRow, LastSlot);
 		System.out.println("trolololo");
 	}
