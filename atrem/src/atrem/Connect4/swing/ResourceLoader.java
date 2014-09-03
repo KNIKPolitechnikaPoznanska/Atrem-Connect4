@@ -6,9 +6,10 @@ import atrem.Connect4.Game.board.HoleState;
 
 public class ResourceLoader {
 	String iconSource = "/icons/";
-	String[] imageName = {"empty.png", "token1.png", "token2.png"};
+	String[] imageName = { "empty.png", "token1.png", "token2.png" };
 	StretchIcon iconEmpty, iconPl1, iconPl2;
 	private int labelH, labelW;
+
 	// private HoleState holeState;
 
 	public ResourceLoader() {
@@ -24,15 +25,15 @@ public class ResourceLoader {
 
 	public Icon get(HoleState holeState) {
 		switch (holeState) {
-			case EMPTY :
-				return iconEmpty;
-			case PLAYER1 :
-				return iconPl1;
-			case PLAYER2 :
-				return iconPl2;
-			default :
-				System.out.println("Plik nie znaleziony!");
-				return null;
+		case EMPTY:
+			return iconEmpty;
+		case PLAYER1:
+			return iconPl1;
+		case PLAYER2:
+			return iconPl2;
+		default:
+			System.out.println("Plik nie znaleziony!");
+			return null;
 		}
 	}
 

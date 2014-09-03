@@ -114,7 +114,7 @@ public class GameBoard extends JPanel {
 			button[tempSlot].setEnabled(parameter);
 	}
 
-	public void changeTokenVisibility() {
-
+	public void placeOppontentsToken(HoleState i, int oppRow, int oppSlot) {
+		swingBoard[oppRow][oppSlot].setIcon(iconResource.get(i));
 	}
 }

@@ -16,6 +16,8 @@ public class GameSideBoard extends JPanel {
 	int PlayerID = 1;
 	String pl1Name = "Gracz1";
 	String pl2Name = "Gracz2";
+	JLabel token1;
+	JLabel token2;
 
 	public GameSideBoard() {
 		setLayout(null);
@@ -63,12 +65,14 @@ public class GameSideBoard extends JPanel {
 		this.message = message;
 	}
 
-	public void displayToken(int i) {
-		switch (i) {
-			case 1 :
-				// setIcon(iconResource.get(HoleState.PLAYER1)); break;
+	public void displayCurrentToken(int player) {
+		if (player == 1) {
+			token1.setIcon(iconResource.get(HoleState.PLAYER1));
+			token2.setIcon(null);
+		} else {
+			token2.setIcon(iconResource.get(HoleState.PLAYER2));
+			token1.setIcon(null);
 		}
-
 	}
 
 	public void setPl1Name(String i) {
