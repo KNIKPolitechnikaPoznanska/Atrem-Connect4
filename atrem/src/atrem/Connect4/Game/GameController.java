@@ -59,6 +59,8 @@ public class GameController {
 		logic = new Logic(this);
 		lastMove = new LastMove();
 		boolean result = false;
+		gameState = GameState.preInit;
+		waitForMove();
 		while (!result) {
 			currentPlayer.yourTurn();
 			gameState = GameState.waitingForMove;
@@ -79,6 +81,28 @@ public class GameController {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+		}
+	}
+
+	private void waitForInit() {
+		while (gameState != GameState.endInitAll) {
+			try {
+				wait();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public synchronized void endInitPlayer() {
+		switch (gameState) {
+		case preInit:
+			gameState = GameState.endInit1;
+			break;
+		case endInit1:
+			gameState = GameState.endInitAll;
+			this.notifyAll();
+			break;
 		}
 	}
 

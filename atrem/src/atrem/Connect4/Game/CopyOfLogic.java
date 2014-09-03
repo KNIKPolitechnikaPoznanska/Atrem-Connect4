@@ -19,6 +19,7 @@ public class CopyOfLogic {
 		maxSlots = gameController.getBoard().getSlots();
 		maxRows = gameController.getBoard().getRows();
 	}
+
 	/**
 	 * Funkcja sprawdza stan gry czy jest remis
 	 * 
@@ -46,6 +47,7 @@ public class CopyOfLogic {
 		diagonalWin2(human);
 		return hasWinner;
 	}
+
 	/**
 	 * Sprawdü czy wygra≥ PC
 	 * 
@@ -58,6 +60,7 @@ public class CopyOfLogic {
 		diagonalWin2(cpu);
 		return cpuWin;
 	}
+
 	/**
 	 * Sprawdzenie wyniku gry
 	 * 

@@ -1,5 +1,5 @@
 package atrem.Connect4.Game;
 
 public enum GameState {
-	waitingForMove, moveDone;
+	waitingForMove, moveDone, endInit1, endInitAll, preInit;
 }
