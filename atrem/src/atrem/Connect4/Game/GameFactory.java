@@ -2,7 +2,7 @@ package atrem.Connect4.Game;
 
 import atrem.Connect4.Game.board.Board;
 import atrem.Connect4.Game.player.PlayerController;
-import atrem.Connect4.console.Menu;
+import atrem.Connect4.console.PlayerConsole;
 import atrem.Connect4.swing.SwingPresenter;
 
 /*
@@ -12,56 +12,53 @@ public class GameFactory {
 	private Board board;
 	private PlayerController player1, player2;
 	private String player2name, player1name;
-	private Menu menu;
 	private String opponent;
 	private int slots, rows;
 	private GameController gameController;
-
-	/**
-	 * Tworzy dla ka¿dego gracza w³asnego prezentera
-	 */
-	public void createPlayerGame() {
-		player1 = new SwingPresenter(player1name, PlayerId.Player1,
-				gameController, true);
-		player2 = new SwingPresenter(player2name, PlayerId.Player2,
-				gameController, false);
-
-		// if (opponent.equalsIgnoreCase("K"))
-		// player2 = new MediumPC(player2name, HoleState.PLAYER2,
-		// gameController, gameController.getLogic());
-		// else
-		// player2 = new SwingPresenter(player2name, PlayerId.Player2,
-		// gameController);
-		// narazie bez CPU Lukas
-	}
+	private String gamePl1Type, gamePl2Type;
 
 	/**
 	 * £aduje GameController (all settings)
 	 */
 	public void createGameController() {
 		gameController = new GameController();
-
 		gameController.setBoard(board);
+
 		createPlayerGame();
 		gameController.setPlayer1(player1);
 		gameController.setPlayer2(player2);
 		gameController.setPlayerTurn(PlayerId.Player1);
-
-		// player1.setSettings();
-		// player2.setSettings();
-		// narazie niech tak
-
-		// jest PAWEL
 	}
 
-	@Deprecated
-	public void readInfoMenu() {
-		slots = menu.getSlots();
-		rows = menu.getRows();
-		this.board = new Board(rows, slots);
-		player1name = menu.getPlayer1name();
-		player2name = menu.getPlayer2name();
-		opponent = menu.getOpponent();
+	/**
+	 * Tworzy dla ka¿dego gracza w³asnego prezentera
+	 */
+	public void createPlayerGame() {
+		switch (gamePl1Type) {
+		case "console":
+			player1 = new PlayerConsole(gameController, player1name,
+					PlayerId.Player1);
+			break;
+		case "swing":
+			player1 = new SwingPresenter(player1name, PlayerId.Player1,
+					gameController, true);
+			break;
+		}
+		if (opponent.equalsIgnoreCase("C"))
+			switch (gamePl2Type) {
+			case "console":
+				player2 = new PlayerConsole(gameController, player2name,
+						PlayerId.Player2);
+				break;
+			case "swing":
+				player2 = new SwingPresenter(player2name, PlayerId.Player2,
+						gameController, true);
+				break;
+			}
+		else if (opponent.equalsIgnoreCase("K"))
+			System.out.println("Brak cpu jeszcze! I chuj");
+		// player2 = new MediumPC(player2name, HoleState.PLAYER2,gameController,
+		// gameController.getLogic());
 	}
 
 	public Board getBoard() {
@@ -104,9 +101,12 @@ public class GameFactory {
 		board = new Board(rows, slots);
 	}
 
-	@Deprecated
-	public void setMenu(Menu menu) {
-		this.menu = menu;
+	public void setGamePl1Type(String gamePl1Type) {
+		this.gamePl1Type = gamePl1Type;
+	}
+
+	public void setGamePl2Type(String gamePl2Type) {
+		this.gamePl2Type = gamePl2Type;
 	}
 
 	public void setOpponent(String opponent) {

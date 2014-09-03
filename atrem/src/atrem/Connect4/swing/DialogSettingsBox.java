@@ -163,6 +163,7 @@ public class DialogSettingsBox extends JDialog {
 		{
 			rdbtnSwing1 = new JRadioButton("Swing");
 			contentPanel.add(rdbtnSwing1);
+			rdbtnSwing1.setSelected(true);
 		}
 		{
 			rdbtnNet1 = new JRadioButton("Multiplayer");
@@ -179,6 +180,7 @@ public class DialogSettingsBox extends JDialog {
 		{
 			rdbtnSwing2 = new JRadioButton("Swing");
 			contentPanel.add(rdbtnSwing2);
+			rdbtnSwing2.setSelected(true);
 		}
 		{
 			rdbtnNet2 = new JRadioButton("Multiplayer");
@@ -255,6 +257,7 @@ public class DialogSettingsBox extends JDialog {
 			new Connect4Swing().init(swingConfig, gameFactory);
 		}
 	}
+
 	/**
 	 * Zapisuje wartoœci pól z okna dialogowego i przypisuje do GameConfig
 	 * 
@@ -304,6 +307,7 @@ public class DialogSettingsBox extends JDialog {
 	private void defalutButtonPressed() {
 		setDefaults();
 	}
+
 	/**
 	 * Ustawia wartoœci domyœlne gry
 	 */

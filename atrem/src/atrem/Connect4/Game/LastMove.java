@@ -2,6 +2,7 @@ package atrem.Connect4.Game;
 
 public class LastMove {
 	private int lastSlot, lastRow;
+	private PlayerId playerId;
 
 	public LastMove() {
 		lastRow = -1;
@@ -24,8 +25,17 @@ public class LastMove {
 		this.lastRow = lastRow;
 	}
 
-	public void saveLastMove(int slot, int row) {
+	public PlayerId getPlayerId() {
+		return playerId;
+	}
+
+	public void setPlayerId(PlayerId playerId) {
+		this.playerId = playerId;
+	}
+
+	public void saveLastMove(int slot, int row, PlayerId playerId) {
 		lastSlot = slot;
 		lastRow = row;
+		this.playerId = playerId;
 	}
 }
