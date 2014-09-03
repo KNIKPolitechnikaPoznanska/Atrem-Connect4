@@ -5,9 +5,9 @@ import javax.swing.Icon;
 import atrem.Connect4.Game.board.HoleState;
 
 public class ResourceLoader {
-	String iconSource = "/icons/";
-	String[] imageName = { "empty.png", "token1.png", "token2.png" };
-	StretchIcon iconEmpty, iconPl1, iconPl2;
+	private String iconSource = "/icons/";
+	private String[] imageName = { "empty.png", "token1.png", "token2.png" };
+	public static StretchIcon iconPl1, iconPl2, iconEmpty;
 	private int labelH, labelW;
 
 	// private HoleState holeState;

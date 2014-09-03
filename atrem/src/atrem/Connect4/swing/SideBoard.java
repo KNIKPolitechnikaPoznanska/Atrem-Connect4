@@ -6,20 +6,16 @@ import javax.swing.SwingConstants;
 
 import atrem.Connect4.Game.board.HoleState;
 
-public class GameSideBoard extends JPanel {
-	String message;
+public class SideBoard extends JPanel {
 	/**
 	 * Serial
 	 */
 	private static final long serialVersionUID = 9208904490186715373L;
-	ResourceLoader iconResource = new ResourceLoader();
-	int PlayerID = 1;
-	String pl1Name = "Gracz1";
-	String pl2Name = "Gracz2";
-	JLabel token1;
-	JLabel token2;
+	ResourceLoader icon = new ResourceLoader();
+	String pl1Name = "Gracz1", pl2Name = "Gracz2", message;
+	JLabel token1, token2;
 
-	public GameSideBoard() {
+	public SideBoard() {
 		setLayout(null);
 
 		JPanel namesAndColours = new JPanel();
@@ -34,9 +30,6 @@ public class GameSideBoard extends JPanel {
 		JLabel token1 = new JLabel("");
 		token1.setBounds(119, 3, 40, 40);
 		namesAndColours.add(token1);
-		token1.setIcon(iconResource.get(HoleState.EMPTY)); // obrazek widoczny
-															// arg plID [0-2]
-															// BARTEK
 
 		JLabel player2 = new JLabel(pl2Name);
 		player2.setBounds(5, 78, 91, 14);
@@ -51,28 +44,29 @@ public class GameSideBoard extends JPanel {
 		dialogWinow.setVerticalAlignment(SwingConstants.TOP);
 		dialogWinow.setBounds(8, 137, 169, 129);
 		add(dialogWinow);
+	}
 
+	@Deprecated
+	public void displayCurrentToken(int player) {
+		if (player == 1) {
+			token1.setIcon(icon.get(HoleState.PLAYER1));
+			token2.setIcon(null);
+		} else {
+			token2.setIcon(icon.get(HoleState.PLAYER2));
+			token1.setIcon(null);
+		}
+	}
+
+	public ResourceLoader getIconResource() {
+		return icon;
 	}
 
 	/**
-	 * 
-	 * METODY
-	 * 
-	 * do komunikacji z graczem ! BARTEK
+	 * METODY do komunikacji z graczem ! BARTEK
 	 */
 	public void sendMessage(String message) {
 		message = "Witamy w Connect4!";
 		this.message = message;
-	}
-
-	public void displayCurrentToken(int player) {
-		if (player == 1) {
-			token1.setIcon(iconResource.get(HoleState.PLAYER1));
-			token2.setIcon(null);
-		} else {
-			token2.setIcon(iconResource.get(HoleState.PLAYER2));
-			token1.setIcon(null);
-		}
 	}
 
 	public void setPl1Name(String i) {
@@ -81,5 +75,13 @@ public class GameSideBoard extends JPanel {
 
 	public void setPl2Name(String i) {
 		this.pl2Name = i;
+	}
+
+	public void setTokenPl1() {
+		token1.setIcon(ResourceLoader.iconPl1);
+	}
+
+	public void setTokenPl2() {
+		token1.setIcon(ResourceLoader.iconPl2);
 	}
 }

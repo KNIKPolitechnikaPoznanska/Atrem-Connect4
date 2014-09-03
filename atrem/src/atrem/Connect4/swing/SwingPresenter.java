@@ -16,6 +16,9 @@ public class SwingPresenter implements PlayerController {
 	private GameBoard gameBoard;
 	private GameFrame frame;
 	private boolean firstTurn = true;
+	private boolean blockButton;
+	private PlayerId playerId;
+	private SideBoard sideBoard;
 
 	/**
 	 * Presenter MVP do GameFrame
@@ -25,10 +28,12 @@ public class SwingPresenter implements PlayerController {
 	 * @param gameController
 	 */
 	public SwingPresenter(String playerName, PlayerId playerId,
-			GameController gameController) {
+			GameController gameController, boolean block) {
 		playerAttributes = new PlayerAttributes(playerName, playerId);
 		this.gameController = gameController;
-		setSettings();
+		this.blockButton = block;
+		this.playerId = playerId;
+		setupFrame();
 	}
 
 	/**
@@ -36,8 +41,6 @@ public class SwingPresenter implements PlayerController {
 	 */
 	@Override
 	public void yourTurn() {
-		// a w pierwszym ruchu nie ma last ...
-		// dlatego da³em na sprawdzenie if Lukas
 		gameBoard.disableButtons(true);
 		System.out.println("hehe");
 		LastSlot = gameController.getLastMove().getLastSlot();
@@ -53,14 +56,12 @@ public class SwingPresenter implements PlayerController {
 	}
 
 	public void getSlotFromView(int slot) {
-		emptySpot = gameController.move(slot); // zrobic zabezpieczenie przed
+		emptySpot = gameController.move(slot); // zrobic zab. przed overflow
 		gameBoard.disableButtons(false);
-		// przepelnionym !
 		refreshView(emptySpot, slot);
 	}
 
-	@Override
-	public void setSettings() {
+	private void setupFrame() {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -68,7 +69,9 @@ public class SwingPresenter implements PlayerController {
 					frame = new GameFrame(SwingPresenter.this);
 					frame.setTitle(playerAttributes.getName());
 					gameBoard = frame.getGameBoard();
+					sideBoard = frame.getSideBoard();
 					gameController.endInitPlayer();
+					gameBoard.disableButtons(blockButton);
 					// changeDispTurn(playerTurn);
 					// frame.setVisible(true);
 				} catch (Exception e) {
@@ -89,37 +92,27 @@ public class SwingPresenter implements PlayerController {
 				.playerIdtoHoleState(gameController.getPlayerTurn()));
 	}
 
-	// public void setPanels() {
-	// panel = gameFrame.getPanel();
-	// statsPanel = gameFrame.getStatsPanel();
-	// pl1Label = statsPanel.getPl1Label();
-	// pl2Label = statsPanel.getPl2Label();
-	// setNames();
-	// }
-
 	/**
 	 * Funkcja zmienia Label gracza w ka¿zdej turze
 	 * 
 	 * @param playerId
 	 *            kolej gracza 1/2
 	 */
+
+	@Deprecated
 	public void changeDispTurn(PlayerId playerId) {
-		// Naprawiæ Label'e Lukas
-		// if (playerId == PlayerId.Player1) {
-		// pl1Label.setVisible(false);
-		// pl2Label.setVisible(true);
-		// } else if (playerId == PlayerId.Player2) {
-		// pl2Label.setVisible(false);
-		// pl1Label.setVisible(true);
-		// }
 	}
 
 	/**
 	 * Ustawia Imiona graczy na Labelach
 	 */
-	public void setNames() {
-		pl1Label.setText(gameController.getPlayer1().getName());
-		pl2Label.setText(gameController.getPlayer2().getName());
+	public void setNamesAndToken() {
+		sideBoard.setPl1Name(gameController.getPlayer1().getName());
+		sideBoard.setPl1Name(gameController.getPlayer2().getName());
+		if (playerId == PlayerId.Player1)
+			sideBoard.setTokenPl1();
+		else
+			sideBoard.setTokenPl2();
 	}
 
 	@Override
