@@ -33,7 +33,7 @@ public class GameFrame extends JFrame {
 		sideBoard.setBounds(340, 0, 186, 262);
 
 		getContentPane().add(sideBoard);
-
+		this.setVisible(true);
 	}
 
 	public GameBoard getGameBoard() {

@@ -14,9 +14,11 @@ public class SwingPresenter implements PlayerController {
 	private JLabel pl1Label, pl2Label; // changeDispTurn()
 	private PlayerAttributes playerAttributes;
 	private GameBoard gameBoard;
+	private GameFrame frame;
 	private boolean firstTurn = true;
 
 	/**
+	 * Presenter MVP do GameFrame
 	 * 
 	 * @param playerName
 	 * @param playerId
@@ -56,16 +58,10 @@ public class SwingPresenter implements PlayerController {
 			@Override
 			public void run() {
 				try {
-					GameFrame frame = new GameFrame(SwingPresenter.this);
+					frame = new GameFrame(SwingPresenter.this);
 					frame.setTitle(playerAttributes.getName());
-					frame.setVisible(true);
 					gameBoard = frame.getGameBoard();
-					// po³¹czyæ
-					// playerturn
-					// do
-					// playercontroller
-					// changeDispTurn(playerTurn); // number
-					// niepotrzebne
+					// changeDispTurn(playerTurn);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -108,6 +104,7 @@ public class SwingPresenter implements PlayerController {
 		// pl1Label.setVisible(true);
 		// }
 	}
+
 	/**
 	 * Ustawia Imiona graczy na Labelach
 	 */
