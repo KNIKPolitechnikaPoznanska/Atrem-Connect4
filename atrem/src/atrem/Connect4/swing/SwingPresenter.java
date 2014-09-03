@@ -38,12 +38,11 @@ public class SwingPresenter implements PlayerController {
 	public void yourTurn() {
 		// a w pierwszym ruchu nie ma last ...
 		// dlatego da³em na sprawdzenie if Lukas
+		System.out.println("hehe");
 		LastSlot = gameController.getLastMove().getLastSlot();
 		LastRow = gameController.getLastMove().getLastRow();
-		if (firstTurn == true) {
-			firstTurn = false;
-			// return;
-		}
+		System.out.println(LastRow + " " + LastSlot);
+
 		refreshView(LastRow, LastSlot);
 	}
 
@@ -64,7 +63,7 @@ public class SwingPresenter implements PlayerController {
 					gameBoard = frame.getGameBoard();
 					// gameController.endInitPlayer();
 					// changeDispTurn(playerTurn);
-					frame.setVisible(true);
+					// frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

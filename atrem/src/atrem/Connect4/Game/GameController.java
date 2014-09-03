@@ -59,6 +59,7 @@ public class GameController implements Runnable {
 		lastMove = new LastMove();
 		boolean result = false;
 		waitForInit();
+		System.out.println("ll");
 		while (!result) {
 			currentPlayer = currentPlayer();
 			currentPlayer.yourTurn();
