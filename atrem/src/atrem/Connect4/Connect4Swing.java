@@ -15,6 +15,6 @@ public class Connect4Swing {
 		// gameFactory.createGame("swing");
 		gameFactory.createGameController();
 		gameController = gameFactory.getGameController();
-		gameController.gameLoop();
+		gameController.startGameLoop();
 	}
 }

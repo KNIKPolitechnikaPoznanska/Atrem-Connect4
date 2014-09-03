@@ -47,8 +47,8 @@ public class GameFactory {
 		gameController.setPlayer2(player2);
 		gameController.setPlayerTurn(PlayerId.Player1);
 
-		player1.setSettings();
-		player2.setSettings();
+		// player1.setSettings();
+		// player2.setSettings();
 		// narazie niech tak
 
 		// jest PAWEL

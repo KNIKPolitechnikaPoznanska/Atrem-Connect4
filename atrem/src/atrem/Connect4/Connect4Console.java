@@ -19,6 +19,6 @@ public class Connect4Console {
 		// gameFactory.setMenu(menu);
 		gameFactory.createGameController();
 		gameController = gameFactory.getGameController();
-		gameController.gameLoop();
+		gameController.startGameLoop();
 	}
 }

@@ -4,7 +4,7 @@ import atrem.Connect4.Game.board.Board;
 import atrem.Connect4.Game.board.HoleState;
 import atrem.Connect4.Game.player.PlayerController;
 
-public class GameController {
+public class GameController implements Runnable {
 	private Logic logic;
 	private Board board;
 	private int doneMoves;
@@ -13,14 +13,14 @@ public class GameController {
 	private int emptySpot, slot;
 	private PlayerId playerTurn = PlayerId.Player1;
 	private ResultState resultState;
-	private GameState gameState;
+	private GameState gameState = GameState.preInit;
 
 	/**
 	 * Sprawdza którego z graczy jest kolej
 	 * 
 	 * @return player1 lub player2
 	 */
-	private PlayerController getCurrentPlayer() {
+	private PlayerController currentPlayer() {
 		switch (playerTurn) {
 		case Player1:
 			return player1;
@@ -36,7 +36,7 @@ public class GameController {
 	 * @return puste miejsce w Board
 	 */
 	public synchronized int move(int slot) {
-		this.currentPlayer = getCurrentPlayer();
+		this.currentPlayer = currentPlayer();
 		this.slot = slot;
 		emptySpot = board.findFreeSpot(slot);
 		if (emptySpot == -1) {
@@ -54,14 +54,13 @@ public class GameController {
 	/**
 	 * Glowna petla gry
 	 */
-	public synchronized void gameLoop() {// ma odczytywaæ GameState
-		PlayerController currentPlayer = getCurrentPlayer();
+	private synchronized void gameLoop() {// ma odczytywaæ GameState
 		logic = new Logic(this);
 		lastMove = new LastMove();
 		boolean result = false;
-		gameState = GameState.preInit;
-		waitForMove();
+		waitForInit();
 		while (!result) {
+			currentPlayer = currentPlayer();
 			currentPlayer.yourTurn();
 			gameState = GameState.waitingForMove;
 			waitForMove();
@@ -179,5 +178,15 @@ public class GameController {
 
 	public Logic getLogic() {
 		return logic;
+	}
+
+	@Override
+	public void run() {
+		gameLoop();
+
+	}
+
+	public void startGameLoop() {
+		new Thread(this, "W¹tek kontrolera gry").start();
 	}
 }

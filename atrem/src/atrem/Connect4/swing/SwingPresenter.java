@@ -62,8 +62,9 @@ public class SwingPresenter implements PlayerController {
 					frame = new GameFrame(SwingPresenter.this);
 					frame.setTitle(playerAttributes.getName());
 					gameBoard = frame.getGameBoard();
-					gameController.endInitPlayer();
+					// gameController.endInitPlayer();
 					// changeDispTurn(playerTurn);
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
