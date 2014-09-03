@@ -23,11 +23,13 @@ public class GameFactory {
 	 */
 	public void createPlayerGame() {
 		player1 = new SwingPresenter(player1name, PlayerId.Player1,
-				gameController);
+				gameController, true);
 		// player2 = new SwingPresenter(player2name, PlayerId.Player2,
 		// gameController);
 		player2 = new PlayerConsole(gameController, player2name,
 				PlayerId.Player2);
+		player2 = new SwingPresenter(player2name, PlayerId.Player2,
+				gameController, false);
 
 		// if (opponent.equalsIgnoreCase("K"))
 		// player2 = new MediumPC(player2name, HoleState.PLAYER2,gameController,
