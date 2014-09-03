@@ -4,8 +4,8 @@ public class LastMove {
 	private int lastSlot, lastRow;
 
 	public LastMove() {
-		lastRow = 0;
-		lastSlot = 0;
+		lastRow = -1;
+		lastSlot = -1;
 	}
 
 	public int getLastSlot() {
