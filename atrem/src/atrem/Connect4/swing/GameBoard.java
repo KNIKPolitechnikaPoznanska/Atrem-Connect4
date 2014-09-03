@@ -18,9 +18,7 @@ public class GameBoard extends JPanel {
 	private static final long serialVersionUID = -7328887218009010574L;
 	private int rows, slots, chosenSlot = 1, freeRow, slot;
 	private JLabel[][] swingBoard;
-
 	private JButton[] button;
-
 	private SwingPresenter swingPresenter;
 	private ResourceLoader iconResource = new ResourceLoader();
 	private HoleState holeState;
@@ -29,11 +27,8 @@ public class GameBoard extends JPanel {
 		rows = 6;
 		slots = 7;
 		this.swingPresenter = swingPresenter;
-
 		setLayout(new GridLayout(rows + 1, slots));
-
 		swingBoard = new JLabel[rows][slots];
-
 		button = new JButton[slots];
 		createButtons();
 		createHoles();
@@ -54,8 +49,6 @@ public class GameBoard extends JPanel {
 						if (s == button[tempSlot]) {
 							chosenSlot = tempSlot;
 							sendGUINbSlot();
-							swingBoard[freeRow][tempSlot].setIcon(iconResource
-									.get(holeState));
 						}
 					}
 				}
@@ -84,7 +77,16 @@ public class GameBoard extends JPanel {
 	}
 
 	// int changeIconInSlot(int slots, int rows, int iconNumber)
-	// {
+	// {}
+
+	public void setFreeRow(int row, int slot, HoleState holeState) {
+		this.freeRow = row;
+		this.holeState = holeState;
+		swingBoard[row][slot].setIcon(iconResource.get(holeState));
+	}
+
+	// void placeTokenInSlot(int slot) {
+	// Plansza[1][1].setIcon(iconResource.get(1));
 	// }
 
 	public void disableButtons(boolean parameter) {
@@ -106,12 +108,6 @@ public class GameBoard extends JPanel {
 	public void setBoardSize(int rows, int slots) {
 		this.rows = rows;
 		this.slots = slots;
-	}
-
-	public void setFreeRow(int row, int slot, HoleState holeState) {
-		this.freeRow = row;
-		this.holeState = holeState;
-		this.slot = slot;
 	}
 
 	// void placeTokenInSlot(int slot) {

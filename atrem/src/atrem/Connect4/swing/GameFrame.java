@@ -6,9 +6,6 @@ import java.awt.Container;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import atrem.Connect4.Game.PlayerId;
-import atrem.Connect4.Game.board.HoleState;
-
 public class GameFrame extends JFrame {
 
 	/**
@@ -38,6 +35,7 @@ public class GameFrame extends JFrame {
 		sideBoard = new SideBoard();
 		sideBoard.setBounds(340, 0, 186, 262);
 		getContentPane().add(sideBoard);
+		sideToken = sideBoard.getToken();
 		this.setVisible(true);
 	}
 
@@ -51,12 +49,5 @@ public class GameFrame extends JFrame {
 
 	public JLabel getSideToken() {
 		return sideToken;
-	}
-
-	public void setSideTokenColor(PlayerId playerId) {
-		if (playerId == PlayerId.Player1)
-			sideToken.setIcon((sideBoard.iconResource.get(HoleState.PLAYER1)));
-		else
-			sideToken.setIcon((sideBoard.iconResource.get(HoleState.PLAYER2)));
 	}
 }

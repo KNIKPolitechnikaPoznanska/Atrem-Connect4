@@ -64,7 +64,7 @@ public class SideBoard extends JPanel {
 		return iconResource;
 	}
 
-	public JLabel getToken1() {
+	public JLabel getToken() {
 		return token1;
 	}
 
