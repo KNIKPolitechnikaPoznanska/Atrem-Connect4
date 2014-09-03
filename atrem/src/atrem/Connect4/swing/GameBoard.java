@@ -19,9 +19,10 @@ public class GameBoard extends JPanel {
 	private int rows, slots, chosenSlot = 1, freeRow;
 	private JLabel[][] swingBoard;
 	private JButton[] button;
-	private SwingPresenter swingPresenter;
+
 	private ResourceLoader iconResource = new ResourceLoader();
 	private HoleState holeState;
+	private SwingPresenter swingPresenter;
 
 	public GameBoard(SwingPresenter swingPresenter) {
 		rows = 6; // zamieni na config
@@ -77,8 +78,7 @@ public class GameBoard extends JPanel {
 						if (s == button[tempSlot]) {
 							chosenSlot = tempSlot;
 							sendGUINbSlot();
-							swingBoard[freeRow][tempSlot].setIcon(iconResource
-									.get(holeState));
+
 						}
 					}
 				}
@@ -97,6 +97,7 @@ public class GameBoard extends JPanel {
 	public void setFreeRow(int row, int slot, HoleState holeState) {
 		this.freeRow = row;
 		this.holeState = holeState;
+		swingBoard[row][slot].setIcon(iconResource.get(holeState));
 	}
 
 	public void setBoardSize(int rows, int slots) {
