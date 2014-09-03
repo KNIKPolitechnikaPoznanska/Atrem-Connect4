@@ -20,6 +20,7 @@ public class SwingPresenter implements PlayerController {
 	private PlayerId playerId;
 	private SideBoard sideBoard;
 	protected JLabel token;
+	private DialogInformationBoxes informationBoxes;
 
 	/**
 	 * Presenter MVP do GameFrame
@@ -55,13 +56,15 @@ public class SwingPresenter implements PlayerController {
 		}
 		System.out.println(LastRow + " " + LastSlot);
 
-		System.out.println("trolololo");
 	}
 
 	public void getSlotFromView(int slot) {
-		emptySpot = gameController.move(slot); // zrobic zabezpieczenie przed
+		emptySpot = gameController.move(slot);
+		if (emptySpot == -1){
+			informationBoxes.fullSlotMessage();
+			
 		gameBoard.disableButtons(false);
-		// przepelnionym !
+
 		refreshView(emptySpot, slot);
 	}
 
@@ -73,6 +76,7 @@ public class SwingPresenter implements PlayerController {
 					frame = new GameFrame(SwingPresenter.this);
 					frame.setTitle(playerAttributes.getName());
 					gameBoard = frame.getGameBoard();
+					informationBoxes = new DialogInformationBoxes();
 					sideBoard = frame.getSideBoard();
 					token = frame.getSideToken();
 					setNamesAndToken();
