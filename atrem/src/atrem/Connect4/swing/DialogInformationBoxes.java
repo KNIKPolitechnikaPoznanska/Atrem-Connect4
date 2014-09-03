@@ -7,6 +7,10 @@ import atrem.Connect4.Game.PlayerId;
 public class DialogInformationBoxes {
 
 	public void winMessage(PlayerId playerTurn) {
+		if (playerTurn == PlayerId.Player1)
+			JOptionPane.showMessageDialog(null, "Koniec gry. Wygra³ Gracz 1");
+		else
+			JOptionPane.showMessageDialog(null, "Koniec gry. Wygra³ Gracz 2");
 
 	}
 

@@ -73,8 +73,8 @@ public class GameController implements Runnable {
 			if (resultGame == true) {
 				player1.endOfGame(resultState);
 				// player2.endOfGame(resultState);
-			} else
-				changePlayer();
+			}
+			changePlayer();
 		}
 	}
 

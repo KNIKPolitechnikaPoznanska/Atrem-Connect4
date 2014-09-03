@@ -52,7 +52,7 @@ public class GameFactory {
 				break;
 			case "swing":
 				player2 = new SwingPresenter(player2name, PlayerId.Player2,
-						gameController, true);
+						gameController, false);
 				break;
 			}
 		else if (opponent.equalsIgnoreCase("K"))
