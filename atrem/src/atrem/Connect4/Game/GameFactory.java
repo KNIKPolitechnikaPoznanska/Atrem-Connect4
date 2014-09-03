@@ -16,6 +16,7 @@ public class GameFactory {
 	private String opponent;
 	private int slots, rows;
 	private GameController gameController;
+
 	/**
 	 * Tworzy dla ka¿dego gracza w³asnego prezentera
 	 */
@@ -33,6 +34,7 @@ public class GameFactory {
 		// gameController);
 		// narazie bez CPU Lukas
 	}
+
 	/**
 	 * £aduje GameController (all settings)
 	 */
@@ -95,10 +97,12 @@ public class GameFactory {
 	public void setBoard() {
 		board = new Board(rows, slots);
 	}
+
 	@Deprecated
 	public void setMenu(Menu menu) {
 		this.menu = menu;
 	}
+
 	public void setOpponent(String opponent) {
 		this.opponent = opponent;
 	}

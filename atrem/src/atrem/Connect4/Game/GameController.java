@@ -11,7 +11,7 @@ public class GameController {
 	private LastMove lastMove;
 	private PlayerController currentPlayer, player1, player2;
 	private int emptySpot, slot;
-	private PlayerId playerTurn;
+	private PlayerId playerTurn = PlayerId.Player1;
 	private ResultState resultState;
 	private GameState gameState;
 
@@ -22,12 +22,12 @@ public class GameController {
 	 */
 	private PlayerController getCurrentPlayer() {
 		switch (playerTurn) {
-			case Player1 :
-				return player1;
-			case Player2 :
-				return player2;
-			default :
-				return player1;
+		case Player1:
+			return player1;
+		case Player2:
+			return player2;
+		default:
+			return player1;
 		}
 	}
 
