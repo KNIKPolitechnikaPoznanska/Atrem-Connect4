@@ -16,6 +16,7 @@ public class SwingPresenter implements PlayerController {
 	private GameBoard gameBoard;
 	private GameFrame frame;
 	private boolean firstTurn = true;
+	private boolean blockButton;
 
 	/**
 	 * Presenter MVP do GameFrame
@@ -25,9 +26,10 @@ public class SwingPresenter implements PlayerController {
 	 * @param gameController
 	 */
 	public SwingPresenter(String playerName, PlayerId playerId,
-			GameController gameController) {
+			GameController gameController, boolean block) {
 		playerAttributes = new PlayerAttributes(playerName, playerId);
 		this.gameController = gameController;
+		this.blockButton = block;
 		setSettings();
 	}
 
@@ -69,6 +71,7 @@ public class SwingPresenter implements PlayerController {
 					frame.setTitle(playerAttributes.getName());
 					gameBoard = frame.getGameBoard();
 					gameController.endInitPlayer();
+					gameBoard.disableButtons(blockButton);
 					// changeDispTurn(playerTurn);
 					// frame.setVisible(true);
 				} catch (Exception e) {
