@@ -73,6 +73,7 @@ public class PlayerConsole implements PlayerController {
 		executor.execute(new Runnable() {
 			@Override
 			public void run() {
+				displayGame();
 				makeMove();
 				displayGame();
 			}
