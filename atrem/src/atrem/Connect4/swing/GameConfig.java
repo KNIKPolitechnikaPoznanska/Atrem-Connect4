@@ -13,6 +13,8 @@ public class GameConfig {
 	private String opponent;
 	private boolean CPUmark;
 	private GameFactory gameFactory;
+	private String gamePl1Type;
+	private String gamePl2Type;
 
 	public GameConfig(GameFactory gameFactory) {
 		this.gameFactory = gameFactory;
@@ -21,7 +23,6 @@ public class GameConfig {
 	public void setDBox() {
 		try {
 			dialogBox = new DialogSettingsBox(this, gameFactory);
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -37,6 +38,8 @@ public class GameConfig {
 			setOpponent("K");
 		} else
 			setOpponent("C");
+		gamePl1Type = dialogBox.getPl1GameType();
+		gamePl2Type = dialogBox.getPl2GameType();
 	}
 
 	public void setupGameFactory() {
@@ -46,6 +49,8 @@ public class GameConfig {
 		gameFactory.setPlayer1Name(player1name);
 		gameFactory.setPlayer2Name(player2name);
 		gameFactory.setBoard();
+		gameFactory.setGamePl1Type(gamePl1Type);
+		gameFactory.setGamePl2Type(gamePl2Type);
 	}
 
 	public String getOpponent() {
