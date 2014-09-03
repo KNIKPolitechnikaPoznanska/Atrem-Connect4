@@ -4,6 +4,7 @@ import java.util.Random;
 
 import atrem.Connect4.Game.GameController;
 import atrem.Connect4.Game.Logic;
+import atrem.Connect4.Game.PlayerId;
 import atrem.Connect4.Game.board.Board;
 import atrem.Connect4.Game.board.HoleState;
 import atrem.Connect4.Game.player.PlayerAttributes;
@@ -134,5 +135,23 @@ public class MediumPC implements PlayerController {
 			choosenSlot = board.findFreeSpot(randomSlot);
 		} while (choosenSlot == -1);
 		return 0;
+	}
+
+	@Override
+	public PlayerId getPlayerId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void yourTurn() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void refreshView(int row, int slot) {
+		// TODO Auto-generated method stub
+
 	}
 }

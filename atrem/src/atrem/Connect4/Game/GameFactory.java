@@ -3,6 +3,7 @@ package atrem.Connect4.Game;
 import atrem.Connect4.Game.board.Board;
 import atrem.Connect4.Game.player.PlayerController;
 import atrem.Connect4.console.Menu;
+import atrem.Connect4.console.PlayerConsole;
 import atrem.Connect4.swing.SwingPresenter;
 
 /*
@@ -23,12 +24,14 @@ public class GameFactory {
 	public void createPlayerGame() {
 		player1 = new SwingPresenter(player1name, PlayerId.Player1,
 				gameController);
-		player2 = new SwingPresenter(player2name, PlayerId.Player2,
-				gameController);
+		// player2 = new SwingPresenter(player2name, PlayerId.Player2,
+		// gameController);
+		player2 = new PlayerConsole(gameController, player2name,
+				PlayerId.Player2);
 
 		// if (opponent.equalsIgnoreCase("K"))
-		// player2 = new MediumPC(player2name, HoleState.PLAYER2,
-		// gameController, gameController.getLogic());
+		// player2 = new MediumPC(player2name, HoleState.PLAYER2,gameController,
+		// gameController.getLogic());
 		// else
 		// player2 = new SwingPresenter(player2name, PlayerId.Player2,
 		// gameController);
