@@ -6,7 +6,7 @@ import atrem.Connect4.Game.GameFactory;
  * Pobiera od gracza wszystkie informacje
  * wymagane do uruchomienia gry
  */
-public class SwingConfig {
+public class GameConfig {
 	private DialogSettingsBox dialogBox;
 	private String player1name, player2name;
 	private int slots, rows;
@@ -14,7 +14,7 @@ public class SwingConfig {
 	private boolean CPUmark;
 	private GameFactory gameFactory;
 
-	public SwingConfig(GameFactory gameFactory) {
+	public GameConfig(GameFactory gameFactory) {
 		this.gameFactory = gameFactory;
 	}
 
@@ -46,7 +46,6 @@ public class SwingConfig {
 		gameFactory.setPlayer1Name(player1name);
 		gameFactory.setPlayer2Name(player2name);
 		gameFactory.setBoard();
-
 	}
 
 	public String getOpponent() {

@@ -13,7 +13,7 @@ public interface PlayerController {
 
 	public abstract void yourTurn();
 
-	public abstract void goView(int row, int slot);
+	public abstract void refreshView(int row, int slot);
 
 	public abstract void setGamecontroller(GameController gamecontroller);
 

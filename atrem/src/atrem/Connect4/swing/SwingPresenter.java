@@ -9,42 +9,49 @@ import atrem.Connect4.Game.player.PlayerAttributes;
 import atrem.Connect4.Game.player.PlayerController;
 
 public class SwingPresenter implements PlayerController {
-
-	private int LastRow;//
-	private int LastSlot; // do GC
-	private int emptySpot;//
+	private int LastRow, LastSlot, emptySpot; // do GC
 	private GameController gameController;
-	private JLabel pl1Label, pl2Label; // do View
+	private JLabel pl1Label, pl2Label; // changeDispTurn()
 	private PlayerAttributes playerAttributes;
 	private GameBoard gameBoard;
+	private boolean firstTurn = true;
 
-	public SwingPresenter(String im, PlayerId playerId,
+	/**
+	 * 
+	 * @param playerName
+	 * @param playerId
+	 * @param gameController
+	 */
+	public SwingPresenter(String playerName, PlayerId playerId,
 			GameController gameController) {
-		playerAttributes = new PlayerAttributes(im, playerId);
+		playerAttributes = new PlayerAttributes(playerName, playerId);
 		this.gameController = gameController;
 		setSettings();
-
 	}
 
+	/**
+	 * Wywo³ywane przez GC.GameLoop
+	 */
 	@Override
 	public void yourTurn() {
-
+		// a w pierwszym ruchu nie ma last ...
+		// dlatego da³em na sprawdzenie if Lukas
 		LastSlot = gameController.getLastMove().getLastSlot();
 		LastRow = gameController.getLastMove().getLastRow();
-		goView(LastRow, LastSlot);
-
+		if (firstTurn == true) {
+			firstTurn = false;
+			// return;
+		}
+		refreshView(LastRow, LastSlot);
 	}
 
 	public void getSlotFromView(int slot) {
-
-		emptySpot = gameController.move(slot);// zabezpieczenie przed
-												// przepelnionym zrobic !
-		goView(emptySpot, slot);
-
+		emptySpot = gameController.move(slot); // zrobic zabezpieczenie przed
+												// przepelnionym !
+		refreshView(emptySpot, slot);
 	}
 
 	public void setSettings() {
-
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -66,13 +73,15 @@ public class SwingPresenter implements PlayerController {
 		});
 	}
 
+	/**
+	 * Odœwie¿a planszê na GUI
+	 */
 	@Override
-	public void goView(int Row, int Slot) {
-		// changeDispTurn(gameController.getPlayerTurn); // bez
-		// numeru
-		gameBoard.setFreeRow(Row, Slot, gameController.getBoard()
-				.playerIdtoHoleState(gameController.getPlayerTurn())); // nie
-																		// pytajcie
+	public void refreshView(int row, int slot) { // row i slot s¹ 0, why?, a
+													// slot do czego? Lukas
+		changeDispTurn(gameController.getPlayerTurn());
+		gameBoard.setFreeRow(row, slot, gameController.getBoard()
+				.playerIdtoHoleState(gameController.getPlayerTurn()));
 	}
 
 	// public void setPanels() {
@@ -83,16 +92,25 @@ public class SwingPresenter implements PlayerController {
 	// setNames();
 	// }
 
-	public void changeDispTurn(int plTurnNumb) {
-		if (plTurnNumb == 1) {
-			pl1Label.setVisible(false);
-			pl2Label.setVisible(true);
-		} else if (plTurnNumb == 2) {
-			pl2Label.setVisible(false);
-			pl1Label.setVisible(true);
-		}
+	/**
+	 * Funkcja zmienia Label gracza w ka¿zdej turze
+	 * 
+	 * @param playerId
+	 *            kolej gracza 1/2
+	 */
+	public void changeDispTurn(PlayerId playerId) {
+		// Naprawiæ Label'e Lukas
+		// if (playerId == PlayerId.Player1) {
+		// pl1Label.setVisible(false);
+		// pl2Label.setVisible(true);
+		// } else if (playerId == PlayerId.Player2) {
+		// pl2Label.setVisible(false);
+		// pl1Label.setVisible(true);
+		// }
 	}
-
+	/**
+	 * Ustawia Imiona graczy na Labelach
+	 */
 	public void setNames() {
 		pl1Label.setText(gameController.getPlayer1().getName());
 		pl2Label.setText(gameController.getPlayer2().getName());
@@ -106,7 +124,6 @@ public class SwingPresenter implements PlayerController {
 	@Override
 	public void setName(String name) {
 		playerAttributes.setName(name);
-
 	}
 
 	@Override
@@ -117,7 +134,5 @@ public class SwingPresenter implements PlayerController {
 	@Override
 	public void setGamecontroller(GameController gamecontroller) {
 		this.gameController = gamecontroller;
-
 	}
-
 }

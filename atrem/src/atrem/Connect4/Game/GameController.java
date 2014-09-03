@@ -6,28 +6,28 @@ import atrem.Connect4.Game.player.PlayerController;
 
 public class GameController {
 	private Logic logic;
-
 	private Board board;
 	private int doneMoves;
 	private LastMove lastMove;
-	private PlayerController player1, player2;
+	private PlayerController currentPlayer, player1, player2;
 	private int emptySpot, slot;
 	private PlayerId playerTurn;
-	private ResultState gameState;// zmiana nazwy na stan
-	private GameState gamestate;
+	private ResultState resultState;
+	private GameState gameState;
 
-	public void createLogic() {
-		logic = new Logic(this);
-	}
-
-	private PlayerController currentPlayer() {
+	/**
+	 * Sprawdza którego z graczy jest kolej
+	 * 
+	 * @return player1 lub player2
+	 */
+	private PlayerController getCurrentPlayer() {
 		switch (playerTurn) {
-		case Player1:
-			return player1;
-		case Player2:
-			return player2;
-		default:
-			return player1;
+			case Player1 :
+				return player1;
+			case Player2 :
+				return player2;
+			default :
+				return player1;
 		}
 	}
 
@@ -36,42 +36,44 @@ public class GameController {
 	 * @return puste miejsce w Board
 	 */
 	public synchronized int move(int slot) {
-		PlayerController player = currentPlayer();
+		this.currentPlayer = getCurrentPlayer();
 		this.slot = slot;
 		emptySpot = board.findFreeSpot(slot);
 		if (emptySpot == -1) {
 			return emptySpot;
 		}
-		board.setHoleState(emptySpot, slot, player.getPlayerId());
+		board.setHoleState(emptySpot, slot, currentPlayer.getPlayerId());
 		board.setLastSlot(slot);
 		board.setLastSpot(emptySpot);
 		lastMove.saveLastMove(slot, emptySpot);
-		gamestate = GameState.moveDone;
+		gameState = GameState.moveDone;
 		notifyAll();
 		return emptySpot;
-
 	}
 
 	/**
-	 * glowna petla gry
+	 * Glowna petla gry
 	 */
 	public synchronized void gameLoop() {// ma odczytywaæ GameState
-		PlayerController player = currentPlayer();
+		PlayerController currentPlayer = getCurrentPlayer();
+		logic = new Logic(this);
+		lastMove = new LastMove();
 		boolean result = false;
 		while (!result) {
-			player.yourTurn();
-			gamestate = GameState.waitingForMove;
+			currentPlayer.yourTurn();
+			gameState = GameState.waitingForMove;
 			waitForMove();
 			doneMoves++;
 			result = logic.checkResult(doneMoves);
 			changePlayer();
-			// player.goView(emptySpot, slot);
-
 		}
 	}
 
+	/**
+	 * Metoda usypiaj¹ca w¹tek GC.
+	 */
 	private void waitForMove() {
-		while (gamestate != GameState.moveDone) {
+		while (gameState != GameState.moveDone) {
 			try {
 				wait();
 			} catch (InterruptedException e) {
@@ -80,13 +82,15 @@ public class GameController {
 		}
 	}
 
+	/**
+	 * Zmiana tury gracza.
+	 */
 	private void changePlayer() {
 		if (playerTurn == PlayerId.Player1) {
 			setPlayerTurn(PlayerId.Player2);
 		} else {
 			setPlayerTurn(PlayerId.Player1);
 		}
-
 	}
 
 	public HoleState getHoleState(int rows, int slots) {
@@ -94,7 +98,7 @@ public class GameController {
 	}
 
 	public void setResult(ResultState result) {
-		this.gameState = result;
+		this.resultState = result;
 	}
 
 	public PlayerId getPlayerTurn() {
@@ -110,7 +114,7 @@ public class GameController {
 	}
 
 	public ResultState getResult() {
-		return gameState;
+		return resultState;
 	}
 
 	public Board getBoard() {
@@ -138,7 +142,7 @@ public class GameController {
 	}
 
 	public GameState getGamestate() {
-		return gamestate;
+		return gameState;
 	}
 
 	public LastMove getLastMove() {
@@ -146,7 +150,7 @@ public class GameController {
 	}
 
 	public void setGamestate(GameState gamestate) {
-		this.gamestate = gamestate;
+		this.gameState = gamestate;
 	}
 
 	public Logic getLogic() {

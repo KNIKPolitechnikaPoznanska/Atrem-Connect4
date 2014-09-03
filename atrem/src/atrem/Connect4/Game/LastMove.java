@@ -1,8 +1,7 @@
 package atrem.Connect4.Game;
 
 public class LastMove {
-	private int lastSlot;
-	private int lastRow;
+	private int lastSlot, lastRow;
 
 	public LastMove() {
 		lastRow = 0;

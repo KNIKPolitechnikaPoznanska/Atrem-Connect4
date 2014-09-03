@@ -1,4 +1,4 @@
-package atrem.Connect4.swing;
+package atrem.Connect4.zclasstempbacups;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -9,33 +9,30 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import atrem.Connect4.Game.board.HoleState;
+import atrem.Connect4.swing.ResourceLoader;
+import atrem.Connect4.swing.SwingPresenter;
 
-public class SwingBoard extends JPanel { // nazwa niejasna PAWE£
+public class CopyofSwingBoard extends JPanel { // nazwa niejasna PAWE£
 
 	/**
 	 * Serial
 	 */
 	private static final long serialVersionUID = -7328887218009010574L;
-	private int rows;
-	private int slots;
+	private int rows, slots, chosenSlot, freeRow;
 	private JLabel[][] Plansza;
 	private JButton[] button;
 	private int PlayerID;
 	private SwingPresenter swingPresenter;
-	private int chosenSlot;
 	private ResourceLoader iconResource = new ResourceLoader();
-	private int freeRow;
 	private HoleState holeState;
 
-	public SwingBoard(SwingPresenter swingPresenter) { // SZTYWNE.
-														// ZAMIENIC/DOKONCZYC
-														// PAWE£
+	public CopyofSwingBoard(SwingPresenter swingPresenter) {
 		rows = 6;
-		slots = 7;
-		// this.rows = swingPresenter.getRows(); //swingPresenter ma stracic te
-		// pola i ma byc to w GC. Tak, wlasnie skomentowalem komentarz...
-		// PAWE£
-		// this.slots = swingPresenter.getSlots();
+		slots = 7;// SZTYWNE.
+					// ZAMIENIC/DOKONCZYC
+					// PAWE£
+		// this.rows = gameController.getRows();
+		// this.slots = gameController.getSlots();
 		this.swingPresenter = swingPresenter;
 
 		setLayout(new GridLayout(rows + 1, slots));

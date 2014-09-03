@@ -31,13 +31,19 @@ public class DialogSettingsBox extends JDialog {
 	private JButton startButton, btnDefault, cancelButton;
 	private JPanel buttonPane;
 	private JLabel pl1NameLab, pl2NameLab, LabelSlotSet, LabelRowSet,
-			labSpacer, LabelsetBoard, LabelSetPlayers;
+			labSpacer, LabelsetBoard, LabelSetPlayers, PlayerLbl1, playerLbl2;;
 	private JCheckBox CPUmark;
-	private String defPl1Name = "Gracz 1", defPl2Name = "Gracz 2", pl1Name,
-			pl2Name;
-	private int defSlots = 7, defRows = 6, slots, rows;
+	private final String DEF_PL1_NAME = "Gracz 1", DEF_PL2_NAME = "Gracz 2";
+	private final int DEF_SLOTS = 7, DEF_ROWS = 6;
+	private String pl1Name, pl2Name;
+	private int slots, rows;
 	private boolean CPU;
 	private String pl1GameType, pl2GameType;
+	private GameConfig swingConfig;
+	private JRadioButton rdbtnConsole1, rdbtnSwing1, rdbtnNet1, rdbtnConsole2,
+			rdbtnSwing2, rdbtnNet2;
+	private ButtonGroup pl1BoardType, pl2BoardType;
+	private GameFactory gameFactory;
 
 	public String getPl1GameType() {
 		return pl1GameType;
@@ -55,19 +61,12 @@ public class DialogSettingsBox extends JDialog {
 		this.pl2GameType = pl2GameType;
 	}
 
-	private SwingConfig swingConfig;
-	private JLabel PlayerLbl1, playerLbl2;
-	private JRadioButton rdbtnConsole1, rdbtnSwing1, rdbtnNet1, rdbtnConsole2,
-			rdbtnSwing2, rdbtnNet2;
-	ButtonGroup pl1BoardType, pl2BoardType;
-	private GameFactory gameFactory;
-
 	/**
 	 * Create the settings dialog.
 	 * 
 	 * @param swingConfig
 	 */
-	public DialogSettingsBox(SwingConfig swingConfig, GameFactory gameFactory) {
+	public DialogSettingsBox(GameConfig swingConfig, GameFactory gameFactory) {
 		this.swingConfig = swingConfig;
 		this.gameFactory = gameFactory;
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -90,7 +89,7 @@ public class DialogSettingsBox extends JDialog {
 		{
 			pl1Txt = new JTextField();
 			pl1Txt.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			pl1Txt.setText(defPl1Name);
+			pl1Txt.setText(DEF_PL1_NAME);
 			contentPanel.add(pl1Txt);
 			pl1Txt.setColumns(10);
 		}
@@ -101,7 +100,7 @@ public class DialogSettingsBox extends JDialog {
 		}
 		{
 			pl2Txt = new JTextField();
-			pl2Txt.setText(defPl2Name);
+			pl2Txt.setText(DEF_PL2_NAME);
 			pl2Txt.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			contentPanel.add(pl2Txt);
 			pl2Txt.setColumns(10);
@@ -114,7 +113,6 @@ public class DialogSettingsBox extends JDialog {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					cpuCheckBoxCheck();
-
 				}
 			});
 			CPUmark.setActionCommand("markCPU");
@@ -138,7 +136,7 @@ public class DialogSettingsBox extends JDialog {
 		{
 			TxtSlots = new JTextField();
 			TxtSlots.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			TxtSlots.setText(Integer.toString(defSlots));
+			TxtSlots.setText(Integer.toString(DEF_SLOTS));
 			contentPanel.add(TxtSlots);
 			TxtSlots.setColumns(10);
 		}
@@ -150,7 +148,7 @@ public class DialogSettingsBox extends JDialog {
 		{
 			TxtRows = new JTextField();
 			TxtRows.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			TxtRows.setText(Integer.toString(defRows));
+			TxtRows.setText(Integer.toString(DEF_ROWS));
 			contentPanel.add(TxtRows);
 			TxtRows.setColumns(10);
 		}
@@ -197,7 +195,6 @@ public class DialogSettingsBox extends JDialog {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						startButtonPressed();
-
 					}
 				});
 				startButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -212,7 +209,6 @@ public class DialogSettingsBox extends JDialog {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						defalutButtonPressed();
-
 					}
 				});
 				btnDefault.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -249,42 +245,21 @@ public class DialogSettingsBox extends JDialog {
 		}
 	}
 
-	private void cancelButtonPressed() {
-		System.exit(0);
+	/**
+	 * Klikniêcie guzika "Start"
+	 */
+	private void startButtonPressed() {
+		if (saveSettings()) {
+			swingConfig.setupSettings();
+			dispose();
+			new Connect4Swing().init(swingConfig, gameFactory);
+		}
 	}
-
-	private void cpuCheckBoxCheck() {
-		setCPU(CPUmark.getModel().isSelected());
-	}
-
-	private void defalutButtonPressed() {
-		setDefaults();
-	}
-
-	public JCheckBox getIsCPU() {
-		return CPUmark;
-	}
-
-	public String getPl1Name() {
-		return pl1Name;
-	}
-
-	public String getPl2Name() {
-		return pl2Name;
-	}
-
-	public int getRows() {
-		return rows;
-	}
-
-	public int getSlots() {
-		return slots;
-	}
-
-	public boolean isCPU() {
-		return CPU;
-	}
-
+	/**
+	 * Zapisuje wartoœci pól z okna dialogowego i przypisuje do GameConfig
+	 * 
+	 * @return true je¿eli zapis siê powiedzie
+	 */
 	protected boolean saveSettings() {
 		setPl1Name(pl1Txt.getText());
 		setPl2Name(pl2Txt.getText());
@@ -316,15 +291,59 @@ public class DialogSettingsBox extends JDialog {
 		return true;
 	}
 
-	public void setCPU(boolean cPU) {
-		CPU = cPU;
+	/**
+	 * Klikniêcie guzika "Anuluj"
+	 */
+	private void cancelButtonPressed() {
+		System.exit(0);
 	}
 
+	/**
+	 * Klikniêcie guzika "Default"
+	 */
+	private void defalutButtonPressed() {
+		setDefaults();
+	}
+	/**
+	 * Ustawia wartoœci domyœlne gry
+	 */
 	protected void setDefaults() {
-		pl1Txt.setText(defPl1Name);
-		pl2Txt.setText(defPl2Name);
-		TxtSlots.setText(Integer.toString(defSlots));
-		TxtRows.setText(Integer.toString(defRows));
+		pl1Txt.setText(DEF_PL1_NAME);
+		pl2Txt.setText(DEF_PL2_NAME);
+		TxtSlots.setText(Integer.toString(DEF_SLOTS));
+		TxtRows.setText(Integer.toString(DEF_ROWS));
+	}
+
+	public JCheckBox getIsCPU() {
+		return CPUmark;
+	}
+
+	private void cpuCheckBoxCheck() {
+		setCPU(CPUmark.getModel().isSelected());
+	}
+
+	public String getPl1Name() {
+		return pl1Name;
+	}
+
+	public String getPl2Name() {
+		return pl2Name;
+	}
+
+	public int getRows() {
+		return rows;
+	}
+
+	public int getSlots() {
+		return slots;
+	}
+
+	public boolean isCPU() {
+		return CPU;
+	}
+
+	public void setCPU(boolean cPU) {
+		CPU = cPU;
 	}
 
 	public void setIsCPU(JCheckBox isCPU) {
@@ -345,13 +364,5 @@ public class DialogSettingsBox extends JDialog {
 
 	public void setSlots(int slots) {
 		this.slots = slots;
-	}
-
-	private void startButtonPressed() {
-		if (saveSettings()) {
-			swingConfig.setupSettings();
-			new Connect4Swing().init(swingConfig, gameFactory);
-			dispose();
-		}
 	}
 }
