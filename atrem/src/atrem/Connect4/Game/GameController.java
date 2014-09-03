@@ -58,11 +58,13 @@ public class GameController implements Runnable {
 		logic = new Logic(this);
 		lastMove = new LastMove();
 		boolean result = false;
+		System.out.println("przed init");
 		waitForInit();
 		System.out.println("ll");
 		while (!result) {
 			currentPlayer = currentPlayer();
 			currentPlayer.yourTurn();
+			System.out.println("po ");
 			gameState = GameState.waitingForMove;
 			waitForMove();
 			doneMoves++;
@@ -104,6 +106,16 @@ public class GameController implements Runnable {
 			this.notifyAll();
 			break;
 		}
+	}
+
+	@Override
+	public void run() {
+		gameLoop();
+
+	}
+
+	public void startGameLoop() {
+		new Thread(this, "W¹tek kontrolera gry").start();
 	}
 
 	/**
@@ -181,13 +193,4 @@ public class GameController implements Runnable {
 		return logic;
 	}
 
-	@Override
-	public void run() {
-		gameLoop();
-
-	}
-
-	public void startGameLoop() {
-		new Thread(this, "W¹tek kontrolera gry").start();
-	}
 }
