@@ -6,20 +6,17 @@ import javax.swing.SwingConstants;
 
 import atrem.Connect4.Game.board.HoleState;
 
-public class GameSideBoard extends JPanel {
-	String message;
+public class SideBoard extends JPanel {
 	/**
 	 * Serial
 	 */
 	private static final long serialVersionUID = 9208904490186715373L;
 	ResourceLoader iconResource = new ResourceLoader();
 	int PlayerID = 1;
-	String pl1Name = "Gracz1";
-	String pl2Name = "Gracz2";
-	JLabel token1;
-	JLabel token2;
+	String pl1Name = "Gracz1", pl2Name = "Gracz2", message;
+	JLabel token1, token2;
 
-	public GameSideBoard() {
+	public SideBoard() {
 		setLayout(null);
 
 		JPanel namesAndColours = new JPanel();
@@ -34,9 +31,7 @@ public class GameSideBoard extends JPanel {
 		JLabel token1 = new JLabel("");
 		token1.setBounds(119, 3, 40, 40);
 		namesAndColours.add(token1);
-		token1.setIcon(iconResource.get(HoleState.EMPTY)); // obrazek widoczny
-															// arg plID [0-2]
-															// BARTEK
+		token1.setIcon(iconResource.get(HoleState.EMPTY));
 
 		JLabel player2 = new JLabel(pl2Name);
 		player2.setBounds(5, 78, 91, 14);
@@ -54,17 +49,7 @@ public class GameSideBoard extends JPanel {
 
 	}
 
-	/**
-	 * 
-	 * METODY
-	 * 
-	 * do komunikacji z graczem ! BARTEK
-	 */
-	public void sendMessage(String message) {
-		message = "Witamy w Connect4!";
-		this.message = message;
-	}
-
+	@Deprecated
 	public void displayCurrentToken(int player) {
 		if (player == 1) {
 			token1.setIcon(iconResource.get(HoleState.PLAYER1));
@@ -73,6 +58,26 @@ public class GameSideBoard extends JPanel {
 			token2.setIcon(iconResource.get(HoleState.PLAYER2));
 			token1.setIcon(null);
 		}
+	}
+
+	public ResourceLoader getIconResource() {
+		return iconResource;
+	}
+
+	public JLabel getToken1() {
+		return token1;
+	}
+
+	public JLabel getToken2() {
+		return token2;
+	}
+
+	/**
+	 * METODY do komunikacji z graczem ! BARTEK
+	 */
+	public void sendMessage(String message) {
+		message = "Witamy w Connect4!";
+		this.message = message;
 	}
 
 	public void setPl1Name(String i) {
