@@ -77,8 +77,7 @@ public class GameBoard extends JPanel {
 						if (s == button[tempSlot]) {
 							chosenSlot = tempSlot;
 							sendGUINbSlot();
-							swingBoard[freeRow][tempSlot].setIcon(iconResource
-									.get(holeState));
+
 						}
 					}
 				}
@@ -97,6 +96,7 @@ public class GameBoard extends JPanel {
 	public void setFreeRow(int row, int slot, HoleState holeState) {
 		this.freeRow = row;
 		this.holeState = holeState;
+		swingBoard[freeRow][chosenSlot].setIcon(iconResource.get(holeState));
 	}
 
 	public void setBoardSize(int rows, int slots) {
