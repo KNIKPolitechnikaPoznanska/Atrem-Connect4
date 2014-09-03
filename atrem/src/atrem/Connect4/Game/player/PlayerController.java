@@ -17,6 +17,4 @@ public interface PlayerController {
 
 	public abstract void setGamecontroller(GameController gamecontroller);
 
-	public abstract void setSettings();
-
 }

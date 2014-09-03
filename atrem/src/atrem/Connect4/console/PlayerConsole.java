@@ -82,4 +82,5 @@ public class PlayerConsole implements PlayerController {
 	public void refreshView(int row, int slot) {
 		displayGame();
 	}
+
 }

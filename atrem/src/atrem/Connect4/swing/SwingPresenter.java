@@ -59,8 +59,7 @@ public class SwingPresenter implements PlayerController {
 		refreshView(emptySpot, slot);
 	}
 
-	@Override
-	public void setSettings() {
+	private void setSettings() {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
