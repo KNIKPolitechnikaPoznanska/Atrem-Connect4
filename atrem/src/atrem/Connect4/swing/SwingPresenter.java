@@ -5,6 +5,7 @@ import javax.swing.SwingUtilities;
 
 import atrem.Connect4.Game.GameController;
 import atrem.Connect4.Game.PlayerId;
+import atrem.Connect4.Game.ResultState;
 import atrem.Connect4.Game.player.PlayerAttributes;
 import atrem.Connect4.Game.player.PlayerController;
 
@@ -98,6 +99,14 @@ public class SwingPresenter implements PlayerController {
 		gameBoard.setFreeRow(row, slot, gameController.getBoard()
 				.playerIdtoHoleState(gameController.getPlayerTurn()));
 	}
+
+	@Override
+	public void endOfGame(ResultState resultGame) {
+		if (resultGame == resultGame.Player1Win)
+			informationBoxes.winMessage(playerId.Player1);
+		if (resultGame == resultGame.Player2Win)
+			informationBoxes.winMessage(playerId.Player2);
+	};
 
 	/**
 	 * Funkcja zmienia Label gracza w ka¿zdej turze

@@ -2,19 +2,10 @@ package Test;
 
 import atrem.Connect4.Game.board.Board;
 import atrem.Connect4.Game.board.HoleState;
-import atrem.Connect4.console.GUIConsole;
 
 public class BoardGenerator {
 	static final int MAX_ROWS = 6, MAX_SLOTS = 7;
 	Board board = new Board(MAX_ROWS, MAX_SLOTS);
-
-	public static void main(String[] args) {
-		BoardGenerator bg = new BoardGenerator();
-		GUIConsole gc = new GUIConsole();
-		bg.setVerticalOrHorizontalWinningFour(2, 2, 1, 5);
-		gc.drawBoard(bg.board);
-
-	}
 
 	public void setDiagonalWinningFour(int startRow, int endRow, int startSlot,
 			int endSlot) {
