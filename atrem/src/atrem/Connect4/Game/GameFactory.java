@@ -2,6 +2,7 @@ package atrem.Connect4.Game;
 
 import atrem.Connect4.Game.board.Board;
 import atrem.Connect4.Game.player.PlayerController;
+import atrem.Connect4.Game.player.ai.EasyPC;
 import atrem.Connect4.console.PlayerConsole;
 import atrem.Connect4.swing.SwingPresenter;
 
@@ -56,9 +57,9 @@ public class GameFactory {
 				break;
 			}
 		else if (opponent.equalsIgnoreCase("K"))
-			System.out.println("Brak cpu jeszcze! I chuj");
-		// player2 = new MediumPC(player2name, HoleState.PLAYER2,gameController,
-		// gameController.getLogic());
+			player2 = new EasyPC(gameController, player2name, PlayerId.Player2); // dokonczyc
+																					// pawel
+
 	}
 
 	public Board getBoard() {
