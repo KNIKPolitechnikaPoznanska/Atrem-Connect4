@@ -63,7 +63,9 @@ public class GameController implements Runnable {
 	 * Glowna petla gry
 	 */
 	public void startNewGame() {
-		board = new Board(board.getLastRow(), board.getLastSlot());
+		int row = board.getLastRow();
+		int slot = board.getSlots();
+		board = new Board(row, slot);
 		resultState = ResultState.NoWin;
 		gameState = GameState.nextGame;
 		if (player1 instanceof SwingPresenter) {
@@ -74,7 +76,8 @@ public class GameController implements Runnable {
 			player2 = new SwingPresenter(player2.getName(), PlayerId.Player2,
 					this, false);
 		}
-
+		doneMoves = 0;
+		playerTurn = PlayerId.Player1;
 		startGameLoop();
 
 	}

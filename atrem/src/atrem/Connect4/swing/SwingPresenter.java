@@ -21,6 +21,7 @@ public class SwingPresenter implements PlayerController {
 	protected JLabel token;
 	private DialogInformationBoxes informationBoxes;
 	private int slots, rows;
+	private int decision;
 
 	/**
 	 * Presenter MVP do GameFrame
@@ -111,14 +112,20 @@ public class SwingPresenter implements PlayerController {
 	@Override
 	public void endOfGame(ResultState resultGame) {
 		if (resultGame == resultGame.Player1Win)
-			informationBoxes.winMessage(playerAttributes.getName());
+			decision = informationBoxes.winMessage(playerAttributes.getName());
 		if (resultGame == resultGame.Player2Win)
-			informationBoxes.winMessage(gameController.getPlayer2().getName());
+			decision = informationBoxes.winMessage(gameController.getPlayer2()
+					.getName());
 		if (resultGame == resultGame.Draw)
 			informationBoxes.drawMessage();
-		frame.removeNotify();
-		setupFrame();
 		gameController.startNewGame();
+
+		// makeDecision(decision);
+	}
+
+	public void makeDecision(int decision) {
+		if (decision == 2)
+			frame.dispose(); // zamyka tylko jedno okno
 
 	}
 
@@ -168,4 +175,5 @@ public class SwingPresenter implements PlayerController {
 	public void setGamecontroller(GameController gamecontroller) {
 		this.gameController = gamecontroller;
 	}
+
 }
