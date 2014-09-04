@@ -58,9 +58,11 @@ public class GameController implements Runnable {
 	 * Glowna petla gry
 	 */
 	public void startNewGame() {
-		board = new Board();
+		board = new Board(board.getRows(), board.getSlots());
 		resultState = ResultState.NoWin;
 		gameState = GameState.nextGame;
+		doneMoves = 0;
+		playerTurn = PlayerId.Player1;
 		startGameLoop();
 
 	}
