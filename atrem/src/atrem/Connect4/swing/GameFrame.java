@@ -1,8 +1,10 @@
 package atrem.Connect4.swing;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Container;
 
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -22,18 +24,17 @@ public class GameFrame extends JFrame {
 	 */
 	public GameFrame(SwingPresenter swingPresenter) {
 		this.swingPresenter = swingPresenter;
-		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 552, 331);
+		setBounds(100, 100, 754, 386);
 
 		Container mainContainer = getContentPane();
-		getContentPane().setLayout(null);
+		getContentPane().setLayout(
+				new BoxLayout(getContentPane(), BoxLayout.X_AXIS));
 		board = new GameBoard(swingPresenter);
+		board.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		board.setBackground(new Color(255, 255, 255));
-		board.setBounds(10, 0, 330, 282);
 		mainContainer.add(board);
 		sideBoard = new SideBoard();
-		sideBoard.setBounds(340, 0, 186, 262);
 		getContentPane().add(sideBoard);
 		this.setVisible(true);
 	}

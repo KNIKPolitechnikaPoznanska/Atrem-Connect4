@@ -24,8 +24,8 @@ public class GameBoard extends JPanel {
 	private HoleState holeState;
 
 	public GameBoard(SwingPresenter swingPresenter) {
-		rows = 16;
-		slots = 7;
+		slots = swingPresenter.getSlots();
+		rows = swingPresenter.getRows();
 		this.swingPresenter = swingPresenter;
 		setLayout(new GridLayout(rows + 1, slots));
 		swingBoard = new JLabel[rows][slots];

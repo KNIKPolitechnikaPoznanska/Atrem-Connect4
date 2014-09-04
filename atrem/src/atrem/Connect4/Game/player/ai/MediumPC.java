@@ -1,6 +1,8 @@
 package atrem.Connect4.Game.player.ai;
 
 import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import atrem.Connect4.Game.GameController;
 import atrem.Connect4.Game.Logic;
@@ -16,7 +18,7 @@ public class MediumPC implements PlayerController {
 	private Logic logic;
 
 	private PlayerAttributes playerAttributes;
-
+	private ExecutorService executor = Executors.newSingleThreadExecutor();
 	private Board board;
 	private Random rand;
 	private GameController gameController;
@@ -62,7 +64,7 @@ public class MediumPC implements PlayerController {
 				board.setHoleState(simulatedRow, i,
 						playerAttributes.getPlayerId());
 
-				if (logic.checkIfWinPC() == true) {// wiem ze mozna lepiej
+				if (logic.getCPUwin() == true) {// wiem ze mozna lepiej
 					board.cleanSpot(simulatedRow, i);
 
 					return i;
@@ -79,7 +81,7 @@ public class MediumPC implements PlayerController {
 				continue;
 			else {
 				board.setHoleState(simulatedRow, i, opp);
-				if (logic.checkIfWinPC() == true) {// wiem ze mozna lepiej
+				if (logic.getCPUwin() == true) {// wiem ze mozna lepiej
 					board.cleanSpot(simulatedRow, i);
 					return i;
 				} else
@@ -121,7 +123,15 @@ public class MediumPC implements PlayerController {
 
 	@Override
 	public void yourTurn() {
-		gameController.move(findSlotToMove());
+		executor.execute(new Runnable() {
+
+			@Override
+			public void run() {
+				System.out.println();
+				gameController.move(findSlotToMove());
+
+			}
+		});
 
 	}
 
