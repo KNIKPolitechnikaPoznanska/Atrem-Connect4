@@ -39,7 +39,7 @@ public class StatsPanel extends JPanel {
 	}
 
 	public void setPl1LabelName(String pl1Label) {
-		this.pl1Label.setText(pl1Label);
+		this.pl1Label.setText(pl1Label+"!!!");
 	}
 
 	public void setPl2LabelName(String pl2Label) {
