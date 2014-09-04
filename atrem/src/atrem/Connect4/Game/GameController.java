@@ -5,6 +5,7 @@ import java.util.Stack;
 import atrem.Connect4.Game.board.Board;
 import atrem.Connect4.Game.board.HoleState;
 import atrem.Connect4.Game.player.PlayerController;
+import atrem.Connect4.swing.SwingPresenter;
 
 public class GameController implements Runnable {
 	private Logic logic;
@@ -62,9 +63,18 @@ public class GameController implements Runnable {
 	 * Glowna petla gry
 	 */
 	public void startNewGame() {
-		board = new Board();
+		board = new Board(board.getLastRow(), board.getLastSlot());
 		resultState = ResultState.NoWin;
 		gameState = GameState.nextGame;
+		if (player1 instanceof SwingPresenter) {
+			player1 = new SwingPresenter(player1.getName(), PlayerId.Player1,
+					this, true);
+		}
+		if (player2 instanceof SwingPresenter) {
+			player2 = new SwingPresenter(player2.getName(), PlayerId.Player2,
+					this, false);
+		}
+
 		startGameLoop();
 
 	}
