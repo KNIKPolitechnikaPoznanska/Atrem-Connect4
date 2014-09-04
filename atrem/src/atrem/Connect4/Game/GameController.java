@@ -57,12 +57,21 @@ public class GameController implements Runnable {
 	/**
 	 * Glowna petla gry
 	 */
+	public void startNewGame() {
+		board = new Board();
+		resultState = ResultState.NoWin;
+		gameState = GameState.nextGame;
+		startGameLoop();
+
+	}
+
 	private synchronized void gameLoop() {// ma odczytywaæ GameState
 		boolean resultGame;
 		logic = new Logic(this);
 		lastMove = new LastMove();
 		System.out.println("przed init");
-		waitForInit();
+		if (gameState != GameState.nextGame)
+			waitForInit();
 		while (resultState == ResultState.NoWin) {
 			currentPlayer = currentPlayer();
 			try {
@@ -83,9 +92,9 @@ public class GameController implements Runnable {
 				currentPlayer = currentPlayer();
 				currentPlayer.yourTurn();
 				player1.endOfGame(resultState);
+				player2.endOfGame(resultState);
 				return;
 
-				// player2.endOfGame(resultState);
 			}
 
 			changePlayer();
