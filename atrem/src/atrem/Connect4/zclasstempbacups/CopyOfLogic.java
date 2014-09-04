@@ -1,5 +1,7 @@
-package atrem.Connect4.Game;
+package atrem.Connect4.zclasstempbacups;
 
+import atrem.Connect4.Game.GameController;
+import atrem.Connect4.Game.ResultState;
 import atrem.Connect4.Game.board.HoleState;
 
 /*
