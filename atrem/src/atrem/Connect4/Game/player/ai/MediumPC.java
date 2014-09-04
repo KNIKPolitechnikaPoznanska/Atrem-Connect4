@@ -47,6 +47,7 @@ public class MediumPC implements PlayerController {
 
 		int simulatedRow;
 		HoleState opp;
+
 		if (board.playerIdtoHoleState(playerAttributes.getPlayerId()) == HoleState.PLAYER1)
 			opp = HoleState.PLAYER2;
 		else
@@ -115,6 +116,7 @@ public class MediumPC implements PlayerController {
 			choosenSpot = board.findFreeSpot(randomSlot);
 		} while (choosenSpot == -1);
 		return randomSlot;
+
 	}
 
 	@Override
@@ -148,4 +150,5 @@ public class MediumPC implements PlayerController {
 	public void setGamecontroller(GameController gamecontroller) {
 		this.gameController = gamecontroller;
 	}
+
 }
