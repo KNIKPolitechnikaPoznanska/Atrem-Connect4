@@ -81,10 +81,10 @@ public class SideBoard extends JPanel {
 	}
 
 	public void setTokenPl1() {
-		token1.setIcon(ResourceLoader.iconPl1);
+		token1.setIcon(ResourceLoader.iconPl2);
 	}
 
 	public void setTokenPl2() {
-		token1.setIcon(ResourceLoader.iconPl2);
+		token1.setIcon(ResourceLoader.iconPl1);
 	}
 }
