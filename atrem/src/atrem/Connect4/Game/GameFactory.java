@@ -59,7 +59,8 @@ public class GameFactory {
 		else if (opponent.equalsIgnoreCase("K"))
 			player2 = new MediumPC(gameController, player2name,
 					PlayerId.Player2, new Logic(gameController)); // dokonczyc
-		// pawel
+			// player2 = new EasyPC(gameController, player2name,
+			// PlayerId.Player2);
 
 	}
 
