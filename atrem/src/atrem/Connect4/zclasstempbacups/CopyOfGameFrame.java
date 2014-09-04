@@ -14,7 +14,7 @@ public class CopyOfGameFrame extends JFrame {
 	 */
 	private static final long serialVersionUID = 9162854519449667347L;
 	private CopyofSwingBoard panel;
-	private StatsPanel statsPanel;
+	private CopyOfStatsPanel statsPanel;
 
 	/**
 	 * Create the frame.
@@ -26,7 +26,7 @@ public class CopyOfGameFrame extends JFrame {
 		setBounds(200, 200, 550, 300);
 		Container mainContainer = getContentPane();
 		panel = new CopyofSwingBoard(swingPresenter);
-		statsPanel = new StatsPanel(swingPresenter);
+		statsPanel = new CopyOfStatsPanel(swingPresenter);
 		mainContainer.setLayout(new BorderLayout(0, 0));
 		mainContainer.add(panel, BorderLayout.CENTER);
 		mainContainer.add(statsPanel, BorderLayout.EAST);
@@ -37,11 +37,11 @@ public class CopyOfGameFrame extends JFrame {
 		return panel;
 	}
 
-	public StatsPanel getStatsPanel() {
+	public CopyOfStatsPanel getStatsPanel() {
 		return statsPanel;
 	}
 
-	public void setStatsPanel(StatsPanel statsPanel) {
+	public void setStatsPanel(CopyOfStatsPanel statsPanel) {
 		this.statsPanel = statsPanel;
 	}
 }

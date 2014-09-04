@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 
 import atrem.Connect4.swing.SwingPresenter;
 
-public class StatsPanel extends JPanel {
+public class CopyOfStatsPanel extends JPanel {
 
 	/**
 	 * Serial
@@ -21,7 +21,7 @@ public class StatsPanel extends JPanel {
 	 * 
 	 * @param swingPresenter
 	 */
-	public StatsPanel(SwingPresenter swingPresenter) {
+	public CopyOfStatsPanel(SwingPresenter swingPresenter) {
 		setLayout(new GridLayout(2, 1, 0, 0));
 
 		pl1Label = new JLabel("Gracz1");
