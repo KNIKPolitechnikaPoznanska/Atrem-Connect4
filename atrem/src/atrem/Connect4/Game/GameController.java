@@ -22,12 +22,12 @@ public class GameController implements Runnable {
 	 */
 	private PlayerController currentPlayer() {
 		switch (playerTurn) {
-			case Player1 :
-				return player1;
-			case Player2 :
-				return player2;
-			default :
-				return player1;
+		case Player1:
+			return player1;
+		case Player2:
+			return player2;
+		default:
+			return player1;
 		}
 	}
 
@@ -57,18 +57,28 @@ public class GameController implements Runnable {
 	/**
 	 * Glowna petla gry
 	 */
+	public void startNewGame() {
+		board = new Board(board.getRows(), board.getSlots());
+		resultState = ResultState.NoWin;
+		gameState = GameState.nextGame;
+		doneMoves = 0;
+		playerTurn = PlayerId.Player1;
+		startGameLoop();
+
+	}
+
 	private synchronized void gameLoop() {// ma odczytywaæ GameState
 		boolean resultGame;
 		logic = new Logic(this);
 		lastMove = new LastMove();
 		System.out.println("przed init");
-		waitForInit();
+		if (gameState != GameState.nextGame)
+			waitForInit();
 		while (resultState == ResultState.NoWin) {
 			currentPlayer = currentPlayer();
 			try {
 				this.wait(100);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			currentPlayer.yourTurn();
@@ -84,11 +94,9 @@ public class GameController implements Runnable {
 				currentPlayer.yourTurn();
 				player1.endOfGame(resultState);
 
+				player2.endOfGame(resultState);
 				return;
-
-				// player2.endOfGame(resultState);
 			}
-
 			changePlayer();
 
 		}
@@ -116,13 +124,13 @@ public class GameController implements Runnable {
 
 	public synchronized void endInitPlayer() {
 		switch (gameState) {
-			case preInit :
-				gameState = GameState.endInit1;
-				break;
-			case endInit1 :
-				gameState = GameState.endInitAll;
-				this.notifyAll();
-				break;
+		case preInit:
+			gameState = GameState.endInit1;
+			break;
+		case endInit1:
+			gameState = GameState.endInitAll;
+			this.notifyAll();
+			break;
 		}
 	}
 

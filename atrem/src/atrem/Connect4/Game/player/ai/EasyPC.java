@@ -10,12 +10,13 @@ import atrem.Connect4.Game.ResultState;
 import atrem.Connect4.Game.board.Board;
 import atrem.Connect4.Game.player.PlayerAttributes;
 import atrem.Connect4.Game.player.PlayerController;
+import atrem.Connect4.swing.DialogInformationBoxes;
 
 public class EasyPC implements PlayerController {
 
 	private PlayerAttributes playerAttributes;
 	private GameController gameController;
-
+	private DialogInformationBoxes informationBoxes;
 	private Board board;
 	private ExecutorService executor = Executors.newSingleThreadExecutor();
 
@@ -26,6 +27,7 @@ public class EasyPC implements PlayerController {
 		playerAttributes.setPlayerId(playerId);
 		this.board = gameController.getBoard();
 		gameController.endInitPlayer();
+		informationBoxes = new DialogInformationBoxes();
 	}
 
 	@Override
@@ -76,8 +78,12 @@ public class EasyPC implements PlayerController {
 
 	@Override
 	public void endOfGame(ResultState resultGame) {
-		// TODO Auto-generated method stub
-
+		if (resultGame == resultGame.Player1Win)
+			informationBoxes.winMessage(playerAttributes.getName());
+		if (resultGame == resultGame.Player2Win)
+			informationBoxes.winMessage(gameController.getPlayer2().getName());
+		if (resultGame == resultGame.Draw)
+			informationBoxes.drawMessage();
 	}
 
 }

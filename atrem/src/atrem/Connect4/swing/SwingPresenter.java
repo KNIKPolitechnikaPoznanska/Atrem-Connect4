@@ -116,8 +116,13 @@ public class SwingPresenter implements PlayerController {
 		if (resultGame == resultGame.Player2Win)
 			decision = informationBoxes.winMessage(gameController.getPlayer2()
 					.getName());
+		if (resultGame == resultGame.Draw)
+		informationBoxes.drawMessage();
+		frame.removeNotify();
+		setupFrame();
+		gameController.startNewGame();
 
-		makeDecision(decision);
+		//makeDecision(decision);
 	}
 
 	public void makeDecision(int decision) {
@@ -126,8 +131,11 @@ public class SwingPresenter implements PlayerController {
 
 	}
 
-	public GameFrame getFrame() {
-		return frame;
+
+		
+		
+
+
 	}
 
 	/**

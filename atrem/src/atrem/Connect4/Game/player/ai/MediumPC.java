@@ -12,6 +12,7 @@ import atrem.Connect4.Game.board.Board;
 import atrem.Connect4.Game.board.HoleState;
 import atrem.Connect4.Game.player.PlayerAttributes;
 import atrem.Connect4.Game.player.PlayerController;
+import atrem.Connect4.swing.DialogInformationBoxes;
 
 public class MediumPC implements PlayerController {
 
@@ -22,6 +23,7 @@ public class MediumPC implements PlayerController {
 	private Board board;
 	private Random rand;
 	private GameController gameController;
+	private DialogInformationBoxes informationBoxes;
 
 	public MediumPC(GameController gameController, String name,
 			PlayerId playerId, Logic logic) {
@@ -33,6 +35,7 @@ public class MediumPC implements PlayerController {
 		board = gameController.getBoard();
 		rand = new Random();
 		gameController.endInitPlayer();
+		informationBoxes = new DialogInformationBoxes();
 	}
 
 	public int simulatedGo(int slot) {
@@ -137,8 +140,12 @@ public class MediumPC implements PlayerController {
 
 	@Override
 	public void endOfGame(ResultState resultGame) {
-		// TODO Auto-generated method stub
-
+		if (resultGame == resultGame.Player1Win)
+			informationBoxes.winMessage(playerAttributes.getName());
+		if (resultGame == resultGame.Player2Win)
+			informationBoxes.winMessage(gameController.getPlayer2().getName());
+		if (resultGame == resultGame.Draw)
+			informationBoxes.drawMessage();
 	}
 
 	@Override

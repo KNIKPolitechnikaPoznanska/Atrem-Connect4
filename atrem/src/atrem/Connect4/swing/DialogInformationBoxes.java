@@ -16,7 +16,7 @@ public class DialogInformationBoxes {
 	}
 
 	public void drawMessage() {
-
+		JOptionPane.showMessageDialog(null, "Koniec gry. Remis.");
 	}
 
 	public void fullSlotMessage() {
