@@ -117,24 +117,17 @@ public class SwingPresenter implements PlayerController {
 			decision = informationBoxes.winMessage(gameController.getPlayer2()
 					.getName());
 		if (resultGame == resultGame.Draw)
-		informationBoxes.drawMessage();
+			informationBoxes.drawMessage();
 		frame.removeNotify();
 		setupFrame();
 		gameController.startNewGame();
 
-		//makeDecision(decision);
+		// makeDecision(decision);
 	}
 
 	public void makeDecision(int decision) {
 		if (decision == 2)
 			frame.dispose(); // zamyka tylko jedno okno
-
-	}
-
-
-		
-		
-
 
 	}
 
