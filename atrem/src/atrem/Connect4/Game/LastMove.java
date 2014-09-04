@@ -33,7 +33,7 @@ public class LastMove {
 		this.playerId = playerId;
 	}
 
-	public void saveLastMove(int slot, int row, PlayerId playerId) {
+	public synchronized void saveLastMove(int slot, int row, PlayerId playerId) {
 		lastSlot = slot;
 		lastRow = row;
 		this.playerId = playerId;

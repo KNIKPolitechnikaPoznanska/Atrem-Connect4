@@ -77,7 +77,6 @@ public class GameController implements Runnable {
 			try {
 				this.wait(100);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			currentPlayer.yourTurn();
@@ -92,11 +91,10 @@ public class GameController implements Runnable {
 				currentPlayer = currentPlayer();
 				currentPlayer.yourTurn();
 				player1.endOfGame(resultState);
+
 				player2.endOfGame(resultState);
 				return;
-
 			}
-
 			changePlayer();
 
 		}
