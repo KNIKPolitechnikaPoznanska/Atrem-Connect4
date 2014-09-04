@@ -5,6 +5,7 @@ import java.util.Random;
 import atrem.Connect4.Game.GameController;
 import atrem.Connect4.Game.Logic;
 import atrem.Connect4.Game.PlayerId;
+import atrem.Connect4.Game.ResultState;
 import atrem.Connect4.Game.board.Board;
 import atrem.Connect4.Game.board.HoleState;
 import atrem.Connect4.Game.player.PlayerAttributes;
@@ -67,7 +68,7 @@ public class MediumPC implements PlayerController {
 
 		int simulatedRow;
 		HoleState opp;
-		if (playerAttributes.getPlayerId() == HoleState.PLAYER1)
+		if (playerAttributes.getPlayerId() == PlayerId.Player1)
 			opp = HoleState.PLAYER2;
 		else
 			opp = HoleState.PLAYER1;
@@ -138,19 +139,18 @@ public class MediumPC implements PlayerController {
 	}
 
 	@Override
-	public PlayerId getPlayerId() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public void yourTurn() {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void refreshView(int row, int slot) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void endOfGame(ResultState resultGame) {
 		// TODO Auto-generated method stub
 
 	}
