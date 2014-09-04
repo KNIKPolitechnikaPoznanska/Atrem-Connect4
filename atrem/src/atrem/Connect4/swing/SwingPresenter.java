@@ -118,16 +118,13 @@ public class SwingPresenter implements PlayerController {
 					.getName());
 		if (resultGame == resultGame.Draw)
 			informationBoxes.drawMessage();
-		frame.removeNotify();
-		setupFrame();
-		gameController.startNewGame();
 
-		// makeDecision(decision);
+		makeDecision(decision);
 	}
 
 	public void makeDecision(int decision) {
-		if (decision == 2)
-			frame.dispose(); // zamyka tylko jedno okno
+		if (decision == 0)
+			gameController.startNewGame();
 
 	}
 
