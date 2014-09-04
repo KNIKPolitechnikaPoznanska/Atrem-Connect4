@@ -1,5 +1,7 @@
 package atrem.Connect4.Game;
 
+import java.util.Stack;
+
 import atrem.Connect4.Game.board.Board;
 import atrem.Connect4.Game.board.HoleState;
 import atrem.Connect4.Game.player.PlayerController;
@@ -14,6 +16,7 @@ public class GameController implements Runnable {
 	private PlayerId playerTurn = PlayerId.Player1;
 	private ResultState resultState = ResultState.NoWin;
 	private GameState gameState = GameState.preInit;
+	private Stack<LastMove> lastMoveStack;
 
 	/**
 	 * Sprawdza którego z graczy jest kolej
@@ -46,6 +49,7 @@ public class GameController implements Runnable {
 		board.setLastSlot(slot);
 		board.setLastSpot(emptySpot);
 		lastMove.saveLastMove(slot, emptySpot, playerTurn);
+
 		gameState = GameState.moveDone;
 		if (emptySpot != -1) {
 			notifyAll();
