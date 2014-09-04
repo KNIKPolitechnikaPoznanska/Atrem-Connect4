@@ -102,9 +102,9 @@ public class SwingPresenter implements PlayerController {
 	@Override
 	public void endOfGame(ResultState resultGame) {
 		if (resultGame == resultGame.Player1Win)
-			informationBoxes.winMessage(playerId.Player1);
+			informationBoxes.winMessage(playerAttributes.getName());
 		if (resultGame == resultGame.Player2Win)
-			informationBoxes.winMessage(playerId.Player2);
+			informationBoxes.winMessage(gameController.getPlayer2().getName());
 	}
 
 	/**
@@ -116,6 +116,10 @@ public class SwingPresenter implements PlayerController {
 
 	@Deprecated
 	public void changeDispTurn(PlayerId playerId) {
+	}
+
+	public PlayerAttributes getPlayerAttributes() {
+		return playerAttributes;
 	}
 
 	/**

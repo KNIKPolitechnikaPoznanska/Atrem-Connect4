@@ -82,6 +82,7 @@ public class GameController implements Runnable {
 
 				// player2.endOfGame(resultState);
 			}
+
 			changePlayer();
 
 		}
