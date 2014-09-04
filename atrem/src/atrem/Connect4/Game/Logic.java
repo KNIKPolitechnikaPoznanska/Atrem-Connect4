@@ -26,6 +26,7 @@ public class Logic {
 	 * @return true je¿eli gracz wygra³
 	 */
 	public boolean checkIfWin() {
+		hasWinner = false;
 		columnWin(human);
 		rowWin(human);
 		diagonalWin1(human);
