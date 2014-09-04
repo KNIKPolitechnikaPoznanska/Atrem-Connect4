@@ -2,8 +2,10 @@ package atrem.Connect4.Game;
 
 import atrem.Connect4.Game.board.Board;
 import atrem.Connect4.Game.player.PlayerController;
+import atrem.Connect4.Game.player.ai.EasyPC;
 import atrem.Connect4.Game.player.ai.MediumPC;
 import atrem.Connect4.console.PlayerConsole;
+import atrem.Connect4.swing.GameConfig;
 import atrem.Connect4.swing.SwingPresenter;
 
 /*
@@ -12,11 +14,10 @@ import atrem.Connect4.swing.SwingPresenter;
 public class GameFactory {
 	private Board board;
 	private PlayerController player1, player2;
-	private String player2name, player1name;
-	private String opponent;
-	private int slots, rows;
 	private GameController gameController;
-	private String gamePl1Type, gamePl2Type;
+	private String player2name, player1name, player1Type, player2Type,
+			gamePl1Type, gamePl2Type;
+	private int slots, rows;
 
 	/**
 	 * £aduje GameController (all settings)
@@ -24,7 +25,6 @@ public class GameFactory {
 	public void createGameController() {
 		gameController = new GameController();
 		gameController.setBoard(board);
-
 		createPlayerGame();
 		gameController.setPlayer1(player1);
 		gameController.setPlayer2(player2);
@@ -35,45 +35,77 @@ public class GameFactory {
 	 * Tworzy dla ka¿dego gracza w³asnego prezentera
 	 */
 	public void createPlayerGame() {
-		switch (gamePl1Type) {
-		case "console":
-			player1 = new PlayerConsole(gameController, player1name,
-					PlayerId.Player1);
-			break;
-		case "swing":
-			player1 = new SwingPresenter(player1name, PlayerId.Player1,
-					gameController, true);
-			break;
+		switch (player1Type) {
+			case GameConfig.CHuman :
+				player1 = createHumanPlayer(1);
+				break;
+			case GameConfig.CcpuEasy :
+				player1 = createCpuEasyPlayer();
+				break;
+			case GameConfig.CcpuMedium :
+				player1 = createCpuMediumPlayer();
 		}
-		if (opponent.equalsIgnoreCase("C"))
-			switch (gamePl2Type) {
-			case "console":
-				player2 = new PlayerConsole(gameController, player2name,
-						PlayerId.Player2);
+
+		switch (player2Type) {
+			case GameConfig.CHuman :
+				player2 = createHumanPlayer(2);
 				break;
-			case "swing":
-				player2 = new SwingPresenter(player2name, PlayerId.Player2,
-						gameController, false);
+			case GameConfig.CcpuEasy :
+				player2 = createCpuEasyPlayer();
 				break;
-			}
-		else if (opponent.equalsIgnoreCase("K"))
-			player2 = new MediumPC(gameController, player2name,
-					PlayerId.Player2, new Logic(gameController)); // dokonczyc
-		// player2 = new EasyPC(gameController, player2name,
-		// PlayerId.Player2);
+			case GameConfig.CcpuMedium :
+				player2 = createCpuMediumPlayer();
+		}
 
 	}
+	private PlayerController createCpuMediumPlayer() {
+		return new MediumPC(gameController, player2name, PlayerId.Player2,
+				new Logic(gameController));
+	}
 
+	private PlayerController createCpuEasyPlayer() {
+		return new EasyPC(gameController, player2name, PlayerId.Player2);
+	}
+
+	private PlayerController createHumanPlayer(int playerNmb) {
+		PlayerController humanPlayer = null;
+		if (playerNmb == 1) {
+			switch (gamePl1Type) {
+				case "console" :
+					humanPlayer = new PlayerConsole(gameController,
+							player1name, PlayerId.Player1);
+					break;
+				case "swing" :
+					humanPlayer = new SwingPresenter(player1name,
+							PlayerId.Player1, gameController, true);
+					break;
+				default :
+					System.out.println("Brak typu gry!");
+			}
+		}
+		if (playerNmb == 2) {
+			switch (gamePl2Type) {
+				case "console" :
+					humanPlayer = new PlayerConsole(gameController,
+							player2name, PlayerId.Player2);
+					break;
+				case "swing" :
+					humanPlayer = new SwingPresenter(player2name,
+							PlayerId.Player2, gameController, true);
+					break;
+				default :
+					humanPlayer = null;
+					System.out.println("Brak typu gry!");
+			}
+		}
+		return humanPlayer;
+	}
 	public Board getBoard() {
 		return board;
 	}
 
 	public GameController getGameController() {
 		return gameController;
-	}
-
-	public String getOpponent() {
-		return opponent;
 	}
 
 	public PlayerController getPlayer1() {
@@ -112,10 +144,6 @@ public class GameFactory {
 		this.gamePl2Type = gamePl2Type;
 	}
 
-	public void setOpponent(String opponent) {
-		this.opponent = opponent;
-	}
-
 	public void setPlayer1Name(String player1Name) {
 		this.player1name = player1Name;
 	}
@@ -130,5 +158,21 @@ public class GameFactory {
 
 	public void setSlots(int slots) {
 		this.slots = slots;
+	}
+
+	public String getPlayer1Type() {
+		return player1Type;
+	}
+
+	public void setPlayer1Type(String player1Type) {
+		this.player1Type = player1Type;
+	}
+
+	public String getPlayer2Type() {
+		return player2Type;
+	}
+
+	public void setPlayer2Type(String player2Type) {
+		this.player2Type = player2Type;
 	}
 }

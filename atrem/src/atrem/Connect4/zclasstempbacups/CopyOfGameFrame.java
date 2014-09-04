@@ -5,7 +5,6 @@ import java.awt.Container;
 
 import javax.swing.JFrame;
 
-import atrem.Connect4.swing.StatsPanel;
 import atrem.Connect4.swing.SwingPresenter;
 
 public class CopyOfGameFrame extends JFrame {

@@ -1,9 +1,11 @@
-package atrem.Connect4.swing;
+package atrem.Connect4.zclasstempbacups;
 
 import java.awt.GridLayout;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import atrem.Connect4.swing.SwingPresenter;
 
 public class StatsPanel extends JPanel {
 

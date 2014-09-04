@@ -8,18 +8,21 @@ import atrem.Connect4.Game.GameFactory;
  */
 public class GameConfig {
 	private DialogSettingsBox dialogBox;
-	private String player1name, player2name;
+	private String player1name, player2name, player1Type, player2Type,
+			gamePl1Type, gamePl2Type;
+	public static final String CHuman = "CZ£OWIEK", CcpuEasy = "CPU-Easy",
+			CcpuMedium = "CPU-Medium", CcpuHard = "CPU-Hard";
+	public static final String[] playerTypeItems = {CHuman, CcpuEasy,
+			CcpuMedium, CcpuHard};
 	private int slots, rows;
-	private String opponent;
-	private boolean CPUmark;
 	private GameFactory gameFactory;
-	private String gamePl1Type;
-	private String gamePl2Type;
 
 	public GameConfig(GameFactory gameFactory) {
 		this.gameFactory = gameFactory;
 	}
-
+	/**
+	 * Tworzy i wyœwietla Dailog Settings Box'a
+	 */
 	public void setDBox() {
 		try {
 			dialogBox = new DialogSettingsBox(this, gameFactory);
@@ -33,32 +36,33 @@ public class GameConfig {
 		player2name = dialogBox.getPl2Name();
 		rows = dialogBox.getRows();
 		slots = dialogBox.getSlots();
-		setCPUmark(dialogBox.isCPU());
-		if (isCPUmark()) {
-			setOpponent("K");
-		} else
-			setOpponent("C");
+		player1Type = dialogBox.getPl1Type();
+		player2Type = dialogBox.getPl2Type();
 		gamePl1Type = dialogBox.getPl1GameType();
 		gamePl2Type = dialogBox.getPl2GameType();
 	}
-
 	public void setupGameFactory() {
 		gameFactory.setRows(rows);
 		gameFactory.setSlots(slots);
-		gameFactory.setOpponent(opponent);
+
+		gameFactory.setPlayer1Type(player1Type);
+		gameFactory.setPlayer2Type(player2Type);
+
 		gameFactory.setPlayer1Name(player1name);
 		gameFactory.setPlayer2Name(player2name);
-		gameFactory.setBoard();
+
 		gameFactory.setGamePl1Type(gamePl1Type);
 		gameFactory.setGamePl2Type(gamePl2Type);
+
+		gameFactory.setBoard();
 	}
 
-	public String getOpponent() {
-		return opponent;
+	public String getPlayer1Type() {
+		return player1Type;
 	}
 
-	public void setOpponent(String opponent) {
-		this.opponent = opponent;
+	public void setPlayerType(String player1Type) {
+		this.player1Type = player1Type;
 	}
 
 	public String getPlayer1name() {
@@ -91,13 +95,5 @@ public class GameConfig {
 
 	public void setSlots(int slots) {
 		this.slots = slots;
-	}
-
-	public boolean isCPUmark() {
-		return CPUmark;
-	}
-
-	private void setCPUmark(boolean isCPU) {
-		this.CPUmark = isCPU;
 	}
 }
