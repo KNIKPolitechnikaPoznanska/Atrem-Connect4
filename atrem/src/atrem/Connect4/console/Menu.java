@@ -11,7 +11,7 @@ public class Menu {
 	private KeyHandler keyGo;
 	private String player1name, player2name;
 	private int slots, rows;
-	private String opponent, gamePl1Type, gamePl2Type;
+	private String gamePl1Type, gamePl2Type;
 	private GameFactory gameFactory;
 
 	public Menu(GameFactory gameFactory) {
@@ -24,7 +24,6 @@ public class Menu {
 	private void setupGameFactory() {
 		gameFactory.setRows(rows);
 		gameFactory.setSlots(slots);
-		gameFactory.setOpponent(opponent);
 		gameFactory.setPlayer1Name(player1name);
 		gameFactory.setPlayer2Name(player2name);
 		gameFactory.setBoard();
@@ -43,23 +42,19 @@ public class Menu {
 		slots = keyGo.getInt();
 
 		System.out.println("Chcesz grac z komputerem czy cz³owiekiem (K/C)?");
-		opponent = keyGo.getStringChoice();
+		// opponent = keyGo.getStringChoice();
 
 		System.out.println("Podaj imie pierwszego zawodnika ");
 		player1name = keyGo.getString();
 
-		if (opponent.equalsIgnoreCase("C"))
-			System.out.println("Podaj imie drugiego zawodnika");
-		else
-			System.out.println("Podaj imie komputera");
+		// if (opponent.equalsIgnoreCase("C"))
+		System.out.println("Podaj imie drugiego zawodnika");
+
+		System.out.println("Podaj imie komputera");
 		player2name = keyGo.getString();
 
 		gamePl1Type = "console";
 		gamePl2Type = "console";
-	}
-
-	public String getOpponent() {
-		return opponent;
 	}
 
 	public String getPlayer1name() {

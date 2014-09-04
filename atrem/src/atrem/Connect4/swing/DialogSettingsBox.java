@@ -28,9 +28,6 @@ public class DialogSettingsBox extends JDialog {
 	 */
 	private static final long serialVersionUID = 973461278407448042L;
 	private static DialogSettingsBox dialog;
-	private static final String DEF_PL1_NAME = "Gracz 1",
-			DEF_PL2_NAME = "Gracz 2";
-	private static final int DEF_SLOTS = 7, DEF_ROWS = 6;
 	private String pl1Name, pl2Name, pl1GameType, pl2GameType, pl1Type,
 			pl2Type;
 	private int slots, rows;
@@ -138,10 +135,10 @@ public class DialogSettingsBox extends JDialog {
 	 * Ustawia wartoœci domyœlne gry
 	 */
 	protected void setDefaults() {
-		TFieldPl1Name.setText(DEF_PL1_NAME);
-		TFieldPl2Name.setText(DEF_PL2_NAME);
-		TFieldSlots.setText(Integer.toString(DEF_SLOTS));
-		TFieldRows.setText(Integer.toString(DEF_ROWS));
+		TFieldPl1Name.setText(GameConfig.DEF_PL1_NAME);
+		TFieldPl2Name.setText(GameConfig.DEF_PL2_NAME);
+		TFieldSlots.setText(Integer.toString(GameConfig.DEF_SLOTS));
+		TFieldRows.setText(Integer.toString(GameConfig.DEF_ROWS));
 	}
 
 	private void initComponents() {
@@ -606,10 +603,10 @@ public class DialogSettingsBox extends JDialog {
 		jLabel7.setText("Wiersze: ");
 
 		TFieldSlots.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-		TFieldSlots.setText("" + DEF_SLOTS);
+		TFieldSlots.setText("" + GameConfig.DEF_SLOTS);
 
 		TFieldRows.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-		TFieldRows.setText("" + DEF_ROWS);
+		TFieldRows.setText("" + GameConfig.DEF_ROWS);
 
 		GroupLayout boardSetPanelLayout = new GroupLayout(boardSetPanel);
 		boardSetPanel.setLayout(boardSetPanelLayout);
@@ -721,7 +718,6 @@ public class DialogSettingsBox extends JDialog {
 
 	protected void disableGameTypeBoxes(JComboBox<String> item, int Nmb) {
 		String selItem = (String) item.getSelectedItem();
-		System.out.println(selItem);
 		if (selItem == GameConfig.CcpuEasy || selItem == GameConfig.CcpuMedium
 				|| selItem == GameConfig.CcpuHard) {
 			if (Nmb == 1) {
