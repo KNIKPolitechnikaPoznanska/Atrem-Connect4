@@ -20,6 +20,7 @@ public class SwingPresenter implements PlayerController {
 	private SideBoard sideBoard;
 	protected JLabel token;
 	private DialogInformationBoxes informationBoxes;
+	private int slots, rows;
 
 	/**
 	 * Presenter MVP do GameFrame
@@ -35,6 +36,16 @@ public class SwingPresenter implements PlayerController {
 		this.blockButton = block;
 		this.playerId = playerId;
 		setupFrame();
+		slots = gameController.getBoard().getSlots();
+		rows = gameController.getBoard().getRows();
+	}
+
+	public int getSlots() {
+		return slots;
+	}
+
+	public int getRows() {
+		return rows;
 	}
 
 	/**
