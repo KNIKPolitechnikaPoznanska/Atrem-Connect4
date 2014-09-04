@@ -114,6 +114,8 @@ public class SwingPresenter implements PlayerController {
 			informationBoxes.winMessage(playerAttributes.getName());
 		if (resultGame == resultGame.Player2Win)
 			informationBoxes.winMessage(gameController.getPlayer2().getName());
+		if (resultGame == resultGame.Draw)
+			informationBoxes.drawMessage();
 	}
 
 	/**
