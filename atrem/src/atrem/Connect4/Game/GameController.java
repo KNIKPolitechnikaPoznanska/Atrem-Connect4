@@ -1,8 +1,11 @@
 package atrem.Connect4.Game;
 
+import java.util.Stack;
+
 import atrem.Connect4.Game.board.Board;
 import atrem.Connect4.Game.board.HoleState;
 import atrem.Connect4.Game.player.PlayerController;
+import atrem.Connect4.swing.SwingPresenter;
 
 public class GameController implements Runnable {
 	private Logic logic;
@@ -14,6 +17,7 @@ public class GameController implements Runnable {
 	private PlayerId playerTurn = PlayerId.Player1;
 	private ResultState resultState = ResultState.NoWin;
 	private GameState gameState = GameState.preInit;
+	private Stack<LastMove> lastMoveStack;
 
 	/**
 	 * Sprawdza którego z graczy jest kolej
@@ -46,6 +50,7 @@ public class GameController implements Runnable {
 		board.setLastSlot(slot);
 		board.setLastSpot(emptySpot);
 		lastMove.saveLastMove(slot, emptySpot, playerTurn);
+
 		gameState = GameState.moveDone;
 		if (emptySpot != -1) {
 			notifyAll();
@@ -58,9 +63,21 @@ public class GameController implements Runnable {
 	 * Glowna petla gry
 	 */
 	public void startNewGame() {
-		board = new Board();
+		int row = board.getLastRow();
+		int slot = board.getSlots();
+		board = new Board(row, slot);
 		resultState = ResultState.NoWin;
 		gameState = GameState.nextGame;
+		if (player1 instanceof SwingPresenter) {
+			player1 = new SwingPresenter(player1.getName(), PlayerId.Player1,
+					this, true);
+		}
+		if (player2 instanceof SwingPresenter) {
+			player2 = new SwingPresenter(player2.getName(), PlayerId.Player2,
+					this, false);
+		}
+		doneMoves = 0;
+		playerTurn = PlayerId.Player1;
 		startGameLoop();
 
 	}
