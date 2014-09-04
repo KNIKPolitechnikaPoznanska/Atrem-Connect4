@@ -46,7 +46,7 @@ public class MediumPC implements PlayerController {
 	}
 
 	public int findSlotToMove() {
-
+		logic.setCPUwin(false);
 		int simulatedRow;
 		HoleState opp;
 
@@ -64,7 +64,7 @@ public class MediumPC implements PlayerController {
 				board.setHoleState(simulatedRow, i,
 						playerAttributes.getPlayerId());
 
-				if (logic.getCPUwin() == true) {// wiem ze mozna lepiej
+				if (logic.checkIfWinPC()) {// wiem ze mozna lepiej
 					board.cleanSpot(simulatedRow, i);
 
 					return i;
@@ -81,7 +81,7 @@ public class MediumPC implements PlayerController {
 				continue;
 			else {
 				board.setHoleState(simulatedRow, i, opp);
-				if (logic.getCPUwin() == true) {// wiem ze mozna lepiej
+				if (logic.checkIfWinPC()) {// wiem ze mozna lepiej
 					board.cleanSpot(simulatedRow, i);
 					return i;
 				} else
@@ -113,7 +113,7 @@ public class MediumPC implements PlayerController {
 		int randomSlot;
 		int choosenSpot;
 		do {
-
+			System.out.println("losowy ruch medium PC");
 			randomSlot = rand.nextInt(board.getSlots());
 			choosenSpot = board.findFreeSpot(randomSlot);
 		} while (choosenSpot == -1);
