@@ -1,25 +1,31 @@
 package atrem.Connect4.Game.player.ai;
 
 import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-import atrem.Connect4.Game.Game;
+import atrem.Connect4.Game.GameController;
+import atrem.Connect4.Game.PlayerId;
+import atrem.Connect4.Game.ResultState;
 import atrem.Connect4.Game.board.Board;
-import atrem.Connect4.Game.board.HoleState;
 import atrem.Connect4.Game.player.PlayerAttributes;
 import atrem.Connect4.Game.player.PlayerController;
 
 public class EasyPC implements PlayerController {
 
 	private PlayerAttributes playerAttributes;
+	private GameController gameController;
+	private PlayerAttributes playerAtributes;
 	private Board board;
-	private Game game;
+	private ExecutorService executor = Executors.newSingleThreadExecutor();
 
-	public EasyPC(String name, HoleState playerId, Game game) {
+	public EasyPC(GameController gameController, String name, PlayerId playerId) {
+		this.gameController = gameController;
 		playerAttributes = new PlayerAttributes();
 		playerAttributes.setName(name);
 		playerAttributes.setPlayerId(playerId);
-		this.game = game;
-		this.board = game.getBoard();
+		this.board = gameController.getBoard();
+		gameController.endInitPlayer();
 	}
 
 	@Override
@@ -32,14 +38,7 @@ public class EasyPC implements PlayerController {
 		playerAttributes.setName(name);
 	}
 
-	@Override
-	public HoleState getPlayerId() {
-		return playerAttributes.getPlayerId();
-
-	}
-
-	@Override
-	public int loadSlotNumber() {
+	public int randomSlotNumber() {
 
 		System.out.println("EASYPC");
 		int randomSlot;
@@ -52,6 +51,39 @@ public class EasyPC implements PlayerController {
 		} while (choosenRow == -1);
 
 		return randomSlot;
+	}
+
+	@Override
+	public PlayerId getPlayerId() {
+		return playerAttributes.getPlayerId();
+	}
+
+	@Override
+	public void yourTurn() {
+		executor.execute(new Runnable() {
+
+			@Override
+			public void run() {
+				gameController.move(randomSlotNumber());
+			}
+		});
+
+	}
+
+	@Override
+	public void refreshView(int row, int slot) {
+		// nie potrzebne w kompie PAWEL
+	}
+
+	@Override
+	public void setGamecontroller(GameController gamecontroller) {
+		this.gameController = gamecontroller;
+
+	}
+
+	@Override
+	public void endOfGame(ResultState resultGame) {
+		// TODO Auto-generated method stub
 
 	}
 
