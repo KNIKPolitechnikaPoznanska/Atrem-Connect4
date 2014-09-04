@@ -143,11 +143,16 @@ public class Logic {
 	private void setPlayerWon(String playerType) {
 		if (playerType == cpu) {
 			cpuWin = true;
+			return;
 		}
 		if (token == HoleState.PLAYER1) {
 			gameController.setResult(ResultState.Player1Win);
 		} else if (token == HoleState.PLAYER2) {
 			gameController.setResult(ResultState.Player2Win);
 		}
+	}
+
+	public boolean getCPUwin() {
+		return cpuWin;
 	}
 }
