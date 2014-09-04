@@ -1,6 +1,8 @@
 package atrem.Connect4.Game.player.ai;
 
 import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import atrem.Connect4.Game.GameController;
 import atrem.Connect4.Game.PlayerId;
@@ -15,6 +17,7 @@ public class EasyPC implements PlayerController {
 	private GameController gameController;
 	private PlayerAttributes playerAtributes;
 	private Board board;
+	private ExecutorService executor = Executors.newSingleThreadExecutor();
 
 	public EasyPC(GameController gameController, String name, PlayerId playerId) {
 		this.gameController = gameController;
@@ -22,6 +25,7 @@ public class EasyPC implements PlayerController {
 		playerAttributes.setName(name);
 		playerAttributes.setPlayerId(playerId);
 		this.board = gameController.getBoard();
+		gameController.endInitPlayer();
 	}
 
 	@Override
@@ -51,25 +55,29 @@ public class EasyPC implements PlayerController {
 
 	@Override
 	public PlayerId getPlayerId() {
-		// TODO Auto-generated method stub
-		return null;
+		return playerAttributes.getPlayerId();
 	}
 
 	@Override
 	public void yourTurn() {
-		// TODO Auto-generated method stub
+		executor.execute(new Runnable() {
+
+			@Override
+			public void run() {
+				gameController.move(randomSlotNumber());
+			}
+		});
 
 	}
 
 	@Override
 	public void refreshView(int row, int slot) {
-		// TODO Auto-generated method stub
-
+		// nie potrzebne w kompie PAWEL
 	}
 
 	@Override
 	public void setGamecontroller(GameController gamecontroller) {
-		// TODO Auto-generated method stub
+		this.gameController = gamecontroller;
 
 	}
 
