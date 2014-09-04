@@ -129,7 +129,7 @@ public class SwingPresenter implements PlayerController {
 	}
 
 	/**
-	 * Funkcja zmienia Label gracza w ka¿zdej turze
+	 * Funkcja zmienia Label gracza w ka¿zdej turzel
 	 * 
 	 * @param playerId
 	 *            kolej gracza 1/2
