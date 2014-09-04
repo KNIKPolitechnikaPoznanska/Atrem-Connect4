@@ -20,7 +20,7 @@ public class GameFrame extends JFrame {
 	private GameBoard board;
 	private SideBoard sideBoard;
 	private JLabel sideToken;
-	int blb;
+	private Stats stats;
 
 	/**
 	 * Create the frame.
@@ -39,10 +39,14 @@ public class GameFrame extends JFrame {
 		board = new GameBoard(swingPresenter);
 		board.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		board.setBackground(new Color(255, 255, 255));
-		mainContainer.add(board);
+		getContentPane().add(board);
 		sideBoard = new SideBoard();
 		getContentPane().add(sideBoard);
+		stats = new Stats();
+		stats.setBounds(-15, 129, 342, 207);
+		sideBoard.add(stats);
 		this.setVisible(true);
+
 	}
 
 	public GameBoard getGameBoard() {
@@ -56,4 +60,5 @@ public class GameFrame extends JFrame {
 	public JLabel getSideToken() {
 		return sideToken;
 	}
+
 }
