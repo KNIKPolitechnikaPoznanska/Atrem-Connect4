@@ -1,6 +1,5 @@
 package atrem.Connect4;
 
-import atrem.Connect4.Game.GameController;
 import atrem.Connect4.Game.GameFactory;
 import atrem.Connect4.console.Menu;
 
@@ -8,17 +7,11 @@ import atrem.Connect4.console.Menu;
  * Uruchomienie gry Connect4 w konsoli
  */
 public class Connect4Console {
-	private static GameFactory gameFactory;
-	private static Menu menu;
-	private static GameController gameController;
+	private GameFactory gameFactory;
+	private Menu menu;
 
-	public static void init() {
-		gameFactory = new GameFactory();
-		// menu = new Menu();
-		// menu.loadSettings();
-		// gameFactory.setMenu(menu);
+	public void init(Menu menu, GameFactory gameFactory) {
+		this.gameFactory = gameFactory;
 		gameFactory.createGameController();
-		gameController = gameFactory.getGameController();
-		gameController.startGameLoop();
 	}
 }

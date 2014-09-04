@@ -1,6 +1,7 @@
 package atrem.Connect4;
 
 import atrem.Connect4.Game.GameFactory;
+import atrem.Connect4.console.Menu;
 import atrem.Connect4.swing.GameConfig;
 
 /*
@@ -8,13 +9,18 @@ import atrem.Connect4.swing.GameConfig;
  */
 public class Connect4 {
 	private static GameFactory gameFactory;
-	// private static GameController gameController;
-	private static GameConfig config; // zmieniæ nazwe SwingConfig na
-										// GameConfig
+	private static GameConfig config;
+	private static Menu menu;
 
 	public static void main(String[] args) {
-		gameFactory = new GameFactory();
-		config = new GameConfig(gameFactory);
-		config.setDBox();
+		if (args.length > 0) {
+			gameFactory = new GameFactory();
+			menu = new Menu(gameFactory);
+			menu.runGame();
+		} else {
+			gameFactory = new GameFactory();
+			config = new GameConfig(gameFactory);
+			config.setDBox();
+		}
 	}
 }
