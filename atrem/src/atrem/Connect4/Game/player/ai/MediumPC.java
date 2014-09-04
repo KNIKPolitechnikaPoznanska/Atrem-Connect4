@@ -19,38 +19,18 @@ public class MediumPC implements PlayerController {
 
 	private Board board;
 	private Random rand;
-	private GameController gamecontroller;
+	private GameController gameController;
 
-	public MediumPC(String name, HoleState playerId,
-			GameController gameController, Logic logic) {
+	public MediumPC(GameController gameController, String name,
+			PlayerId playerId, Logic logic) {
 		playerAttributes = new PlayerAttributes();
 		playerAttributes.setName(name);
 		playerAttributes.setPlayerId(playerId);
-
+		this.gameController = gameController;
 		this.logic = logic;
-		board = gamecontroller.getBoard();
+		board = gameController.getBoard();
 		rand = new Random();
-	}
-
-	@Override
-	public String getName() {
-		return playerAttributes.getName();
-	}
-
-	@Override
-	public void setName(String name) {
-		playerAttributes.setName(name);
-	}
-
-	@Override
-	public HoleState getPlayerId() {
-		return playerAttributes.getPlayerId();
-
-	}
-
-	@Override
-	public void setGamecontroller(GameController gamecontroller) {
-		this.gamecontroller = gamecontroller;
+		gameController.endInitPlayer();
 	}
 
 	public int simulatedGo(int slot) {
@@ -63,12 +43,12 @@ public class MediumPC implements PlayerController {
 
 	}
 
-	@Override
-	public int loadSlotNumber() {
+	public int findSlotToMove() {
 
 		int simulatedRow;
 		HoleState opp;
-		if (playerAttributes.getPlayerId() == PlayerId.Player1)
+
+		if (board.playerIdtoHoleState(playerAttributes.getPlayerId()) == HoleState.PLAYER1)
 			opp = HoleState.PLAYER2;
 		else
 			opp = HoleState.PLAYER1;
@@ -129,23 +109,19 @@ public class MediumPC implements PlayerController {
 
 		}
 		int randomSlot;
-		int choosenSlot;
+		int choosenSpot;
 		do {
 
 			randomSlot = rand.nextInt(board.getSlots());
-			choosenSlot = board.findFreeSpot(randomSlot);
-		} while (choosenSlot == -1);
-		return 0;
+			choosenSpot = board.findFreeSpot(randomSlot);
+		} while (choosenSpot == -1);
+		return randomSlot;
+
 	}
 
 	@Override
 	public void yourTurn() {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void refreshView(int row, int slot) {
-		// TODO Auto-generated method stub
+		gameController.move(findSlotToMove());
 
 	}
 
@@ -154,4 +130,25 @@ public class MediumPC implements PlayerController {
 		// TODO Auto-generated method stub
 
 	}
+
+	@Override
+	public String getName() {
+		return playerAttributes.getName();
+	}
+
+	@Override
+	public void setName(String name) {
+		playerAttributes.setName(name);
+	}
+
+	@Override
+	public PlayerId getPlayerId() {
+		return playerAttributes.getPlayerId();
+	}
+
+	@Override
+	public void setGamecontroller(GameController gamecontroller) {
+		this.gameController = gamecontroller;
+	}
+
 }

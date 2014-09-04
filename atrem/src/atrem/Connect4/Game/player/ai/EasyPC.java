@@ -68,10 +68,6 @@ public class EasyPC implements PlayerController {
 
 	}
 
-	public void refreshView(int row, int slot) {
-		// nie potrzebne w kompie PAWEL
-	}
-
 	@Override
 	public void setGamecontroller(GameController gamecontroller) {
 		this.gameController = gamecontroller;
