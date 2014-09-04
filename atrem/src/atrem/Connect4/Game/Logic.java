@@ -96,7 +96,7 @@ public class Logic {
 	// }
 
 	private void diagonalWin1(String playerType) {
-		for (int row = 0; row < maxRows - 3; row++) { // skos /
+		for (int row = 0; row < maxRows - 1; row++) { // skos /
 			for (int slot = 0; slot < maxSlots - 3; slot++) {
 				token = gameController.getBoard().getHoleState(row, slot);
 				if (token != HoleState.EMPTY
