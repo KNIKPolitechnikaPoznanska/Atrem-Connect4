@@ -58,7 +58,7 @@ public class EasyPC implements PlayerController {
 		executor.execute(new Runnable() {
 			@Override
 			public void run() {
-				int emptySlot = 1;
+				int emptySlot;
 				do {
 					emptySlot = gameController.move(randomSlotNumber());
 					System.out.println("randomowo: " + emptySlot + "\n\n");

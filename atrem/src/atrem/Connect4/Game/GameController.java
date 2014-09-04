@@ -65,6 +65,12 @@ public class GameController implements Runnable {
 		waitForInit();
 		while (resultState == ResultState.NoWin) {
 			currentPlayer = currentPlayer();
+			try {
+				this.wait(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			currentPlayer.yourTurn();
 			System.out.println("po ");
 			gameState = GameState.waitingForMove;
@@ -142,6 +148,10 @@ public class GameController implements Runnable {
 		} else {
 			setPlayerTurn(PlayerId.Player1);
 		}
+	}
+
+	public void wakeUp() {
+		notifyAll();
 	}
 
 	public HoleState getHoleState(int rows, int slots) {

@@ -20,6 +20,7 @@ public class SwingPresenter implements PlayerController {
 	private SideBoard sideBoard;
 	protected JLabel token;
 	private DialogInformationBoxes informationBoxes;
+	private int slots, rows;
 
 	/**
 	 * Presenter MVP do GameFrame
@@ -35,6 +36,16 @@ public class SwingPresenter implements PlayerController {
 		this.blockButton = block;
 		this.playerId = playerId;
 		setupFrame();
+		slots = gameController.getBoard().getSlots();
+		rows = gameController.getBoard().getRows();
+	}
+
+	public int getSlots() {
+		return slots;
+	}
+
+	public int getRows() {
+		return rows;
 	}
 
 	/**
@@ -46,10 +57,7 @@ public class SwingPresenter implements PlayerController {
 		System.out.println("hehe");
 		LastSlot = gameController.getLastMove().getLastSlot();
 		LastRow = gameController.getLastMove().getLastRow();
-		if (LastRow != -1 && LastSlot != -1) { // spr czy to nie jest
-			// pierwszy
-			// ruch
-
+		if (LastRow != -1 && LastSlot != -1) {
 			refreshView(LastRow, LastSlot);
 		}
 		System.out.println(LastRow + " " + LastSlot);
@@ -65,6 +73,7 @@ public class SwingPresenter implements PlayerController {
 			gameBoard.disableButtons(false);
 			refreshView(emptySpot, slot);
 		}
+
 	}
 
 	private void setupFrame() {
