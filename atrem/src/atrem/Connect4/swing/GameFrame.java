@@ -18,6 +18,7 @@ public class GameFrame extends JFrame {
 	private GameBoard board;
 	private SideBoard sideBoard;
 	private JLabel sideToken;
+	int blb;
 
 	/**
 	 * Create the frame.

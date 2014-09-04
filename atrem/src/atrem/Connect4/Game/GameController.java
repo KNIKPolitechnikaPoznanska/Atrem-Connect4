@@ -82,6 +82,7 @@ public class GameController implements Runnable {
 				currentPlayer = currentPlayer();
 				currentPlayer.yourTurn();
 				player1.endOfGame(resultState);
+
 				// player2.endOfGame(resultState);
 				return;
 
@@ -92,9 +93,6 @@ public class GameController implements Runnable {
 		}
 	}
 
-	/**
-	 * Metoda usypiaj¹ca w¹tek GC.
-	 */
 	private synchronized void waitForMove() {
 		while (gameState != GameState.moveDone) {
 			try {
