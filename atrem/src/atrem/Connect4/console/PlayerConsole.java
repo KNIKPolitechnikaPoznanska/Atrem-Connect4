@@ -82,7 +82,6 @@ public class PlayerConsole implements PlayerController {
 
 	}
 
-	@Override
 	public void refreshView(int row, int slot) {
 		displayGame();
 	}

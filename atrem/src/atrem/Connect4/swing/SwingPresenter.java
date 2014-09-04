@@ -46,8 +46,9 @@ public class SwingPresenter implements PlayerController {
 		System.out.println("hehe");
 		LastSlot = gameController.getLastMove().getLastSlot();
 		LastRow = gameController.getLastMove().getLastRow();
-		if (LastRow != -1 && LastSlot != -1) { // spr czy to nie jest pierwszy
-												// ruch
+		if (LastRow != -1 && LastSlot != -1) { // spr czy to nie jest
+			// pierwszy
+			// ruch
 
 			refreshView(LastRow, LastSlot);
 		}
@@ -91,7 +92,6 @@ public class SwingPresenter implements PlayerController {
 	/**
 	 * Odœwie¿a planszê na GUI
 	 */
-	@Override
 	public void refreshView(int row, int slot) { // row i slot s¹ 0, why?, a
 													// slot do czego? Lukas
 		changeDispTurn(gameController.getPlayerTurn());
