@@ -73,8 +73,13 @@ public class GameController implements Runnable {
 			resultGame = logic.checkResult(doneMoves);
 
 			if (resultGame == true) {
+				changePlayer();
+				currentPlayer = currentPlayer();
+				currentPlayer.yourTurn();
 				player1.endOfGame(resultState);
+
 				return;
+
 				// player2.endOfGame(resultState);
 			}
 			changePlayer();
