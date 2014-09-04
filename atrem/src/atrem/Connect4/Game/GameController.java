@@ -12,7 +12,7 @@ public class GameController implements Runnable {
 	private PlayerController currentPlayer, player1, player2;
 	private int emptySpot, slot;
 	private PlayerId playerTurn = PlayerId.Player1;
-	private ResultState resultState;
+	private ResultState resultState = ResultState.NoWin;
 	private GameState gameState = GameState.preInit;
 
 	/**
@@ -50,6 +50,7 @@ public class GameController implements Runnable {
 		if (emptySpot != -1) {
 			notifyAll();
 		}
+
 		return emptySpot;
 	}
 
@@ -62,19 +63,34 @@ public class GameController implements Runnable {
 		lastMove = new LastMove();
 		System.out.println("przed init");
 		waitForInit();
-		while (resultState != ResultState.NoWin) {
+		while (resultState == ResultState.NoWin) {
 			currentPlayer = currentPlayer();
+			try {
+				this.wait(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			currentPlayer.yourTurn();
 			System.out.println("po ");
 			gameState = GameState.waitingForMove;
 			waitForMove();
 			doneMoves++;
 			resultGame = logic.checkResult(doneMoves);
-			// if (resultGame == true) {
-			// player1.endOfGame(resultState);
-			// player2.endOfGame(resultState);
-			// }
+
+			if (resultGame == true) {
+				changePlayer();
+				currentPlayer = currentPlayer();
+				currentPlayer.yourTurn();
+				player1.endOfGame(resultState);
+
+				return;
+
+				// player2.endOfGame(resultState);
+			}
+
 			changePlayer();
+
 		}
 	}
 
@@ -129,6 +145,10 @@ public class GameController implements Runnable {
 		} else {
 			setPlayerTurn(PlayerId.Player1);
 		}
+	}
+
+	public void wakeUp() {
+		notifyAll();
 	}
 
 	public HoleState getHoleState(int rows, int slots) {

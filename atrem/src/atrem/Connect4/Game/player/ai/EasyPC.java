@@ -1,25 +1,31 @@
 package atrem.Connect4.Game.player.ai;
 
 import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-import atrem.Connect4.Game.Game;
+import atrem.Connect4.Game.GameController;
+import atrem.Connect4.Game.PlayerId;
+import atrem.Connect4.Game.ResultState;
 import atrem.Connect4.Game.board.Board;
-import atrem.Connect4.Game.board.HoleState;
 import atrem.Connect4.Game.player.PlayerAttributes;
 import atrem.Connect4.Game.player.PlayerController;
 
 public class EasyPC implements PlayerController {
 
 	private PlayerAttributes playerAttributes;
-	private Board board;
-	private Game game;
+	private GameController gameController;
 
-	public EasyPC(String name, HoleState playerId, Game game) {
+	private Board board;
+	private ExecutorService executor = Executors.newSingleThreadExecutor();
+
+	public EasyPC(GameController gameController, String name, PlayerId playerId) {
+		this.gameController = gameController;
 		playerAttributes = new PlayerAttributes();
 		playerAttributes.setName(name);
 		playerAttributes.setPlayerId(playerId);
-		this.game = game;
-		this.board = game.getBoard();
+		this.board = gameController.getBoard();
+		gameController.endInitPlayer();
 	}
 
 	@Override
@@ -32,26 +38,45 @@ public class EasyPC implements PlayerController {
 		playerAttributes.setName(name);
 	}
 
+	public int randomSlotNumber() {
+
+		System.out.println("EASYPC");
+		int randomSlot;
+		Random rand = new Random();
+		randomSlot = rand.nextInt(board.getSlots());
+		return randomSlot;
+	}
+
 	@Override
-	public HoleState getPlayerId() {
+	public PlayerId getPlayerId() {
 		return playerAttributes.getPlayerId();
+	}
+
+	@Override
+	public void yourTurn() {
+		System.out.println("stara dobra metoda");
+		executor.execute(new Runnable() {
+			@Override
+			public void run() {
+				int emptySlot;
+				do {
+					emptySlot = gameController.move(randomSlotNumber());
+					System.out.println("randomowo: " + emptySlot + "\n\n");
+				} while (emptySlot == -1);
+			}
+		});
 
 	}
 
 	@Override
-	public int loadSlotNumber() {
+	public void setGamecontroller(GameController gamecontroller) {
+		this.gameController = gamecontroller;
 
-		System.out.println("EASYPC");
-		int randomSlot;
-		int choosenRow;
-		Random rand = new Random();
-		do {
+	}
 
-			randomSlot = rand.nextInt(board.getSlots());
-			choosenRow = board.findFreeSpot(randomSlot);
-		} while (choosenRow == -1);
-
-		return randomSlot;
+	@Override
+	public void endOfGame(ResultState resultGame) {
+		// TODO Auto-generated method stub
 
 	}
 

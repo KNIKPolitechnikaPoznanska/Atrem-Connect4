@@ -1,10 +1,13 @@
 package atrem.Connect4.Game.player.ai;
 
 import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import atrem.Connect4.Game.GameController;
 import atrem.Connect4.Game.Logic;
 import atrem.Connect4.Game.PlayerId;
+import atrem.Connect4.Game.ResultState;
 import atrem.Connect4.Game.board.Board;
 import atrem.Connect4.Game.board.HoleState;
 import atrem.Connect4.Game.player.PlayerAttributes;
@@ -15,41 +18,21 @@ public class MediumPC implements PlayerController {
 	private Logic logic;
 
 	private PlayerAttributes playerAttributes;
-
+	private ExecutorService executor = Executors.newSingleThreadExecutor();
 	private Board board;
 	private Random rand;
-	private GameController gamecontroller;
+	private GameController gameController;
 
-	public MediumPC(String name, HoleState playerId,
-			GameController gameController, Logic logic) {
+	public MediumPC(GameController gameController, String name,
+			PlayerId playerId, Logic logic) {
 		playerAttributes = new PlayerAttributes();
 		playerAttributes.setName(name);
 		playerAttributes.setPlayerId(playerId);
-
+		this.gameController = gameController;
 		this.logic = logic;
-		board = gamecontroller.getBoard();
+		board = gameController.getBoard();
 		rand = new Random();
-	}
-
-	@Override
-	public String getName() {
-		return playerAttributes.getName();
-	}
-
-	@Override
-	public void setName(String name) {
-		playerAttributes.setName(name);
-	}
-
-	@Override
-	public HoleState getPlayerId() {
-		return playerAttributes.getPlayerId();
-
-	}
-
-	@Override
-	public void setGamecontroller(GameController gamecontroller) {
-		this.gamecontroller = gamecontroller;
+		gameController.endInitPlayer();
 	}
 
 	public int simulatedGo(int slot) {
@@ -62,12 +45,12 @@ public class MediumPC implements PlayerController {
 
 	}
 
-	@Override
-	public int loadSlotNumber() {
-
+	public int findSlotToMove() {
+		logic.setCPUwin(false);
 		int simulatedRow;
 		HoleState opp;
-		if (playerAttributes.getPlayerId() == HoleState.PLAYER1)
+
+		if (board.playerIdtoHoleState(playerAttributes.getPlayerId()) == HoleState.PLAYER1)
 			opp = HoleState.PLAYER2;
 		else
 			opp = HoleState.PLAYER1;
@@ -81,7 +64,7 @@ public class MediumPC implements PlayerController {
 				board.setHoleState(simulatedRow, i,
 						playerAttributes.getPlayerId());
 
-				if (logic.checkIfWinPC() == true) {// wiem ze mozna lepiej
+				if (logic.checkIfWinPC()) {// wiem ze mozna lepiej
 					board.cleanSpot(simulatedRow, i);
 
 					return i;
@@ -98,7 +81,7 @@ public class MediumPC implements PlayerController {
 				continue;
 			else {
 				board.setHoleState(simulatedRow, i, opp);
-				if (logic.checkIfWinPC() == true) {// wiem ze mozna lepiej
+				if (logic.checkIfWinPC()) {// wiem ze mozna lepiej
 					board.cleanSpot(simulatedRow, i);
 					return i;
 				} else
@@ -128,30 +111,54 @@ public class MediumPC implements PlayerController {
 
 		}
 		int randomSlot;
-		int choosenSlot;
+		int choosenSpot;
 		do {
-
+			System.out.println("losowy ruch medium PC");
 			randomSlot = rand.nextInt(board.getSlots());
-			choosenSlot = board.findFreeSpot(randomSlot);
-		} while (choosenSlot == -1);
-		return 0;
-	}
+			choosenSpot = board.findFreeSpot(randomSlot);
+		} while (choosenSpot == -1);
+		return randomSlot;
 
-	@Override
-	public PlayerId getPlayerId() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
 	public void yourTurn() {
+		executor.execute(new Runnable() {
+
+			@Override
+			public void run() {
+				System.out.println();
+				gameController.move(findSlotToMove());
+
+			}
+		});
+
+	}
+
+	@Override
+	public void endOfGame(ResultState resultGame) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void refreshView(int row, int slot) {
-		// TODO Auto-generated method stub
-
+	public String getName() {
+		return playerAttributes.getName();
 	}
+
+	@Override
+	public void setName(String name) {
+		playerAttributes.setName(name);
+	}
+
+	@Override
+	public PlayerId getPlayerId() {
+		return playerAttributes.getPlayerId();
+	}
+
+	@Override
+	public void setGamecontroller(GameController gamecontroller) {
+		this.gameController = gamecontroller;
+	}
+
 }
