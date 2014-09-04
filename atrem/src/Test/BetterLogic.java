@@ -54,7 +54,8 @@ public class BetterLogic {
 				int tempS = Math.abs(endSlot);
 				int tempR = Math.abs(endRow);
 				if (this.slot + endSlot > maxSlot && this.row + endRow > maxRow) {
-					checkStartWithEnd(lastSlot, lastRow, endRow, endSlot);
+
+					// checkStartWithEnd(lastSlot, lastRow, endRow, endSlot);
 
 				}
 
