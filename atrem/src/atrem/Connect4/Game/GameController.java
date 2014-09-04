@@ -12,7 +12,7 @@ public class GameController implements Runnable {
 	private PlayerController currentPlayer, player1, player2;
 	private int emptySpot, slot;
 	private PlayerId playerTurn = PlayerId.Player1;
-	private ResultState resultState;
+	private ResultState resultState = ResultState.NoWin;
 	private GameState gameState = GameState.preInit;
 
 	/**
@@ -50,6 +50,7 @@ public class GameController implements Runnable {
 		if (emptySpot != -1) {
 			notifyAll();
 		}
+
 		return emptySpot;
 	}
 
@@ -62,7 +63,7 @@ public class GameController implements Runnable {
 		lastMove = new LastMove();
 		System.out.println("przed init");
 		waitForInit();
-		while (resultState != ResultState.NoWin) {
+		while (resultState == ResultState.NoWin) {
 			currentPlayer = currentPlayer();
 			currentPlayer.yourTurn();
 			System.out.println("po ");
@@ -70,11 +71,14 @@ public class GameController implements Runnable {
 			waitForMove();
 			doneMoves++;
 			resultGame = logic.checkResult(doneMoves);
-			if (resultGame != true) {
+
+			if (resultGame == true) {
 				player1.endOfGame(resultState);
+				return;
 				// player2.endOfGame(resultState);
 			}
 			changePlayer();
+
 		}
 	}
 
