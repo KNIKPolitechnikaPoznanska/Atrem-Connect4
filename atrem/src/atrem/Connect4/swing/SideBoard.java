@@ -12,35 +12,36 @@ public class SideBoard extends JPanel {
 	 */
 	private static final long serialVersionUID = 9208904490186715373L;
 	ResourceLoader icon = new ResourceLoader();
-	String pl1Name = "Gracz1", pl2Name = "Gracz2", message;
-	JLabel token1, token2;
+	String pl1Name, pl2Name, message;
+	JLabel token1, token2, player1, player2, dialogWinow;
+	JPanel namesAndColours;
 
 	public SideBoard() {
 		setLayout(null);
 
-		JPanel namesAndColours = new JPanel();
+		namesAndColours = new JPanel();
 		namesAndColours.setBounds(10, 11, 169, 115);
 		add(namesAndColours);
 		namesAndColours.setLayout(null);
 
-		JLabel player1 = new JLabel(pl1Name);
+		player1 = new JLabel(pl1Name);
 		player1.setBounds(5, 16, 91, 14);
 		namesAndColours.add(player1);
 
-		JLabel token1 = new JLabel("");
+		token1 = new JLabel("");
 		token1.setBounds(119, 3, 40, 40);
 		namesAndColours.add(token1);
 
-		JLabel player2 = new JLabel(pl2Name);
+		player2 = new JLabel(pl2Name);
 		player2.setBounds(5, 78, 91, 14);
 		namesAndColours.add(player2);
 
-		JLabel token2 = new JLabel("");
+		token2 = new JLabel("");
 		token2.setBounds(119, 65, 40, 40);
 		namesAndColours.add(token2);
 		token2.setIcon(null); // do metody bez obrazka BARTEK
 
-		JLabel dialogWinow = new JLabel(message);
+		dialogWinow = new JLabel(message);
 		dialogWinow.setVerticalAlignment(SwingConstants.TOP);
 		dialogWinow.setBounds(8, 137, 169, 129);
 		add(dialogWinow);
@@ -69,12 +70,14 @@ public class SideBoard extends JPanel {
 		this.message = message;
 	}
 
-	public void setPl1Name(String i) {
-		this.pl1Name = i;
+	public void setPl1Name(String name) {
+		this.pl1Name = name;
+		player1.setText(pl1Name);
 	}
 
-	public void setPl2Name(String i) {
-		this.pl2Name = i;
+	public void setPl2Name(String name) {
+		this.pl2Name = name;
+		player2.setText(pl2Name);
 	}
 
 	public void setTokenPl1() {

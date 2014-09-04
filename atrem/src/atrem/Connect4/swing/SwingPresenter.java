@@ -12,11 +12,9 @@ import atrem.Connect4.Game.player.PlayerController;
 public class SwingPresenter implements PlayerController {
 	private int LastRow, LastSlot, emptySpot; // do GC
 	private GameController gameController;
-	private JLabel pl1Label, pl2Label; // changeDispTurn()
 	private PlayerAttributes playerAttributes;
 	private GameBoard gameBoard;
 	private GameFrame frame;
-	private boolean firstTurn = true;
 	private boolean blockButton;
 	private PlayerId playerId;
 	private SideBoard sideBoard;
@@ -80,6 +78,7 @@ public class SwingPresenter implements PlayerController {
 					sideBoard = frame.getSideBoard();
 					gameController.endInitPlayer();
 					gameBoard.disableButtons(blockButton);
+					setNamesAndToken();
 					// changeDispTurn(playerTurn);
 					// frame.setVisible(true);
 				} catch (Exception e) {
@@ -106,7 +105,7 @@ public class SwingPresenter implements PlayerController {
 			informationBoxes.winMessage(playerId.Player1);
 		if (resultGame == resultGame.Player2Win)
 			informationBoxes.winMessage(playerId.Player2);
-	};
+	}
 
 	/**
 	 * Funkcja zmienia Label gracza w ka¿zdej turze
@@ -124,7 +123,7 @@ public class SwingPresenter implements PlayerController {
 	 */
 	public void setNamesAndToken() {
 		sideBoard.setPl1Name(gameController.getPlayer1().getName());
-		sideBoard.setPl1Name(gameController.getPlayer2().getName());
+		sideBoard.setPl2Name(gameController.getPlayer2().getName());
 		if (playerId == PlayerId.Player1)
 			sideBoard.setTokenPl1();
 		else
