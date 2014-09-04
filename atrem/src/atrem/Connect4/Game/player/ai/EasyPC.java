@@ -15,7 +15,7 @@ public class EasyPC implements PlayerController {
 
 	private PlayerAttributes playerAttributes;
 	private GameController gameController;
-	private PlayerAttributes playerAtributes;
+
 	private Board board;
 	private ExecutorService executor = Executors.newSingleThreadExecutor();
 
@@ -42,14 +42,8 @@ public class EasyPC implements PlayerController {
 
 		System.out.println("EASYPC");
 		int randomSlot;
-		int choosenRow;
 		Random rand = new Random();
-		do {
-
-			randomSlot = rand.nextInt(board.getSlots());
-			choosenRow = board.findFreeSpot(randomSlot);
-		} while (choosenRow == -1);
-
+		randomSlot = rand.nextInt(board.getSlots());
 		return randomSlot;
 	}
 
@@ -60,11 +54,15 @@ public class EasyPC implements PlayerController {
 
 	@Override
 	public void yourTurn() {
+		System.out.println("stara dobra metoda");
 		executor.execute(new Runnable() {
-
 			@Override
 			public void run() {
-				gameController.move(randomSlotNumber());
+				int emptySlot = 1;
+				do {
+					emptySlot = gameController.move(randomSlotNumber());
+					System.out.println("randomowo: " + emptySlot + "\n\n");
+				} while (emptySlot == -1);
 			}
 		});
 
