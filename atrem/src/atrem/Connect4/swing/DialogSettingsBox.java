@@ -31,6 +31,9 @@ public class DialogSettingsBox extends JDialog {
 	 */
 	private static final long serialVersionUID = 973461278407448042L;
 	private static DialogSettingsBox dialog;
+	private static final String DEF_PL1_NAME = "Gracz 1",
+			DEF_PL2_NAME = "Gracz 2";
+	private static final int DEF_SLOTS = 7, DEF_ROWS = 6;
 	private String pl1Name, pl2Name, pl1GameType, pl2GameType, pl1Type,
 			pl2Type;
 	private int slots, rows;
@@ -139,10 +142,10 @@ public class DialogSettingsBox extends JDialog {
 	 * Ustawia wartoœci domyœlne gry
 	 */
 	protected void setDefaults() {
-		TFieldPl1Name.setText(GameConfig.DEF_PL1_NAME);
-		TFieldPl2Name.setText(GameConfig.DEF_PL2_NAME);
-		TFieldSlots.setText(Integer.toString(GameConfig.DEF_SLOTS));
-		TFieldRows.setText(Integer.toString(GameConfig.DEF_ROWS));
+		TFieldPl1Name.setText(DEF_PL1_NAME);
+		TFieldPl2Name.setText(DEF_PL2_NAME);
+		TFieldSlots.setText(Integer.toString(DEF_SLOTS));
+		TFieldRows.setText(Integer.toString(DEF_ROWS));
 	}
 
 	protected void disableGameTypeBoxes(JComboBox<String> item, int Nmb) {
@@ -657,11 +660,21 @@ public class DialogSettingsBox extends JDialog {
 		jLabel7.setFont(new Font("Tahoma", 0, 21)); // NOI18N
 		jLabel7.setText("Wiersze: ");
 
+<<<<<<< HEAD
 		TFieldSlots.setFont(new Font("Tahoma", 0, 24)); // NOI18N
 		TFieldSlots.setText("" + GameConfig.DEF_SLOTS);
+=======
+		TFieldSlots.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+		TFieldSlots.setText("" + DEF_SLOTS);
+>>>>>>> branch 'master' of https://github.com/KNIKPolitechnikaPoznanska/AtremProject.git
 
+<<<<<<< HEAD
 		TFieldRows.setFont(new Font("Tahoma", 0, 24)); // NOI18N
 		TFieldRows.setText("" + GameConfig.DEF_ROWS);
+=======
+		TFieldRows.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+		TFieldRows.setText("" + DEF_ROWS);
+>>>>>>> branch 'master' of https://github.com/KNIKPolitechnikaPoznanska/AtremProject.git
 
 		GroupLayout boardSetPanelLayout = new GroupLayout(boardSetPanel);
 		boardSetPanel.setLayout(boardSetPanelLayout);
@@ -771,6 +784,36 @@ public class DialogSettingsBox extends JDialog {
 		pack();
 	}
 
+<<<<<<< HEAD
+=======
+	protected void disableGameTypeBoxes(JComboBox<String> item, int Nmb) {
+		String selItem = (String) item.getSelectedItem();
+		System.out.println(selItem);
+		if (selItem == GameConfig.CcpuEasy || selItem == GameConfig.CcpuMedium
+				|| selItem == GameConfig.CcpuHard) {
+			if (Nmb == 1) {
+				rBConsole1.setEnabled(false);
+				rBSwing1.setEnabled(false);
+				rBMulti1.setEnabled(false);
+			} else {
+				rBConsole2.setEnabled(false);
+				rBSwing2.setEnabled(false);
+				rBMulti2.setEnabled(false);
+			}
+		} else if (selItem == GameConfig.CHuman) {
+			if (Nmb == 1) {
+				rBConsole1.setEnabled(true);
+				rBSwing1.setEnabled(true);
+				rBMulti1.setEnabled(true);
+			} else {
+				rBConsole2.setEnabled(true);
+				rBSwing2.setEnabled(true);
+				rBMulti2.setEnabled(true);
+			}
+		}
+
+	}
+>>>>>>> branch 'master' of https://github.com/KNIKPolitechnikaPoznanska/AtremProject.git
 	public String getPl1GameType() {
 		return pl1GameType;
 	}

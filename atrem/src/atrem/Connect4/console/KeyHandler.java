@@ -18,6 +18,7 @@ public class KeyHandler extends KeyAdapter {
 
 	public KeyHandler(Board board) {
 		this.maxSlots = board.getSlots();
+
 	}
 
 	public int getInt() {
@@ -29,10 +30,10 @@ public class KeyHandler extends KeyAdapter {
 				if (inputInt > 3) {
 					return inputInt;
 				} else {
-					System.out.println("WprowadŸ¸ liczbê z zakresu [4-n]");
+					System.out.println("WprowadÅ¸ liczbÃª z zakresu [4-n]");
 				}
 			} else {
-				System.out.println("WprowadŸŸ¸ liczbê!!!");
+				System.out.println("WprowadÅ¸ liczbÃª!!!");
 				input.next();
 			}
 		}
@@ -47,8 +48,8 @@ public class KeyHandler extends KeyAdapter {
 				if (slot > 0 && slot <= maxSlots) {
 					return slot - 1;
 				} else {
-					System.out.println("WprowadÅ¸ slot z zakresu [0-"
-							+ maxSlots + "]");
+					System.out.println("WprowadÅ¸ slot z zakresu [0-" + maxSlots
+							+ "]");
 				}
 			} else {
 				System.out.println("WprowadÅ¸ liczbÃª!!!");
@@ -69,7 +70,7 @@ public class KeyHandler extends KeyAdapter {
 		Scanner input = new Scanner(System.in);
 		String string = input.next();
 		while (!string.equalsIgnoreCase("K") && !string.equalsIgnoreCase("C")) {
-			System.out.println("WprowadŸ¸ K(komputer) lub C(cz³owiek)!");
+			System.out.println("WprowadÅ¸ K(komputer) lub C(czÂ³owiek)5");
 			string = input.next();
 		}
 		return string;

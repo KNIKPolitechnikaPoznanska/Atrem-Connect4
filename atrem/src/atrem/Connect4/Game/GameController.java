@@ -109,7 +109,7 @@ public class GameController implements Runnable {
 				currentPlayer.yourTurn();
 				player1.endOfGame(resultState);
 
-				// player2.endOfGame(resultState);
+				player2.endOfGame(resultState);
 				return;
 			}
 			changePlayer();
