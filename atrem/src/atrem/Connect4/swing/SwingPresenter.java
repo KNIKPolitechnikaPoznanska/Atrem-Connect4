@@ -54,6 +54,7 @@ public class SwingPresenter implements PlayerController {
 		LastSlot = gameController.getLastMove().getLastSlot();
 		LastRow = gameController.getLastMove().getLastRow();
 		if (LastRow != -1 && LastSlot != -1) {
+
 			refreshView(LastRow, LastSlot);
 		}
 		System.out.println(LastRow + " " + LastSlot);
