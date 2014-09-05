@@ -33,8 +33,9 @@ public class SwingPresenter implements PlayerController {
 	 * @param block
 	 */
 	public SwingPresenter(GameController gameController, String playerName,
-			PlayerId playerId, Color tokenColor, boolean block) {
-		playerAttributes = new PlayerAttributes(playerName, playerId);
+			PlayerId playerId, Color tokenColor, boolean block, int playerPoints) {
+		playerAttributes = new PlayerAttributes(playerName, playerId,
+				playerPoints);
 		this.gameController = gameController;
 		this.blockButton = block;
 		this.playerId = playerId;
@@ -83,7 +84,7 @@ public class SwingPresenter implements PlayerController {
 					informationBoxes = new DialogInformationBoxes();
 					sideBoard = frame.getSideBoard();
 					gameController.endInitPlayer();
-					gameBoard.disableButtons(false);
+					gameBoard.disableButtons(blockButton);
 					setNamesAndToken();
 					// changeDispTurn(playerTurn);
 					// frame.setVisible(true);
@@ -196,6 +197,16 @@ public class SwingPresenter implements PlayerController {
 	@Override
 	public void setGamecontroller(GameController gamecontroller) {
 		this.gameController = gamecontroller;
+	}
+
+	public int getPoints() {
+		return playerAttributes.getPlayerPoints();
+	}
+
+	@Override
+	public int getPlayerPoints() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
