@@ -52,10 +52,10 @@ public class GameFactory {
 			player1 = createHumanPlayer(1);
 			break;
 		case GameConfig.CcpuEasy:
-			player1 = createCpuEasyPlayer();
+			player1 = createCpuEasyPlayer(PlayerId.PLAYER1);
 			break;
 		case GameConfig.CcpuMedium:
-			player1 = createCpuMediumPlayer();
+			player1 = createCpuMediumPlayer(PlayerId.PLAYER1);
 		}
 
 		switch (player2Type) {
@@ -63,21 +63,21 @@ public class GameFactory {
 			player2 = createHumanPlayer(2);
 			break;
 		case GameConfig.CcpuEasy:
-			player2 = createCpuEasyPlayer();
+			player2 = createCpuEasyPlayer(PlayerId.PLAYER2);
 			break;
 		case GameConfig.CcpuMedium:
-			player2 = createCpuMediumPlayer();
+			player2 = createCpuMediumPlayer(PlayerId.PLAYER2);
 		}
 
 	}
 
-	private PlayerController createCpuMediumPlayer() {
-		return new MediumPC(gameController, player2name, PlayerId.PLAYER2,
-				new Logic(gameController));
+	private PlayerController createCpuMediumPlayer(PlayerId playerID) {
+		return new MediumPC(gameController, player2name, playerID, new Logic(
+				gameController));
 	}
 
-	private PlayerController createCpuEasyPlayer() {
-		return new EasyPC(gameController, player2name, PlayerId.PLAYER2);
+	private PlayerController createCpuEasyPlayer(PlayerId playerID) {
+		return new EasyPC(gameController, player2name, playerID);
 	}
 
 	private PlayerController createHumanPlayer(int playerNmb) {
