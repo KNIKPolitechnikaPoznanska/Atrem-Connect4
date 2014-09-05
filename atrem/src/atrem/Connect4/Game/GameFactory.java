@@ -31,7 +31,7 @@ public class GameFactory {
 		createPlayerGame();
 		gameController.setPlayer1(player1);
 		gameController.setPlayer2(player2);
-		gameController.setPlayerTurn(PlayerId.PLAYER2);
+		gameController.setPlayerTurn(PlayerId.PLAYER1);
 	}
 
 	/**
