@@ -94,102 +94,8 @@ public class Logic {
 	private boolean checkIfHoleExists(int row, int slot) {
 		if (row < 0 || slot < 0 || row >= maxRows || slot >= maxSlots) {
 			return false;
-<<<<<<< HEAD
 		} else {
 			return true;
-=======
-		return true;
-	}
-
-	private void columnWin(String playerType) {
-		for (int row = 0; row < maxRows; row++) { // slot\kolumna
-			for (int slot = 0; slot < maxSlots - 3; slot++) {
-				token = gameController.getHoleState(row, slot);
-				if (token != HoleState.EMPTY
-						&& token == gameController.getHoleState(row, slot + 1)
-						&& token == gameController.getHoleState(row, slot + 2)
-						&& token == gameController.getHoleState(row, slot + 3)) {
-					setPlayerWon(playerType);
-				}
-			}
-		}
-	}
-
-	private boolean sprIfa(boolean row, boolean slot, LastMove lastmove) {
-		int rows = 0;
-		int slots = 0;
-
-		for (int i = 0; i < 3; i++) {
-			if (row) {
-				rows++;
-			}
-			if (slot) {
-				slots++;
-			}
-		}
-		return true;
-	}
-
-	// potem zamieniæ za warunki
-	// private boolean checkNextHole(int row, int slot) {
-	// return token == gameController.getHoleState(row, slot);
-	// }
-
-	private void diagonalWin1(String playerType) {
-		for (int row = 0; row < maxRows - 3; row++) { // skos /
-			for (int slot = 0; slot < maxSlots - 3; slot++) {
-				token = gameController.getBoard().getHoleState(row, slot);
-				if (token != HoleState.EMPTY
-						&& token == gameController.getHoleState(row + 1,
-								slot + 1)
-						&& token == gameController.getHoleState(row + 2,
-								slot + 2)
-						&& token == gameController.getHoleState(row + 3,
-								slot + 3))
-					setPlayerWon(playerType);
-			}
-		}
-	}
-
-	private void diagonalWin2(String playerType) {
-		for (int row = maxRows - 1; row >= 3; row--) { // skos \
-			for (int slot = 0; slot < maxSlots - 3; slot++) {
-				HoleState token = gameController.getHoleState(row, slot);
-				if (token != HoleState.EMPTY
-						&& token == gameController.getHoleState(row - 1,
-								slot + 1)
-						&& token == gameController.getHoleState(row - 2,
-								slot + 2)
-						&& token == gameController.getHoleState(row - 3,
-								slot + 3))
-					setPlayerWon(playerType);
-			}
-		}
-	}
-
-	private void rowWin(String playerType) {
-		for (int slot = 0; slot < maxSlots; slot++) { // wiersz
-			for (int row = 0; row < maxRows - 3; row++) {
-				token = gameController.getBoard().getHoleState(row, slot);
-				if (token != HoleState.EMPTY
-						&& token == gameController.getHoleState(row + 1, slot)
-						&& token == gameController.getHoleState(row + 2, slot)
-						&& token == gameController.getHoleState(row + 3, slot))
-					setPlayerWon(playerType);
-			}
-		}
-	}
-
-	private void setPlayerWon(String playerType) {
-		if (playerType == cpu) {
-			cpuWin = true;
-			return;
-		}
-		if (token == HoleState.PLAYER1) {
-			gameController.setResult(ResultState.Player1Win);
-		} else if (token == HoleState.PLAYER2) {
-			gameController.setResult(ResultState.Player2Win);
->>>>>>> branch 'master' of https://github.com/KNIKPolitechnikaPoznanska/AtremProject.git
 		}
 	}
 
@@ -200,5 +106,4 @@ public class Logic {
 	public void setCPUwin(boolean CPUwin) {
 		this.cpuWin = CPUwin;
 	}
-
 }

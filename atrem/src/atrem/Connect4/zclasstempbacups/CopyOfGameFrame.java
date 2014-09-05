@@ -30,7 +30,7 @@ public class CopyOfGameFrame extends JFrame {
 		mainContainer.setLayout(new BorderLayout(0, 0));
 		mainContainer.add(panel, BorderLayout.CENTER);
 		mainContainer.add(statsPanel, BorderLayout.EAST);
-		swingPresenter.getFrame(this);
+		// swingPresenter.getFrame(this);
 	}
 
 	public CopyofSwingBoard getPanel() {

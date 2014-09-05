@@ -1,10 +1,11 @@
 package atrem.Connect4.Game;
 
-import java.util.Stack;
+import java.awt.Color;
 
 import atrem.Connect4.Game.board.Board;
 import atrem.Connect4.Game.board.HoleState;
 import atrem.Connect4.Game.player.PlayerController;
+import atrem.Connect4.swing.GameConfig;
 import atrem.Connect4.swing.SwingPresenter;
 
 public class GameController implements Runnable {
@@ -14,10 +15,10 @@ public class GameController implements Runnable {
 	private LastMove lastMove;
 	private PlayerController currentPlayer, player1, player2;
 	private int emptySpot, slot;
-	private PlayerId playerTurn = PlayerId.Player1;
+	private PlayerId playerTurn = PlayerId.PLAYER1;
 	private ResultState resultState = ResultState.NoWin;
 	private GameState gameState = GameState.preInit;
-	private Stack<LastMove> lastMoveStack;
+	private Color pl1Color, pl2Color;
 
 	/**
 	 * Sprawdza którego z graczy jest kolej
@@ -26,12 +27,12 @@ public class GameController implements Runnable {
 	 */
 	private PlayerController currentPlayer() {
 		switch (playerTurn) {
-			case Player1 :
+			case PLAYER1 :
 				return player1;
-			case Player2 :
+			case PLAYER2 :
 				return player2;
 			default :
-				return null;
+				return null; // player1
 		}
 	}
 
@@ -55,7 +56,6 @@ public class GameController implements Runnable {
 		if (emptySpot != -1) {
 			notifyAll();
 		}
-
 		return emptySpot;
 	}
 
@@ -63,27 +63,29 @@ public class GameController implements Runnable {
 	 * Glowna petla gry
 	 */
 	public void startNewGame() {
-		int row = board.getLastRow();
+		int row = board.getRows();
 		int slot = board.getSlots();
+		lastMove = new LastMove();
 		board = new Board(row, slot);
 		resultState = ResultState.NoWin;
 		gameState = GameState.nextGame;
 		if (player1 instanceof SwingPresenter) {
-			player1 = new SwingPresenter(player1.getName(), PlayerId.Player1,
-					this, true);
+			player1 = new SwingPresenter(this, player1.getName(),
+					PlayerId.PLAYER1, pl1Color, pl2Color, true,
+					player1.getPlayerPoints());
 		}
 		if (player2 instanceof SwingPresenter) {
-			player2 = new SwingPresenter(player2.getName(), PlayerId.Player2,
-					this, false);
+			player2 = new SwingPresenter(this, player2.getName(),
+					PlayerId.PLAYER2, pl1Color, pl2Color, false,
+					player2.getPlayerPoints());
 		}
 		doneMoves = 0;
-		playerTurn = PlayerId.Player1;
-		startGameLoop();
 
+		startGameLoop();
 	}
 
 	private synchronized void gameLoop() {// ma odczytywaæ GameState
-		boolean resultGame;
+		boolean endGame;
 		logic = new Logic(this);
 		lastMove = new LastMove();
 		System.out.println("przed init");
@@ -101,16 +103,15 @@ public class GameController implements Runnable {
 			gameState = GameState.waitingForMove;
 			waitForMove();
 			doneMoves++;
-			resultGame = logic.getResultOfMove(lastMove.getLastRow(),
+			endGame = logic.getResultOfMove(lastMove.getLastRow(),
 					lastMove.getLastSlot(), doneMoves);
 
-			if (resultGame == true) {
+			if (endGame) {
 				changePlayer();
 				currentPlayer = currentPlayer();
 				currentPlayer.yourTurn();
 				player1.endOfGame(resultState);
-
-				// player2.endOfGame(resultState);
+				player2.endOfGame(resultState);
 				return;
 			}
 			changePlayer();
@@ -147,13 +148,14 @@ public class GameController implements Runnable {
 				gameState = GameState.endInitAll;
 				this.notifyAll();
 				break;
+			default :
+				break;
 		}
 	}
 
 	@Override
 	public void run() {
 		gameLoop();
-
 	}
 
 	public void startGameLoop() {
@@ -164,11 +166,17 @@ public class GameController implements Runnable {
 	 * Zmiana tury gracza.
 	 */
 	private void changePlayer() {
-		if (playerTurn == PlayerId.Player1) {
-			setPlayerTurn(PlayerId.Player2);
+		if (playerTurn == PlayerId.PLAYER1) {
+			setPlayerTurn(PlayerId.PLAYER2);
 		} else {
-			setPlayerTurn(PlayerId.Player1);
+			setPlayerTurn(PlayerId.PLAYER1);
 		}
+	}
+
+	public void initializeNewGame() {
+		GameFactory gameFactory = new GameFactory();
+		GameConfig config = new GameConfig(gameFactory);
+		config.setDBox();
 	}
 
 	public void wakeUp() {
@@ -191,6 +199,14 @@ public class GameController implements Runnable {
 		this.playerTurn = playerTurn;
 	}
 
+	public void setPl1Color(Color pl1Color) {
+		this.pl1Color = pl1Color;
+	}
+
+	public void setPl2Color(Color pl2Color) {
+		this.pl2Color = pl2Color;
+	}
+
 	public int getEmptySpot() {
 		return emptySpot;
 	}
@@ -205,6 +221,14 @@ public class GameController implements Runnable {
 
 	public void setBoard(Board board) {
 		this.board = board;
+	}
+
+	public Color getPl1Color() {
+		return pl1Color;
+	}
+
+	public Color getPl2Color() {
+		return pl2Color;
 	}
 
 	public PlayerController getPlayer1() {
@@ -238,5 +262,4 @@ public class GameController implements Runnable {
 	public Logic getLogic() {
 		return logic;
 	}
-
 }

@@ -36,7 +36,6 @@ public class MediumPC implements PlayerController {
 		rand = new Random();
 		informationBoxes = new DialogInformationBoxes();
 		gameController.endInitPlayer();
-
 	}
 
 	public int simulatedGo(int slot) {
@@ -46,7 +45,6 @@ public class MediumPC implements PlayerController {
 			return -1;
 		} else
 			return emptySpot;
-
 	}
 
 	public int findSlotToMove() {
@@ -71,14 +69,11 @@ public class MediumPC implements PlayerController {
 				if (logic.checkIfWinPC(simulatedRow, i)) {// wiem ze mozna
 															// lepiej
 					board.cleanSpot(simulatedRow, i);
-
 					return i;
 				} else {
 					board.cleanSpot(simulatedRow, i);
-
 				}
 			}
-
 		}
 		for (int i = 0; i < board.getSlots(); i++) {
 			simulatedRow = simulatedGo(i);// a tu y
@@ -93,7 +88,6 @@ public class MediumPC implements PlayerController {
 				} else
 					board.cleanSpot(simulatedRow, i);
 			}
-
 		}
 		for (int i = 0; i < board.getSlots(); i++) {
 			simulatedRow = simulatedGo(i);// a tu y
@@ -104,7 +98,6 @@ public class MediumPC implements PlayerController {
 							.getLastSlot() + 1)) {
 				return i;
 			}
-
 		}
 		for (int i = 0; i < board.getSlots(); i++) {
 			simulatedRow = simulatedGo(i);// a tu y
@@ -112,9 +105,7 @@ public class MediumPC implements PlayerController {
 				continue;
 			if (i == board.getLastSlot() - 1 || i == board.getLastSlot() + 1) {
 				return i;
-
 			}
-
 		}
 		int randomSlot;
 		int choosenSpot;
@@ -129,24 +120,21 @@ public class MediumPC implements PlayerController {
 	@Override
 	public void yourTurn() {
 		executor.execute(new Runnable() {
-
 			@Override
 			public void run() {
 				System.out.println();
 				gameController.move(findSlotToMove());
-
 			}
 		});
-
 	}
 
 	@Override
 	public void endOfGame(ResultState resultGame) {
-		if (resultGame == resultGame.Player1Win)
+		if (resultGame == ResultState.Player1Win)
 			informationBoxes.winMessage(playerAttributes.getName());
-		if (resultGame == resultGame.Player2Win)
+		if (resultGame == ResultState.Player2Win)
 			informationBoxes.winMessage(gameController.getPlayer2().getName());
-		if (resultGame == resultGame.Draw)
+		if (resultGame == ResultState.Draw)
 			informationBoxes.drawMessage();
 	}
 
@@ -170,4 +158,8 @@ public class MediumPC implements PlayerController {
 		this.gameController = gamecontroller;
 	}
 
+	@Override
+	public int getPlayerPoints() {
+		return 0;
+	}
 }
