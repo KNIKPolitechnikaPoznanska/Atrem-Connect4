@@ -21,24 +21,28 @@ public class SwingPresenter implements PlayerController {
 	private PlayerId playerId;
 	private SideBoard sideBoard;
 	protected JLabel token;
-	private Color tokenColor;
+	private Color pl1TokenColor, pl2TokenColor;
 	private DialogInformationBoxes informationBoxes;
 
 	/**
 	 * Presenter MVP do GameFrame
 	 * 
+	 * @param gameController
 	 * @param playerName
 	 * @param playerId
-	 * @param gameController
+	 * @param pl1TokenColor
+	 * @param oppTokenColor
 	 * @param block
 	 */
 	public SwingPresenter(GameController gameController, String playerName,
-			PlayerId playerId, Color tokenColor, boolean block) {
+			PlayerId playerId, Color pl1TokenColor, Color pl2TokenColor,
+			boolean block) {
 		playerAttributes = new PlayerAttributes(playerName, playerId);
 		this.gameController = gameController;
 		this.blockButton = block;
 		this.playerId = playerId;
-		this.tokenColor = tokenColor;
+		this.pl1TokenColor = pl1TokenColor;
+		this.pl2TokenColor = pl2TokenColor;
 		setupFrame();
 		slots = gameController.getBoard().getSlots();
 		rows = gameController.getBoard().getRows();
@@ -69,7 +73,6 @@ public class SwingPresenter implements PlayerController {
 			gameBoard.disableButtons(false);
 			refreshView(emptySpot, slot);
 		}
-
 	}
 
 	private void setupFrame() {
@@ -97,8 +100,7 @@ public class SwingPresenter implements PlayerController {
 	/**
 	 * Odœwie¿a planszê na GUI
 	 */
-	public void refreshView(int row, int slot) { // row i slot s¹ 0, why?, a
-													// slot do czego? Lukas
+	public void refreshView(int row, int slot) {
 		changeDispTurn(gameController.getPlayerTurn());
 		gameBoard.setFreeRow(row, slot, gameController.getBoard()
 				.playerIdtoHoleState(gameController.getPlayerTurn()));
@@ -156,8 +158,16 @@ public class SwingPresenter implements PlayerController {
 			sideBoard.setTokenPl2();
 	}
 
+	public Color getPl2TokenColor() {
+		return pl2TokenColor;
+	}
+
 	public int getSlots() {
 		return slots;
+	}
+
+	public Color getPl1TokenColor() {
+		return pl1TokenColor;
 	}
 
 	public int getRows() {

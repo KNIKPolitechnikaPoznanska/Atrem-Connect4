@@ -26,6 +26,7 @@ public class GameConfig {
 	public GameConfig(GameFactory gameFactory) {
 		this.gameFactory = gameFactory;
 	}
+
 	/**
 	 * Tworzy i wyœwietla Dailog Settings Box'a
 	 */
