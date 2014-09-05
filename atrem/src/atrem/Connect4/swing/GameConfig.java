@@ -16,6 +16,9 @@ public class GameConfig {
 			CcpuMedium = "CPU-Medium", CcpuHard = "CPU-Hard";
 	public static final String[] playerTypeItems = {CHuman, CcpuEasy,
 			CcpuMedium, CcpuHard};
+	public static final String DEF_PL1_NAME = "Gracz 1",
+			DEF_PL2_NAME = "Gracz 2";
+	public static final int DEF_SLOTS = 7, DEF_ROWS = 6;
 	private int slots, rows;
 	private GameFactory gameFactory;
 	private Color token1Color, token2Color;
