@@ -49,8 +49,13 @@ public class GameFrame extends JFrame {
 		stats = new Stats();
 		stats.setBounds(-15, 129, 342, 207);
 		sideBoard.add(stats);
+
 		this.setVisible(true);
 
+	}
+
+	public Stats getStats() {
+		return stats;
 	}
 
 	public GameBoard getGameBoard() {

@@ -15,6 +15,10 @@ public class PlayerAttributes {
 		return playerPoints;
 	}
 
+	public void addPoints() {
+		playerPoints++;
+	}
+
 	public void setPlayerPoints(int playerPoints) {
 		this.playerPoints = playerPoints;
 	}
