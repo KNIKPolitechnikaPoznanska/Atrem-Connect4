@@ -3,6 +3,7 @@ package atrem.Connect4.swing;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Image;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -21,6 +22,7 @@ public class GameFrame extends JFrame {
 	private SideBoard sideBoard;
 	private JLabel sideToken;
 	private Stats stats;
+	private Image c4Icon = new ResourceLoader().getIcon().getImage();
 
 	/**
 	 * Create the frame.
@@ -28,6 +30,7 @@ public class GameFrame extends JFrame {
 	public GameFrame(SwingPresenter swingPresenter) {
 		this.swingPresenter = swingPresenter;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setIconImage(c4Icon);
 		if (swingPresenter.getPlayerId() == PlayerId.PLAYER1)
 			setBounds(100, 0, 754, 386);
 		else

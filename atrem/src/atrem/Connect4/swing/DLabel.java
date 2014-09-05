@@ -19,27 +19,30 @@ public class DLabel extends JLabel {
 	 * Serial
 	 */
 	private static final long serialVersionUID = -6083513754064591557L;
-	Dimension size = new Dimension(80, 80);
+	int dim = 50;
+	Dimension size = new Dimension(dim, dim);
 	private Color color, pl1Color, pl2Color, colorEmpty = new Color(200, 200,
-			200), colorBrighter;
+			200, 100), colorBrighter;
+	private Dimension minSize = new Dimension(dim / 2, dim / 2);
 
 	public DLabel(Color pl1Color, Color pl2Color) {
 		this.pl1Color = pl1Color;
 		this.pl2Color = pl2Color;
 		color = colorEmpty;
 		this.setPreferredSize(size);
-		this.setBorder(BorderFactory.createBevelBorder(TOP, Color.white,
-				Color.black));
+		this.setMinimumSize(minSize);
+		this.setBorder(BorderFactory.createBevelBorder(TOP, Color.LIGHT_GRAY,
+				Color.LIGHT_GRAY));
 	}
 
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
-		colorBrighter = color.brighter();
+		colorBrighter = color.darker();
 		int w = getWidth();
 		int h = getHeight();
-		GradientPaint gp = new GradientPaint(0, 0, color, 0, h, colorBrighter);
+		GradientPaint gp = new GradientPaint(0, 0, color, w, h, colorBrighter);
 		g2d.setPaint(gp);
 		g2d.fillOval(0, 0, w, h);
 	}
@@ -63,6 +66,7 @@ public class DLabel extends JLabel {
 
 	public void changeTo(Color color) {
 		this.color = color;
+		this.setBorder(null);
 		this.paintComponent(getGraphics());
 	}
 }
