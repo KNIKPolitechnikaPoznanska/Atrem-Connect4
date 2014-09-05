@@ -76,7 +76,7 @@ public class GameController implements Runnable {
 					PlayerId.PLAYER2, null, false);
 		}
 		doneMoves = 0;
-		playerTurn = PlayerId.PLAYER1;
+
 		startGameLoop();
 
 	}
