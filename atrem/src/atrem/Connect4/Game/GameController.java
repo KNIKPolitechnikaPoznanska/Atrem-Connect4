@@ -27,12 +27,12 @@ public class GameController implements Runnable {
 	 */
 	private PlayerController currentPlayer() {
 		switch (playerTurn) {
-			case PLAYER1 :
-				return player1;
-			case PLAYER2 :
-				return player2;
-			default :
-				return null; // player1
+		case PLAYER1:
+			return player1;
+		case PLAYER2:
+			return player2;
+		default:
+			return null; // player1
 		}
 	}
 
@@ -71,7 +71,7 @@ public class GameController implements Runnable {
 		gameState = GameState.nextGame;
 		if (player1 instanceof SwingPresenter) {
 			player1 = new SwingPresenter(this, player1.getName(),
-					PlayerId.PLAYER1, pl1Color, pl2Color, true,
+					PlayerId.PLAYER1, pl1Color, pl2Color, false,
 					player1.getPlayerPoints());
 		}
 		if (player2 instanceof SwingPresenter) {
@@ -141,15 +141,15 @@ public class GameController implements Runnable {
 
 	public synchronized void endInitPlayer() {
 		switch (gameState) {
-			case preInit :
-				gameState = GameState.endInit1;
-				break;
-			case endInit1 :
-				gameState = GameState.endInitAll;
-				this.notifyAll();
-				break;
-			default :
-				break;
+		case preInit:
+			gameState = GameState.endInit1;
+			break;
+		case endInit1:
+			gameState = GameState.endInitAll;
+			this.notifyAll();
+			break;
+		default:
+			break;
 		}
 	}
 
