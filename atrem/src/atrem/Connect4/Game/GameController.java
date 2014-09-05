@@ -63,7 +63,7 @@ public class GameController implements Runnable {
 	 * Glowna petla gry
 	 */
 	public void startNewGame() {
-		int row = board.getLastRow();
+		int row = board.getRows();
 		int slot = board.getSlots();
 		board = new Board(row, slot);
 		resultState = ResultState.NoWin;
