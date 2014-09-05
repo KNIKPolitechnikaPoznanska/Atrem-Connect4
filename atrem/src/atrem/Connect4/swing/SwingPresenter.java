@@ -22,6 +22,7 @@ public class SwingPresenter implements PlayerController {
 	private SideBoard sideBoard;
 	protected JLabel token;
 	private Color pl1TokenColor, pl2TokenColor;
+	private Stats stats;
 	private DialogInformationBoxes informationBoxes;
 
 	/**
@@ -58,10 +59,13 @@ public class SwingPresenter implements PlayerController {
 		System.out.println("hehe");
 		LastSlot = gameController.getLastMove().getLastSlot();
 		LastRow = gameController.getLastMove().getLastRow();
+
 		if (LastRow != -1 && LastSlot != -1) {
 
 			refreshView(LastRow, LastSlot);
+
 		}
+
 		System.out.println(LastRow + " " + LastSlot);
 
 	}
@@ -75,6 +79,7 @@ public class SwingPresenter implements PlayerController {
 			gameBoard.disableButtons(false);
 			refreshView(emptySpot, slot);
 		}
+
 	}
 
 	private void setupFrame() {
@@ -87,9 +92,20 @@ public class SwingPresenter implements PlayerController {
 					gameBoard = frame.getGameBoard();
 					informationBoxes = new DialogInformationBoxes();
 					sideBoard = frame.getSideBoard();
+					stats = frame.getStats();
+					stats.setPointsPlayer(gameController.getPlayer1()
+							.getPlayerPoints(), PlayerId.PLAYER1);
+					stats.setPointsPlayer(gameController.getPlayer2()
+							.getPlayerPoints(), PlayerId.PLAYER2);
+					stats.setName(gameController.getPlayer1().getName(),
+							PlayerId.PLAYER1);
+					stats.setName(gameController.getPlayer2().getName(),
+							PlayerId.PLAYER2);
+
 					gameController.endInitPlayer();
 					gameBoard.disableButtons(blockButton);
 					setNamesAndToken();
+
 					// changeDispTurn(playerTurn);
 					// frame.setVisible(true);
 				} catch (Exception e) {
@@ -102,20 +118,29 @@ public class SwingPresenter implements PlayerController {
 	/**
 	 * Odœwie¿a planszê na GUI
 	 */
-	public void refreshView(int row, int slot) {
+	public void refreshView(int row, int slot) { // row i slot s¹ 0, why?, a
+													// slot do czego? Lukas
 		changeDispTurn(gameController.getPlayerTurn());
 		gameBoard.setFreeRow(row, slot, gameController.getBoard()
 				.playerIdtoHoleState(gameController.getPlayerTurn()));
+
 	}
 
 	@Override
 	public void endOfGame(ResultState resultGame) {
-		if (resultGame == ResultState.Player1Win)
+
+		if (resultGame == ResultState.Player1Win) {
 			decision = informationBoxes.winMessage(gameController.getPlayer1()
 					.getName());
-		if (resultGame == ResultState.Player2Win)
+			if (playerId == playerId.PLAYER1)
+				playerAttributes.addPoints();
+		}
+		if (resultGame == ResultState.Player2Win) {
 			decision = informationBoxes.winMessage(gameController.getPlayer2()
 					.getName());
+			if (playerId == playerId.PLAYER2)
+				playerAttributes.addPoints();
+		}
 		if (resultGame == ResultState.Draw)
 			informationBoxes.drawMessage();
 
@@ -126,7 +151,7 @@ public class SwingPresenter implements PlayerController {
 
 		if (decision == 1) {
 			frame.dispose();
-			if (playerId == PlayerId.PLAYER2)
+			if (playerId == playerId.PLAYER2)
 
 			{
 				gameController.initializeNewGame();
@@ -137,7 +162,7 @@ public class SwingPresenter implements PlayerController {
 		if (decision == 0) // tak gram dalej
 		{
 			frame.dispose();
-			if (playerId == PlayerId.PLAYER2)
+			if (playerId == playerId.PLAYER2)
 				gameController.startNewGame();
 		}
 
@@ -217,7 +242,7 @@ public class SwingPresenter implements PlayerController {
 	@Override
 	public int getPlayerPoints() {
 		// TODO Auto-generated method stub
-		return 0;
+		return playerAttributes.getPlayerPoints();
 	}
 
 }
