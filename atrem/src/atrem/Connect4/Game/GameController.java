@@ -29,7 +29,7 @@ public class GameController implements Runnable {
 		case PLAYER2:
 			return player2;
 		default:
-			return player1;
+			return null; // player1
 		}
 	}
 
@@ -76,7 +76,7 @@ public class GameController implements Runnable {
 					PlayerId.PLAYER2, null, false, player2.getPlayerPoints());
 		}
 		doneMoves = 0;
-		playerTurn = PlayerId.PLAYER1;
+
 		startGameLoop();
 
 	}

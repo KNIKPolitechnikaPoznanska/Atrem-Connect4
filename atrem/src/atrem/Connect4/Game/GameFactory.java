@@ -1,6 +1,7 @@
 package atrem.Connect4.Game;
 
 import java.awt.Color;
+import java.util.Random;
 
 import atrem.Connect4.Game.board.Board;
 import atrem.Connect4.Game.player.PlayerController;
@@ -25,13 +26,21 @@ public class GameFactory {
 	/**
 	 * £aduje GameController (all settings)
 	 */
+	public PlayerId randomFirstTurn() {
+		Random rand = new Random();
+		if (rand.nextInt() % 2 == 0)
+			return PlayerId.PLAYER1;
+		else
+			return PlayerId.PLAYER2;
+	}
+
 	public void createGameController() {
 		gameController = new GameController();
 		gameController.setBoard(board);
 		createPlayerGame();
 		gameController.setPlayer1(player1);
 		gameController.setPlayer2(player2);
-		gameController.setPlayerTurn(PlayerId.PLAYER2);
+		gameController.setPlayerTurn(randomFirstTurn());
 	}
 
 	/**
@@ -81,7 +90,8 @@ public class GameFactory {
 				break;
 			case "swing":
 				humanPlayer = new SwingPresenter(gameController, player1name,
-						PlayerId.PLAYER1, token1Color, false, 0);
+
+				PlayerId.PLAYER1, token1Color, false, 0);
 				break;
 			default:
 				System.out.println("Brak typu gry!");
@@ -95,7 +105,9 @@ public class GameFactory {
 				break;
 			case "swing":
 				humanPlayer = new SwingPresenter(gameController, player2name,
-						PlayerId.PLAYER2, token2Color, false, 0);
+
+				PlayerId.PLAYER2, token2Color, false, 0);
+
 				break;
 			default:
 				humanPlayer = null;
