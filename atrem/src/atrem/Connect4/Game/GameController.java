@@ -3,6 +3,7 @@ package atrem.Connect4.Game;
 import atrem.Connect4.Game.board.Board;
 import atrem.Connect4.Game.board.HoleState;
 import atrem.Connect4.Game.player.PlayerController;
+import atrem.Connect4.swing.GameConfig;
 import atrem.Connect4.swing.SwingPresenter;
 
 public class GameController implements Runnable {
@@ -166,6 +167,12 @@ public class GameController implements Runnable {
 		} else {
 			setPlayerTurn(PlayerId.PLAYER1);
 		}
+	}
+
+	public void initializeNewGame() {
+		GameFactory gameFactory = new GameFactory();
+		GameConfig config = new GameConfig(gameFactory);
+		config.setDBox();
 	}
 
 	public void wakeUp() {

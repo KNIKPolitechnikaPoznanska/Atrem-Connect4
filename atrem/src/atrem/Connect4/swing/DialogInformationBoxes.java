@@ -5,7 +5,8 @@ import javax.swing.JOptionPane;
 public class DialogInformationBoxes {
 
 	public int winMessage(String name) {
-		Object[] options = { "Tak, gram dalej", "Nie, koniec", "Zamknij grê" };
+		Object[] options = { "Tak, gram dalej", "Nie, idŸ do menu",
+				"Zamknij grê" };
 		int decision = JOptionPane.showOptionDialog(null, "Wygra³ gracz "
 				+ name + "! \n Czy chcesz rozegrac kolejna partie? ",
 				"Co robimy?", JOptionPane.YES_NO_CANCEL_OPTION,
