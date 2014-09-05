@@ -20,4 +20,6 @@ public interface PlayerController {
 
 	public abstract void endOfGame(ResultState resultGame);
 
+	public abstract int getPlayerPoints();
+
 }

@@ -10,32 +10,47 @@ public class Stats extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+
+	JLabel ranking;
+	JLabel namePlayer1;
+	JLabel namePlayer2;
+	JLabel pointsPlayer1;
+	JLabel pointsPlayer2;
+
 	public Stats() {
 		setBackground(new Color(255, 140, 0));
 		setLayout(null);
 
-		JLabel lblGracz = new JLabel("PUNKTACJA");
-		lblGracz.setBackground(Color.CYAN);
-		lblGracz.setBounds(92, 26, 102, 14);
+		JLabel ranking = new JLabel("PUNKTACJA");
+		ranking.setBackground(Color.CYAN);
+		ranking.setBounds(92, 26, 102, 14);
 		// lblGracz.setText("6969696");
-		add(lblGracz);
+		add(ranking);
 
-		JLabel lblGracz_1 = new JLabel("Gracz 1");
-		lblGracz_1.setBounds(40, 51, 83, 35);
-		add(lblGracz_1);
+		JLabel namePlayer1 = new JLabel("Gracz 1");
+		namePlayer1.setBounds(40, 51, 83, 35);
+		add(namePlayer1);
 
-		JLabel lblGracz_2 = new JLabel("Gracz 2");
-		lblGracz_2.setBounds(161, 61, 46, 14);
-		add(lblGracz_2);
+		JLabel namePlayer2 = new JLabel("Gracz 2");
+		namePlayer2.setBounds(161, 61, 46, 14);
+		add(namePlayer2);
 
-		JLabel lblPkt = new JLabel("pkt1");
-		lblPkt.setBounds(38, 89, 46, 14);
-		add(lblPkt);
+		JLabel pointsPlayer1 = new JLabel("pkt1");
+		pointsPlayer1.setBounds(38, 89, 46, 14);
+		add(pointsPlayer1);
 
-		JLabel lblPkt_1 = new JLabel("pkt2");
-		lblPkt_1.setBounds(171, 89, 46, 14);
-		add(lblPkt_1);
+		JLabel pointsPlayer2 = new JLabel("pkt2");
+		pointsPlayer2.setBounds(171, 89, 46, 14);
+		add(pointsPlayer2);
 
+	}
+
+	public void setPointsPlayer1(int playerPoints) {
+		pointsPlayer1.setText("" + playerPoints);
+	}
+
+	public void setPointsPlayer2(int playerPoints) {
+		pointsPlayer2.setText("" + playerPoints);
 	}
 
 }

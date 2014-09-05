@@ -1,8 +1,11 @@
 package atrem.Connect4.Game;
 
+import java.awt.Color;
+
 import atrem.Connect4.Game.board.Board;
 import atrem.Connect4.Game.board.HoleState;
 import atrem.Connect4.Game.player.PlayerController;
+import atrem.Connect4.swing.GameConfig;
 import atrem.Connect4.swing.SwingPresenter;
 
 public class GameController implements Runnable {
@@ -15,6 +18,7 @@ public class GameController implements Runnable {
 	private PlayerId playerTurn = PlayerId.PLAYER1;
 	private ResultState resultState = ResultState.NoWin;
 	private GameState gameState = GameState.preInit;
+	private Color pl1Color, pl2Color;
 
 	/**
 	 * Sprawdza którego z graczy jest kolej
@@ -23,12 +27,12 @@ public class GameController implements Runnable {
 	 */
 	private PlayerController currentPlayer() {
 		switch (playerTurn) {
-		case PLAYER1:
-			return player1;
-		case PLAYER2:
-			return player2;
-		default:
-			return player1;
+			case PLAYER1 :
+				return player1;
+			case PLAYER2 :
+				return player2;
+			default :
+				return null; // player1
 		}
 	}
 
@@ -52,7 +56,6 @@ public class GameController implements Runnable {
 		if (emptySpot != -1) {
 			notifyAll();
 		}
-
 		return emptySpot;
 	}
 
@@ -68,16 +71,17 @@ public class GameController implements Runnable {
 		gameState = GameState.nextGame;
 		if (player1 instanceof SwingPresenter) {
 			player1 = new SwingPresenter(this, player1.getName(),
-					PlayerId.PLAYER1, null, true);
+					PlayerId.PLAYER1, pl1Color, pl2Color, true,
+					player1.getPlayerPoints());
 		}
 		if (player2 instanceof SwingPresenter) {
 			player2 = new SwingPresenter(this, player2.getName(),
-					PlayerId.PLAYER2, null, false);
+					PlayerId.PLAYER2, pl1Color, pl2Color, false,
+					player2.getPlayerPoints());
 		}
 		doneMoves = 0;
-		playerTurn = PlayerId.PLAYER1;
-		startGameLoop();
 
+		startGameLoop();
 	}
 
 	private synchronized void gameLoop() {// ma odczytywaæ GameState
@@ -137,13 +141,13 @@ public class GameController implements Runnable {
 
 	public synchronized void endInitPlayer() {
 		switch (gameState) {
-		case preInit:
-			gameState = GameState.endInit1;
-			break;
-		case endInit1:
-			gameState = GameState.endInitAll;
-			this.notifyAll();
-			break;
+			case preInit :
+				gameState = GameState.endInit1;
+				break;
+			case endInit1 :
+				gameState = GameState.endInitAll;
+				this.notifyAll();
+				break;
 		}
 	}
 
@@ -168,6 +172,12 @@ public class GameController implements Runnable {
 		}
 	}
 
+	public void initializeNewGame() {
+		GameFactory gameFactory = new GameFactory();
+		GameConfig config = new GameConfig(gameFactory);
+		config.setDBox();
+	}
+
 	public void wakeUp() {
 		notifyAll();
 	}
@@ -188,6 +198,14 @@ public class GameController implements Runnable {
 		this.playerTurn = playerTurn;
 	}
 
+	public void setPl1Color(Color pl1Color) {
+		this.pl1Color = pl1Color;
+	}
+
+	public void setPl2Color(Color pl2Color) {
+		this.pl2Color = pl2Color;
+	}
+
 	public int getEmptySpot() {
 		return emptySpot;
 	}
@@ -202,6 +220,14 @@ public class GameController implements Runnable {
 
 	public void setBoard(Board board) {
 		this.board = board;
+	}
+
+	public Color getPl1Color() {
+		return pl1Color;
+	}
+
+	public Color getPl2Color() {
+		return pl2Color;
 	}
 
 	public PlayerController getPlayer1() {

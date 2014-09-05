@@ -36,8 +36,9 @@ public class SwingPresenter implements PlayerController {
 	 */
 	public SwingPresenter(GameController gameController, String playerName,
 			PlayerId playerId, Color pl1TokenColor, Color pl2TokenColor,
-			boolean block) {
-		playerAttributes = new PlayerAttributes(playerName, playerId);
+			boolean block, int playerPoints) {
+		playerAttributes = new PlayerAttributes(playerName, playerId,
+				playerPoints);
 		this.gameController = gameController;
 		this.blockButton = block;
 		this.playerId = playerId;
@@ -58,6 +59,7 @@ public class SwingPresenter implements PlayerController {
 		LastSlot = gameController.getLastMove().getLastSlot();
 		LastRow = gameController.getLastMove().getLastRow();
 		if (LastRow != -1 && LastSlot != -1) {
+
 			refreshView(LastRow, LastSlot);
 		}
 		System.out.println(LastRow + " " + LastSlot);
@@ -111,8 +113,9 @@ public class SwingPresenter implements PlayerController {
 		if (resultGame == ResultState.Player1Win)
 			decision = informationBoxes.winMessage(gameController.getPlayer1()
 					.getName());
-		decision = informationBoxes.winMessage(gameController.getPlayer2()
-				.getName());
+		if (resultGame == ResultState.Player2Win)
+			decision = informationBoxes.winMessage(gameController.getPlayer2()
+					.getName());
 		if (resultGame == ResultState.Draw)
 			informationBoxes.drawMessage();
 
@@ -120,14 +123,27 @@ public class SwingPresenter implements PlayerController {
 	}
 
 	public void makeDecision(int decision) {
-		if (decision == 0)
-			frame.dispose();
 
-		if (decision == 2)
+		if (decision == 1) {
 			frame.dispose();
+			if (playerId == PlayerId.PLAYER2)
 
-		if (playerId == playerId.PLAYER2)
-			gameController.startNewGame();
+			{
+				gameController.initializeNewGame();
+			}
+
+		}
+
+		if (decision == 0) // tak gram dalej
+		{
+			frame.dispose();
+			if (playerId == PlayerId.PLAYER2)
+				gameController.startNewGame();
+		}
+
+		if (decision == 2) // zamknij
+
+			frame.dispose();
 
 	}
 
@@ -192,6 +208,16 @@ public class SwingPresenter implements PlayerController {
 	@Override
 	public void setGamecontroller(GameController gamecontroller) {
 		this.gameController = gamecontroller;
+	}
+
+	public int getPoints() {
+		return playerAttributes.getPlayerPoints();
+	}
+
+	@Override
+	public int getPlayerPoints() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
