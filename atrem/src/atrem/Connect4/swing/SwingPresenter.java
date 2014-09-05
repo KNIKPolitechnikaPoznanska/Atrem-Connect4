@@ -84,7 +84,7 @@ public class SwingPresenter implements PlayerController {
 					informationBoxes = new DialogInformationBoxes();
 					sideBoard = frame.getSideBoard();
 					gameController.endInitPlayer();
-					gameBoard.disableButtons(blockButton);
+					gameBoard.disableButtons(false);
 					setNamesAndToken();
 					// changeDispTurn(playerTurn);
 					// frame.setVisible(true);
@@ -121,12 +121,25 @@ public class SwingPresenter implements PlayerController {
 
 	public void makeDecision(int decision) {
 
-		if (decision == 0) // tak gram dalej
+		if (decision == 1) {
 			frame.dispose();
-		if (playerId == playerId.PLAYER2)
-			gameController.startNewGame();
+			if (playerId == playerId.PLAYER2)
+
+			{
+				gameController.initializeNewGame();
+			}
+
+		}
+
+		if (decision == 0) // tak gram dalej
+		{
+			frame.dispose();
+			if (playerId == playerId.PLAYER2)
+				gameController.startNewGame();
+		}
 
 		if (decision == 2) // zamknij
+
 			frame.dispose();
 
 	}
