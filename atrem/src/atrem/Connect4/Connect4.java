@@ -5,7 +5,7 @@ import atrem.Connect4.console.Menu;
 import atrem.Connect4.swing.GameConfig;
 
 /*
- * Klasa main uruchamiaj¹ca grê Connect4
+ * Klasa main uruchamiaj¹ca grê Connect4hhh
  */
 public class Connect4 {
 	private static GameFactory gameFactory;

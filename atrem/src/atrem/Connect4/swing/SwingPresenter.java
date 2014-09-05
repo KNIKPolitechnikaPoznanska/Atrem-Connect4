@@ -1,5 +1,7 @@
 package atrem.Connect4.swing;
 
+import java.awt.Color;
+
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
@@ -10,7 +12,7 @@ import atrem.Connect4.Game.player.PlayerAttributes;
 import atrem.Connect4.Game.player.PlayerController;
 
 public class SwingPresenter implements PlayerController {
-	private int LastRow, LastSlot, emptySpot; // do GC
+	private int LastRow, LastSlot, emptySpot, slots, rows, decision;
 	private GameController gameController;
 	private PlayerAttributes playerAttributes;
 	private GameBoard gameBoard;
@@ -19,9 +21,8 @@ public class SwingPresenter implements PlayerController {
 	private PlayerId playerId;
 	private SideBoard sideBoard;
 	protected JLabel token;
+	private Color token1Color, token2Color;
 	private DialogInformationBoxes informationBoxes;
-	private int slots, rows;
-	private int decision;
 
 	/**
 	 * Presenter MVP do GameFrame

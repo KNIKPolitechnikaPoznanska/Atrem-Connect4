@@ -65,6 +65,7 @@ public class GameController implements Runnable {
 	public void startNewGame() {
 		int row = board.getRows();
 		int slot = board.getSlots();
+		lastMove = new LastMove();
 		board = new Board(row, slot);
 		resultState = ResultState.NoWin;
 		gameState = GameState.nextGame;
@@ -109,7 +110,7 @@ public class GameController implements Runnable {
 				currentPlayer.yourTurn();
 				player1.endOfGame(resultState);
 
-				// player2.endOfGame(resultState);
+				player2.endOfGame(resultState);
 				return;
 			}
 			changePlayer();
