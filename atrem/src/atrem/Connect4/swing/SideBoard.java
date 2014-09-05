@@ -26,7 +26,8 @@ public class SideBoard extends JPanel {
 		this.pl2Color = pl2Color;
 
 		namesAndColours = new JPanel();
-		namesAndColours.setBounds(10, 11, 169, 115);
+		namesAndColours.setBackground(Color.ORANGE);
+		namesAndColours.setBounds(0, 0, 216, 140);
 		add(namesAndColours);
 		namesAndColours.setLayout(null);
 
@@ -52,6 +53,7 @@ public class SideBoard extends JPanel {
 		dialogWinow.setBounds(8, 137, 169, 129);
 		add(dialogWinow);
 	}
+
 	@Deprecated
 	public void displayCurrentToken(int player) {
 		if (player == 1) {
@@ -89,6 +91,7 @@ public class SideBoard extends JPanel {
 		token1.changeTo(pl1Color);
 		token2.changeTo(pl2Color);
 	}
+
 	public void setTokenPl2() {
 		token1.changeTo(pl2Color);
 		token2.changeTo(pl1Color);

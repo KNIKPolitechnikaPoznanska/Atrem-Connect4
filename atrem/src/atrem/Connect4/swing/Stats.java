@@ -20,12 +20,12 @@ public class Stats extends JPanel {
 	JLabel pointsPlayer2;
 
 	public Stats() {
-		setBackground(new Color(255, 140, 0));
+		setBackground(Color.ORANGE);
 		setLayout(null);
 
 		ranking = new JLabel("PUNKTACJA");
 		ranking.setBackground(Color.CYAN);
-		ranking.setBounds(92, 26, 102, 14);
+		ranking.setBounds(80, 26, 102, 14);
 		// lblGracz.setText("6969696");
 		add(ranking);
 
