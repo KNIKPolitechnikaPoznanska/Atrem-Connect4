@@ -81,7 +81,7 @@ public class GameController implements Runnable {
 	}
 
 	private synchronized void gameLoop() {// ma odczytywaæ GameState
-		boolean resultGame;
+		boolean endGame;
 		logic = new Logic(this);
 		lastMove = new LastMove();
 		System.out.println("przed init");
@@ -99,9 +99,9 @@ public class GameController implements Runnable {
 			gameState = GameState.waitingForMove;
 			waitForMove();
 			doneMoves++;
-			resultGame = logic.checkResult(doneMoves);
+			endGame = logic.checkResult(doneMoves);
 
-			if (resultGame == true) {
+			if (endGame) {
 				changePlayer();
 				currentPlayer = currentPlayer();
 				currentPlayer.yourTurn();

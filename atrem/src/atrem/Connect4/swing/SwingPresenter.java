@@ -107,10 +107,10 @@ public class SwingPresenter implements PlayerController {
 	@Override
 	public void endOfGame(ResultState resultGame) {
 		if (resultGame == ResultState.Player1Win)
-			decision = informationBoxes.winMessage(playerAttributes.getName());
-		if (resultGame == ResultState.Player2Win)
-			decision = informationBoxes.winMessage(gameController.getPlayer2()
+			decision = informationBoxes.winMessage(gameController.getPlayer1()
 					.getName());
+		decision = informationBoxes.winMessage(gameController.getPlayer2()
+				.getName());
 		if (resultGame == ResultState.Draw)
 			informationBoxes.drawMessage();
 
@@ -119,6 +119,12 @@ public class SwingPresenter implements PlayerController {
 
 	public void makeDecision(int decision) {
 		if (decision == 0)
+			frame.dispose();
+
+		if (decision == 2)
+			frame.dispose();
+
+		if (playerId == playerId.Player2)
 			gameController.startNewGame();
 
 	}
