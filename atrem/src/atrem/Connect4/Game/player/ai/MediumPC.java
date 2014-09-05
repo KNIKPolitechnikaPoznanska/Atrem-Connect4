@@ -67,7 +67,8 @@ public class MediumPC implements PlayerController {
 				board.setHoleState(simulatedRow, i,
 						playerAttributes.getPlayerId());
 
-				if (logic.checkIfWinPC()) {// wiem ze mozna lepiej
+				if (logic.checkIfWinPC(simulatedRow, i)) {// wiem ze mozna
+															// lepiej
 					board.cleanSpot(simulatedRow, i);
 
 					return i;
@@ -84,7 +85,8 @@ public class MediumPC implements PlayerController {
 				continue;
 			else {
 				board.setHoleState(simulatedRow, i, opp);
-				if (logic.checkIfWinPC()) {// wiem ze mozna lepiej
+				if (logic.checkIfWinPC(simulatedRow, i)) {// wiem ze mozna
+															// lepiej
 					board.cleanSpot(simulatedRow, i);
 					return i;
 				} else
@@ -123,7 +125,6 @@ public class MediumPC implements PlayerController {
 		return randomSlot;
 
 	}
-
 	@Override
 	public void yourTurn() {
 		executor.execute(new Runnable() {

@@ -26,12 +26,12 @@ public class GameController implements Runnable {
 	 */
 	private PlayerController currentPlayer() {
 		switch (playerTurn) {
-		case Player1:
-			return player1;
-		case Player2:
-			return player2;
-		default:
-			return player1;
+			case Player1 :
+				return player1;
+			case Player2 :
+				return player2;
+			default :
+				return player1;
 		}
 	}
 
@@ -101,7 +101,8 @@ public class GameController implements Runnable {
 			gameState = GameState.waitingForMove;
 			waitForMove();
 			doneMoves++;
-			resultGame = logic.checkResult(doneMoves);
+			resultGame = logic.getResultOfMove(lastMove.getLastRow(),
+					lastMove.getLastSlot(), doneMoves);
 
 			if (resultGame == true) {
 				changePlayer();
@@ -139,13 +140,13 @@ public class GameController implements Runnable {
 
 	public synchronized void endInitPlayer() {
 		switch (gameState) {
-		case preInit:
-			gameState = GameState.endInit1;
-			break;
-		case endInit1:
-			gameState = GameState.endInitAll;
-			this.notifyAll();
-			break;
+			case preInit :
+				gameState = GameState.endInit1;
+				break;
+			case endInit1 :
+				gameState = GameState.endInitAll;
+				this.notifyAll();
+				break;
 		}
 	}
 
