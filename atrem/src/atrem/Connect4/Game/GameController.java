@@ -106,7 +106,6 @@ public class GameController implements Runnable {
 				currentPlayer = currentPlayer();
 				currentPlayer.yourTurn();
 				player1.endOfGame(resultState);
-
 				player2.endOfGame(resultState);
 				return;
 			}
