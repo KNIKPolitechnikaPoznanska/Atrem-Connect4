@@ -48,6 +48,7 @@ public class MediumPC implements PlayerController {
 	}
 
 	public int findSlotToMove() {
+		board = gameController.getBoard();
 		logic.setCPUwin(false);
 		int simulatedRow;
 		HoleState opp;
@@ -117,6 +118,7 @@ public class MediumPC implements PlayerController {
 		return randomSlot;
 
 	}
+
 	@Override
 	public void yourTurn() {
 		executor.execute(new Runnable() {
