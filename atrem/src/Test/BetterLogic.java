@@ -1,4 +1,4 @@
-package Tests;
+package Test;
 
 import atrem.connect4s.Games.GameController;
 import atrem.connect4s.Games.ResultState;

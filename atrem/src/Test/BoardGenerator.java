@@ -1,4 +1,4 @@
-package Tests;
+package Test;
 
 import atrem.connect4s.Games.board.Board;
 import atrem.connect4s.Games.board.HoleState;

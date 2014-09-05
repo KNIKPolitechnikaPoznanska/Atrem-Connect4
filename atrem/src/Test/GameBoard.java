@@ -1,4 +1,4 @@
-package Tests;
+package Test;
 
 import java.awt.Color;
 import java.awt.Container;

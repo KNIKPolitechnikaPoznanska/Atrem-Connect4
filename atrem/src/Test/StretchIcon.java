@@ -1,4 +1,4 @@
-package Tests;
+package Test;
 
 import java.awt.Component;
 import java.awt.Container;
