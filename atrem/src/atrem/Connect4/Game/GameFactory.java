@@ -34,6 +34,9 @@ public class GameFactory {
 			return PlayerId.PLAYER2;
 	}
 
+	/**
+	 * Tworzy GameController.
+	 */
 	public void createGameController() {
 		gameController = new GameController();
 		gameController.setBoard(board);
@@ -41,6 +44,8 @@ public class GameFactory {
 		gameController.setPlayer1(player1);
 		gameController.setPlayer2(player2);
 		gameController.setPlayerTurn(randomFirstTurn());
+		gameController.setPl1Color(token1Color);
+		gameController.setPl2Color(token2Color);
 	}
 
 	/**
@@ -48,75 +53,89 @@ public class GameFactory {
 	 */
 	public void createPlayerGame() {
 		switch (player1Type) {
-		case GameConfig.CHuman:
-			player1 = createHumanPlayer(1);
-			break;
-		case GameConfig.CcpuEasy:
-			player1 = createCpuEasyPlayer();
-			break;
-		case GameConfig.CcpuMedium:
-			player1 = createCpuMediumPlayer();
+			case GameConfig.CHuman :
+				player1 = createHumanPlayer(1);
+				break;
+			case GameConfig.CcpuEasy :
+				player1 = createCpuEasyPlayer(PlayerId.PLAYER1);
+				break;
+			case GameConfig.CcpuMedium :
+				player1 = createCpuMediumPlayer(PlayerId.PLAYER1);
 		}
 
 		switch (player2Type) {
-		case GameConfig.CHuman:
-			player2 = createHumanPlayer(2);
-			break;
-		case GameConfig.CcpuEasy:
-			player2 = createCpuEasyPlayer();
-			break;
-		case GameConfig.CcpuMedium:
-			player2 = createCpuMediumPlayer();
+			case GameConfig.CHuman :
+				player2 = createHumanPlayer(2);
+				break;
+			case GameConfig.CcpuEasy :
+				player2 = createCpuEasyPlayer(PlayerId.PLAYER2);
+				break;
+			case GameConfig.CcpuMedium :
+				player2 = createCpuMediumPlayer(PlayerId.PLAYER2);
 		}
 
 	}
-
-	private PlayerController createCpuMediumPlayer() {
-		return new MediumPC(gameController, player2name, PlayerId.PLAYER2,
-				new Logic(gameController));
+	/**
+	 * Tworzy CPU Medium.
+	 * 
+	 * @param playerID
+	 * @return MediumPC
+	 */
+	private PlayerController createCpuMediumPlayer(PlayerId playerID) {
+		return new MediumPC(gameController, player2name, playerID, new Logic(
+				gameController));
 	}
-
-	private PlayerController createCpuEasyPlayer() {
-		return new EasyPC(gameController, player2name, PlayerId.PLAYER2);
+	/**
+	 * Tworzy CPU Easy
+	 * 
+	 * @param playerID
+	 * @return EasyPC
+	 */
+	private PlayerController createCpuEasyPlayer(PlayerId playerID) {
+		return new EasyPC(gameController, player2name, playerID);
 	}
-
+	/**
+	 * Tworzy Kontroler gracza.
+	 * 
+	 * @param playerNmb
+	 *            Numer gracza [1,2]
+	 * @return humanPlayer
+	 */
 	private PlayerController createHumanPlayer(int playerNmb) {
 		PlayerController humanPlayer = null;
 		if (playerNmb == 1) {
 			switch (gamePl1Type) {
-			case "console":
-				humanPlayer = new PlayerConsole(gameController, player1name,
-						PlayerId.PLAYER1);
-				break;
-			case "swing":
-				humanPlayer = new SwingPresenter(gameController, player1name,
-
-				PlayerId.PLAYER1, token1Color, false, 0);
-				break;
-			default:
-				System.out.println("Brak typu gry!");
+				case "console" :
+					humanPlayer = new PlayerConsole(gameController,
+							player1name, PlayerId.PLAYER1);
+					break;
+				case "swing" :
+					humanPlayer = new SwingPresenter(gameController,
+							player1name, PlayerId.PLAYER1, token1Color,
+							token2Color, false, 0);
+					break;
+				default :
+					System.out.println("Brak typu gry!");
 			}
 		}
 		if (playerNmb == 2) {
 			switch (gamePl2Type) {
-			case "console":
-				humanPlayer = new PlayerConsole(gameController, player2name,
-						PlayerId.PLAYER2);
-				break;
-			case "swing":
-				humanPlayer = new SwingPresenter(gameController, player2name,
-
-				PlayerId.PLAYER2, token2Color, false, 0);
-
-				break;
-			default:
-				humanPlayer = null;
-				System.out.println("Brak typu gry!");
+				case "console" :
+					humanPlayer = new PlayerConsole(gameController,
+							player2name, PlayerId.PLAYER2);
+					break;
+				case "swing" :
+					humanPlayer = new SwingPresenter(gameController,
+							player2name, PlayerId.PLAYER2, token1Color,
+							token2Color, false, 0);
+					break;
+				default :
+					humanPlayer = null;
+					System.out.println("Brak typu gry!");
 			}
 		}
 		return humanPlayer;
 	}
-
 	public Board getBoard() {
 		return board;
 	}

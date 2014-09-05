@@ -21,26 +21,30 @@ public class SwingPresenter implements PlayerController {
 	private PlayerId playerId;
 	private SideBoard sideBoard;
 	protected JLabel token;
-	private Color tokenColor;
+	private Color pl1TokenColor, pl2TokenColor;
 	private Stats stats;
 	private DialogInformationBoxes informationBoxes;
 
 	/**
 	 * Presenter MVP do GameFrame
 	 * 
+	 * @param gameController
 	 * @param playerName
 	 * @param playerId
-	 * @param gameController
+	 * @param pl1TokenColor
+	 * @param oppTokenColor
 	 * @param block
 	 */
 	public SwingPresenter(GameController gameController, String playerName,
-			PlayerId playerId, Color tokenColor, boolean block, int playerPoints) {
+			PlayerId playerId, Color pl1TokenColor, Color pl2TokenColor,
+			boolean block, int playerPoints) {
 		playerAttributes = new PlayerAttributes(playerName, playerId,
 				playerPoints);
 		this.gameController = gameController;
 		this.blockButton = block;
 		this.playerId = playerId;
-		this.tokenColor = tokenColor;
+		this.pl1TokenColor = pl1TokenColor;
+		this.pl2TokenColor = pl2TokenColor;
 		setupFrame();
 		slots = gameController.getBoard().getSlots();
 		rows = gameController.getBoard().getRows();
@@ -195,8 +199,16 @@ public class SwingPresenter implements PlayerController {
 			sideBoard.setTokenPl2();
 	}
 
+	public Color getPl2TokenColor() {
+		return pl2TokenColor;
+	}
+
 	public int getSlots() {
 		return slots;
+	}
+
+	public Color getPl1TokenColor() {
+		return pl1TokenColor;
 	}
 
 	public int getRows() {

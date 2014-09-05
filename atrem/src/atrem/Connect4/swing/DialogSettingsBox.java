@@ -48,6 +48,8 @@ public class DialogSettingsBox extends JDialog {
 			rBMulti2;
 	private JComboBox<String> plTypeBox1, plTypeBox2;
 	private Color token1Color, token2Color;
+	protected Color color1 = new Color(227, 252, 0), color2 = new Color(252, 0,
+			67);
 
 	/**
 	 * Create the settings dialog.
@@ -58,6 +60,8 @@ public class DialogSettingsBox extends JDialog {
 		this.gameConfig = swingConfig;
 		this.gameFactory = gameFactory;
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		token1Color = color1;
+		token2Color = color2;
 		initComponents();
 		this.setVisible(true);
 	}
@@ -323,31 +327,33 @@ public class DialogSettingsBox extends JDialog {
 
 		buttonColor1.setFont(new Font("Tahoma", 0, 20)); // NOI18N
 		buttonColor1.setText("Zmieñ");
+		buttonColor1.setBackground(color1);
 		buttonColor1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Color initialBackground = buttonColor1.getBackground();
-				Color color = JColorChooser.showDialog(null,
+				color1 = JColorChooser.showDialog(null,
 						"Gracz 1: Wybierz kolor ¿etonu.", initialBackground);
-				if (color != null) {
-					buttonColor1.setBackground(color);
+				if (color1 != null) {
+					buttonColor1.setBackground(color1);
 				}
-				token1Color = color;
+				token1Color = color1;
 			}
 		});
 
 		buttonColor2.setFont(new Font("Tahoma", 0, 20)); // NOI18N
 		buttonColor2.setText("Zmieñ");
+		buttonColor2.setBackground(color2);
 		buttonColor2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Color initialBackground = buttonColor2.getBackground();
-				Color color = JColorChooser.showDialog(null,
+				color2 = JColorChooser.showDialog(null,
 						"Gracz 2: Wybierz kolor ¿etonu.", initialBackground);
-				if (color != null) {
-					buttonColor2.setBackground(color);
+				if (color2 != null) {
+					buttonColor2.setBackground(color2);
 				}
-				token2Color = color;
+				token2Color = color2;
 			}
 		});
 

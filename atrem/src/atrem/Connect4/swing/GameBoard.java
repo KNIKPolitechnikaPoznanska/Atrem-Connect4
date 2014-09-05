@@ -1,34 +1,35 @@
 package atrem.Connect4.swing;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import atrem.Connect4.Game.board.HoleState;
 
 public class GameBoard extends JPanel {
-
 	/**
 	 * Serial
 	 */
 	private static final long serialVersionUID = -7328887218009010574L;
 	private int rows, slots, chosenSlot = 1, freeRow, slot;
-	private JLabel[][] swingBoard;
+	private DLabel[][] swingBoard;
 	private JButton[] button;
 	private SwingPresenter swingPresenter;
-	private ResourceLoader iconResource = new ResourceLoader();
 	private HoleState holeState;
+	private Color pl1TokenColor, pl2TokenColor;
 
 	public GameBoard(SwingPresenter swingPresenter) {
 		slots = swingPresenter.getSlots();
 		rows = swingPresenter.getRows();
+		pl1TokenColor = swingPresenter.getPl1TokenColor();
+		pl2TokenColor = swingPresenter.getPl2TokenColor();
 		this.swingPresenter = swingPresenter;
 		setLayout(new GridLayout(rows + 1, slots));
-		swingBoard = new JLabel[rows][slots];
+		swingBoard = new DLabel[rows][slots];
 		button = new JButton[slots];
 		createButtons();
 		createHoles();
@@ -64,38 +65,26 @@ public class GameBoard extends JPanel {
 	private void createHoles() {
 		for (int tempRow = 0; tempRow < rows; tempRow++) {
 			for (int tempSlot = 0; tempSlot < slots; tempSlot++) {
-				swingBoard[tempRow][tempSlot] = new JLabel();
+				swingBoard[tempRow][tempSlot] = new DLabel(pl1TokenColor,
+						pl2TokenColor);
 				add(swingBoard[tempRow][tempSlot]);
-				// iconResource.setLabelH((int) Plansza[tempRow][tempSlot]
-				// .getSize().getHeight());
-				// iconResource.setLabelW((int) Plansza[tempRow][tempSlot]
-				// .getSize().getWidth());
-				swingBoard[tempRow][tempSlot].setIcon(iconResource
-						.get(holeState.EMPTY));
 			}
 		}
 	}
 
-	// int changeIconInSlot(int slots, int rows, int iconNumber)
-	// {}
-
 	public void setFreeRow(int row, int slot, HoleState holeState) {
 		this.freeRow = row;
 		this.holeState = holeState;
-		swingBoard[row][slot].setIcon(iconResource.get(holeState));
+		swingBoard[row][slot].changeTokenColor(holeState);
 	}
-
-	// void placeTokenInSlot(int slot) {
-	// Plansza[1][1].setIcon(iconResource.get(1));
-	// }
-
 	public void disableButtons(boolean parameter) {
 		for (int tempSlot = 0; tempSlot < slots; tempSlot++)
 			button[tempSlot].setEnabled(parameter);
 	}
 
-	public void placeOpponentToken(HoleState i, int oppRow, int oppSlot) {
-		swingBoard[oppRow][oppSlot].setIcon(iconResource.get(i));
+	@Deprecated
+	public void placeOpponentToken(HoleState holeState, int oppRow, int oppSlot) {
+		swingBoard[oppRow][oppSlot].changeTokenColor(holeState);
 	}
 
 	/**
@@ -109,10 +98,6 @@ public class GameBoard extends JPanel {
 		this.rows = rows;
 		this.slots = slots;
 	}
-
-	// void placeTokenInSlot(int slot) {
-	// Plansza[1][1].setIcon(iconResource.get(1));
-	// }
 
 	public void setRows(int rows) {
 		this.rows = rows;

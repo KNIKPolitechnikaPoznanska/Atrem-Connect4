@@ -40,7 +40,8 @@ public class GameFrame extends JFrame {
 		board.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		board.setBackground(new Color(255, 255, 255));
 		getContentPane().add(board);
-		sideBoard = new SideBoard();
+		sideBoard = new SideBoard(swingPresenter.getPl1TokenColor(),
+				swingPresenter.getPl2TokenColor());
 		getContentPane().add(sideBoard);
 		stats = new Stats();
 		stats.setBounds(-15, 129, 342, 207);
