@@ -69,11 +69,11 @@ public class GameController implements Runnable {
 		gameState = GameState.nextGame;
 		if (player1 instanceof SwingPresenter) {
 			player1 = new SwingPresenter(this, player1.getName(),
-					PlayerId.PLAYER1, null, true);
+					PlayerId.PLAYER1, null, true, player1.getPlayerPoints());
 		}
 		if (player2 instanceof SwingPresenter) {
 			player2 = new SwingPresenter(this, player2.getName(),
-					PlayerId.PLAYER2, null, false);
+					PlayerId.PLAYER2, null, false, player2.getPlayerPoints());
 		}
 		doneMoves = 0;
 
@@ -107,6 +107,7 @@ public class GameController implements Runnable {
 				currentPlayer = currentPlayer();
 				currentPlayer.yourTurn();
 				player1.endOfGame(resultState);
+
 				player2.endOfGame(resultState);
 				return;
 			}

@@ -21,6 +21,12 @@ public class PlayerConsole implements PlayerController {
 	private GUIConsole guiConsole;
 	private int emptySpot;
 	private int slot;
+	private int playerPoints;
+
+	@Override
+	public int getPlayerPoints() {
+		return playerPoints;
+	}
 
 	public PlayerConsole(GameController gameController, String name,
 			PlayerId playerId) {

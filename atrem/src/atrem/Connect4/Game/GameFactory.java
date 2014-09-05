@@ -91,7 +91,7 @@ public class GameFactory {
 			case "swing":
 				humanPlayer = new SwingPresenter(gameController, player1name,
 
-				PlayerId.PLAYER1, token1Color, false);
+				PlayerId.PLAYER1, token1Color, false, 0);
 				break;
 			default:
 				System.out.println("Brak typu gry!");
@@ -106,7 +106,7 @@ public class GameFactory {
 			case "swing":
 				humanPlayer = new SwingPresenter(gameController, player2name,
 
-				PlayerId.PLAYER2, token2Color, false);
+				PlayerId.PLAYER2, token2Color, false, 0);
 
 				break;
 			default:
