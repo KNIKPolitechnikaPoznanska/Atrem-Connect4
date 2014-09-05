@@ -65,6 +65,7 @@ public class GameController implements Runnable {
 	public void startNewGame() {
 		int row = board.getLastRow();
 		int slot = board.getSlots();
+		lastMove = new LastMove();
 		board = new Board(row, slot);
 		resultState = ResultState.NoWin;
 		gameState = GameState.nextGame;
