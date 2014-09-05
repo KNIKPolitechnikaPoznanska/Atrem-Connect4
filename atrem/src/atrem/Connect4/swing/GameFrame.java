@@ -43,6 +43,7 @@ public class GameFrame extends JFrame {
 		board.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		board.setBackground(new Color(255, 255, 255));
 		getContentPane().add(board);
+
 		sideBoard = new SideBoard(swingPresenter.getPl1TokenColor(),
 				swingPresenter.getPl2TokenColor());
 		getContentPane().add(sideBoard);
