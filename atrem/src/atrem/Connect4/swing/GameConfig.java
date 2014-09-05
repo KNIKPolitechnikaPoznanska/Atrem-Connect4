@@ -42,12 +42,16 @@ public class GameConfig {
 	public void setupSettings() {
 		player1name = dialogBox.getPl1Name();
 		player2name = dialogBox.getPl2Name();
+
 		rows = dialogBox.getRows();
 		slots = dialogBox.getSlots();
+
 		player1Type = dialogBox.getPl1Type();
 		player2Type = dialogBox.getPl2Type();
+
 		gamePl1Type = dialogBox.getPl1GameType();
 		gamePl2Type = dialogBox.getPl2GameType();
+
 		token1Color = dialogBox.getToken1Color();
 		token2Color = dialogBox.getToken2Color();
 	}

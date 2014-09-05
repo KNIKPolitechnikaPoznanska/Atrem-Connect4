@@ -79,8 +79,8 @@ public class GameFactory {
 							player1name, PlayerId.Player1);
 					break;
 				case "swing" :
-					humanPlayer = new SwingPresenter(player1name,
-							PlayerId.Player1, gameController, true);
+					humanPlayer = new SwingPresenter(gameController,
+							player1name, PlayerId.Player1, token1Color, true);
 					break;
 				default :
 					System.out.println("Brak typu gry!");
@@ -93,8 +93,8 @@ public class GameFactory {
 							player2name, PlayerId.Player2);
 					break;
 				case "swing" :
-					humanPlayer = new SwingPresenter(player2name,
-							PlayerId.Player2, gameController, true);
+					humanPlayer = new SwingPresenter(gameController,
+							player2name, PlayerId.Player2, token2Color, true);
 					break;
 				default :
 					humanPlayer = null;
