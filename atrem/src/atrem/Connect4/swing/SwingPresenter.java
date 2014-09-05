@@ -1,6 +1,8 @@
 package atrem.Connect4.swing;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
@@ -23,7 +25,10 @@ public class SwingPresenter implements PlayerController {
 	protected JLabel token;
 	private Color pl1TokenColor, pl2TokenColor;
 	private Stats stats;
+	private Dimension screenSize;
 	private DialogInformationBoxes informationBoxes;
+	private int frameWidth = 800;
+	private int frameHeight = 600;
 
 	/**
 	 * Presenter MVP do GameFrame
@@ -87,8 +92,18 @@ public class SwingPresenter implements PlayerController {
 			@Override
 			public void run() {
 				try {
+					screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 					frame = new GameFrame(SwingPresenter.this);
 					frame.setTitle(playerAttributes.getName());
+					if (playerId == PlayerId.PLAYER1)
+						frame.setBounds(0,
+								(int) (screenSize.getHeight() - frameHeight),
+								frameWidth, frameHeight);
+					if (playerId == PlayerId.PLAYER2)
+						frame.setBounds((int) screenSize.getWidth()
+								- frameWidth,
+								(int) (screenSize.getHeight() - frameHeight),
+								frameWidth, frameHeight);
 					gameBoard = frame.getGameBoard();
 					informationBoxes = new DialogInformationBoxes();
 					sideBoard = frame.getSideBoard();
@@ -114,7 +129,6 @@ public class SwingPresenter implements PlayerController {
 			}
 		});
 	}
-
 	/**
 	 * Odœwie¿a planszê na GUI
 	 */
