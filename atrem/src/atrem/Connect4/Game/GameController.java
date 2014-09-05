@@ -31,7 +31,7 @@ public class GameController implements Runnable {
 			case Player2 :
 				return player2;
 			default :
-				return player1;
+				return null;
 		}
 	}
 

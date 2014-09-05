@@ -15,12 +15,18 @@ import atrem.Connect4.Game.player.PlayerController;
 public class PlayerConsole implements PlayerController {
 
 	private KeyHandler keyHandler;
-	private int slots;
 	private PlayerAttributes playerAttributes;
 	private GameController gameController;
 	private ExecutorService executor = Executors.newSingleThreadExecutor();
-	private int choosedTmp;
 	private GUIConsole guiConsole;
+	private int emptySpot;
+	private int slot;
+	private int playerPoints;
+
+	@Override
+	public int getPlayerPoints() {
+		return playerPoints;
+	}
 
 	public PlayerConsole(GameController gameController, String name,
 			PlayerId playerId) {
@@ -30,9 +36,8 @@ public class PlayerConsole implements PlayerController {
 		playerAttributes.setPlayerId(playerId);
 		keyHandler = new KeyHandler(gameController.getBoard());
 		// this.gamecontroller = game.getGameController();
-		guiConsole = new GUIConsole();
+		guiConsole = new GUIConsole(gameController);
 		gameController.endInitPlayer();
-
 	}
 
 	@Override
@@ -56,21 +61,19 @@ public class PlayerConsole implements PlayerController {
 	}
 
 	public void setChoosedTmp(int choosedTmp) {
-		this.choosedTmp = choosedTmp;
 	}
 
 	private void makeMove() {
-		int slot = keyHandler.getSlot();
-		int emptySpot = gameController.move(slot);
+		slot = keyHandler.getSlot();
+		emptySpot = gameController.move(slot);
 	}
 
 	private void displayGame() {
-		guiConsole.displayGame(gameController);
+		guiConsole.displayGame();
 	}
 
 	@Override
 	public void yourTurn() {
-		System.out.println("test2");
 		executor.execute(new Runnable() {
 			@Override
 			public void run() {

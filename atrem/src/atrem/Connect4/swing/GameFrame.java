@@ -28,7 +28,7 @@ public class GameFrame extends JFrame {
 	public GameFrame(SwingPresenter swingPresenter) {
 		this.swingPresenter = swingPresenter;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		if (swingPresenter.getPlayerId() == PlayerId.Player1)
+		if (swingPresenter.getPlayerId() == PlayerId.PLAYER1)
 			setBounds(100, 0, 754, 386);
 		else
 			setBounds(100, 360, 754, 386);
@@ -40,7 +40,8 @@ public class GameFrame extends JFrame {
 		board.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		board.setBackground(new Color(255, 255, 255));
 		getContentPane().add(board);
-		sideBoard = new SideBoard();
+		sideBoard = new SideBoard(swingPresenter.getPl1TokenColor(),
+				swingPresenter.getPl2TokenColor());
 		getContentPane().add(sideBoard);
 		stats = new Stats();
 		stats.setBounds(-15, 129, 342, 207);

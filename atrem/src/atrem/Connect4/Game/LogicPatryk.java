@@ -2,21 +2,46 @@ package atrem.Connect4.Game;
 
 import atrem.Connect4.Game.board.HoleState;
 
-public class Logic {
-
+/*
+ * Logika gry
+ */
+public class LogicPatryk {
 	private int maxRows;
 	private int maxSlots;
 	private GameController gameController;
+	private HoleState token;
+	private boolean hasWinner = false;
 	private boolean cpuWin = false;
+	private String human = "human", cpu = "cpu";
 
-	public Logic(GameController gameController) {
+	public LogicPatryk(GameController gameController) {
 		this.gameController = gameController;
 		maxSlots = gameController.getBoard().getSlots();
 		maxRows = gameController.getBoard().getRows();
-
 	}
 
-	private boolean checkIfDraw(int doneMoves) {
+	/**
+	 * Sprawdzenie u³o¿enia 4 w 4 wariantach
+	 * 
+	 * @return true je¿eli gracz wygra³
+	 */
+	public boolean checkIfWin() {
+		hasWinner = false;
+		columnWin(human);
+		rowWin(human);
+		diagonalWin1(human);
+		diagonalWin2(human);
+		return hasWinner;
+	}
+
+	/**
+	 * Funkcja sprawdza stan gry czy jest remis
+	 * 
+	 * @param doneMoves
+	 *            - wykonane ruchy
+	 * @return zwraca true je¿eli jest remis(wszystkie sloty pe³ne)
+	 */
+	public boolean checkIfDraw(int doneMoves) {
 		if (doneMoves == gameController.getBoard().getTotalSpots()) {
 			gameController.setResult(ResultState.Draw);
 			return true;
@@ -24,80 +49,31 @@ public class Logic {
 		return false;
 	}
 
-	public boolean checkIfWinPC(int row, int slot) {
-		if (checkIfThereIsAFour(row, slot, 1, 1)
-				|| checkIfThereIsAFour(row, slot, -1, 1)
-				|| checkIfThereIsAFour(row, slot, 1, 0)
-				|| checkIfThereIsAFour(row, slot, 0, 1))
-			return cpuWin = true;
-
-		return cpuWin = false;
+	/**
+	 * SprawdŸ czy wygra³ PC
+	 * 
+	 * @return true je¿eli wygra³
+	 */
+	public boolean checkIfWinPC() {
+		columnWin(cpu);
+		rowWin(cpu);
+		diagonalWin1(cpu);
+		diagonalWin2(cpu);
+		return cpuWin;
 	}
 
-	public boolean getResultOfMove(int row, int slot, int doneMoves) {
-
-		if (checkIfItIsAWinningMove(row, slot) || checkIfDraw(doneMoves)) {
-			checkTheWinner(gameController.getHoleState(row, slot));
-			return true;
-		}
-
-		return false;
-	}
-
-	private void checkTheWinner(HoleState token) {
-
-		switch (token) {
-			case PLAYER1 :
-				gameController.setResult(ResultState.Player1Win);
-				break;
-			case PLAYER2 :
-				gameController.setResult(ResultState.Player2Win);
-				break;
-			default :
-				break;
-		}
-	}
-
-	private boolean checkIfItIsAWinningMove(int row, int slot) {
-		if (checkIfThereIsAFour(row, slot, 1, 1)
-				|| checkIfThereIsAFour(row, slot, -1, 1)
-				|| checkIfThereIsAFour(row, slot, 1, 0)
-				|| checkIfThereIsAFour(row, slot, 0, 1))
-			return true;
-
-		return false;
-	}
-
-	private boolean checkIfThereIsAFour(int row, int slot, int i, int j) {
-		if (getAddedNumbersOfNeighbours(row, slot, i, j) + 1 > 3)
-			return true;
-		return false;
-
-	}
-
-	private int getAddedNumbersOfNeighbours(int row, int slot, int i, int j) {
-		return countNeighboursInOneDirection(row, slot, i, j)
-				+ countNeighboursInOneDirection(row, slot, -i, -j);
-	}
-
-	public int countNeighboursInOneDirection(int row, int slot, int i, int j) {
-		if (checkIfHoleExists(row + i, slot + j)) {
-			if ((gameController.getHoleState(row + i, slot + j) == gameController
-					.getHoleState(row, slot))) {
-				return countNeighboursInOneDirection(row + i, slot + j, i, j) + 1;
-			}
-		}
-
-		return 0;
-	}
-
-	private boolean checkIfHoleExists(int row, int slot) {
-		if (row < 0 || slot < 0 || row >= maxRows || slot >= maxSlots) {
+	/**
+	 * Sprawdzenie wyniku gry
+	 * 
+	 * @param doneMoves
+	 *            wykonane ruchy
+	 * @return true je¿eli win lub draw
+	 */
+	public boolean checkResult(int doneMoves) {
+		checkIfWin();
+		checkIfDraw(doneMoves);
+		if (gameController.getResult() == ResultState.NoWin)
 			return false;
-<<<<<<< HEAD
-		} else {
-			return true;
-=======
 		return true;
 	}
 
@@ -113,21 +89,6 @@ public class Logic {
 				}
 			}
 		}
-	}
-
-	private boolean sprIfa(boolean row, boolean slot, LastMove lastmove) {
-		int rows = 0;
-		int slots = 0;
-
-		for (int i = 0; i < 3; i++) {
-			if (row) {
-				rows++;
-			}
-			if (slot) {
-				slots++;
-			}
-		}
-		return true;
 	}
 
 	// potem zamieniæ za warunki
@@ -189,7 +150,6 @@ public class Logic {
 			gameController.setResult(ResultState.Player1Win);
 		} else if (token == HoleState.PLAYER2) {
 			gameController.setResult(ResultState.Player2Win);
->>>>>>> branch 'master' of https://github.com/KNIKPolitechnikaPoznanska/AtremProject.git
 		}
 	}
 
@@ -200,5 +160,4 @@ public class Logic {
 	public void setCPUwin(boolean CPUwin) {
 		this.cpuWin = CPUwin;
 	}
-
 }
