@@ -91,6 +91,21 @@ public class Logic {
 		}
 	}
 
+	private boolean sprIfa(boolean row, boolean slot, LastMove lastmove) {
+		int rows = 0;
+		int slots = 0;
+
+		for (int i = 0; i < 3; i++) {
+			if (row) {
+				rows++;
+			}
+			if (slot) {
+				slots++;
+			}
+		}
+		return true;
+	}
+
 	// potem zamieniæ za warunki
 	// private boolean checkNextHole(int row, int slot) {
 	// return token == gameController.getHoleState(row, slot);
