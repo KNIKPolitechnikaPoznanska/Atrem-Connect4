@@ -1,5 +1,7 @@
 package atrem.Connect4.swing;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -8,6 +10,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -44,6 +47,7 @@ public class DialogSettingsBox extends JDialog {
 	private JRadioButton rBConsole1, rBSwing1, rBMulti1, rBConsole2, rBSwing2,
 			rBMulti2;
 	private JComboBox<String> plTypeBox1, plTypeBox2;
+	private Color token1Color, token2Color;
 
 	/**
 	 * Create the settings dialog.
@@ -141,6 +145,33 @@ public class DialogSettingsBox extends JDialog {
 		TFieldRows.setText(Integer.toString(GameConfig.DEF_ROWS));
 	}
 
+	protected void disableGameTypeBoxes(JComboBox<String> item, int Nmb) {
+		String selItem = (String) item.getSelectedItem();
+		if (selItem == GameConfig.CcpuEasy || selItem == GameConfig.CcpuMedium
+				|| selItem == GameConfig.CcpuHard) {
+			if (Nmb == 1) {
+				rBConsole1.setEnabled(false);
+				rBSwing1.setEnabled(false);
+				rBMulti1.setEnabled(false);
+			} else {
+				rBConsole2.setEnabled(false);
+				rBSwing2.setEnabled(false);
+				rBMulti2.setEnabled(false);
+			}
+		} else if (selItem == GameConfig.CHuman) {
+			if (Nmb == 1) {
+				rBConsole1.setEnabled(true);
+				rBSwing1.setEnabled(true);
+				rBMulti1.setEnabled(true);
+			} else {
+				rBConsole2.setEnabled(true);
+				rBSwing2.setEnabled(true);
+				rBMulti2.setEnabled(true);
+			}
+		}
+
+	}
+
 	private void initComponents() {
 		buttonGroup1 = new ButtonGroup();
 		buttonGroup2 = new ButtonGroup();
@@ -181,7 +212,7 @@ public class DialogSettingsBox extends JDialog {
 		buttonPanel.setBorder(BorderFactory
 				.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-		buttonStart.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+		buttonStart.setFont(new Font("Tahoma", 0, 24)); // NOI18N
 		buttonStart.setMnemonic('s');
 		buttonStart.setText("Start");
 		buttonStart.addActionListener(new ActionListener() {
@@ -191,7 +222,7 @@ public class DialogSettingsBox extends JDialog {
 			}
 		});
 
-		buttonDefault.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+		buttonDefault.setFont(new Font("Tahoma", 0, 24)); // NOI18N
 		buttonDefault.setMnemonic('d');
 		buttonDefault.setText("Default");
 		buttonDefault.addActionListener(new ActionListener() {
@@ -201,7 +232,7 @@ public class DialogSettingsBox extends JDialog {
 			}
 		});
 
-		buttonExit.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+		buttonExit.setFont(new Font("Tahoma", 0, 24)); // NOI18N
 		buttonExit.setMnemonic('e');
 		buttonExit.setText("Exit");
 		buttonExit.addActionListener(new ActionListener() {
@@ -264,65 +295,89 @@ public class DialogSettingsBox extends JDialog {
 		jTabbedPane.setBackground(new java.awt.Color(51, 200, 250));
 		jTabbedPane.setBorder(BorderFactory.createEtchedBorder());
 		jTabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
-		jTabbedPane.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+		jTabbedPane.setFont(new Font("Tahoma", 0, 20)); // NOI18N
 
 		playerSetPanel.setBackground(new java.awt.Color(51, 204, 255));
-		playerSetPanel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+		playerSetPanel.setFont(new Font("Tahoma", 0, 20)); // NOI18N
 
-		jLabel2.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+		jLabel2.setFont(new Font("Tahoma", 0, 20)); // NOI18N
 		jLabel2.setText("Imiê");
 
-		jLabel3.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+		jLabel3.setFont(new Font("Tahoma", 0, 20)); // NOI18N
 		jLabel3.setText("Imiê");
 
-		TFieldPl1Name.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+		TFieldPl1Name.setFont(new Font("Tahoma", 0, 20)); // NOI18N
 		TFieldPl1Name.setText("Gracz 1");
 
-		TFieldPl2Name.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+		TFieldPl2Name.setFont(new Font("Tahoma", 0, 20)); // NOI18N
 		TFieldPl2Name.setText("Gracz 2");
 
-		jLabel4.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+		jLabel4.setFont(new Font("Tahoma", 0, 20)); // NOI18N
 		jLabel4.setText("Kolory ¿etonów");
 
-		jLabel5.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
+		jLabel5.setFont(new Font("Tahoma", 0, 22)); // NOI18N
 		jLabel5.setText("Gracz 1");
 
-		jLabel6.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
+		jLabel6.setFont(new Font("Tahoma", 0, 22)); // NOI18N
 		jLabel6.setText("Gracz 2");
 
-		buttonColor1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+		buttonColor1.setFont(new Font("Tahoma", 0, 20)); // NOI18N
 		buttonColor1.setText("Zmieñ");
+		buttonColor1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Color initialBackground = buttonColor1.getBackground();
+				Color color = JColorChooser.showDialog(null,
+						"Gracz 1: Wybierz kolor ¿etonu.", initialBackground);
+				if (color != null) {
+					buttonColor1.setBackground(color);
+				}
+				token1Color = color;
+			}
+		});
 
-		buttonColor2.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+		buttonColor2.setFont(new Font("Tahoma", 0, 20)); // NOI18N
 		buttonColor2.setText("Zmieñ");
+		buttonColor2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Color initialBackground = buttonColor2.getBackground();
+				Color color = JColorChooser.showDialog(null,
+						"Gracz 2: Wybierz kolor ¿etonu.", initialBackground);
+				if (color != null) {
+					buttonColor2.setBackground(color);
+				}
+				token2Color = color;
+			}
+		});
 
 		buttonGroup1.add(rBConsole1);
-		rBConsole1.setFont(new java.awt.Font("Tahoma", 0, 19)); // NOI18N
+		rBConsole1.setFont(new Font("Tahoma", 0, 19)); // NOI18N
 		rBConsole1.setText("Konsola");
 
 		buttonGroup1.add(rBSwing1);
-		rBSwing1.setFont(new java.awt.Font("Tahoma", 0, 19)); // NOI18N
+		rBSwing1.setFont(new Font("Tahoma", 0, 19)); // NOI18N
 		rBSwing1.setText("Swing");
 		rBSwing1.setSelected(true);
 
 		buttonGroup1.add(rBMulti1);
-		rBMulti1.setFont(new java.awt.Font("Tahoma", 0, 19)); // NOI18N
+		rBMulti1.setFont(new Font("Tahoma", 0, 19)); // NOI18N
 		rBMulti1.setText("Multiplayer");
 
 		buttonGroup2.add(rBConsole2);
-		rBConsole2.setFont(new java.awt.Font("Tahoma", 0, 19)); // NOI18N
+		rBConsole2.setFont(new Font("Tahoma", 0, 19)); // NOI18N
 		rBConsole2.setText("Konsola");
 
 		buttonGroup2.add(rBSwing2);
-		rBSwing2.setFont(new java.awt.Font("Tahoma", 0, 19)); // NOI18N
+		rBSwing2.setFont(new Font("Tahoma", 0, 19)); // NOI18N
 		rBSwing2.setText("Swing");
 		rBSwing2.setSelected(true);
 
 		buttonGroup2.add(rBMulti2);
-		rBMulti2.setFont(new java.awt.Font("Tahoma", 0, 19)); // NOI18N
+		rBMulti2.setFont(new Font("Tahoma", 0, 19)); // NOI18N
 		rBMulti2.setText("Multiplayer");
 
-		plTypeBox1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+		plTypeBox1.setFont(new Font("Tahoma", 0, 20)); // NOI18N
 		plTypeBox1.setModel(new DefaultComboBoxModel<String>(
 				GameConfig.playerTypeItems));
 		plTypeBox1.addActionListener(new ActionListener() {
@@ -334,7 +389,7 @@ public class DialogSettingsBox extends JDialog {
 			}
 		});
 
-		plTypeBox2.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+		plTypeBox2.setFont(new Font("Tahoma", 0, 20)); // NOI18N
 		plTypeBox2.setModel(new DefaultComboBoxModel<String>(
 				GameConfig.playerTypeItems));
 		plTypeBox2.addActionListener(new ActionListener() {
@@ -596,16 +651,16 @@ public class DialogSettingsBox extends JDialog {
 
 		boardSetPanel.setBackground(new java.awt.Color(51, 240, 240));
 
-		jLabel1.setFont(new java.awt.Font("Tahoma", 0, 21)); // NOI18N
+		jLabel1.setFont(new Font("Tahoma", 0, 21)); // NOI18N
 		jLabel1.setText("Sloty: ");
 
-		jLabel7.setFont(new java.awt.Font("Tahoma", 0, 21)); // NOI18N
+		jLabel7.setFont(new Font("Tahoma", 0, 21)); // NOI18N
 		jLabel7.setText("Wiersze: ");
 
-		TFieldSlots.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+		TFieldSlots.setFont(new Font("Tahoma", 0, 24)); // NOI18N
 		TFieldSlots.setText("" + GameConfig.DEF_SLOTS);
 
-		TFieldRows.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+		TFieldRows.setFont(new Font("Tahoma", 0, 24)); // NOI18N
 		TFieldRows.setText("" + GameConfig.DEF_ROWS);
 
 		GroupLayout boardSetPanelLayout = new GroupLayout(boardSetPanel);
@@ -716,32 +771,6 @@ public class DialogSettingsBox extends JDialog {
 		pack();
 	}
 
-	protected void disableGameTypeBoxes(JComboBox<String> item, int Nmb) {
-		String selItem = (String) item.getSelectedItem();
-		if (selItem == GameConfig.CcpuEasy || selItem == GameConfig.CcpuMedium
-				|| selItem == GameConfig.CcpuHard) {
-			if (Nmb == 1) {
-				rBConsole1.setEnabled(false);
-				rBSwing1.setEnabled(false);
-				rBMulti1.setEnabled(false);
-			} else {
-				rBConsole2.setEnabled(false);
-				rBSwing2.setEnabled(false);
-				rBMulti2.setEnabled(false);
-			}
-		} else if (selItem == GameConfig.CHuman) {
-			if (Nmb == 1) {
-				rBConsole1.setEnabled(true);
-				rBSwing1.setEnabled(true);
-				rBMulti1.setEnabled(true);
-			} else {
-				rBConsole2.setEnabled(true);
-				rBSwing2.setEnabled(true);
-				rBMulti2.setEnabled(true);
-			}
-		}
-
-	}
 	public String getPl1GameType() {
 		return pl1GameType;
 	}
@@ -752,6 +781,14 @@ public class DialogSettingsBox extends JDialog {
 
 	public String getPl2GameType() {
 		return pl2GameType;
+	}
+
+	public Color getToken1Color() {
+		return token1Color;
+	}
+
+	public Color getToken2Color() {
+		return token2Color;
 	}
 
 	public String getPl2Name() {

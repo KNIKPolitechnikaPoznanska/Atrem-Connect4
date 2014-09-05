@@ -1,5 +1,7 @@
 package atrem.Connect4.Game;
 
+import java.awt.Color;
+
 import atrem.Connect4.Game.board.Board;
 import atrem.Connect4.Game.player.PlayerController;
 import atrem.Connect4.Game.player.ai.EasyPC;
@@ -18,6 +20,7 @@ public class GameFactory {
 	private String player2name, player1name, player1Type, player2Type,
 			gamePl1Type, gamePl2Type;
 	private int slots, rows;
+	private Color token1Color, token2Color;
 
 	/**
 	 * £aduje GameController (all settings)
@@ -134,6 +137,14 @@ public class GameFactory {
 
 	public void setBoard() {
 		board = new Board(rows, slots);
+	}
+
+	public void setToken1Color(Color token1Color) {
+		this.token1Color = token1Color;
+	}
+
+	public void setToken2Color(Color token2Color) {
+		this.token2Color = token2Color;
 	}
 
 	public void setGamePl1Type(String gamePl1Type) {

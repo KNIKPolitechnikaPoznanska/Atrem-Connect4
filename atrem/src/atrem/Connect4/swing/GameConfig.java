@@ -1,5 +1,7 @@
 package atrem.Connect4.swing;
 
+import java.awt.Color;
+
 import atrem.Connect4.Game.GameFactory;
 
 /*
@@ -19,6 +21,7 @@ public class GameConfig {
 	public static final int DEF_SLOTS = 7, DEF_ROWS = 6;
 	private int slots, rows;
 	private GameFactory gameFactory;
+	private Color token1Color, token2Color;
 
 	public GameConfig(GameFactory gameFactory) {
 		this.gameFactory = gameFactory;
@@ -33,7 +36,9 @@ public class GameConfig {
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * Pobierz dane z okna dialogowego do config.
+	 */
 	public void setupSettings() {
 		player1name = dialogBox.getPl1Name();
 		player2name = dialogBox.getPl2Name();
@@ -43,7 +48,12 @@ public class GameConfig {
 		player2Type = dialogBox.getPl2Type();
 		gamePl1Type = dialogBox.getPl1GameType();
 		gamePl2Type = dialogBox.getPl2GameType();
+		token1Color = dialogBox.getToken1Color();
+		token2Color = dialogBox.getToken2Color();
 	}
+	/**
+	 * Ustaw gameFactory wartoœciami z Config.
+	 */
 	public void setupGameFactory() {
 		gameFactory.setRows(rows);
 		gameFactory.setSlots(slots);
@@ -57,9 +67,11 @@ public class GameConfig {
 		gameFactory.setGamePl1Type(gamePl1Type);
 		gameFactory.setGamePl2Type(gamePl2Type);
 
+		gameFactory.setToken1Color(token1Color);
+		gameFactory.setToken2Color(token2Color);
+
 		gameFactory.setBoard();
 	}
-
 	public String getPlayer1Type() {
 		return player1Type;
 	}
