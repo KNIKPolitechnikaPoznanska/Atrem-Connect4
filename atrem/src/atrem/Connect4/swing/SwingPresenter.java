@@ -119,14 +119,14 @@ public class SwingPresenter implements PlayerController {
 	}
 
 	public void makeDecision(int decision) {
-		if (decision == 0)
+		if (decision == 0) {
 			frame.dispose();
+			if (playerId == playerId.PLAYER2)
+				gameController.startNewGame();
+		}
 
 		if (decision == 2)
 			frame.dispose();
-
-		if (playerId == playerId.PLAYER2)
-			gameController.startNewGame();
 
 	}
 
