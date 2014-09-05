@@ -21,7 +21,7 @@ public class SwingPresenter implements PlayerController {
 	private PlayerId playerId;
 	private SideBoard sideBoard;
 	protected JLabel token;
-	private Color token1Color, token2Color;
+	private Color tokenColor;
 	private DialogInformationBoxes informationBoxes;
 
 	/**
@@ -30,24 +30,18 @@ public class SwingPresenter implements PlayerController {
 	 * @param playerName
 	 * @param playerId
 	 * @param gameController
+	 * @param block
 	 */
-	public SwingPresenter(String playerName, PlayerId playerId,
-			GameController gameController, boolean block) {
+	public SwingPresenter(GameController gameController, String playerName,
+			PlayerId playerId, Color tokenColor, boolean block) {
 		playerAttributes = new PlayerAttributes(playerName, playerId);
 		this.gameController = gameController;
 		this.blockButton = block;
 		this.playerId = playerId;
+		this.tokenColor = tokenColor;
 		setupFrame();
 		slots = gameController.getBoard().getSlots();
 		rows = gameController.getBoard().getRows();
-	}
-
-	public int getSlots() {
-		return slots;
-	}
-
-	public int getRows() {
-		return rows;
 	}
 
 	/**
@@ -112,26 +106,20 @@ public class SwingPresenter implements PlayerController {
 
 	@Override
 	public void endOfGame(ResultState resultGame) {
-		if (resultGame == resultGame.Player1Win)
-			decision = informationBoxes.winMessage(gameController.getPlayer1()
-					.getName());
-		if (resultGame == resultGame.Player2Win)
+		if (resultGame == ResultState.Player1Win)
+			decision = informationBoxes.winMessage(playerAttributes.getName());
+		if (resultGame == ResultState.Player2Win)
 			decision = informationBoxes.winMessage(gameController.getPlayer2()
 					.getName());
-		if (resultGame == resultGame.Draw)
+		if (resultGame == ResultState.Draw)
 			informationBoxes.drawMessage();
 
 		makeDecision(decision);
 	}
 
 	public void makeDecision(int decision) {
-		if (decision == 0) {
-			frame.dispose();
-
-		}
-		if (decision == 2) {
-			frame.dispose();
-		}
+		if (decision == 0)
+			gameController.startNewGame();
 
 	}
 
@@ -160,6 +148,14 @@ public class SwingPresenter implements PlayerController {
 			sideBoard.setTokenPl1();
 		else
 			sideBoard.setTokenPl2();
+	}
+
+	public int getSlots() {
+		return slots;
+	}
+
+	public int getRows() {
+		return rows;
 	}
 
 	@Override

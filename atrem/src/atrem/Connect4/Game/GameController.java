@@ -67,12 +67,12 @@ public class GameController implements Runnable {
 		resultState = ResultState.NoWin;
 		gameState = GameState.nextGame;
 		if (player1 instanceof SwingPresenter) {
-			player1 = new SwingPresenter(player1.getName(), PlayerId.Player1,
-					this, true);
+			player1 = new SwingPresenter(this, player1.getName(),
+					PlayerId.Player1, null, true);
 		}
 		if (player2 instanceof SwingPresenter) {
-			player2 = new SwingPresenter(player2.getName(), PlayerId.Player2,
-					this, false);
+			player2 = new SwingPresenter(this, player2.getName(),
+					PlayerId.Player2, null, false);
 		}
 		doneMoves = 0;
 		playerTurn = PlayerId.Player1;
