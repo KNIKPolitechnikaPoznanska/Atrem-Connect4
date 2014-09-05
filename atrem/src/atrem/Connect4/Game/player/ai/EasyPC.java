@@ -25,7 +25,7 @@ public class EasyPC implements PlayerController {
 		playerAttributes = new PlayerAttributes();
 		playerAttributes.setName(name);
 		playerAttributes.setPlayerId(playerId);
-		this.board = gameController.getBoard();
+		board = gameController.getBoard();
 		gameController.endInitPlayer();
 		informationBoxes = new DialogInformationBoxes();
 	}
@@ -41,7 +41,7 @@ public class EasyPC implements PlayerController {
 	}
 
 	public int randomSlotNumber() {
-
+		board = gameController.getBoard();
 		System.out.println("EASYPC");
 		int randomSlot;
 		Random rand = new Random();
