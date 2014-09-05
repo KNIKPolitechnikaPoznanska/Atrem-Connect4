@@ -53,7 +53,7 @@ public class Board {
 	}
 
 	public HoleState playerIdtoHoleState(PlayerId playerId) {
-		if (playerId == PlayerId.Player1) {
+		if (playerId == PlayerId.PLAYER1) {
 			return HoleState.PLAYER1;
 		} else {
 			return HoleState.PLAYER2;

@@ -150,7 +150,7 @@ public class SwingPresenter implements PlayerController {
 	public void setNamesAndToken() {
 		sideBoard.setPl1Name(gameController.getPlayer1().getName());
 		sideBoard.setPl2Name(gameController.getPlayer2().getName());
-		if (playerId == PlayerId.Player1)
+		if (playerId == PlayerId.PLAYER1)
 			sideBoard.setTokenPl1();
 		else
 			sideBoard.setTokenPl2();
