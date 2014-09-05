@@ -31,7 +31,7 @@ public class GameFactory {
 		createPlayerGame();
 		gameController.setPlayer1(player1);
 		gameController.setPlayer2(player2);
-		gameController.setPlayerTurn(PlayerId.Player1);
+		gameController.setPlayerTurn(PlayerId.PLAYER1);
 	}
 
 	/**
@@ -62,12 +62,12 @@ public class GameFactory {
 
 	}
 	private PlayerController createCpuMediumPlayer() {
-		return new MediumPC(gameController, player2name, PlayerId.Player2,
+		return new MediumPC(gameController, player2name, PlayerId.PLAYER2,
 				new Logic(gameController));
 	}
 
 	private PlayerController createCpuEasyPlayer() {
-		return new EasyPC(gameController, player2name, PlayerId.Player2);
+		return new EasyPC(gameController, player2name, PlayerId.PLAYER2);
 	}
 
 	private PlayerController createHumanPlayer(int playerNmb) {
@@ -76,11 +76,11 @@ public class GameFactory {
 			switch (gamePl1Type) {
 				case "console" :
 					humanPlayer = new PlayerConsole(gameController,
-							player1name, PlayerId.Player1);
+							player1name, PlayerId.PLAYER1);
 					break;
 				case "swing" :
 					humanPlayer = new SwingPresenter(gameController,
-							player1name, PlayerId.Player1, token1Color, true);
+							player1name, PlayerId.PLAYER1, token1Color, true);
 					break;
 				default :
 					System.out.println("Brak typu gry!");
@@ -90,11 +90,11 @@ public class GameFactory {
 			switch (gamePl2Type) {
 				case "console" :
 					humanPlayer = new PlayerConsole(gameController,
-							player2name, PlayerId.Player2);
+							player2name, PlayerId.PLAYER2);
 					break;
 				case "swing" :
 					humanPlayer = new SwingPresenter(gameController,
-							player2name, PlayerId.Player2, token2Color, true);
+							player2name, PlayerId.PLAYER2, token2Color, true);
 					break;
 				default :
 					humanPlayer = null;

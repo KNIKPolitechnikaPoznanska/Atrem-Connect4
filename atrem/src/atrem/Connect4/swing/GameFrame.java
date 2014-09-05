@@ -28,7 +28,7 @@ public class GameFrame extends JFrame {
 	public GameFrame(SwingPresenter swingPresenter) {
 		this.swingPresenter = swingPresenter;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		if (swingPresenter.getPlayerId() == PlayerId.Player1)
+		if (swingPresenter.getPlayerId() == PlayerId.PLAYER1)
 			setBounds(100, 0, 754, 386);
 		else
 			setBounds(100, 360, 754, 386);

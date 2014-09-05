@@ -12,7 +12,7 @@ public class GameController implements Runnable {
 	private LastMove lastMove;
 	private PlayerController currentPlayer, player1, player2;
 	private int emptySpot, slot;
-	private PlayerId playerTurn = PlayerId.Player1;
+	private PlayerId playerTurn = PlayerId.PLAYER1;
 	private ResultState resultState = ResultState.NoWin;
 	private GameState gameState = GameState.preInit;
 
@@ -23,9 +23,9 @@ public class GameController implements Runnable {
 	 */
 	private PlayerController currentPlayer() {
 		switch (playerTurn) {
-		case Player1:
+		case PLAYER1:
 			return player1;
-		case Player2:
+		case PLAYER2:
 			return player2;
 		default:
 			return player1;
@@ -68,14 +68,14 @@ public class GameController implements Runnable {
 		gameState = GameState.nextGame;
 		if (player1 instanceof SwingPresenter) {
 			player1 = new SwingPresenter(this, player1.getName(),
-					PlayerId.Player1, null, true);
+					PlayerId.PLAYER1, null, true);
 		}
 		if (player2 instanceof SwingPresenter) {
 			player2 = new SwingPresenter(this, player2.getName(),
-					PlayerId.Player2, null, false);
+					PlayerId.PLAYER2, null, false);
 		}
 		doneMoves = 0;
-		playerTurn = PlayerId.Player1;
+		playerTurn = PlayerId.PLAYER1;
 		startGameLoop();
 
 	}
@@ -161,10 +161,10 @@ public class GameController implements Runnable {
 	 * Zmiana tury gracza.
 	 */
 	private void changePlayer() {
-		if (playerTurn == PlayerId.Player1) {
-			setPlayerTurn(PlayerId.Player2);
+		if (playerTurn == PlayerId.PLAYER1) {
+			setPlayerTurn(PlayerId.PLAYER2);
 		} else {
-			setPlayerTurn(PlayerId.Player1);
+			setPlayerTurn(PlayerId.PLAYER1);
 		}
 	}
 

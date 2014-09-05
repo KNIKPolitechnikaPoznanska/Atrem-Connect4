@@ -15,10 +15,10 @@ public class GUIConsole {
 		drawBoard(gameController.getBoard());
 		drawSlots(gameController.getBoard().getSlots());
 		switch (gameController.getPlayerTurn()) {
-		case Player1:
+		case PLAYER1:
 			this.writeCurrentPlayer(gameController.getPlayer1());
 			break;
-		case Player2:
+		case PLAYER2:
 			this.writeCurrentPlayer(gameController.getPlayer2());
 			break;
 		default:
