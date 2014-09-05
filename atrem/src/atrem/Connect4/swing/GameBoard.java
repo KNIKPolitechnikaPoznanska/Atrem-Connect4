@@ -24,8 +24,8 @@ public class GameBoard extends JPanel {
 	private HoleState holeState;
 
 	public GameBoard(SwingPresenter swingPresenter) {
-		slots = swingPresenter.getSlots();
-		rows = swingPresenter.getRows();
+		rows = 6;
+		slots = 7;
 		this.swingPresenter = swingPresenter;
 		setLayout(new GridLayout(rows + 1, slots));
 		swingBoard = new JLabel[rows][slots];
@@ -61,6 +61,7 @@ public class GameBoard extends JPanel {
 	 * Tworzy Labele w swing pokazuj¹ce 'dziury'. !!! rowsy z slotsami
 	 * zamienione miejscami na potrzebe jlabela !!!
 	 */
+
 	private void createHoles() {
 		for (int tempRow = 0; tempRow < rows; tempRow++) {
 			for (int tempSlot = 0; tempSlot < slots; tempSlot++) {
