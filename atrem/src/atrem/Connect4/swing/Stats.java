@@ -1,13 +1,11 @@
-package atrem.Connect4.swing;
+package atrem.connect4.swing;
 
 import java.awt.Color;
-import java.awt.Component;
 
-import javax.swing.Box;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import atrem.Connect4.Game.PlayerId;
+import atrem.connect4.game.PlayerId;
 
 public class Stats extends JPanel {
 
@@ -47,10 +45,6 @@ public class Stats extends JPanel {
 		pointsPlayer2.setBounds(171, 89, 46, 14);
 		add(pointsPlayer2);
 
-		Component verticalStrut = Box.createVerticalStrut(20);
-		verticalStrut.setBounds(106, 51, 31, 67);
-		add(verticalStrut);
-
 	}
 
 	public void setPointsPlayer(int pointsPlayer, PlayerId player) {
@@ -68,4 +62,5 @@ public class Stats extends JPanel {
 		else
 			namePlayer2.setText(name);
 	}
+
 }
