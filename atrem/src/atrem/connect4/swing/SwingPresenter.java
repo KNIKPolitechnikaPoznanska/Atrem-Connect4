@@ -74,8 +74,9 @@ public class SwingPresenter implements PlayerController {
 		if (emptySpot == -1) {
 			informationBoxes.fullSlotMessage();
 		} else {
-			gameBoard.disableButtons(false);
 			refreshView(emptySpot, slot);
+			gameBoard.disableButtons(false);
+
 		}
 	}
 

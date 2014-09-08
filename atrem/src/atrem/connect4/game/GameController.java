@@ -61,35 +61,12 @@ public class GameController implements Runnable {
 	/**
 	 * Glowna petla gry
 	 */
-	public void startNewGame() {
-		int row = board.getRows();
-		int slot = board.getSlots();
-		lastMove = new LastMove();
-		board = new Board(row, slot);
-		resultState = ResultState.NoWin;
-		gameState = GameState.nextGame;
-		if (player1 instanceof SwingPresenter) {
-			player1 = new SwingPresenter(this, player1.getName(),
-					PlayerId.PLAYER1, pl1Color, pl2Color, false,
-					player1.getPlayerPoints());
-		}
-		if (player2 instanceof SwingPresenter) {
-			player2 = new SwingPresenter(this, player2.getName(),
-					PlayerId.PLAYER2, pl1Color, pl2Color, false,
-					player2.getPlayerPoints());
-		}
-		doneMoves = 0;
-
-		startGameLoop();
-	}
-
 	private synchronized void gameLoop() {// ma odczytywaæ GameState
 		boolean endGame;
 		logic = new Logic(this);
 		lastMove = new LastMove();
 		System.out.println("przed init");
-		if (gameState != GameState.nextGame)
-			waitForInit();
+		waitForInit();
 		while (resultState == ResultState.NoWin) {
 			currentPlayer = currentPlayer();
 			try {
@@ -116,6 +93,28 @@ public class GameController implements Runnable {
 			changePlayer();
 
 		}
+	}
+
+	public void startNewGame() {
+		int row = board.getRows();
+		int slot = board.getSlots();
+		lastMove = new LastMove();
+		board = new Board(row, slot);
+		resultState = ResultState.NoWin;
+		gameState = GameState.preInit;
+		startGameLoop();
+		if (player1 instanceof SwingPresenter) {
+			player1 = new SwingPresenter(this, player1.getName(),
+					PlayerId.PLAYER1, pl1Color, pl2Color, false,
+					player1.getPlayerPoints());
+		}
+		if (player2 instanceof SwingPresenter) {
+			player2 = new SwingPresenter(this, player2.getName(),
+					PlayerId.PLAYER2, pl1Color, pl2Color, false,
+					player2.getPlayerPoints());
+		}
+		doneMoves = 0;
+
 	}
 
 	private synchronized void waitForMove() {
