@@ -60,22 +60,16 @@ public class SwingPresenter implements PlayerController {
 	@Override
 	public void yourTurn() {
 		gameBoard.disableButtons(true);
-		System.out.println("hehe");
 		LastSlot = gameController.getLastMove().getLastSlot();
 		LastRow = gameController.getLastMove().getLastRow();
 
 		if (LastRow != -1 && LastSlot != -1) {
-
 			refreshView(LastRow, LastSlot);
-
 		}
-
 		System.out.println(LastRow + " " + LastSlot);
-
 	}
 
 	public void getSlotFromView(int slot) {
-
 		emptySpot = gameController.move(slot);
 		if (emptySpot == -1) {
 			informationBoxes.fullSlotMessage();
@@ -83,7 +77,6 @@ public class SwingPresenter implements PlayerController {
 			gameBoard.disableButtons(false);
 			refreshView(emptySpot, slot);
 		}
-
 	}
 
 	private void setupFrame() {

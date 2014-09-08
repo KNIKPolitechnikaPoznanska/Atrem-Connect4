@@ -77,14 +77,10 @@ public class GameBoard extends JPanel {
 		this.holeState = holeState;
 		swingBoard[row][slot].changeTokenColor(holeState);
 	}
+
 	public void disableButtons(boolean parameter) {
 		for (int tempSlot = 0; tempSlot < slots; tempSlot++)
 			button[tempSlot].setEnabled(parameter);
-	}
-
-	@Deprecated
-	public void placeOpponentToken(HoleState holeState, int oppRow, int oppSlot) {
-		swingBoard[oppRow][oppSlot].changeTokenColor(holeState);
 	}
 
 	/**

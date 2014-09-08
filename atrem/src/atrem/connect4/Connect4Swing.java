@@ -8,11 +8,10 @@ import atrem.connect4.game.GameFactory;
  * Uruchomienie gry Connect4 w konsoli
  */
 public class Connect4Swing {
-	private static GameController gameController;
+	private GameController gameController;
 
 	public void init(GameConfig config, GameFactory gameFactory) {
 		config.setupGameFactory();
-		// gameFactory.createGame("swing");
 		gameFactory.createGameController();
 		gameController = gameFactory.getGameController();
 		gameController.startGameLoop();

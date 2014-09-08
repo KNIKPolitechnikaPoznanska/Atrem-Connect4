@@ -60,7 +60,6 @@ public class SideBoard extends JPanel {
 	 * METODY do komunikacji z graczem ! BARTEK
 	 */
 	public void sendMessage(String message) {
-		message = "Witamy w Connect4!";
 		this.message = message;
 	}
 
@@ -78,6 +77,7 @@ public class SideBoard extends JPanel {
 		token1.changeTo(pl1Color);
 		token2.changeTo(pl2Color);
 	}
+
 	public void setTokenPl2() {
 		token1.changeTo(pl2Color);
 		token2.changeTo(pl1Color);

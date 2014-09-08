@@ -53,10 +53,10 @@ public class DLabel extends JLabel {
 				color = colorEmpty;
 				break;
 			case PLAYER1 :
-				color = pl2Color;
+				color = pl1Color;
 				break;
 			case PLAYER2 :
-				color = pl1Color;
+				color = pl2Color;
 				break;
 			default :
 				System.out.println("Z³y kolor?");
