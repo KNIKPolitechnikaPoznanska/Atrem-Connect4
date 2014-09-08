@@ -10,6 +10,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 
 import atrem.connect4.game.board.HoleState;
+
 /**
  * Draws a JLabel with PaintObject.
  */
@@ -49,17 +50,17 @@ public class DLabel extends JLabel {
 
 	public void changeTokenColor(HoleState holeState) {
 		switch (holeState) {
-			case EMPTY :
-				color = colorEmpty;
-				break;
-			case PLAYER1 :
-				color = pl1Color;
-				break;
-			case PLAYER2 :
-				color = pl2Color;
-				break;
-			default :
-				System.out.println("Z³y kolor?");
+		case EMPTY:
+			color = colorEmpty;
+			break;
+		case PLAYER1:
+			color = pl1Color;
+			break;
+		case PLAYER2:
+			color = pl2Color;
+			break;
+		default:
+			System.out.println("Z³y kolor?");
 		}
 		this.paintComponent(getGraphics());
 	}
