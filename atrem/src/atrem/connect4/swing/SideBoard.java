@@ -18,6 +18,7 @@ public class SideBoard extends JPanel {
 	private DLabel token1, token2;
 	private JPanel namesAndColours;
 	private Color pl1Color, pl2Color;
+	private Color transparent = new Color(0, 0, 0, 0);
 
 	public SideBoard(Color pl1Color, Color pl2Color) {
 		setLayout(null);
@@ -74,12 +75,22 @@ public class SideBoard extends JPanel {
 	}
 
 	public void setTokenPl1() {
+		token1.changeTo(transparent);
+		token2.changeTo(transparent);
+	}
+
+	public void semaphorTurnPl1() {
 		token1.changeTo(pl1Color);
+		token2.changeTo(transparent);
+	}
+
+	public void semaphorTurnPl2() {
+		token1.changeTo(transparent);
 		token2.changeTo(pl2Color);
 	}
 
 	public void setTokenPl2() {
-		token1.changeTo(pl2Color);
-		token2.changeTo(pl1Color);
+		token1.changeTo(transparent);
+		token2.changeTo(transparent);
 	}
 }
