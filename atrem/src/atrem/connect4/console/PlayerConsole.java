@@ -37,7 +37,7 @@ public class PlayerConsole implements PlayerController {
 		keyHandler = new KeyHandler(gameController.getBoard());
 		// this.gamecontroller = game.getGameController();
 		guiConsole = new GUIConsole(gameController);
-		gameController.endInitPlayer();
+		gameController.wakeUpGCr();
 	}
 
 	@Override
