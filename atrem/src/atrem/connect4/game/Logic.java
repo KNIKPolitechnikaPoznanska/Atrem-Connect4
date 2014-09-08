@@ -58,10 +58,6 @@ public class Logic {
 				|| checkIfThereIsAFour(row, slot, 1, 0)
 				|| checkIfThereIsAFour(row, slot, 0, 1)) {
 
-			for (int i = 0; i < getWinningCoordinates().size(); i++) {
-				System.out.println(getWinningCoordinates().get(i)[0] + ", "
-						+ getWinningCoordinates().get(i)[1]);
-			}
 			return true;
 
 		}
