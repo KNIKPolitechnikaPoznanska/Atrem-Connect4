@@ -9,8 +9,6 @@ import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import atrem.connect4.game.PlayerId;
-
 public class GameFrame extends JFrame {
 
 	/**
@@ -31,10 +29,6 @@ public class GameFrame extends JFrame {
 		this.swingPresenter = swingPresenter;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setIconImage(c4Icon);
-		if (swingPresenter.getPlayerId() == PlayerId.PLAYER1)
-			setBounds(100, 0, 754, 386);
-		else
-			setBounds(100, 360, 754, 386);
 
 		Container mainContainer = getContentPane();
 		getContentPane().setLayout(

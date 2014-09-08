@@ -91,6 +91,7 @@ public class SwingPresenter implements PlayerController {
 					gameBoard = frame.getGameBoard();
 					informationBoxes = new DialogInformationBoxes();
 					sideBoard = frame.getSideBoard();
+					sideBoard.setBackground(Color.orange);
 					stats = frame.getStats();
 					stats.setPointsPlayer(gameController.getPlayer1()
 							.getPlayerPoints(), PlayerId.PLAYER1);
@@ -104,6 +105,10 @@ public class SwingPresenter implements PlayerController {
 					gameController.endInitPlayer();
 					gameBoard.disableButtons(blockButton);
 					setNamesAndToken();
+					sideBoard.setPreferredSize(new Dimension(250, 200));
+					stats.setPreferredSize(new Dimension(250, 200));
+					frame.pack();
+					frame.setResizable(false);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -116,7 +121,7 @@ public class SwingPresenter implements PlayerController {
 				frameHeight = frameWidth * 3 / 4;
 				if (playerId == PlayerId.PLAYER1)
 					frame.setBounds(screenWidth / 30, screenHeight / 2
-							- frameHeight / 2, frameWidth, frameHeight);
+							- frameHeight / 2, 0, 0);
 				if (playerId == PlayerId.PLAYER2)
 					frame.setBounds(
 							screenWidth - screenWidth / 30 - frameWidth,
