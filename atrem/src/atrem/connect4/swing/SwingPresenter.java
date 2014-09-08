@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
-import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
 import atrem.connect4.game.GameController;
@@ -111,8 +110,8 @@ public class SwingPresenter implements PlayerController {
 					gameController.wakeUpGCr();
 					gameBoard.disableButtons(blockButton);
 					setNamesAndToken();
-					sideBoard.setPreferredSize(new Dimension(250, 200));
-					stats.setPreferredSize(new Dimension(250, 200));
+					sideBoard.setPreferredSize(new Dimension(215, 200));
+					stats.setPreferredSize(new Dimension(215, 200));
 					frame.pack();
 					frame.setResizable(false);
 				} catch (Exception e) {
