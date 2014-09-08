@@ -73,7 +73,7 @@ public class CopyOfLogic {
 	public boolean checkResult(int doneMoves) {
 		checkIfWin();
 		checkIfDraw(doneMoves);
-		if (gameController.getResult() == ResultState.NoWin)
+		if (gameController.getResult() == ResultState.NO_WIN)
 			return false;
 		return true;
 	}
@@ -147,9 +147,9 @@ public class CopyOfLogic {
 			cpuWin = true;
 		}
 		if (token == HoleState.PLAYER1) {
-			gameController.setResult(ResultState.Player1Win);
+			gameController.setResult(ResultState.PLAYER_1_WIN);
 		} else if (token == HoleState.PLAYER2) {
-			gameController.setResult(ResultState.Player2Win);
+			gameController.setResult(ResultState.PLAYER_2_WIN);
 		}
 	}
 }

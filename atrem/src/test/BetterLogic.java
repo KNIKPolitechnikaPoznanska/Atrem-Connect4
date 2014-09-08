@@ -29,17 +29,17 @@ public class BetterLogic {
 
 		if (checkIfThereIsAWinner(row, slot, token)
 				&& token == HoleState.PLAYER1) {
-			gameController.setResult(ResultState.Player1Win);
+			gameController.setResult(ResultState.PLAYER_1_WIN);
 		}
 
 		if (checkIfThereIsAWinner(row, slot, token)
 				&& token == HoleState.PLAYER2) {
-			gameController.setResult(ResultState.Player1Win);
+			gameController.setResult(ResultState.PLAYER_1_WIN);
 		}
 
 		checkIfDraw(doneMoves);
 
-		if (gameController.getResult() == ResultState.NoWin) {
+		if (gameController.getResult() == ResultState.NO_WIN) {
 			return false;
 		}
 

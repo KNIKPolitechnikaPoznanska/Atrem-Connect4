@@ -19,12 +19,13 @@ public class EasyPC implements PlayerController {
 	private DialogInformationBoxes informationBoxes;
 	private Board board;
 	private ExecutorService executor = Executors.newSingleThreadExecutor();
+	private PlayerId playerId;
 
-	public EasyPC(GameController gameController, String name, PlayerId playerId) {
+	public EasyPC(GameController gameController,
+			PlayerAttributes playerAttributes, int playerPoints) {
 		this.gameController = gameController;
-		playerAttributes = new PlayerAttributes();
-		playerAttributes.setName(name);
-		playerAttributes.setPlayerId(playerId);
+		this.playerAttributes = playerAttributes;
+		this.playerId = playerAttributes.getPlayerId();
 		board = gameController.getBoard();
 		gameController.wakeUpGCr();
 		informationBoxes = new DialogInformationBoxes();
@@ -78,18 +79,17 @@ public class EasyPC implements PlayerController {
 
 	@Override
 	public void endOfGame(ResultState resultGame) {
-		if (resultGame == ResultState.Player1Win)
+		if (resultGame == ResultState.PLAYER_1_WIN)
 			informationBoxes.winMessage(playerAttributes.getName());
-		if (resultGame == ResultState.Player2Win)
+		if (resultGame == ResultState.PLAYER_2_WIN)
 			informationBoxes.winMessage(gameController.getPlayer2().getName());
-		if (resultGame == ResultState.Draw)
+		if (resultGame == ResultState.DRAW)
 			informationBoxes.drawMessage();
 	}
 
 	@Override
 	public int getPlayerPoints() {
-		// TODO Auto-generated method stub
-		return 0;
+		return playerAttributes.getPlayerPoints();
 	}
 
 }

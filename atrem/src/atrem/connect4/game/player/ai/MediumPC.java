@@ -15,22 +15,20 @@ import atrem.connect4.game.player.PlayerController;
 import atrem.connect4.swing.DialogInformationBoxes;
 
 public class MediumPC implements PlayerController {
-
 	private Logic logic;
-
 	private PlayerAttributes playerAttributes;
 	private ExecutorService executor = Executors.newSingleThreadExecutor();
 	private Board board;
 	private Random rand;
 	private GameController gameController;
 	private DialogInformationBoxes informationBoxes;
+	private PlayerId playerId;
 
-	public MediumPC(GameController gameController, String name,
-			PlayerId playerId, Logic logic) {
-		playerAttributes = new PlayerAttributes();
-		playerAttributes.setName(name);
-		playerAttributes.setPlayerId(playerId);
+	public MediumPC(GameController gameController,
+			PlayerAttributes playerAttributes, Logic logic, int playerPoints) {
 		this.gameController = gameController;
+		this.playerAttributes = playerAttributes;
+		this.playerId = playerAttributes.getPlayerId();
 		this.logic = logic;
 		board = gameController.getBoard();
 		rand = new Random();
@@ -132,11 +130,11 @@ public class MediumPC implements PlayerController {
 
 	@Override
 	public void endOfGame(ResultState resultGame) {
-		if (resultGame == ResultState.Player1Win)
+		if (resultGame == ResultState.PLAYER_1_WIN)
 			informationBoxes.winMessage(playerAttributes.getName());
-		if (resultGame == ResultState.Player2Win)
+		if (resultGame == ResultState.PLAYER_2_WIN)
 			informationBoxes.winMessage(gameController.getPlayer2().getName());
-		if (resultGame == ResultState.Draw)
+		if (resultGame == ResultState.DRAW)
 			informationBoxes.drawMessage();
 	}
 
@@ -162,6 +160,6 @@ public class MediumPC implements PlayerController {
 
 	@Override
 	public int getPlayerPoints() {
-		return 0;
+		return playerAttributes.getPlayerPoints();
 	}
 }

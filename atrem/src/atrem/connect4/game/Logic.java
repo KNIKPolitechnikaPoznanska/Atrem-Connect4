@@ -22,7 +22,7 @@ public class Logic {
 
 	private boolean checkIfDraw(int doneMoves) {
 		if (doneMoves == gameController.getBoard().getTotalSpots()) {
-			gameController.setResult(ResultState.Draw);
+			gameController.setResult(ResultState.DRAW);
 			return true;
 		}
 		return false;
@@ -41,14 +41,14 @@ public class Logic {
 	private void checkTheWinner(HoleState token) {
 
 		switch (token) {
-			case PLAYER1 :
-				gameController.setResult(ResultState.Player1Win);
-				break;
-			case PLAYER2 :
-				gameController.setResult(ResultState.Player2Win);
-				break;
-			default :
-				break;
+		case PLAYER1:
+			gameController.setResult(ResultState.PLAYER_1_WIN);
+			break;
+		case PLAYER2:
+			gameController.setResult(ResultState.PLAYER_2_WIN);
+			break;
+		default:
+			break;
 		}
 	}
 
