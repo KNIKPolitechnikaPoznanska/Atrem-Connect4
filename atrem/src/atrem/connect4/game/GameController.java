@@ -100,6 +100,7 @@ public class GameController implements Runnable {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+
 			currentPlayer.yourTurn();
 			System.out.println("po ");
 			gameState = GameState.WAITING_FOR_MOVE;
@@ -264,4 +265,9 @@ public class GameController implements Runnable {
 	public Logic getLogic() {
 		return logic;
 	}
+
+	public PlayerController getCurrentPlayer() {
+		return currentPlayer;
+	}
+
 }
