@@ -213,12 +213,10 @@ public class SwingPresenter implements PlayerController {
 		if (gameController.getCurrentPlayer().getPlayerId() == PlayerId.PLAYER1) {
 			System.out.println("playe1");
 			sideBoard.semaphorTurnPl1();
-
 		} else {
 			System.out.println("playe2");
 			sideBoard.semaphorTurnPl2();
 		}
-
 	}
 
 	public Color getOpponentColor() {
