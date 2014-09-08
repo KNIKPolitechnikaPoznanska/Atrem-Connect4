@@ -1,5 +1,6 @@
 package atrem.connect4.game.player.ai;
 
+import java.awt.Color;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -19,12 +20,14 @@ public class EasyPC implements PlayerController {
 	private DialogInformationBoxes informationBoxes;
 	private Board board;
 	private ExecutorService executor = Executors.newSingleThreadExecutor();
+	private PlayerId playerId;
 
-	public EasyPC(GameController gameController, String name, PlayerId playerId) {
+	public EasyPC(GameController gameController,
+			PlayerAttributes playerAttributes, Color opponentColor,
+			int playerPoints) {
 		this.gameController = gameController;
-		playerAttributes = new PlayerAttributes();
-		playerAttributes.setName(name);
-		playerAttributes.setPlayerId(playerId);
+		this.playerAttributes = playerAttributes;
+		this.playerId = playerAttributes.getPlayerId();
 		board = gameController.getBoard();
 		gameController.wakeUpGCr();
 		informationBoxes = new DialogInformationBoxes();
@@ -82,14 +85,13 @@ public class EasyPC implements PlayerController {
 			informationBoxes.winMessage(playerAttributes.getName());
 		if (resultGame == ResultState.PLAYER_2_WIN)
 			informationBoxes.winMessage(gameController.getPlayer2().getName());
-		if (resultGame == ResultState.Draw)
+		if (resultGame == ResultState.DRAW)
 			informationBoxes.drawMessage();
 	}
 
 	@Override
 	public int getPlayerPoints() {
-		// TODO Auto-generated method stub
-		return 0;
+		return playerAttributes.getPlayerPoints();
 	}
 
 }
