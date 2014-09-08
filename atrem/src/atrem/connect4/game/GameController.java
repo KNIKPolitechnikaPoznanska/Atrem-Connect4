@@ -26,12 +26,12 @@ public class GameController implements Runnable {
 	 */
 	private PlayerController currentPlayer() {
 		switch (playerTurn) {
-		case PLAYER1:
-			return player1;
-		case PLAYER2:
-			return player2;
-		default:
-			return null; // player1
+			case PLAYER1 :
+				return player1;
+			case PLAYER2 :
+				return player2;
+			default :
+				return null; // player1
 		}
 	}
 
@@ -61,26 +61,27 @@ public class GameController implements Runnable {
 	/**
 	 * Glowna petla gry
 	 */
+
 	public void startNewGame() {
 		int row = board.getRows();
 		int slot = board.getSlots();
 		lastMove = new LastMove();
 		board = new Board(row, slot);
 		resultState = ResultState.NoWin;
-		gameState = GameState.nextGame;
+		gameState = GameState.preInit;
+		startGameLoop();
 		if (player1 instanceof SwingPresenter) {
 			player1 = new SwingPresenter(this, player1.getName(),
-					PlayerId.PLAYER1, pl1Color, pl2Color, false,
+					PlayerId.PLAYER1, pl1Color, pl2Color,
 					player1.getPlayerPoints());
 		}
 		if (player2 instanceof SwingPresenter) {
 			player2 = new SwingPresenter(this, player2.getName(),
-					PlayerId.PLAYER2, pl1Color, pl2Color, false,
+					PlayerId.PLAYER2, pl1Color, pl2Color,
 					player2.getPlayerPoints());
 		}
 		doneMoves = 0;
 
-		startGameLoop();
 	}
 
 	private synchronized void gameLoop() {// ma odczytywaæ GameState
@@ -88,8 +89,7 @@ public class GameController implements Runnable {
 		logic = new Logic(this);
 		lastMove = new LastMove();
 		System.out.println("przed init");
-		if (gameState != GameState.nextGame)
-			waitForInit();
+		waitForInit();
 		while (resultState == ResultState.NoWin) {
 			currentPlayer = currentPlayer();
 			try {
@@ -138,17 +138,17 @@ public class GameController implements Runnable {
 		}
 	}
 
-	public synchronized void endInitPlayer() {
+	public synchronized void wakeUpGCr() {
 		switch (gameState) {
-		case preInit:
-			gameState = GameState.endInit1;
-			break;
-		case endInit1:
-			gameState = GameState.endInitAll;
-			this.notifyAll();
-			break;
-		default:
-			break;
+			case preInit :
+				gameState = GameState.endInit1;
+				break;
+			case endInit1 :
+				gameState = GameState.endInitAll;
+				this.notifyAll();
+				break;
+			default :
+				break;
 		}
 	}
 
