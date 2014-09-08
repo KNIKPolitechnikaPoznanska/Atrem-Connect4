@@ -1,5 +1,6 @@
 package atrem.connect4.game.player;
 
+import atrem.connect4.game.PlayerDecision;
 import atrem.connect4.game.PlayerId;
 
 /*
@@ -10,6 +11,15 @@ public class PlayerAttributes {
 	private String name;
 	private PlayerId playerId; // duplikat
 	private int playerPoints;
+	private PlayerDecision playerDecision;
+
+	public PlayerDecision getPlayerDecision() {
+		return playerDecision;
+	}
+
+	public void setPlayerDecision(PlayerDecision playerDecision) {
+		this.playerDecision = playerDecision;
+	}
 
 	public int getPlayerPoints() {
 		return playerPoints;

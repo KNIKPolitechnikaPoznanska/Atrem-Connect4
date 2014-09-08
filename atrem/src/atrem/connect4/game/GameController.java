@@ -67,7 +67,8 @@ public class GameController implements Runnable {
 		lastMove = new LastMove();
 		board = new Board(row, slot);
 		resultState = ResultState.NoWin;
-		gameState = GameState.nextGame;
+		gameState = GameState.preInit;
+		startGameLoop();
 		if (player1 instanceof SwingPresenter) {
 			player1 = new SwingPresenter(this, player1.getName(),
 					PlayerId.PLAYER1, pl1Color, pl2Color, false,
@@ -80,7 +81,6 @@ public class GameController implements Runnable {
 		}
 		doneMoves = 0;
 
-		startGameLoop();
 	}
 
 	private synchronized void gameLoop() {// ma odczytywaæ GameState
@@ -88,8 +88,7 @@ public class GameController implements Runnable {
 		logic = new Logic(this);
 		lastMove = new LastMove();
 		System.out.println("przed init");
-		if (gameState != GameState.nextGame)
-			waitForInit();
+		waitForInit();
 		while (resultState == ResultState.NoWin) {
 			currentPlayer = currentPlayer();
 			try {
