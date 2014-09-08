@@ -42,10 +42,10 @@ public class Logic {
 
 		switch (token) {
 			case PLAYER1 :
-				gameController.setResult(ResultState.Player1Win);
+				gameController.setResult(ResultState.PLAYER_1_WIN);
 				break;
 			case PLAYER2 :
-				gameController.setResult(ResultState.Player2Win);
+				gameController.setResult(ResultState.PLAYER_2_WIN);
 				break;
 			default :
 				break;

@@ -16,7 +16,7 @@ public class GameController implements Runnable {
 	private PlayerController currentPlayer, player1, player2;
 	private int emptySpot, slot;
 	private PlayerId playerTurn = PlayerId.PLAYER1;
-	private ResultState resultState = ResultState.NoWin;
+	private ResultState resultState = ResultState.NO_WIN;
 	private GameState gameState = GameState.PRE_INIT;
 	private Color pl1Color, pl2Color;
 	private PlayerAttributes player1Attributes, player2Attributes;
@@ -28,12 +28,12 @@ public class GameController implements Runnable {
 	 */
 	private PlayerController currentPlayer() {
 		switch (playerTurn) {
-			case PLAYER1 :
-				return player1;
-			case PLAYER2 :
-				return player2;
-			default :
-				return null; // player1
+		case PLAYER1:
+			return player1;
+		case PLAYER2:
+			return player2;
+		default:
+			return null; // player1
 		}
 	}
 
@@ -69,7 +69,7 @@ public class GameController implements Runnable {
 		int slot = board.getSlots();
 		lastMove = new LastMove();
 		board = new Board(row, slot);
-		resultState = ResultState.NoWin;
+		resultState = ResultState.NO_WIN;
 		gameState = GameState.PRE_INIT;
 		startGameLoop();
 		player1Attributes = new PlayerAttributes(player1.getName(),
@@ -87,13 +87,14 @@ public class GameController implements Runnable {
 		doneMoves = 0;
 
 	}
+
 	private synchronized void gameLoop() {// ma odczytywaæ GameState
 		boolean endGame;
 		logic = new Logic(this);
 		lastMove = new LastMove();
 		System.out.println("przed init");
 		waitForInit();
-		while (resultState == ResultState.NoWin) {
+		while (resultState == ResultState.NO_WIN) {
 			currentPlayer = currentPlayer();
 			try {
 				this.wait(100);
@@ -144,15 +145,15 @@ public class GameController implements Runnable {
 
 	public synchronized void wakeUpGCr() {
 		switch (gameState) {
-			case PRE_INIT :
-				gameState = GameState.END_INIT_1;
-				break;
-			case END_INIT_1 :
-				gameState = GameState.END_INIT_ALL;
-				this.notifyAll();
-				break;
-			default :
-				break;
+		case PRE_INIT:
+			gameState = GameState.END_INIT_1;
+			break;
+		case END_INIT_1:
+			gameState = GameState.END_INIT_ALL;
+			this.notifyAll();
+			break;
+		default:
+			break;
 		}
 	}
 

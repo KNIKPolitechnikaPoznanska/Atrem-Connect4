@@ -150,13 +150,13 @@ public class SwingPresenter implements PlayerController {
 	public void endOfGame(ResultState resultGame) {
 		if (resultGame != ResultState.Draw)
 			markWinningFour(gameController.getLogic().getWinningCoordinates());
-		if (resultGame == ResultState.Player1Win) {
+		if (resultGame == ResultState.PLAYER_1_WIN) {
 			decision = informationBoxes.winMessage(gameController.getPlayer1()
 					.getName());
 			if (playerId == PlayerId.PLAYER1)
 				playerAttributes.addPoints();
 		}
-		if (resultGame == ResultState.Player2Win) {
+		if (resultGame == ResultState.PLAYER_2_WIN) {
 			decision = informationBoxes.winMessage(gameController.getPlayer2()
 					.getName());
 			if (playerId == PlayerId.PLAYER2)

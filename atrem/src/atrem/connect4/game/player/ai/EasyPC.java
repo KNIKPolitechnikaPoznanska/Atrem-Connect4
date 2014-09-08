@@ -78,9 +78,9 @@ public class EasyPC implements PlayerController {
 
 	@Override
 	public void endOfGame(ResultState resultGame) {
-		if (resultGame == ResultState.Player1Win)
+		if (resultGame == ResultState.PLAYER_1_WIN)
 			informationBoxes.winMessage(playerAttributes.getName());
-		if (resultGame == ResultState.Player2Win)
+		if (resultGame == ResultState.PLAYER_2_WIN)
 			informationBoxes.winMessage(gameController.getPlayer2().getName());
 		if (resultGame == ResultState.Draw)
 			informationBoxes.drawMessage();
