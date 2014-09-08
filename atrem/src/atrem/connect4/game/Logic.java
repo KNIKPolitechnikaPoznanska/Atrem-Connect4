@@ -24,16 +24,6 @@ public class Logic {
 		return false;
 	}
 
-	public boolean checkIfWinPC(int row, int slot) {
-		if (checkIfThereIsAFour(row, slot, 1, 1)
-				|| checkIfThereIsAFour(row, slot, -1, 1)
-				|| checkIfThereIsAFour(row, slot, 1, 0)
-				|| checkIfThereIsAFour(row, slot, 0, 1))
-			return cpuWin = true;
-
-		return cpuWin = false;
-	}
-
 	public boolean getResultOfMove(int row, int slot, int doneMoves) {
 
 		if (checkIfItIsAWinningMove(row, slot) || checkIfDraw(doneMoves)) {
@@ -97,6 +87,12 @@ public class Logic {
 		} else {
 			return true;
 		}
+	}
+
+	public boolean checkIfWinPC(int row, int slot) {
+		if (checkIfItIsAWinningMove(row, slot))
+			return cpuWin = true;
+		return cpuWin = false;
 	}
 
 	public boolean getCPUwin() {
