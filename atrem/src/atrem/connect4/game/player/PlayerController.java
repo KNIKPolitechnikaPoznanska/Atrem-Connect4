@@ -8,7 +8,7 @@ public interface PlayerController {
 
 	public abstract String getName();
 
-	public abstract void setName(String name);
+	public abstract void setName(String playerName);
 
 	public abstract PlayerId getPlayerId();
 

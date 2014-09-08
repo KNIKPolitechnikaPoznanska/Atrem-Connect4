@@ -5,6 +5,7 @@ import java.util.Random;
 
 import atrem.connect4.console.PlayerConsole;
 import atrem.connect4.game.board.Board;
+import atrem.connect4.game.player.PlayerAttributes;
 import atrem.connect4.game.player.PlayerController;
 import atrem.connect4.game.player.ai.EasyPC;
 import atrem.connect4.game.player.ai.MediumPC;
@@ -16,11 +17,12 @@ import atrem.connect4.swing.SwingPresenter;
 public class GameFactory {
 	private Board board;
 	private PlayerController player1, player2;
+	private PlayerAttributes player1Attributes, player2Attributes;
 	private GameController gameController;
-	private String player2name, player1name, player1Type, player2Type,
+	private String player2Name, player1Name, player1Type, player2Type,
 			gamePl1Type, gamePl2Type;
 	private int slots, rows;
-	private Color token1Color, token2Color;
+	private Color player1Color, player2Color;
 
 	/**
 	 * £aduje GameController (all settings)
@@ -43,34 +45,38 @@ public class GameFactory {
 		gameController.setPlayer1(player1);
 		gameController.setPlayer2(player2);
 		gameController.setPlayerTurn(randomFirstTurn());
-		gameController.setPl1Color(token1Color);
-		gameController.setPl2Color(token2Color);
+		gameController.setPl1Color(player1Color);
+		gameController.setPl2Color(player2Color);
 	}
 
 	/**
 	 * Tworzy dla ka¿dego gracza w³asnego prezentera
 	 */
 	public void createPlayerGame() {
+		player1Attributes = new PlayerAttributes(player1Name, PlayerId.PLAYER1,
+				0, player1Color);
+		player2Attributes = new PlayerAttributes(player2Name, PlayerId.PLAYER2,
+				0, player2Color);
 		switch (player1Type) {
-		case GameConfig.CHuman:
-			player1 = createHumanPlayer(1);
-			break;
-		case GameConfig.CcpuEasy:
-			player1 = createCpuEasyPlayer(PlayerId.PLAYER1);
-			break;
-		case GameConfig.CcpuMedium:
-			player1 = createCpuMediumPlayer(PlayerId.PLAYER1);
+			case GameConfig.CHuman :
+				player1 = createHumanPlayer(1);
+				break;
+			case GameConfig.CcpuEasy :
+				player1 = createCpuEasyPlayer(PlayerId.PLAYER1);
+				break;
+			case GameConfig.CcpuMedium :
+				player1 = createCpuMediumPlayer(PlayerId.PLAYER1);
 		}
 
 		switch (player2Type) {
-		case GameConfig.CHuman:
-			player2 = createHumanPlayer(2);
-			break;
-		case GameConfig.CcpuEasy:
-			player2 = createCpuEasyPlayer(PlayerId.PLAYER2);
-			break;
-		case GameConfig.CcpuMedium:
-			player2 = createCpuMediumPlayer(PlayerId.PLAYER2);
+			case GameConfig.CHuman :
+				player2 = createHumanPlayer(2);
+				break;
+			case GameConfig.CcpuEasy :
+				player2 = createCpuEasyPlayer(PlayerId.PLAYER2);
+				break;
+			case GameConfig.CcpuMedium :
+				player2 = createCpuMediumPlayer(PlayerId.PLAYER2);
 		}
 
 	}
@@ -82,7 +88,7 @@ public class GameFactory {
 	 * @return MediumPC
 	 */
 	private PlayerController createCpuMediumPlayer(PlayerId playerID) {
-		return new MediumPC(gameController, player2name, playerID, new Logic(
+		return new MediumPC(gameController, player2Name, playerID, new Logic(
 				gameController));
 	}
 
@@ -93,7 +99,7 @@ public class GameFactory {
 	 * @return EasyPC
 	 */
 	private PlayerController createCpuEasyPlayer(PlayerId playerID) {
-		return new EasyPC(gameController, player2name, playerID);
+		return new EasyPC(gameController, player2Name, playerID);
 	}
 
 	/**
@@ -107,31 +113,32 @@ public class GameFactory {
 		PlayerController humanPlayer = null;
 		if (playerNmb == 1) {
 			switch (gamePl1Type) {
-			case "console":
-				humanPlayer = new PlayerConsole(gameController, player1name,
-						PlayerId.PLAYER1);
-				break;
-			case "swing":
-				humanPlayer = new SwingPresenter(gameController, player1name,
-						PlayerId.PLAYER1, token1Color, token2Color, false, 0);
-				break;
-			default:
-				System.out.println("Brak typu gry!");
+				case "console" :
+					humanPlayer = new PlayerConsole(gameController,
+							player1Attributes);
+					break;
+				case "swing" :
+					humanPlayer = new SwingPresenter(gameController,
+							player1Attributes, player2Color, 0);
+					break;
+				default :
+					System.out.println("Brak typu gry!");
 			}
 		}
+
 		if (playerNmb == 2) {
 			switch (gamePl2Type) {
-			case "console":
-				humanPlayer = new PlayerConsole(gameController, player2name,
-						PlayerId.PLAYER2);
-				break;
-			case "swing":
-				humanPlayer = new SwingPresenter(gameController, player2name,
-						PlayerId.PLAYER2, token1Color, token2Color, false, 0);
-				break;
-			default:
-				humanPlayer = null;
-				System.out.println("Brak typu gry!");
+				case "console" :
+					humanPlayer = new PlayerConsole(gameController,
+							player2Attributes);
+					break;
+				case "swing" :
+					humanPlayer = new SwingPresenter(gameController,
+							player2Attributes, player1Color, 0);
+					break;
+				default :
+					humanPlayer = null;
+					System.out.println("Brak typu gry!");
 			}
 		}
 		return humanPlayer;
@@ -150,7 +157,7 @@ public class GameFactory {
 	}
 
 	public String getPlayer1Name() {
-		return player1name;
+		return player1Name;
 	}
 
 	public PlayerController getPlayer2() {
@@ -158,7 +165,7 @@ public class GameFactory {
 	}
 
 	public String getPlayer2Name() {
-		return player2name;
+		return player2Name;
 	}
 
 	public int getRows() {
@@ -174,11 +181,11 @@ public class GameFactory {
 	}
 
 	public void setToken1Color(Color token1Color) {
-		this.token1Color = token1Color;
+		this.player1Color = token1Color;
 	}
 
 	public void setToken2Color(Color token2Color) {
-		this.token2Color = token2Color;
+		this.player2Color = token2Color;
 	}
 
 	public void setGamePl1Type(String gamePl1Type) {
@@ -190,11 +197,11 @@ public class GameFactory {
 	}
 
 	public void setPlayer1Name(String player1Name) {
-		this.player1name = player1Name;
+		this.player1Name = player1Name;
 	}
 
 	public void setPlayer2Name(String player2Name) {
-		this.player2name = player2Name;
+		this.player2Name = player2Name;
 	}
 
 	public void setRows(int rows) {

@@ -1,5 +1,7 @@
 package atrem.connect4.game.player;
 
+import java.awt.Color;
+
 import atrem.connect4.game.PlayerDecision;
 import atrem.connect4.game.PlayerId;
 
@@ -8,9 +10,18 @@ import atrem.connect4.game.PlayerId;
  */
 
 public class PlayerAttributes {
-	private String name;
-	private PlayerId playerId; // duplikat
+	private String playerName;
+	private PlayerId playerId;
 	private int playerPoints;
+	private Color playerColor;
+
+	public PlayerAttributes(String playerName, PlayerId playerId, int playerPoints,
+			Color playerColor) {
+		this.playerName = playerName;
+		this.playerId = playerId;
+		this.playerPoints = playerPoints;
+		this.playerColor = playerColor;
+	}
 	private PlayerDecision playerDecision;
 
 	public PlayerDecision getPlayerDecision() {
@@ -33,21 +44,20 @@ public class PlayerAttributes {
 		this.playerPoints = playerPoints;
 	}
 
-	public PlayerAttributes() {
-	};
-
-	public PlayerAttributes(String name, PlayerId playerId, int playerPoints) {
-		this.name = name;
-		this.playerId = playerId;
-		this.playerPoints = playerPoints;
+	public Color getPlayerColor() {
+		return playerColor;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setPlayerColor(Color playerColor) {
+		this.playerColor = playerColor;
+	}
+
+	public void setName(String playerName) {
+		this.playerName = playerName;
 	}
 
 	public String getName() {
-		return name;
+		return playerName;
 	}
 
 	public PlayerId getPlayerId() {

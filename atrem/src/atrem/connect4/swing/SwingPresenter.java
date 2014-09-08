@@ -8,7 +8,6 @@ import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
 import atrem.connect4.game.GameController;
-import atrem.connect4.game.PlayerDecision;
 import atrem.connect4.game.PlayerId;
 import atrem.connect4.game.ResultState;
 import atrem.connect4.game.player.PlayerAttributes;
@@ -23,8 +22,7 @@ public class SwingPresenter implements PlayerController {
 	private boolean blockButton;
 	private PlayerId playerId;
 	private SideBoard sideBoard;
-	protected JLabel token;
-	private Color pl1TokenColor, pl2TokenColor;
+	private Color playerColor, opponentColor;
 	private Stats stats;
 	private Dimension screenSize;
 	private DialogInformationBoxes informationBoxes;
@@ -40,16 +38,14 @@ public class SwingPresenter implements PlayerController {
 	 * @param oppTokenColor
 	 * @param block
 	 */
-	public SwingPresenter(GameController gameController, String playerName,
-			PlayerId playerId, Color pl1TokenColor, Color pl2TokenColor,
-			boolean block, int playerPoints) {
-		playerAttributes = new PlayerAttributes(playerName, playerId,
-				playerPoints);
+	public SwingPresenter(GameController gameController,
+			PlayerAttributes playerAttributes, Color opponentColor,
+			int playerPoints) {
 		this.gameController = gameController;
-		this.blockButton = block;
-		this.playerId = playerId;
-		this.pl1TokenColor = pl1TokenColor;
-		this.pl2TokenColor = pl2TokenColor;
+		this.playerAttributes = playerAttributes;
+		this.playerId = playerAttributes.getPlayerId();
+		this.playerColor = playerAttributes.getPlayerColor();
+		this.opponentColor = opponentColor;
 		setupFrame();
 		slots = gameController.getBoard().getSlots();
 		rows = gameController.getBoard().getRows();
@@ -70,6 +66,11 @@ public class SwingPresenter implements PlayerController {
 		System.out.println(LastRow + " " + LastSlot);
 	}
 
+	/**
+	 * Ustawia ostatnio klikniêty slot.
+	 * 
+	 * @param slot
+	 */
 	public void getSlotFromView(int slot) {
 		emptySpot = gameController.move(slot);
 		if (emptySpot == -1) {
@@ -81,6 +82,9 @@ public class SwingPresenter implements PlayerController {
 		}
 	}
 
+	/**
+	 * Tworzy w¹tek Swing
+	 */
 	private void setupFrame() {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
@@ -141,13 +145,13 @@ public class SwingPresenter implements PlayerController {
 		if (resultGame == ResultState.Player1Win) {
 			decision = informationBoxes.winMessage(gameController.getPlayer1()
 					.getName());
-			if (playerId == playerId.PLAYER1)
+			if (playerId == PlayerId.PLAYER1)
 				playerAttributes.addPoints();
 		}
 		if (resultGame == ResultState.Player2Win) {
 			decision = informationBoxes.winMessage(gameController.getPlayer2()
 					.getName());
-			if (playerId == playerId.PLAYER2)
+			if (playerId == PlayerId.PLAYER2)
 				playerAttributes.addPoints();
 		}
 		if (resultGame == ResultState.Draw)
@@ -159,31 +163,19 @@ public class SwingPresenter implements PlayerController {
 	public void makeDecision(int decision) {
 		if (decision == 1) {
 			frame.dispose();
-			if (playerId == playerId.PLAYER2) {
-				playerAttributes.setPlayerDecision(PlayerDecision.NEW_GAME);
-				gameController.initializeNewGame(playerId,
-						playerAttributes.getPlayerDecision());
+			if (playerId == PlayerId.PLAYER2) {
+				gameController.initializeNewGame();
 			}
 		}
 		if (decision == 0) // tak gram dalej
 		{
 			frame.dispose();
-			if (playerId == playerId.PLAYER2)
-				gameController.startNewGame();
+			gameController.initializeNewGame();
+
+			gameController.startNewGame();
 		}
 		if (decision == 2) // zamknij
 			frame.dispose();
-	}
-
-	/**
-	 * Funkcja zmienia Label gracza w ka¿zdej turzel
-	 * 
-	 * @param playerId
-	 *            kolej gracza 1/2
-	 */
-
-	@Deprecated
-	public void changeDispTurn(PlayerId playerId) {
 	}
 
 	public PlayerAttributes getPlayerAttributes() {
@@ -205,16 +197,16 @@ public class SwingPresenter implements PlayerController {
 		}
 	}
 
-	public Color getPl2TokenColor() {
-		return pl2TokenColor;
+	public Color getOpponentColor() {
+		return opponentColor;
 	}
 
 	public int getSlots() {
 		return slots;
 	}
 
-	public Color getPl1TokenColor() {
-		return pl1TokenColor;
+	public Color getPlayerColor() {
+		return playerColor;
 	}
 
 	public int getRows() {
@@ -241,13 +233,8 @@ public class SwingPresenter implements PlayerController {
 		this.gameController = gamecontroller;
 	}
 
-	public int getPoints() {
-		return playerAttributes.getPlayerPoints();
-	}
-
 	@Override
 	public int getPlayerPoints() {
-		// TODO Auto-generated method stub
 		return playerAttributes.getPlayerPoints();
 	}
 }
