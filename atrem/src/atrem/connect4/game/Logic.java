@@ -22,7 +22,7 @@ public class Logic {
 
 	private boolean checkIfDraw(int doneMoves) {
 		if (doneMoves == gameController.getBoard().getTotalSpots()) {
-			gameController.setResult(ResultState.Draw);
+			gameController.setResult(ResultState.DRAW);
 			return true;
 		}
 		return false;
