@@ -41,14 +41,14 @@ public class Logic {
 	private void checkTheWinner(HoleState token) {
 
 		switch (token) {
-			case PLAYER1 :
-				gameController.setResult(ResultState.PLAYER_1_WIN);
-				break;
-			case PLAYER2 :
-				gameController.setResult(ResultState.PLAYER_2_WIN);
-				break;
-			default :
-				break;
+		case PLAYER1:
+			gameController.setResult(ResultState.PLAYER_1_WIN);
+			break;
+		case PLAYER2:
+			gameController.setResult(ResultState.PLAYER_2_WIN);
+			break;
+		default:
+			break;
 		}
 	}
 
