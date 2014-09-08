@@ -22,4 +22,6 @@ public interface PlayerController {
 
 	public abstract int getPlayerPoints();
 
+	public abstract PlayerAttributes getPlayerAttributes();
+
 }

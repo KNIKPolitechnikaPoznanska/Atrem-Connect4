@@ -20,6 +20,7 @@ public class GameController implements Runnable {
 	private GameState gameState = GameState.preInit;
 	private Color pl1Color, pl2Color;
 	private PlayerAttributes player1Attributes, player2Attributes;
+	private PlayerDecision[] playerDecisions = new PlayerDecision[2];
 
 	/**
 	 * Sprawdza którego z graczy jest kolej
@@ -28,12 +29,12 @@ public class GameController implements Runnable {
 	 */
 	private PlayerController currentPlayer() {
 		switch (playerTurn) {
-			case PLAYER1 :
-				return player1;
-			case PLAYER2 :
-				return player2;
-			default :
-				return null; // player1
+		case PLAYER1:
+			return player1;
+		case PLAYER2:
+			return player2;
+		default:
+			return null; // player1
 		}
 	}
 
@@ -87,6 +88,7 @@ public class GameController implements Runnable {
 		doneMoves = 0;
 
 	}
+
 	private synchronized void gameLoop() {// ma odczytywaæ GameState
 		boolean endGame;
 		logic = new Logic(this);
@@ -109,6 +111,7 @@ public class GameController implements Runnable {
 					lastMove.getLastSlot(), doneMoves);
 
 			if (endGame) {
+				gameState = GameState.preInit;
 				changePlayer();
 				currentPlayer = currentPlayer();
 				currentPlayer.yourTurn();
@@ -143,16 +146,26 @@ public class GameController implements Runnable {
 
 	public synchronized void wakeUpGCr() {
 		switch (gameState) {
-			case preInit :
-				gameState = GameState.endInit1;
-				break;
-			case endInit1 :
-				gameState = GameState.endInitAll;
-				this.notifyAll();
-				break;
-			default :
-				break;
+		case preInit:
+			gameState = GameState.endInit1;
+			break;
+		case endInit1:
+			gameState = GameState.endInitAll;
+			this.notifyAll();
+			break;
+		default:
+			break;
 		}
+	}
+
+	public void analyseDecision() {
+		if (player1.getPlayerAttributes().getPlayerDecision() == PlayerDecision.NEW_GAME
+				&& player2.getPlayerAttributes().getPlayerDecision() == PlayerDecision.NEW_GAME)
+			startNewGame();
+		else if (player1.getPlayerAttributes().getPlayerDecision() == PlayerDecision.MENU
+				|| player2.getPlayerAttributes().getPlayerDecision() == PlayerDecision.MENU)
+			backToMenu();
+
 	}
 
 	@Override
@@ -175,7 +188,7 @@ public class GameController implements Runnable {
 		}
 	}
 
-	public void initializeNewGame() {
+	public void backToMenu() {
 		GameFactory gameFactory = new GameFactory();
 		GameConfig config = new GameConfig(gameFactory);
 		config.setDBox();

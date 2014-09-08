@@ -22,7 +22,7 @@ public class EasyPC implements PlayerController {
 
 	public EasyPC(GameController gameController, String name, PlayerId playerId) {
 		this.gameController = gameController;
-		playerAttributes = new PlayerAttributes();
+		playerAttributes = new PlayerAttributes(name, playerId, 0, null);
 		playerAttributes.setName(name);
 		playerAttributes.setPlayerId(playerId);
 		board = gameController.getBoard();
@@ -90,6 +90,12 @@ public class EasyPC implements PlayerController {
 	public int getPlayerPoints() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public PlayerAttributes getPlayerAttributes() {
+		// TODO Auto-generated method stub
+		return playerAttributes;
 	}
 
 }
