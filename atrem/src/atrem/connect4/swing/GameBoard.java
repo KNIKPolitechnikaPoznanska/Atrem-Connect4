@@ -90,6 +90,10 @@ public class GameBoard extends JPanel {
 		swingPresenter.getSlotFromView(chosenSlot);
 	}
 
+	public void setColor(int row, int slot, Color color) {
+		swingBoard[row][slot].changeTo(color);
+	}
+
 	public void setBoardSize(int rows, int slots) {
 		this.rows = rows;
 		this.slots = slots;

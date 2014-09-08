@@ -3,6 +3,7 @@ package atrem.connect4.swing;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.List;
 
 import javax.swing.SwingUtilities;
 
@@ -146,6 +147,8 @@ public class SwingPresenter implements PlayerController {
 
 	@Override
 	public void endOfGame(ResultState resultGame) {
+		if (resultGame != ResultState.Draw)
+			markWinningFour(gameController.getLogic().getWinningCoordinates());
 		if (resultGame == ResultState.Player1Win) {
 			decision = informationBoxes.winMessage(gameController.getPlayer1()
 					.getName());
@@ -180,6 +183,13 @@ public class SwingPresenter implements PlayerController {
 		}
 		if (decision == 2) // zamknij
 			frame.dispose();
+	}
+
+	public void markWinningFour(List<int[]> winningCoordinates) {
+
+		for (int[] i : winningCoordinates) {
+			gameBoard.setColor(i[0], i[1], Color.PINK);
+		}
 	}
 
 	public PlayerAttributes getPlayerAttributes() {
@@ -241,4 +251,5 @@ public class SwingPresenter implements PlayerController {
 	public int getPlayerPoints() {
 		return playerAttributes.getPlayerPoints();
 	}
+
 }

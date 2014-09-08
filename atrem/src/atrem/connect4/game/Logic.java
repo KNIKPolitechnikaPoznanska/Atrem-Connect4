@@ -1,5 +1,8 @@
 package atrem.connect4.game;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import atrem.connect4.game.board.HoleState;
 
 public class Logic {
@@ -8,12 +11,13 @@ public class Logic {
 	private int maxSlots;
 	private GameController gameController;
 	private boolean cpuWin = false;
+	private List<int[]> winningCoordinates;
 
 	public Logic(GameController gameController) {
 		this.gameController = gameController;
 		maxSlots = gameController.getBoard().getSlots();
 		maxRows = gameController.getBoard().getRows();
-
+		setWinningCoordinates(new ArrayList<int[]>());
 	}
 
 	private boolean checkIfDraw(int doneMoves) {
@@ -52,15 +56,32 @@ public class Logic {
 		if (checkIfThereIsAFour(row, slot, 1, 1)
 				|| checkIfThereIsAFour(row, slot, -1, 1)
 				|| checkIfThereIsAFour(row, slot, 1, 0)
-				|| checkIfThereIsAFour(row, slot, 0, 1))
+				|| checkIfThereIsAFour(row, slot, 0, 1)) {
+
+			for (int i = 0; i < getWinningCoordinates().size(); i++) {
+				System.out.println(getWinningCoordinates().get(i)[0] + ", "
+						+ getWinningCoordinates().get(i)[1]);
+			}
 			return true;
+
+		}
 
 		return false;
 	}
 
+	private void rememberCoordinates(int row, int slot) {
+		int coordinates[] = new int[2];
+		coordinates[0] = row;
+		coordinates[1] = slot;
+		getWinningCoordinates().add(coordinates);
+
+	}
+
 	private boolean checkIfThereIsAFour(int row, int slot, int i, int j) {
-		if (getAddedNumbersOfNeighbours(row, slot, i, j) + 1 > 3)
+		if (getAddedNumbersOfNeighbours(row, slot, i, j) + 1 > 3) {
 			return true;
+		}
+		getWinningCoordinates().clear();
 		return false;
 
 	}
@@ -71,10 +92,13 @@ public class Logic {
 	}
 
 	public int countNeighboursInOneDirection(int row, int slot, int i, int j) {
+		rememberCoordinates(row, slot);
+
 		if (checkIfHoleExists(row + i, slot + j)) {
 			if ((gameController.getHoleState(row + i, slot + j) == gameController
 					.getHoleState(row, slot))) {
 				return countNeighboursInOneDirection(row + i, slot + j, i, j) + 1;
+
 			}
 		}
 
@@ -102,4 +126,13 @@ public class Logic {
 	public void setCPUwin(boolean CPUwin) {
 		this.cpuWin = CPUwin;
 	}
+
+	public List<int[]> getWinningCoordinates() {
+		return winningCoordinates;
+	}
+
+	public void setWinningCoordinates(List<int[]> winningCoordinates) {
+		this.winningCoordinates = winningCoordinates;
+	}
+
 }
