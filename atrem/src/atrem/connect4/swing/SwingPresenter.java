@@ -3,6 +3,7 @@ package atrem.connect4.swing;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.List;
 
 import javax.swing.SwingUtilities;
 
@@ -57,7 +58,8 @@ public class SwingPresenter implements PlayerController {
 	 */
 	@Override
 	public void yourTurn() {
-		gameBoard.disableButtons(true);
+		SemaphoreToken();
+		gameBoard.enableButtons(true);
 		LastSlot = gameController.getLastMove().getLastSlot();
 		LastRow = gameController.getLastMove().getLastRow();
 
@@ -78,7 +80,7 @@ public class SwingPresenter implements PlayerController {
 			informationBoxes.fullSlotMessage();
 		} else {
 			refreshView(emptySpot, slot);
-			gameBoard.disableButtons(false);
+			gameBoard.enableButtons(false);
 
 		}
 	}
@@ -110,10 +112,10 @@ public class SwingPresenter implements PlayerController {
 							PlayerId.PLAYER2);
 
 					gameController.wakeUpGCr();
-					gameBoard.disableButtons(blockButton);
+					gameBoard.enableButtons(blockButton);
 					setNamesAndToken();
-					sideBoard.setPreferredSize(new Dimension(250, 200));
-					stats.setPreferredSize(new Dimension(250, 200));
+					sideBoard.setPreferredSize(new Dimension(215, 200));
+					stats.setPreferredSize(new Dimension(215, 200));
 					frame.pack();
 					frame.setResizable(false);
 				} catch (Exception e) {
@@ -148,13 +150,15 @@ public class SwingPresenter implements PlayerController {
 
 	@Override
 	public void endOfGame(ResultState resultGame) {
-		if (resultGame == ResultState.Player1Win) {
+		if (resultGame != ResultState.Draw)
+			markWinningFour(gameController.getLogic().getWinningCoordinates());
+		if (resultGame == ResultState.PLAYER_1_WIN) {
 			decision = informationBoxes.winMessage(gameController.getPlayer1()
 					.getName());
 			if (playerId == PlayerId.PLAYER1)
 				playerAttributes.addPoints();
 		}
-		if (resultGame == ResultState.Player2Win) {
+		if (resultGame == ResultState.PLAYER_2_WIN) {
 			decision = informationBoxes.winMessage(gameController.getPlayer2()
 					.getName());
 			if (playerId == PlayerId.PLAYER2)
@@ -185,6 +189,13 @@ public class SwingPresenter implements PlayerController {
 			gameController.analyseDecision();
 	}
 
+	public void markWinningFour(List<int[]> winningCoordinates) {
+
+		for (int[] i : winningCoordinates) {
+			gameBoard.setColor(i[0], i[1], Color.PINK);
+		}
+	}
+
 	public PlayerAttributes getPlayerAttributes() {
 		return playerAttributes;
 	}
@@ -193,15 +204,34 @@ public class SwingPresenter implements PlayerController {
 	 * Ustawia Imiona graczy na Labelach
 	 */
 	public void setNamesAndToken() {
+
+		sideBoard.setTokenPl2();
 		if (playerId == PlayerId.PLAYER1) {
 			sideBoard.setTokenPl1();
 			sideBoard.setPl1Name(gameController.getPlayer1().getName());
 			sideBoard.setPl2Name(gameController.getPlayer2().getName());
 		} else {
 			sideBoard.setTokenPl2();
-			sideBoard.setPl1Name(gameController.getPlayer2().getName());
-			sideBoard.setPl2Name(gameController.getPlayer1().getName());
+			sideBoard.setPl1Name(gameController.getPlayer1().getName());
+			sideBoard.setPl2Name(gameController.getPlayer2().getName());
+			// 2 - 1 ;
 		}
+
+	}
+
+	/**
+	 * potencjalna kopia kodu z metody setNamesAndToken
+	 */
+	public void SemaphoreToken() {
+		if (gameController.getCurrentPlayer().getPlayerId() == PlayerId.PLAYER1) {
+			System.out.println("playe1");
+			sideBoard.semaphorTurnPl1();
+
+		} else {
+			System.out.println("playe2");
+			sideBoard.semaphorTurnPl2();
+		}
+
 	}
 
 	public Color getOpponentColor() {
@@ -244,4 +274,5 @@ public class SwingPresenter implements PlayerController {
 	public int getPlayerPoints() {
 		return playerAttributes.getPlayerPoints();
 	}
+
 }

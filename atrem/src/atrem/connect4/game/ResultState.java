@@ -1,7 +1,7 @@
 package atrem.connect4.game;
 
 public enum ResultState {
-	NoWin(0), Player1Win(1), Player2Win(2), Draw(3);
+	NO_WIN(0), PLAYER_1_WIN(1), PLAYER_2_WIN(2), DRAW(3);
 
 	private int numberRepresentation;
 

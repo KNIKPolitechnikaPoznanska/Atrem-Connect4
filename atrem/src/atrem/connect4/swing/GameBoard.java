@@ -78,7 +78,7 @@ public class GameBoard extends JPanel {
 		swingBoard[row][slot].changeTokenColor(holeState);
 	}
 
-	public void disableButtons(boolean parameter) {
+	public void enableButtons(boolean parameter) {
 		for (int tempSlot = 0; tempSlot < slots; tempSlot++)
 			button[tempSlot].setEnabled(parameter);
 	}
@@ -88,6 +88,10 @@ public class GameBoard extends JPanel {
 	 */
 	public void sendGUINbSlot() {
 		swingPresenter.getSlotFromView(chosenSlot);
+	}
+
+	public void setColor(int row, int slot, Color color) {
+		swingBoard[row][slot].changeTo(color);
 	}
 
 	public void setBoardSize(int rows, int slots) {

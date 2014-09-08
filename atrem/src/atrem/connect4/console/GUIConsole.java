@@ -119,11 +119,11 @@ public class GUIConsole {
 		case Draw:
 			System.out.println("Gra bez rostrzygniecia \n Remis.");
 			break;
-		case Player1Win:
+		case PLAYER_1_WIN:
 			System.out.println("	Wygral‚: "
 					+ gameController.getPlayer1().getName());
 			break;
-		case Player2Win:
+		case PLAYER_2_WIN:
 			System.out.println("Wygral‚ "
 					+ gameController.getPlayer2().getName());
 			break;
