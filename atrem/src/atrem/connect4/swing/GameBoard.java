@@ -78,7 +78,7 @@ public class GameBoard extends JPanel {
 		swingBoard[row][slot].changeTokenColor(holeState);
 	}
 
-	public void disableButtons(boolean parameter) {
+	public void enableButtons(boolean parameter) {
 		for (int tempSlot = 0; tempSlot < slots; tempSlot++)
 			button[tempSlot].setEnabled(parameter);
 	}

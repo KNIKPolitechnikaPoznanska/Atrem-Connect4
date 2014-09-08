@@ -59,7 +59,9 @@ public class SwingPresenter implements PlayerController {
 	 */
 	@Override
 	public void yourTurn() {
-		gameBoard.disableButtons(true);
+		SemaphoreToken();
+		gameBoard.enableButtons(true);
+
 		LastSlot = gameController.getLastMove().getLastSlot();
 		LastRow = gameController.getLastMove().getLastRow();
 
@@ -74,7 +76,8 @@ public class SwingPresenter implements PlayerController {
 		if (emptySpot == -1) {
 			informationBoxes.fullSlotMessage();
 		} else {
-			gameBoard.disableButtons(false);
+			gameBoard.enableButtons(false);
+
 			refreshView(emptySpot, slot);
 		}
 	}
@@ -102,7 +105,7 @@ public class SwingPresenter implements PlayerController {
 							PlayerId.PLAYER2);
 
 					gameController.endInitPlayer();
-					gameBoard.disableButtons(blockButton);
+					gameBoard.enableButtons(blockButton);
 					setNamesAndToken();
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -190,15 +193,34 @@ public class SwingPresenter implements PlayerController {
 	 * Ustawia Imiona graczy na Labelach
 	 */
 	public void setNamesAndToken() {
+
+		sideBoard.setTokenPl2();
 		if (playerId == PlayerId.PLAYER1) {
 			sideBoard.setTokenPl1();
 			sideBoard.setPl1Name(gameController.getPlayer1().getName());
 			sideBoard.setPl2Name(gameController.getPlayer2().getName());
 		} else {
 			sideBoard.setTokenPl2();
-			sideBoard.setPl1Name(gameController.getPlayer2().getName());
-			sideBoard.setPl2Name(gameController.getPlayer1().getName());
+			sideBoard.setPl1Name(gameController.getPlayer1().getName());
+			sideBoard.setPl2Name(gameController.getPlayer2().getName());
+			// 2 - 1 ;
 		}
+
+	}
+
+	/**
+	 * potencjalna kopia kodu z metody setNamesAndToken
+	 */
+	public void SemaphoreToken() {
+		if (gameController.getCurrentPlayer().getPlayerId() == PlayerId.PLAYER1) {
+			System.out.println("playe1");
+			sideBoard.semaphorTurnPl1();
+
+		} else {
+			System.out.println("playe2");
+			sideBoard.semaphorTurnPl2();
+		}
+
 	}
 
 	public Color getPl2TokenColor() {
