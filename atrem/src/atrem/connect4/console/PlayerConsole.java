@@ -23,21 +23,13 @@ public class PlayerConsole implements PlayerController {
 	private int slot;
 	private int playerPoints;
 
-	@Override
-	public int getPlayerPoints() {
-		return playerPoints;
-	}
-
-	public PlayerConsole(GameController gameController, String name,
-			PlayerId playerId) {
+	public PlayerConsole(GameController gameController,
+			PlayerAttributes playerAttributes) {
 		this.gameController = gameController;
-		playerAttributes = new PlayerAttributes();
-		playerAttributes.setName(name);
-		playerAttributes.setPlayerId(playerId);
+		this.playerAttributes = playerAttributes;
 		keyHandler = new KeyHandler(gameController.getBoard());
-		// this.gamecontroller = game.getGameController();
 		guiConsole = new GUIConsole(gameController);
-		gameController.endInitPlayer();
+		gameController.wakeUpGCr();
 	}
 
 	@Override
@@ -92,6 +84,11 @@ public class PlayerConsole implements PlayerController {
 	@Override
 	public void endOfGame(ResultState resultGame) {
 		guiConsole.showResult(gameController);
+	}
+
+	@Override
+	public int getPlayerPoints() {
+		return playerPoints;
 	}
 
 }

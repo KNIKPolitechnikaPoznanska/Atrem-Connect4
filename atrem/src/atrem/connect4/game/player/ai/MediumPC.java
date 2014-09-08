@@ -35,7 +35,7 @@ public class MediumPC implements PlayerController {
 		board = gameController.getBoard();
 		rand = new Random();
 		informationBoxes = new DialogInformationBoxes();
-		gameController.endInitPlayer();
+		gameController.wakeUpGCr();
 	}
 
 	public int simulatedGo(int slot) {

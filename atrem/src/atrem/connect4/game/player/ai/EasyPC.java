@@ -26,7 +26,7 @@ public class EasyPC implements PlayerController {
 		playerAttributes.setName(name);
 		playerAttributes.setPlayerId(playerId);
 		board = gameController.getBoard();
-		gameController.endInitPlayer();
+		gameController.wakeUpGCr();
 		informationBoxes = new DialogInformationBoxes();
 	}
 
