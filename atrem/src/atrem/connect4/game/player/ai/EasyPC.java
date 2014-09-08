@@ -1,6 +1,5 @@
 package atrem.connect4.game.player.ai;
 
-import java.awt.Color;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -23,8 +22,7 @@ public class EasyPC implements PlayerController {
 	private PlayerId playerId;
 
 	public EasyPC(GameController gameController,
-			PlayerAttributes playerAttributes, Color opponentColor,
-			int playerPoints) {
+			PlayerAttributes playerAttributes, int playerPoints) {
 		this.gameController = gameController;
 		this.playerAttributes = playerAttributes;
 		this.playerId = playerAttributes.getPlayerId();
