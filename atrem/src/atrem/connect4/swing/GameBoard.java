@@ -25,8 +25,8 @@ public class GameBoard extends JPanel {
 	public GameBoard(SwingPresenter swingPresenter) {
 		slots = swingPresenter.getSlots();
 		rows = swingPresenter.getRows();
-		pl1TokenColor = swingPresenter.getPl1TokenColor();
-		pl2TokenColor = swingPresenter.getPl2TokenColor();
+		pl1TokenColor = swingPresenter.getPlayerColor();
+		pl2TokenColor = swingPresenter.getOpponentColor();
 		this.swingPresenter = swingPresenter;
 		setLayout(new GridLayout(rows + 1, slots));
 		swingBoard = new DLabel[rows][slots];
