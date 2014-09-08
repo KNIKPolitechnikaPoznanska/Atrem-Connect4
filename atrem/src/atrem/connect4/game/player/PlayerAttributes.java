@@ -2,6 +2,7 @@ package atrem.connect4.game.player;
 
 import java.awt.Color;
 
+import atrem.connect4.game.PlayerDecision;
 import atrem.connect4.game.PlayerId;
 
 /*
@@ -20,6 +21,15 @@ public class PlayerAttributes {
 		this.playerId = playerId;
 		this.playerPoints = playerPoints;
 		this.playerColor = playerColor;
+	}
+	private PlayerDecision playerDecision;
+
+	public PlayerDecision getPlayerDecision() {
+		return playerDecision;
+	}
+
+	public void setPlayerDecision(PlayerDecision playerDecision) {
+		this.playerDecision = playerDecision;
 	}
 
 	public int getPlayerPoints() {

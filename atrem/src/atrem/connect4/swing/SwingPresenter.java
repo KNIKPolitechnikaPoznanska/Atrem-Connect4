@@ -7,6 +7,7 @@ import java.awt.Toolkit;
 import javax.swing.SwingUtilities;
 
 import atrem.connect4.game.GameController;
+import atrem.connect4.game.PlayerDecision;
 import atrem.connect4.game.PlayerId;
 import atrem.connect4.game.ResultState;
 import atrem.connect4.game.player.PlayerAttributes;
@@ -162,7 +163,9 @@ public class SwingPresenter implements PlayerController {
 		if (decision == 1) {
 			frame.dispose();
 			if (playerId == PlayerId.PLAYER2) {
-				gameController.initializeNewGame();
+				playerAttributes.setPlayerDecision(PlayerDecision.NEW_GAME);
+				gameController.initializeNewGame(playerId,
+						playerAttributes.getPlayerDecision());
 			}
 		}
 		if (decision == 0) // tak gram dalej
