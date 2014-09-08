@@ -8,7 +8,6 @@ import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
 import atrem.connect4.game.GameController;
-import atrem.connect4.game.PlayerDecision;
 import atrem.connect4.game.PlayerId;
 import atrem.connect4.game.ResultState;
 import atrem.connect4.game.player.PlayerAttributes;
@@ -159,16 +158,15 @@ public class SwingPresenter implements PlayerController {
 		if (decision == 1) {
 			frame.dispose();
 			if (playerId == playerId.PLAYER2) {
-				playerAttributes.setPlayerDecision(PlayerDecision.NEW_GAME);
-				gameController.initializeNewGame(playerId,
-						playerAttributes.getPlayerDecision());
+				gameController.initializeNewGame();
 			}
 		}
 		if (decision == 0) // tak gram dalej
 		{
 			frame.dispose();
-			if (playerId == playerId.PLAYER2)
-				gameController.startNewGame();
+			gameController.initializeNewGame();
+
+			gameController.startNewGame();
 		}
 		if (decision == 2) // zamknij
 			frame.dispose();
