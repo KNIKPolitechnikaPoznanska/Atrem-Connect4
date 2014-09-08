@@ -17,7 +17,7 @@ public class GameController implements Runnable {
 	private int emptySpot, slot;
 	private PlayerId playerTurn = PlayerId.PLAYER1;
 	private ResultState resultState = ResultState.NoWin;
-	private GameState gameState = GameState.preInit;
+	private GameState gameState = GameState.PRE_INIT;
 	private Color pl1Color, pl2Color;
 	private PlayerAttributes player1Attributes, player2Attributes;
 
@@ -53,7 +53,7 @@ public class GameController implements Runnable {
 		board.setLastSpot(emptySpot);
 		lastMove.saveLastMove(slot, emptySpot, playerTurn);
 
-		gameState = GameState.moveDone;
+		gameState = GameState.MOVE_DONE;
 		if (emptySpot != -1) {
 			notifyAll();
 		}
@@ -70,7 +70,7 @@ public class GameController implements Runnable {
 		lastMove = new LastMove();
 		board = new Board(row, slot);
 		resultState = ResultState.NoWin;
-		gameState = GameState.preInit;
+		gameState = GameState.PRE_INIT;
 		startGameLoop();
 		player1Attributes = new PlayerAttributes(player1.getName(),
 				PlayerId.PLAYER1, player1.getPlayerPoints(), pl1Color);
@@ -103,7 +103,7 @@ public class GameController implements Runnable {
 
 			currentPlayer.yourTurn();
 			System.out.println("po ");
-			gameState = GameState.waitingForMove;
+			gameState = GameState.WAITING_FOR_MOVE;
 			waitForMove();
 			doneMoves++;
 			endGame = logic.getResultOfMove(lastMove.getLastRow(),
@@ -123,7 +123,7 @@ public class GameController implements Runnable {
 	}
 
 	private synchronized void waitForMove() {
-		while (gameState != GameState.moveDone) {
+		while (gameState != GameState.MOVE_DONE) {
 			try {
 				wait();
 			} catch (InterruptedException e) {
@@ -133,7 +133,7 @@ public class GameController implements Runnable {
 	}
 
 	private synchronized void waitForInit() {
-		while (gameState != GameState.endInitAll) {
+		while (gameState != GameState.END_INIT_ALL) {
 			try {
 				wait();
 			} catch (InterruptedException e) {
@@ -144,11 +144,11 @@ public class GameController implements Runnable {
 
 	public synchronized void wakeUpGCr() {
 		switch (gameState) {
-			case preInit :
-				gameState = GameState.endInit1;
+			case PRE_INIT :
+				gameState = GameState.END_INIT_1;
 				break;
-			case endInit1 :
-				gameState = GameState.endInitAll;
+			case END_INIT_1 :
+				gameState = GameState.END_INIT_ALL;
 				this.notifyAll();
 				break;
 			default :
