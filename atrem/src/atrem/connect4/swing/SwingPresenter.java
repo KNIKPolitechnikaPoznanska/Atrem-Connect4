@@ -142,8 +142,11 @@ public class SwingPresenter implements PlayerController {
 	 * Odœwie¿a planszê na GUI
 	 */
 	public void refreshView(int row, int slot) {
-		gameBoard.setFreeRow(row, slot, gameController.getBoard()
-				.playerIdtoHoleState(gameController.getPlayerTurn()));
+		gameBoard.setFreeRow(
+				row,
+				slot,
+				gameController.getBoard().playerIdtoHoleState(
+						gameController.getLastMove().getPlayerId()));
 	}
 
 	@Override
