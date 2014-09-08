@@ -17,7 +17,8 @@ import atrem.connect4.swing.SwingPresenter;
 public class GameFactory {
 	private Board board;
 	private PlayerController player1, player2;
-	private PlayerAttributes player1Attributes, player2Attributes;
+	private PlayerAttributes player1Attributes, player2Attributes,
+			aiAttributes;
 	private GameController gameController;
 	private String player2Name, player1Name, player1Type, player2Type,
 			gamePl1Type, gamePl2Type;
@@ -57,6 +58,8 @@ public class GameFactory {
 				0, player1Color);
 		player2Attributes = new PlayerAttributes(player2Name, PlayerId.PLAYER2,
 				0, player2Color);
+		aiAttributes = new PlayerAttributes(player2Name, PlayerId.PLAYER2, 0,
+				player2Color);
 		switch (player1Type) {
 			case GameConfig.CHuman :
 				player1 = createHumanPlayer(1);
@@ -88,8 +91,8 @@ public class GameFactory {
 	 * @return MediumPC
 	 */
 	private PlayerController createCpuMediumPlayer(PlayerId playerID) {
-		return new MediumPC(gameController, player2Name, playerID, new Logic(
-				gameController));
+		return new MediumPC(gameController, aiAttributes, new Logic(
+				gameController), 0);
 	}
 
 	/**
@@ -99,7 +102,7 @@ public class GameFactory {
 	 * @return EasyPC
 	 */
 	private PlayerController createCpuEasyPlayer(PlayerId playerID) {
-		return new EasyPC(gameController, player2Name, playerID);
+		return new EasyPC(gameController, aiAttributes, 0);
 	}
 
 	/**
