@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import atrem.connect4.game.board.Board;
 import atrem.connect4.game.board.HoleState;
+import atrem.connect4.game.player.PlayerAttributes;
 import atrem.connect4.game.player.PlayerController;
 import atrem.connect4.swing.SwingPresenter;
 
@@ -18,6 +19,7 @@ public class GameController implements Runnable {
 	private ResultState resultState = ResultState.NoWin;
 	private GameState gameState = GameState.preInit;
 	private Color pl1Color, pl2Color;
+	private PlayerAttributes player1Attributes, player2Attributes;
 
 	/**
 	 * Sprawdza którego z graczy jest kolej
@@ -70,20 +72,21 @@ public class GameController implements Runnable {
 		resultState = ResultState.NoWin;
 		gameState = GameState.preInit;
 		startGameLoop();
+		player1Attributes = new PlayerAttributes(player1.getName(),
+				PlayerId.PLAYER1, player1.getPlayerPoints(), pl1Color);
+		player2Attributes = new PlayerAttributes(player2.getName(),
+				PlayerId.PLAYER2, player2.getPlayerPoints(), pl2Color);
 		if (player1 instanceof SwingPresenter) {
-			player1 = new SwingPresenter(this, player1.getName(),
-					PlayerId.PLAYER1, pl1Color, pl2Color,
+			player1 = new SwingPresenter(this, player1Attributes, pl2Color,
 					player1.getPlayerPoints());
 		}
 		if (player2 instanceof SwingPresenter) {
-			player2 = new SwingPresenter(this, player2.getName(),
-					PlayerId.PLAYER2, pl1Color, pl2Color,
+			player2 = new SwingPresenter(this, player2Attributes, pl2Color,
 					player2.getPlayerPoints());
 		}
 		doneMoves = 0;
 
 	}
-
 	private synchronized void gameLoop() {// ma odczytywaæ GameState
 		boolean endGame;
 		logic = new Logic(this);
