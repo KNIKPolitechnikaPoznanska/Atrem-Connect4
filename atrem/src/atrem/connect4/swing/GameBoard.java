@@ -8,8 +8,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import atrem.connect4.game.PlayerId;
 import atrem.connect4.game.board.HoleState;
+import atrem.connect4.game.player.PlayerId;
 
 public class GameBoard extends JPanel {
 	/**

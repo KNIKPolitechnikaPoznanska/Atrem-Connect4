@@ -9,8 +9,8 @@ import java.awt.Graphics2D;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 
-import atrem.connect4.game.PlayerId;
 import atrem.connect4.game.board.HoleState;
+import atrem.connect4.game.player.PlayerId;
 
 /**
  * Draws a JLabel with PaintObject.

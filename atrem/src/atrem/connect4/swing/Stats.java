@@ -5,7 +5,7 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import atrem.connect4.game.PlayerId;
+import atrem.connect4.game.player.PlayerId;
 
 public class Stats extends JPanel {
 

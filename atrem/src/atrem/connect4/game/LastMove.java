@@ -1,5 +1,7 @@
 package atrem.connect4.game;
 
+import atrem.connect4.game.player.PlayerId;
+
 public class LastMove {
 	private int lastSlot, lastRow;
 	private PlayerId playerId;
