@@ -87,4 +87,9 @@ public class DLabel extends JLabel {
 		this.setBorder(null);
 		this.paintComponent(getGraphics());
 	}
+
+	public void setEmpty() {
+		this.color = colorEmpty;
+		this.paintComponent(getGraphics());
+	}
 }
