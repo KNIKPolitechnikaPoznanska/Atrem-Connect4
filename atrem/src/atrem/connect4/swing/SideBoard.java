@@ -84,7 +84,7 @@ public class SideBoard extends JPanel {
 	}
 
 	public void setTokenPl2() {
-		token1.changeTo(transparent);
+		token1.changeTo(myColor);
 		token2.changeTo(transparent);
 	}
 
@@ -92,7 +92,7 @@ public class SideBoard extends JPanel {
 	 * semafor
 	 */
 	public void tokenDisable() {
-		token1.setEnabled(true);
+		token1.setEnabled(false);
 
 		token1.changeTo(transparent);
 		token2.changeTo(transparent);
