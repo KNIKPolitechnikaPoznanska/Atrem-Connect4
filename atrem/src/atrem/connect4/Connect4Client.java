@@ -23,6 +23,7 @@ public class Connect4Client {
 
 		gameFactory = new GameFactory();
 		config = new GameConfig(gameFactory);
+
 	}
 
 	public void runOnLocal() {

@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -13,6 +15,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
+
+import atrem.connect4.Connect4;
 
 public class GameModeSelectionBox extends JDialog {
 
@@ -31,8 +35,6 @@ public class GameModeSelectionBox extends JDialog {
 	 */
 	public GameModeSelectionBox() {
 
-		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		setVisible(true);
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 
@@ -65,9 +67,20 @@ public class GameModeSelectionBox extends JDialog {
 				public void actionPerformed(ActionEvent arg0) {
 
 					if (online.isSelected()) {
-
+						try {
+							Connect4.createOnline();
+						} catch (RemoteException | NotBoundException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
 					if (offline.isSelected()) {
+						try {
+							Connect4.createOffline();
+						} catch (RemoteException | NotBoundException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 
 					}
 
@@ -79,11 +92,21 @@ public class GameModeSelectionBox extends JDialog {
 		}
 		{
 			JButton cancelButton = new JButton("Cancel");
+			cancelButton.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					dispose();
+				}
+
+			});
 			cancelButton.setActionCommand("Cancel");
 			buttonPane.add(cancelButton);
 		}
 
 		pack();
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		setVisible(true);
 	}
 
 }
