@@ -104,7 +104,7 @@ public class EasyPC implements PlayerController {
 
 	@Override
 	public PlayerAttributes getPlayerAttributes() {
-		// TODO Auto-generated method stub
+
 		return playerAttributes;
 	}
 
