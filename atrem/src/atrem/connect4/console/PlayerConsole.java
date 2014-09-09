@@ -91,4 +91,10 @@ public class PlayerConsole implements PlayerController {
 		return playerPoints;
 	}
 
+	@Override
+	public PlayerAttributes getPlayerAttributes() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
