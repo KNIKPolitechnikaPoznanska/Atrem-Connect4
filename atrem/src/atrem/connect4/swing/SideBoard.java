@@ -6,7 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import atrem.connect4.game.PlayerId;
+import atrem.connect4.game.player.PlayerId;
 
 public class SideBoard extends JPanel {
 	/**
