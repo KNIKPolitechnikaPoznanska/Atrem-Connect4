@@ -1,4 +1,4 @@
-package atrem.connect4.swing;
+package test;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -9,7 +9,6 @@ import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
@@ -21,7 +20,6 @@ import javax.swing.JRadioButton;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.WindowConstants;
 
 import atrem.connect4.Connect4Swing;
@@ -47,7 +45,8 @@ public class DialogSettingsBox extends JDialog {
 	private JButton buttonStart, buttonDefault, buttonExit, buttonColor1,
 			buttonColor2;
 	private JTextField TFieldPl1Name, TFieldPl2Name, TFieldSlots, TFieldRows;
-	private JRadioButton rBConsole1, rBSwing1, rBConsole2, rBSwing2;
+	private JRadioButton rBConsole1, rBSwing1, rBMulti1, rBConsole2, rBSwing2,
+			rBMulti2;
 	private JComboBox<String> plTypeBox1, plTypeBox2;
 	private Color token1Color, token2Color;
 	protected Color color1 = new Color(227, 252, 0), color2 = new Color(252, 0,
@@ -158,17 +157,21 @@ public class DialogSettingsBox extends JDialog {
 			if (Nmb == 1) {
 				rBConsole1.setEnabled(false);
 				rBSwing1.setEnabled(false);
+				rBMulti1.setEnabled(false);
 			} else {
 				rBConsole2.setEnabled(false);
 				rBSwing2.setEnabled(false);
+				rBMulti2.setEnabled(false);
 			}
 		} else if (selItem == GameConfig.CHuman) {
 			if (Nmb == 1) {
 				rBConsole1.setEnabled(true);
 				rBSwing1.setEnabled(true);
+				rBMulti1.setEnabled(true);
 			} else {
 				rBConsole2.setEnabled(true);
 				rBSwing2.setEnabled(true);
+				rBMulti2.setEnabled(true);
 			}
 		}
 
@@ -194,8 +197,10 @@ public class DialogSettingsBox extends JDialog {
 		buttonColor2 = new JButton();
 		rBConsole1 = new JRadioButton();
 		rBSwing1 = new JRadioButton();
+		rBMulti1 = new JRadioButton();
 		rBConsole2 = new JRadioButton();
 		rBSwing2 = new JRadioButton();
+		rBMulti2 = new JRadioButton();
 		plTypeBox1 = new JComboBox<String>();
 		plTypeBox2 = new JComboBox<String>();
 		boardSetPanel = new JPanel();
@@ -362,6 +367,10 @@ public class DialogSettingsBox extends JDialog {
 		rBSwing1.setText("Swing");
 		rBSwing1.setSelected(true);
 
+		buttonGroup1.add(rBMulti1);
+		rBMulti1.setFont(new Font("Tahoma", 0, 19)); // NOI18N
+		rBMulti1.setText("Multiplayer");
+
 		buttonGroup2.add(rBConsole2);
 		rBConsole2.setFont(new Font("Tahoma", 0, 19)); // NOI18N
 		rBConsole2.setText("Konsola");
@@ -370,6 +379,10 @@ public class DialogSettingsBox extends JDialog {
 		rBSwing2.setFont(new Font("Tahoma", 0, 19)); // NOI18N
 		rBSwing2.setText("Swing");
 		rBSwing2.setSelected(true);
+
+		buttonGroup2.add(rBMulti2);
+		rBMulti2.setFont(new Font("Tahoma", 0, 19)); // NOI18N
+		rBMulti2.setText("Multiplayer");
 
 		plTypeBox1.setFont(new Font("Tahoma", 0, 20)); // NOI18N
 		plTypeBox1.setModel(new DefaultComboBoxModel<String>(
@@ -396,37 +409,39 @@ public class DialogSettingsBox extends JDialog {
 		});
 
 		GroupLayout playerSetPanelLayout = new GroupLayout(playerSetPanel);
+		playerSetPanel.setLayout(playerSetPanelLayout);
 		playerSetPanelLayout
 				.setHorizontalGroup(playerSetPanelLayout
-						.createParallelGroup(Alignment.LEADING)
+						.createParallelGroup(GroupLayout.Alignment.LEADING)
 						.addGroup(
 								playerSetPanelLayout
 										.createSequentialGroup()
-										.addGap(32)
+										.addGap(32, 32, 32)
 										.addGroup(
 												playerSetPanelLayout
 														.createParallelGroup(
-																Alignment.LEADING)
+																GroupLayout.Alignment.LEADING)
 														.addGroup(
 																playerSetPanelLayout
 																		.createSequentialGroup()
 																		.addGroup(
 																				playerSetPanelLayout
 																						.createParallelGroup(
-																								Alignment.TRAILING)
+																								GroupLayout.Alignment.LEADING)
 																						.addGroup(
+																								GroupLayout.Alignment.TRAILING,
 																								playerSetPanelLayout
 																										.createSequentialGroup()
 																										.addGroup(
 																												playerSetPanelLayout
 																														.createParallelGroup(
-																																Alignment.LEADING)
+																																GroupLayout.Alignment.LEADING)
 																														.addComponent(
 																																jLabel5)
 																														.addGroup(
 																																playerSetPanelLayout
 																																		.createParallelGroup(
-																																				Alignment.LEADING,
+																																				GroupLayout.Alignment.LEADING,
 																																				false)
 																																		.addComponent(
 																																				TFieldPl1Name,
@@ -435,18 +450,18 @@ public class DialogSettingsBox extends JDialog {
 																																				Short.MAX_VALUE)
 																																		.addComponent(
 																																				jLabel2,
-																																				Alignment.TRAILING,
+																																				GroupLayout.Alignment.TRAILING,
 																																				GroupLayout.DEFAULT_SIZE,
 																																				GroupLayout.DEFAULT_SIZE,
 																																				Short.MAX_VALUE)))
 																										.addPreferredGap(
-																												ComponentPlacement.RELATED,
-																												357,
+																												LayoutStyle.ComponentPlacement.RELATED,
+																												GroupLayout.DEFAULT_SIZE,
 																												Short.MAX_VALUE)
 																										.addGroup(
 																												playerSetPanelLayout
 																														.createParallelGroup(
-																																Alignment.LEADING)
+																																GroupLayout.Alignment.LEADING)
 																														.addComponent(
 																																jLabel3,
 																																GroupLayout.PREFERRED_SIZE,
@@ -467,11 +482,15 @@ public class DialogSettingsBox extends JDialog {
 																						.addGroup(
 																								playerSetPanelLayout
 																										.createSequentialGroup()
-																										.addGap(14)
+																										.addGap(14,
+																												14,
+																												14)
 																										.addGroup(
 																												playerSetPanelLayout
 																														.createParallelGroup(
-																																Alignment.LEADING)
+																																GroupLayout.Alignment.LEADING)
+																														.addComponent(
+																																rBMulti1)
 																														.addComponent(
 																																rBSwing1)
 																														.addComponent(
@@ -484,31 +503,39 @@ public class DialogSettingsBox extends JDialog {
 																																				GroupLayout.PREFERRED_SIZE,
 																																				97,
 																																				GroupLayout.PREFERRED_SIZE)
-																																		.addGap(149)
+																																		.addGap(149,
+																																				149,
+																																				149)
 																																		.addComponent(
 																																				jLabel4,
 																																				GroupLayout.PREFERRED_SIZE,
 																																				140,
 																																				GroupLayout.PREFERRED_SIZE)))
 																										.addPreferredGap(
-																												ComponentPlacement.RELATED,
-																												118,
+																												LayoutStyle.ComponentPlacement.RELATED,
+																												112,
 																												Short.MAX_VALUE)
 																										.addGroup(
 																												playerSetPanelLayout
 																														.createParallelGroup(
-																																Alignment.LEADING)
+																																GroupLayout.Alignment.LEADING)
 																														.addComponent(
 																																rBConsole2)
 																														.addComponent(
 																																rBSwing2)
 																														.addComponent(
+																																rBMulti2)
+																														.addComponent(
 																																buttonColor2,
 																																GroupLayout.PREFERRED_SIZE,
 																																97,
 																																GroupLayout.PREFERRED_SIZE))
-																										.addGap(44)))
-																		.addGap(35))
+																										.addGap(24,
+																												24,
+																												24)))
+																		.addGap(35,
+																				35,
+																				35))
 														.addGroup(
 																playerSetPanelLayout
 																		.createSequentialGroup()
@@ -518,11 +545,11 @@ public class DialogSettingsBox extends JDialog {
 																				GroupLayout.DEFAULT_SIZE,
 																				GroupLayout.PREFERRED_SIZE)
 																		.addContainerGap(
-																				545,
+																				GroupLayout.DEFAULT_SIZE,
 																				Short.MAX_VALUE)))));
 		playerSetPanelLayout
 				.setVerticalGroup(playerSetPanelLayout
-						.createParallelGroup(Alignment.LEADING)
+						.createParallelGroup(GroupLayout.Alignment.LEADING)
 						.addGroup(
 								playerSetPanelLayout
 										.createSequentialGroup()
@@ -530,21 +557,21 @@ public class DialogSettingsBox extends JDialog {
 										.addGroup(
 												playerSetPanelLayout
 														.createParallelGroup(
-																Alignment.BASELINE)
+																GroupLayout.Alignment.BASELINE)
 														.addComponent(jLabel5)
 														.addComponent(jLabel6))
-										.addGap(18)
+										.addGap(18, 18, 18)
 										.addGroup(
 												playerSetPanelLayout
 														.createParallelGroup(
-																Alignment.LEADING)
+																GroupLayout.Alignment.LEADING)
 														.addGroup(
 																playerSetPanelLayout
 																		.createSequentialGroup()
 																		.addComponent(
 																				jLabel2)
 																		.addPreferredGap(
-																				ComponentPlacement.RELATED)
+																				LayoutStyle.ComponentPlacement.RELATED)
 																		.addComponent(
 																				TFieldPl1Name,
 																				GroupLayout.PREFERRED_SIZE,
@@ -556,17 +583,17 @@ public class DialogSettingsBox extends JDialog {
 																		.addComponent(
 																				jLabel3)
 																		.addPreferredGap(
-																				ComponentPlacement.RELATED)
+																				LayoutStyle.ComponentPlacement.RELATED)
 																		.addComponent(
 																				TFieldPl2Name,
 																				GroupLayout.PREFERRED_SIZE,
 																				GroupLayout.DEFAULT_SIZE,
 																				GroupLayout.PREFERRED_SIZE)))
-										.addGap(18)
+										.addGap(18, 18, 18)
 										.addGroup(
 												playerSetPanelLayout
 														.createParallelGroup(
-																Alignment.LEADING)
+																GroupLayout.Alignment.LEADING)
 														.addComponent(
 																plTypeBox1,
 																GroupLayout.PREFERRED_SIZE,
@@ -577,11 +604,11 @@ public class DialogSettingsBox extends JDialog {
 																GroupLayout.PREFERRED_SIZE,
 																GroupLayout.DEFAULT_SIZE,
 																GroupLayout.PREFERRED_SIZE))
-										.addGap(27)
+										.addGap(27, 27, 27)
 										.addGroup(
 												playerSetPanelLayout
 														.createParallelGroup(
-																Alignment.BASELINE)
+																GroupLayout.Alignment.BASELINE)
 														.addComponent(
 																jLabel4,
 																GroupLayout.PREFERRED_SIZE,
@@ -594,31 +621,38 @@ public class DialogSettingsBox extends JDialog {
 																GroupLayout.DEFAULT_SIZE,
 																GroupLayout.DEFAULT_SIZE,
 																Short.MAX_VALUE))
-										.addGap(34)
+										.addGap(34, 34, 34)
 										.addGroup(
 												playerSetPanelLayout
 														.createParallelGroup(
-																Alignment.LEADING)
+																GroupLayout.Alignment.LEADING)
 														.addGroup(
 																playerSetPanelLayout
 																		.createSequentialGroup()
 																		.addComponent(
 																				rBConsole1)
 																		.addPreferredGap(
-																				ComponentPlacement.UNRELATED)
+																				LayoutStyle.ComponentPlacement.UNRELATED)
 																		.addComponent(
-																				rBSwing1))
+																				rBSwing1)
+																		.addPreferredGap(
+																				LayoutStyle.ComponentPlacement.UNRELATED)
+																		.addComponent(
+																				rBMulti1))
 														.addGroup(
 																playerSetPanelLayout
 																		.createSequentialGroup()
 																		.addComponent(
 																				rBConsole2)
 																		.addPreferredGap(
-																				ComponentPlacement.UNRELATED)
+																				LayoutStyle.ComponentPlacement.UNRELATED)
 																		.addComponent(
-																				rBSwing2)))
-										.addContainerGap(74, Short.MAX_VALUE)));
-		playerSetPanel.setLayout(playerSetPanelLayout);
+																				rBSwing2)
+																		.addPreferredGap(
+																				LayoutStyle.ComponentPlacement.UNRELATED)
+																		.addComponent(
+																				rBMulti2)))
+										.addContainerGap(22, Short.MAX_VALUE)));
 
 		jTabbedPane.addTab("Ustawienia graczy", playerSetPanel);
 

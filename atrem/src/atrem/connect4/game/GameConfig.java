@@ -3,6 +3,7 @@ package atrem.connect4.game;
 import java.awt.Color;
 
 import atrem.connect4.swing.DialogSettingsBox;
+import atrem.connect4.swing.GameModeSelectionBox;
 
 /*
  * Pobiera od gracza wszystkie informacje
@@ -10,6 +11,7 @@ import atrem.connect4.swing.DialogSettingsBox;
  */
 public class GameConfig {
 	private DialogSettingsBox dialogBox;
+	private GameModeSelectionBox gameModeSelectionBox;
 	private String player1name, player2name, player1Type, player2Type,
 			gamePl1Type, gamePl2Type;
 	public static final String CHuman = "CZ£OWIEK", CcpuEasy = "CPU-Easy",
@@ -30,6 +32,15 @@ public class GameConfig {
 	/**
 	 * Tworzy i wyœwietla Dailog Settings Box'a
 	 */
+	public void setGMSBox() {
+		try {
+			gameModeSelectionBox = new GameModeSelectionBox();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
 	public void setDBox() {
 		try {
 			dialogBox = new DialogSettingsBox(this, gameFactory);
