@@ -86,10 +86,9 @@ public class GameController implements Runnable {
 					player1.getPlayerPoints());
 		}
 		if (player2 instanceof SwingPresenter) {
-			player2 = new SwingPresenter(this, player2Attributes, pl2Color,
+			player2 = new SwingPresenter(this, player2Attributes, pl1Color,
 					player2.getPlayerPoints());
 		}
-		doneMoves = 0;
 
 	}
 
