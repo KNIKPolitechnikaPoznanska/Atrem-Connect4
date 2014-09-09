@@ -191,8 +191,9 @@ public class SwingPresenter implements PlayerController {
 
 	public void markWinningFour(List<int[]> winningCoordinates) {
 
-		for (int[] i : winningCoordinates) {
-			gameBoard.setColor(i[0], i[1], Color.PINK);
+		for (int i = 0; i < winningCoordinates.size(); i++) {
+			gameBoard.setColor(winningCoordinates.get(i)[0],
+					winningCoordinates.get(i)[1], Color.PINK);
 		}
 	}
 
