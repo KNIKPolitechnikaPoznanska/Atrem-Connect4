@@ -6,6 +6,8 @@ import atrem.connect4.game.board.Board;
 import atrem.connect4.game.board.HoleState;
 import atrem.connect4.game.player.PlayerAttributes;
 import atrem.connect4.game.player.PlayerController;
+import atrem.connect4.game.player.PlayerDecision;
+import atrem.connect4.game.player.PlayerId;
 import atrem.connect4.swing.SwingPresenter;
 
 public class GameController implements Runnable {

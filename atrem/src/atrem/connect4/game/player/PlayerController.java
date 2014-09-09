@@ -1,7 +1,6 @@
 package atrem.connect4.game.player;
 
 import atrem.connect4.game.GameController;
-import atrem.connect4.game.PlayerId;
 import atrem.connect4.game.ResultState;
 
 public interface PlayerController {

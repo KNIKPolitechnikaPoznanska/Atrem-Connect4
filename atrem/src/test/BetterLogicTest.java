@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import atrem.connect4.game.LastMove;
-import atrem.connect4.game.PlayerId;
+import atrem.connect4.game.player.PlayerId;
 
 public class BetterLogicTest {
 

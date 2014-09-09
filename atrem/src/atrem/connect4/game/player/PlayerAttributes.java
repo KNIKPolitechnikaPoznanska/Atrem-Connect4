@@ -2,9 +2,6 @@ package atrem.connect4.game.player;
 
 import java.awt.Color;
 
-import atrem.connect4.game.PlayerDecision;
-import atrem.connect4.game.PlayerId;
-
 /*
  * Klasa obs³uguj¹ca dane graczy
  */

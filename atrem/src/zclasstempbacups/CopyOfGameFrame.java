@@ -1,4 +1,4 @@
-package atrem.connect4.zclasstempbacups;
+package zclasstempbacups;
 
 import java.awt.BorderLayout;
 import java.awt.Container;

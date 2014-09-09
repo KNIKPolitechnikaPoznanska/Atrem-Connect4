@@ -1,6 +1,6 @@
 package atrem.connect4.game.board;
 
-import atrem.connect4.game.PlayerId;
+import atrem.connect4.game.player.PlayerId;
 
 /*
  * Tworzenie planszy 

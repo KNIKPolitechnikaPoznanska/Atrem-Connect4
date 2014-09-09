@@ -6,7 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import atrem.connect4.game.PlayerId;
+import atrem.connect4.game.player.PlayerId;
 
 public class SideBoard extends JPanel {
 	/**
@@ -62,7 +62,7 @@ public class SideBoard extends JPanel {
 	}
 
 	/**
-	 * METODY do komunikacji z graczem ! BARTEK
+	 * METODY do komunikacji z graczem !
 	 */
 	public void sendMessage(String message) {
 		this.message = message;
@@ -79,24 +79,34 @@ public class SideBoard extends JPanel {
 	}
 
 	public void setTokenPl1() {
-		token1.changeTo(transparent);
-		token2.changeTo(transparent);
-	}
-
-	public void semaphorTurnPl1() {
 		token1.changeTo(myColor);
-		System.out.println("playe2 na transparent");
 		token2.changeTo(transparent);
-	}
-
-	public void semaphorTurnPl2() {
-		token1.changeTo(transparent);
-		System.out.println("playe1 na transparent");
-		token2.changeTo(oppColor);
 	}
 
 	public void setTokenPl2() {
-		token1.changeTo(transparent);
+		token1.changeTo(myColor);
 		token2.changeTo(transparent);
 	}
+
+	/**
+	 * semafor
+	 */
+	public void tokenDisable() {
+		token1.setEnabled(false);
+
+		token1.changeTo(transparent);
+		token2.changeTo(transparent);
+
+		System.out.println("token disable");
+	}
+
+	public void tokenEnable() {
+		token1.setEnabled(true);
+		token1.changeTo(myColor);
+		token2.changeTo(transparent);
+		System.out.println("token enable");
+	}
+
+	// ;
+
 }

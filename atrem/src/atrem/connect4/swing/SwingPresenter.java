@@ -10,11 +10,11 @@ import javax.swing.SwingUtilities;
 
 import atrem.connect4.game.GameController;
 import atrem.connect4.game.GameState;
-import atrem.connect4.game.PlayerDecision;
-import atrem.connect4.game.PlayerId;
 import atrem.connect4.game.ResultState;
 import atrem.connect4.game.player.PlayerAttributes;
 import atrem.connect4.game.player.PlayerController;
+import atrem.connect4.game.player.PlayerDecision;
+import atrem.connect4.game.player.PlayerId;
 
 public class SwingPresenter implements PlayerController {
 	private int LastRow, LastSlot, emptySpot, slots, rows, decision;
@@ -59,8 +59,9 @@ public class SwingPresenter implements PlayerController {
 	 */
 	@Override
 	public void yourTurn() {
-		SemaphoreToken();
+		// SemaphoreToken();
 		gameBoard.enableButtons(true);
+		sideBoard.tokenEnable();
 		LastSlot = gameController.getLastMove().getLastSlot();
 		LastRow = gameController.getLastMove().getLastRow();
 
@@ -82,6 +83,7 @@ public class SwingPresenter implements PlayerController {
 		} else {
 			refreshView(emptySpot, slot);
 			gameBoard.enableButtons(false);
+			sideBoard.tokenDisable();
 
 		}
 	}
@@ -220,8 +222,8 @@ public class SwingPresenter implements PlayerController {
 			sideBoard.setPl2Name(gameController.getPlayer2().getName());
 		} else {
 			sideBoard.setTokenPl2();
-			sideBoard.setPl1Name(gameController.getPlayer1().getName());
-			sideBoard.setPl2Name(gameController.getPlayer2().getName());
+			sideBoard.setPl1Name(gameController.getPlayer2().getName());
+			sideBoard.setPl2Name(gameController.getPlayer1().getName());
 			// 2 - 1 ;
 		}
 
@@ -230,15 +232,16 @@ public class SwingPresenter implements PlayerController {
 	/**
 	 * potencjalna kopia kodu z metody setNamesAndToken
 	 */
-	public void SemaphoreToken() {
-		if (gameController.getCurrentPlayer().getPlayerId() == PlayerId.PLAYER1) {
-			System.out.println("playe1");
-			sideBoard.semaphorTurnPl1();
-		} else {
-			System.out.println("playe2");
-			sideBoard.semaphorTurnPl2();
-		}
-	}
+	// public void SemaphoreToken() {
+	// if (gameController.getCurrentPlayer().getPlayerId() == PlayerId.PLAYER1)
+	// {
+	// System.out.println("playe1");
+	// sideBoard.semaphorTurnPl1();
+	// } else {
+	// System.out.println("playe2");
+	// sideBoard.semaphorTurnPl2();
+	// }
+	// }
 
 	public Color getOpponentColor() {
 		return opponentColor;
