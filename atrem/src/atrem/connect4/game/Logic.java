@@ -1,5 +1,6 @@
 package atrem.connect4.game;
 
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,13 +12,13 @@ public class Logic {
 	private int maxSlots;
 	private GameController gameController;
 	private boolean cpuWin = false;
-	private List<int[]> winningCoordinates;
+	private List<Point> winningCoordinates;
 
 	public Logic(GameController gameController) {
 		this.gameController = gameController;
 		maxSlots = gameController.getBoard().getSlots();
 		maxRows = gameController.getBoard().getRows();
-		setWinningCoordinates(new ArrayList<int[]>());
+		winningCoordinates = new ArrayList<Point>();
 	}
 
 	private boolean checkIfDraw(int doneMoves) {
@@ -41,14 +42,14 @@ public class Logic {
 	private void checkTheWinner(HoleState token) {
 
 		switch (token) {
-		case PLAYER1:
-			gameController.setResult(ResultState.PLAYER_1_WIN);
-			break;
-		case PLAYER2:
-			gameController.setResult(ResultState.PLAYER_2_WIN);
-			break;
-		default:
-			break;
+			case PLAYER1 :
+				gameController.setResult(ResultState.PLAYER_1_WIN);
+				break;
+			case PLAYER2 :
+				gameController.setResult(ResultState.PLAYER_2_WIN);
+				break;
+			default :
+				break;
 		}
 	}
 
@@ -57,38 +58,27 @@ public class Logic {
 				|| checkIfThereIsAFour(row, slot, -1, 1)
 				|| checkIfThereIsAFour(row, slot, 1, 0)
 				|| checkIfThereIsAFour(row, slot, 0, 1)) {
-
 			return true;
-
 		}
-
 		return false;
-	}
-
-	private void rememberCoordinates(int row, int slot) {
-		int coordinates[] = new int[2];
-		coordinates[0] = row;
-		coordinates[1] = slot;
-		getWinningCoordinates().add(coordinates);
-
 	}
 
 	private boolean checkIfThereIsAFour(int row, int slot, int i, int j) {
 		if (getAddedNumbersOfNeighbours(row, slot, i, j) + 1 > 3) {
+			getAddedNumbersOfNeighboursAndSaveCoordinates(row, slot, i, j);
+			for (int k = 0; k < winningCoordinates.size(); k++)
+				System.out.println(winningCoordinates.get(k).getX() + ", "
+						+ winningCoordinates.get(k).getY());
 			return true;
 		}
-		getWinningCoordinates().clear();
 		return false;
-
 	}
-
 	private int getAddedNumbersOfNeighbours(int row, int slot, int i, int j) {
 		return countNeighboursInOneDirection(row, slot, i, j)
 				+ countNeighboursInOneDirection(row, slot, -i, -j);
 	}
 
 	public int countNeighboursInOneDirection(int row, int slot, int i, int j) {
-		rememberCoordinates(row, slot);
 
 		if (checkIfHoleExists(row + i, slot + j)) {
 			if ((gameController.getHoleState(row + i, slot + j) == gameController
@@ -97,8 +87,38 @@ public class Logic {
 
 			}
 		}
-
 		return 0;
+	}
+
+	private int getAddedNumbersOfNeighboursAndSaveCoordinates(int row,
+			int slot, int i, int j) {
+		return countNeighboursInOneDirectionAndSaveCoordinates(row, slot, i, j)
+				+ countNeighboursInOneDirectionAndSaveCoordinates(row, slot,
+						-i, -j);
+	}
+
+	public int countNeighboursInOneDirectionAndSaveCoordinates(int row,
+			int slot, int i, int j) {
+
+		saveCoordinates(row, slot);
+
+		if (checkIfHoleExists(row + i, slot + j)) {
+			if ((gameController.getHoleState(row + i, slot + j) == gameController
+					.getHoleState(row, slot))) {
+				return countNeighboursInOneDirectionAndSaveCoordinates(row + i,
+						slot + j, i, j) + 1;
+
+			}
+		}
+		return 0;
+
+	}
+
+	private void saveCoordinates(int row, int slot) {
+		Point point = new Point();
+		point.setLocation(row, slot);
+		winningCoordinates.add(point);
+
 	}
 
 	private boolean checkIfHoleExists(int row, int slot) {
@@ -123,11 +143,11 @@ public class Logic {
 		this.cpuWin = CPUwin;
 	}
 
-	public List<int[]> getWinningCoordinates() {
+	public List<Point> getWinningCoordinates() {
 		return winningCoordinates;
 	}
 
-	public void setWinningCoordinates(List<int[]> winningCoordinates) {
+	public void setWinningCoordinates(List<Point> winningCoordinates) {
 		this.winningCoordinates = winningCoordinates;
 	}
 
