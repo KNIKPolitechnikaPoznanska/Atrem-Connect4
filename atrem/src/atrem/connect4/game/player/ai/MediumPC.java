@@ -1,6 +1,5 @@
 package atrem.connect4.game.player.ai;
 
-import java.awt.Color;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -26,8 +25,7 @@ public class MediumPC implements PlayerController {
 	private PlayerId playerId;
 
 	public MediumPC(GameController gameController,
-			PlayerAttributes playerAttributes, Color opponentColor,
-			int playerPoints, Logic logic) {
+			PlayerAttributes playerAttributes, Logic logic, int playerPoints) {
 		this.gameController = gameController;
 		this.playerAttributes = playerAttributes;
 		this.playerId = playerAttributes.getPlayerId();

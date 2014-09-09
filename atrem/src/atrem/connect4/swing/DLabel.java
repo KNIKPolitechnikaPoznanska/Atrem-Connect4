@@ -9,6 +9,7 @@ import java.awt.Graphics2D;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 
+import atrem.connect4.game.PlayerId;
 import atrem.connect4.game.board.HoleState;
 
 /**
@@ -22,14 +23,16 @@ public class DLabel extends JLabel {
 	private static final long serialVersionUID = -6083513754064591557L;
 	int dim = 50;
 	Dimension size = new Dimension(dim, dim);
-	private Color color, pl1Color, pl2Color, colorEmpty = new Color(200, 200,
+	private Color color, myColor, oppColor, colorEmpty = new Color(200, 200,
 			200, 100), colorBrighter;
 	private Dimension minSize = new Dimension(dim / 2, dim / 2);
+	private PlayerId playerId;
 
-	public DLabel(Color pl1Color, Color pl2Color) {
-		this.pl1Color = pl1Color;
-		this.pl2Color = pl2Color;
-		color = colorEmpty;
+	public DLabel(PlayerId playerID, Color myColor, Color oppColor) {
+		this.playerId = playerID;
+		this.myColor = myColor;
+		this.oppColor = oppColor;
+		this.color = colorEmpty;
 		this.setPreferredSize(size);
 		this.setMinimumSize(minSize);
 		this.setBorder(BorderFactory.createBevelBorder(TOP, Color.LIGHT_GRAY,
@@ -49,22 +52,36 @@ public class DLabel extends JLabel {
 	}
 
 	public void changeTokenColor(HoleState holeState) {
-		switch (holeState) {
-		case EMPTY:
-			color = colorEmpty;
-			break;
-		case PLAYER1:
-			color = pl1Color;
-			break;
-		case PLAYER2:
-			color = pl2Color;
-			break;
-		default:
-			System.out.println("Z³y kolor?");
-		}
+		if (playerId == PlayerId.PLAYER1)
+			switch (holeState) {
+				case EMPTY :
+					color = colorEmpty;
+					break;
+				case PLAYER1 :
+					color = myColor;
+					break;
+				case PLAYER2 :
+					color = oppColor;
+					break;
+				default :
+					System.out.println("Z³y kolor?");
+			}
+		if (playerId == PlayerId.PLAYER2)
+			switch (holeState) {
+				case EMPTY :
+					color = colorEmpty;
+					break;
+				case PLAYER1 :
+					color = oppColor;
+					break;
+				case PLAYER2 :
+					color = myColor;
+					break;
+				default :
+					System.out.println("Z³y kolor?");
+			}
 		this.paintComponent(getGraphics());
 	}
-
 	public void changeTo(Color color) {
 		this.color = color;
 		this.setBorder(null);

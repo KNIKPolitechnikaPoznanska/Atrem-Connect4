@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import atrem.connect4.game.PlayerId;
 import atrem.connect4.game.board.HoleState;
 
 public class GameBoard extends JPanel {
@@ -20,13 +21,15 @@ public class GameBoard extends JPanel {
 	private JButton[] button;
 	private SwingPresenter swingPresenter;
 	private HoleState holeState;
-	private Color pl1TokenColor, pl2TokenColor;
+	private Color myTokenColor, opponentTokenColor;
+	private PlayerId playerID;
 
 	public GameBoard(SwingPresenter swingPresenter) {
 		slots = swingPresenter.getSlots();
 		rows = swingPresenter.getRows();
-		pl1TokenColor = swingPresenter.getPlayerColor();
-		pl2TokenColor = swingPresenter.getOpponentColor();
+		playerID = swingPresenter.getPlayerId();
+		myTokenColor = swingPresenter.getPlayerColor();
+		opponentTokenColor = swingPresenter.getOpponentColor();
 		this.swingPresenter = swingPresenter;
 		setLayout(new GridLayout(rows + 1, slots));
 		swingBoard = new DLabel[rows][slots];
@@ -65,8 +68,8 @@ public class GameBoard extends JPanel {
 	private void createHoles() {
 		for (int tempRow = 0; tempRow < rows; tempRow++) {
 			for (int tempSlot = 0; tempSlot < slots; tempSlot++) {
-				swingBoard[tempRow][tempSlot] = new DLabel(pl1TokenColor,
-						pl2TokenColor);
+				swingBoard[tempRow][tempSlot] = new DLabel(playerID,
+						myTokenColor, opponentTokenColor);
 				add(swingBoard[tempRow][tempSlot]);
 			}
 		}

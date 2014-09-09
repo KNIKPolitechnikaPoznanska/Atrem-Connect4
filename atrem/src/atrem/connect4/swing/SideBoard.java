@@ -6,6 +6,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import atrem.connect4.game.PlayerId;
+
 public class SideBoard extends JPanel {
 	/**
 	 * Serial
@@ -17,13 +19,15 @@ public class SideBoard extends JPanel {
 	private JLabel player1, player2;
 	private DLabel token1, token2;
 	private JPanel namesAndColours;
-	private Color pl1Color, pl2Color;
+	private Color myColor, oppColor;
 	private Color transparent = new Color(0, 0, 0, 0);
+	private PlayerId playerId;
 
-	public SideBoard(Color pl1Color, Color pl2Color) {
+	public SideBoard(PlayerId playerId, Color myColor, Color oppColor) {
 		setLayout(null);
-		this.pl1Color = pl1Color;
-		this.pl2Color = pl2Color;
+		this.playerId = playerId;
+		this.myColor = myColor;
+		this.oppColor = oppColor;
 
 		namesAndColours = new JPanel();
 		namesAndColours.setBackground(Color.ORANGE);
@@ -35,11 +39,11 @@ public class SideBoard extends JPanel {
 		player1.setBounds(5, 16, 91, 14);
 		namesAndColours.add(player1);
 
-		token1 = new DLabel(pl1Color, pl2Color);
+		token1 = new DLabel(playerId, myColor, oppColor);
 		token1.setBounds(119, 3, 40, 40);
 		namesAndColours.add(token1);
 
-		token2 = new DLabel(pl1Color, pl2Color);
+		token2 = new DLabel(playerId, myColor, oppColor);
 		token2.setBounds(119, 65, 40, 40);
 		namesAndColours.add(token2);
 
@@ -80,13 +84,13 @@ public class SideBoard extends JPanel {
 	}
 
 	public void semaphorTurnPl1() {
-		token1.changeTo(pl1Color);
+		token1.changeTo(myColor);
 		token2.changeTo(transparent);
 	}
 
 	public void semaphorTurnPl2() {
 		token1.changeTo(transparent);
-		token2.changeTo(pl2Color);
+		token2.changeTo(oppColor);
 	}
 
 	public void setTokenPl2() {

@@ -2,6 +2,7 @@ package atrem.connect4.swing;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.Toolkit;
 import java.util.List;
 
@@ -144,14 +145,19 @@ public class SwingPresenter implements PlayerController {
 	 * Odœwie¿a planszê na GUI
 	 */
 	public void refreshView(int row, int slot) {
-		gameBoard.setFreeRow(row, slot, gameController.getBoard()
-				.playerIdtoHoleState(gameController.getPlayerTurn()));
+		gameBoard.setFreeRow(
+				row,
+				slot,
+				gameController.getBoard().playerIdtoHoleState(
+						gameController.getLastMove().getPlayerId()));
 	}
 
 	@Override
 	public void endOfGame(ResultState resultGame) {
 		if (resultGame != ResultState.DRAW)
 			markWinningFour(gameController.getLogic().getWinningCoordinates());
+			gameController.getLogic().getWinningCoordinates().clear();
+		}
 		if (resultGame == ResultState.PLAYER_1_WIN) {
 			decision = informationBoxes.winMessage(gameController.getPlayer1()
 					.getName());
@@ -189,10 +195,11 @@ public class SwingPresenter implements PlayerController {
 			gameController.analyseDecision();
 	}
 
-	public void markWinningFour(List<int[]> winningCoordinates) {
+	public void markWinningFour(List<Point> winningCoordinates) {
 
-		for (int[] i : winningCoordinates) {
-			gameBoard.setColor(i[0], i[1], Color.PINK);
+		for (int i = 0; i < winningCoordinates.size(); i++) {
+			gameBoard.setColor((int) winningCoordinates.get(i).getX(),
+					(int) winningCoordinates.get(i).getY(), Color.PINK);
 		}
 	}
 
@@ -205,7 +212,7 @@ public class SwingPresenter implements PlayerController {
 	 */
 	public void setNamesAndToken() {
 
-		sideBoard.setTokenPl2();
+		// sideBoard.setTokenPl2();
 		if (playerId == PlayerId.PLAYER1) {
 			sideBoard.setTokenPl1();
 			sideBoard.setPl1Name(gameController.getPlayer1().getName());
@@ -226,12 +233,10 @@ public class SwingPresenter implements PlayerController {
 		if (gameController.getCurrentPlayer().getPlayerId() == PlayerId.PLAYER1) {
 			System.out.println("playe1");
 			sideBoard.semaphorTurnPl1();
-
 		} else {
 			System.out.println("playe2");
 			sideBoard.semaphorTurnPl2();
 		}
-
 	}
 
 	public Color getOpponentColor() {
