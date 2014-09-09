@@ -5,7 +5,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import atrem.connect4.game.GameController;
+import atrem.connect4.game.GameState;
 import atrem.connect4.game.Logic;
+import atrem.connect4.game.PlayerDecision;
 import atrem.connect4.game.PlayerId;
 import atrem.connect4.game.ResultState;
 import atrem.connect4.game.board.Board;
@@ -130,12 +132,10 @@ public class MediumPC implements PlayerController {
 
 	@Override
 	public void endOfGame(ResultState resultGame) {
-		if (resultGame == ResultState.PLAYER_1_WIN)
-			informationBoxes.winMessage(playerAttributes.getName());
-		if (resultGame == ResultState.PLAYER_2_WIN)
-			informationBoxes.winMessage(gameController.getPlayer2().getName());
-		if (resultGame == ResultState.DRAW)
-			informationBoxes.drawMessage();
+		gameController.wakeUpGCr();
+		playerAttributes.setPlayerDecision(PlayerDecision.NEW_GAME);
+		if (gameController.getGamestate() == GameState.END_INIT_ALL)
+			gameController.analyseDecision();
 	}
 
 	@Override
