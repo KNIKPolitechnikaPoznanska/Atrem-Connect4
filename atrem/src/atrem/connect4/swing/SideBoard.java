@@ -85,11 +85,13 @@ public class SideBoard extends JPanel {
 
 	public void semaphorTurnPl1() {
 		token1.changeTo(myColor);
+		System.out.println("playe2 na transparent");
 		token2.changeTo(transparent);
 	}
 
 	public void semaphorTurnPl2() {
 		token1.changeTo(transparent);
+		System.out.println("playe1 na transparent");
 		token2.changeTo(oppColor);
 	}
 
