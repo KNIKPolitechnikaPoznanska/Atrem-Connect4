@@ -7,6 +7,7 @@ import atrem.connect4.console.PlayerConsole;
 import atrem.connect4.game.board.Board;
 import atrem.connect4.game.player.PlayerAttributes;
 import atrem.connect4.game.player.PlayerController;
+import atrem.connect4.game.player.PlayerId;
 import atrem.connect4.game.player.ai.EasyPC;
 import atrem.connect4.game.player.ai.MediumPC;
 import atrem.connect4.swing.SwingPresenter;

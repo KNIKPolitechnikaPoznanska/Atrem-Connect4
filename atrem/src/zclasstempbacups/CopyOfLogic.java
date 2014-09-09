@@ -1,4 +1,4 @@
-package atrem.connect4.zclasstempbacups;
+package zclasstempbacups;
 
 import atrem.connect4.game.GameController;
 import atrem.connect4.game.ResultState;

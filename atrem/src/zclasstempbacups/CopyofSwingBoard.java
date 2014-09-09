@@ -1,4 +1,4 @@
-package atrem.connect4.zclasstempbacups;
+package zclasstempbacups;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
