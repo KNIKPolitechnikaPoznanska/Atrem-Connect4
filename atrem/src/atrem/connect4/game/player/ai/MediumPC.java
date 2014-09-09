@@ -162,4 +162,9 @@ public class MediumPC implements PlayerController {
 	public int getPlayerPoints() {
 		return playerAttributes.getPlayerPoints();
 	}
+
+	@Override
+	public PlayerAttributes getPlayerAttributes() {
+		return playerAttributes;
+	}
 }
