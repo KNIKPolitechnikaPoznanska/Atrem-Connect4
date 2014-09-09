@@ -14,6 +14,11 @@ public class GameController implements Runnable {
 	private int doneMoves;
 	private LastMove lastMove;
 	private PlayerController currentPlayer, player1, player2;
+
+	public PlayerController getCurrentPlayer() {
+		return currentPlayer;
+	}
+
 	private int emptySpot, slot;
 	private PlayerId playerTurn = PlayerId.PLAYER1;
 	private ResultState resultState = ResultState.NO_WIN;

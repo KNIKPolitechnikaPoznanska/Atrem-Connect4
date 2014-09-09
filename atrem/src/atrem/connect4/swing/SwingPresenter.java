@@ -191,7 +191,7 @@ public class SwingPresenter implements PlayerController {
 			frame.dispose();
 			return;
 		}
-		if (gameController.getGamestate() == GameState.endInitAll)
+		if (gameController.getGamestate() == GameState.END_INIT_ALL)
 			gameController.analyseDecision();
 	}
 
@@ -203,6 +203,7 @@ public class SwingPresenter implements PlayerController {
 		}
 	}
 
+	@Override
 	public PlayerAttributes getPlayerAttributes() {
 		return playerAttributes;
 	}
