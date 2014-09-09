@@ -14,17 +14,14 @@ public class GameController implements Runnable {
 	private int doneMoves;
 	private LastMove lastMove;
 	private PlayerController currentPlayer, player1, player2;
-
-	public PlayerController getCurrentPlayer() {
-		return currentPlayer;
-	}
-
 	private int emptySpot, slot;
 	private PlayerId playerTurn = PlayerId.PLAYER1;
 	private ResultState resultState = ResultState.NO_WIN;
 	private GameState gameState = GameState.PRE_INIT;
-	private Color pl1Color, pl2Color;
-	private PlayerAttributes player1Attributes, player2Attributes;
+
+	// private Color pl1Color, pl2Color;
+
+	// private PlayerAttributes player1Attributes, player2Attributes;
 
 	/**
 	 * Sprawdza którego z graczy jest kolej
@@ -72,21 +69,22 @@ public class GameController implements Runnable {
 	public void startNewGame() {
 		int row = board.getRows();
 		int slot = board.getSlots();
+		PlayerAttributes player1Attributes = player1.getPlayerAttributes();
+		PlayerAttributes player2Attributes = player2.getPlayerAttributes();
+		Color player1Color = player1Attributes.getPlayerColor();
+		Color player2Color = player2Attributes.getPlayerColor();
 		lastMove = new LastMove();
 		board = new Board(row, slot);
 		resultState = ResultState.NO_WIN;
 		gameState = GameState.PRE_INIT;
 		startGameLoop();
-		player1Attributes = new PlayerAttributes(player1.getName(),
-				PlayerId.PLAYER1, player1.getPlayerPoints(), pl1Color);
-		player2Attributes = new PlayerAttributes(player2.getName(),
-				PlayerId.PLAYER2, player2.getPlayerPoints(), pl2Color);
+
 		if (player1 instanceof SwingPresenter) {
-			player1 = new SwingPresenter(this, player1Attributes, pl2Color,
+			player1 = new SwingPresenter(this, player1Attributes, player2Color,
 					player1.getPlayerPoints());
 		}
 		if (player2 instanceof SwingPresenter) {
-			player2 = new SwingPresenter(this, player2Attributes, pl2Color,
+			player2 = new SwingPresenter(this, player2Attributes, player1Color,
 					player2.getPlayerPoints());
 		}
 		doneMoves = 0;
@@ -218,14 +216,6 @@ public class GameController implements Runnable {
 		this.playerTurn = playerTurn;
 	}
 
-	public void setPl1Color(Color pl1Color) {
-		this.pl1Color = pl1Color;
-	}
-
-	public void setPl2Color(Color pl2Color) {
-		this.pl2Color = pl2Color;
-	}
-
 	public int getEmptySpot() {
 		return emptySpot;
 	}
@@ -240,14 +230,6 @@ public class GameController implements Runnable {
 
 	public void setBoard(Board board) {
 		this.board = board;
-	}
-
-	public Color getPl1Color() {
-		return pl1Color;
-	}
-
-	public Color getPl2Color() {
-		return pl2Color;
 	}
 
 	public PlayerController getPlayer1() {
@@ -268,6 +250,10 @@ public class GameController implements Runnable {
 
 	public GameState getGamestate() {
 		return gameState;
+	}
+
+	public PlayerController getCurrentPlayer() {
+		return currentPlayer;
 	}
 
 	public LastMove getLastMove() {
