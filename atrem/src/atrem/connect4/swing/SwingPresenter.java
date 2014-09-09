@@ -2,12 +2,15 @@ package atrem.connect4.swing;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.Toolkit;
 import java.util.List;
 
 import javax.swing.SwingUtilities;
 
 import atrem.connect4.game.GameController;
+import atrem.connect4.game.GameState;
+import atrem.connect4.game.PlayerDecision;
 import atrem.connect4.game.PlayerId;
 import atrem.connect4.game.ResultState;
 import atrem.connect4.game.player.PlayerAttributes;
@@ -153,6 +156,8 @@ public class SwingPresenter implements PlayerController {
 	public void endOfGame(ResultState resultGame) {
 		if (resultGame != ResultState.DRAW)
 			markWinningFour(gameController.getLogic().getWinningCoordinates());
+			gameController.getLogic().getWinningCoordinates().clear();
+		}
 		if (resultGame == ResultState.PLAYER_1_WIN) {
 			decision = informationBoxes.winMessage(gameController.getPlayer1()
 					.getName());
@@ -172,27 +177,29 @@ public class SwingPresenter implements PlayerController {
 	}
 
 	public void makeDecision(int decision) {
+		gameController.wakeUpGCr();
 		if (decision == 1) {
+			playerAttributes.setPlayerDecision(PlayerDecision.MENU);
 			frame.dispose();
-			if (playerId == PlayerId.PLAYER2) {
-				gameController.initializeNewGame();
-			}
 		}
-		if (decision == 0) // tak gram dalej
-		{
+		if (decision == 0) { // tak gram dalej
+			playerAttributes.setPlayerDecision(PlayerDecision.NEW_GAME);
 			frame.dispose();
-			gameController.initializeNewGame();
-
-			gameController.startNewGame();
 		}
-		if (decision == 2) // zamknij
+		if (decision == 2) {// zamknij
+			playerAttributes.setPlayerDecision(PlayerDecision.END_GAME);
 			frame.dispose();
+			return;
+		}
+		if (gameController.getGamestate() == GameState.endInitAll)
+			gameController.analyseDecision();
 	}
 
-	public void markWinningFour(List<int[]> winningCoordinates) {
+	public void markWinningFour(List<Point> winningCoordinates) {
 
-		for (int[] i : winningCoordinates) {
-			gameBoard.setColor(i[0], i[1], Color.PINK);
+		for (int i = 0; i < winningCoordinates.size(); i++) {
+			gameBoard.setColor((int) winningCoordinates.get(i).getX(),
+					(int) winningCoordinates.get(i).getY(), Color.PINK);
 		}
 	}
 
