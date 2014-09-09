@@ -19,9 +19,7 @@ public class GameController implements Runnable {
 	private ResultState resultState = ResultState.NO_WIN;
 	private GameState gameState = GameState.PRE_INIT;
 
-	// private Color pl1Color, pl2Color;
-
-	// private PlayerAttributes player1Attributes, player2Attributes;
+	// private Stack<LastMove> lastMoveStack = new Stack<LastMove>();
 
 	/**
 	 * Sprawdza którego z graczy jest kolej
@@ -54,7 +52,7 @@ public class GameController implements Runnable {
 		board.setLastSlot(slot);
 		board.setLastSpot(emptySpot);
 		lastMove.saveLastMove(slot, emptySpot, playerTurn);
-
+		// lastMoveStack.push(lastMove);
 		if (emptySpot != -1) {
 			gameState = GameState.MOVE_DONE;
 			notifyAll();
