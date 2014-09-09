@@ -21,10 +21,6 @@ public class GameController implements Runnable {
 	private ResultState resultState = ResultState.NO_WIN;
 	private GameState gameState = GameState.PRE_INIT;
 
-	// private Color pl1Color, pl2Color;
-
-	// private PlayerAttributes player1Attributes, player2Attributes;
-
 	/**
 	 * Sprawdza którego z graczy jest kolej
 	 * 
@@ -32,12 +28,12 @@ public class GameController implements Runnable {
 	 */
 	private PlayerController currentPlayer() {
 		switch (playerTurn) {
-		case PLAYER1:
-			return player1;
-		case PLAYER2:
-			return player2;
-		default:
-			return null; // player1
+			case PLAYER1 :
+				return player1;
+			case PLAYER2 :
+				return player2;
+			default :
+				return null; // player1
 		}
 	}
 
@@ -109,7 +105,6 @@ public class GameController implements Runnable {
 				e.printStackTrace();
 			}
 			currentPlayer.yourTurn();
-			System.out.println("po ");
 			gameState = GameState.WAITING_FOR_MOVE;
 			waitForMove();
 			doneMoves++;
@@ -152,15 +147,15 @@ public class GameController implements Runnable {
 
 	public synchronized void wakeUpGCr() {
 		switch (gameState) {
-		case PRE_INIT:
-			gameState = GameState.END_INIT_1;
-			break;
-		case END_INIT_1:
-			gameState = GameState.END_INIT_ALL;
-			this.notifyAll();
-			break;
-		default:
-			break;
+			case PRE_INIT :
+				gameState = GameState.END_INIT_1;
+				break;
+			case END_INIT_1 :
+				gameState = GameState.END_INIT_ALL;
+				this.notifyAll();
+				break;
+			default :
+				break;
 		}
 	}
 
@@ -197,7 +192,7 @@ public class GameController implements Runnable {
 	public void backToMenu() {
 		GameFactory gameFactory = new GameFactory();
 		GameConfig config = new GameConfig(gameFactory);
-		config.setDBox();
+		config.showClientDBox();
 	}
 
 	public void wakeUp() {
