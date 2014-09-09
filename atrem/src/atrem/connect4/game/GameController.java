@@ -101,7 +101,6 @@ public class GameController implements Runnable {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-
 			currentPlayer.yourTurn();
 			System.out.println("po ");
 			gameState = GameState.WAITING_FOR_MOVE;
@@ -111,6 +110,7 @@ public class GameController implements Runnable {
 					lastMove.getLastSlot(), doneMoves);
 
 			if (endGame) {
+				gameState = GameState.PRE_INIT;
 				changePlayer();
 				currentPlayer = currentPlayer();
 				currentPlayer.yourTurn();
@@ -157,6 +157,16 @@ public class GameController implements Runnable {
 		}
 	}
 
+	public void analyseDecision() {
+		if (player1.getPlayerAttributes().getPlayerDecision() == PlayerDecision.NEW_GAME
+				&& player2.getPlayerAttributes().getPlayerDecision() == PlayerDecision.NEW_GAME)
+			startNewGame();
+		else if (player1.getPlayerAttributes().getPlayerDecision() == PlayerDecision.MENU
+				|| player2.getPlayerAttributes().getPlayerDecision() == PlayerDecision.MENU)
+			backToMenu();
+
+	}
+
 	@Override
 	public void run() {
 		gameLoop();
@@ -177,7 +187,7 @@ public class GameController implements Runnable {
 		}
 	}
 
-	public void initializeNewGame() {
+	public void backToMenu() {
 		GameFactory gameFactory = new GameFactory();
 		GameConfig config = new GameConfig(gameFactory);
 		config.setDBox();
@@ -266,9 +276,4 @@ public class GameController implements Runnable {
 	public Logic getLogic() {
 		return logic;
 	}
-
-	public PlayerController getCurrentPlayer() {
-		return currentPlayer;
-	}
-
 }
