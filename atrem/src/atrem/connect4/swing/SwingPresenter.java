@@ -152,7 +152,7 @@ public class SwingPresenter implements PlayerController {
 
 	@Override
 	public void endOfGame(ResultState resultGame) {
-		if (resultGame != ResultState.DRAW)
+		if (resultGame != ResultState.DRAW) {
 			markWinningFour(gameController.getLogic().getWinningCoordinates());
 			gameController.getLogic().getWinningCoordinates().clear();
 		}
