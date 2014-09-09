@@ -29,8 +29,6 @@ public class Connect4 {
 		} else {
 			executor = Executors.newCachedThreadPool();
 			GameModeSelectionBox gameMode = new GameModeSelectionBox();
-			gameMode.setVisible(true);
-			createOffline();
 		}
 	}
 
