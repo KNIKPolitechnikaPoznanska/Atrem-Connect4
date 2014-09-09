@@ -1,4 +1,4 @@
-package atrem.connect4.swing;
+package zclasstempbacups;
 
 import java.awt.Component;
 import java.awt.Container;
