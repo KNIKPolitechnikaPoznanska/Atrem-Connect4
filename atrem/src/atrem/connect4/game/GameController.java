@@ -55,8 +55,8 @@ public class GameController implements Runnable {
 		board.setLastSpot(emptySpot);
 		lastMove.saveLastMove(slot, emptySpot, playerTurn);
 
-		gameState = GameState.MOVE_DONE;
 		if (emptySpot != -1) {
+			gameState = GameState.MOVE_DONE;
 			notifyAll();
 		}
 		return emptySpot;
@@ -78,15 +78,17 @@ public class GameController implements Runnable {
 		resultState = ResultState.NO_WIN;
 		gameState = GameState.PRE_INIT;
 		startGameLoop();
-
 		if (player1 instanceof SwingPresenter) {
 			player1 = new SwingPresenter(this, player1Attributes, player2Color,
 					player1.getPlayerPoints());
-		}
+		} else
+			wakeUpGCr();
 		if (player2 instanceof SwingPresenter) {
 			player2 = new SwingPresenter(this, player2Attributes, player1Color,
 					player2.getPlayerPoints());
-		}
+		} else
+			wakeUpGCr();
+
 		doneMoves = 0;
 
 	}

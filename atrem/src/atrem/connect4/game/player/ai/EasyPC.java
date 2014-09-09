@@ -83,8 +83,10 @@ public class EasyPC implements PlayerController {
 	public void endOfGame(ResultState resultGame) {
 		gameController.wakeUpGCr();
 		playerAttributes.setPlayerDecision(PlayerDecision.NEW_GAME);
-		if (gameController.getGamestate() == GameState.END_INIT_ALL)
+		if (gameController.getGamestate() == GameState.END_INIT_ALL) {
 			gameController.analyseDecision();
+			gameController.wakeUpGCr();
+		}
 	}
 
 	@Override

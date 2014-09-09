@@ -65,8 +65,7 @@ public class GameFactory {
 			player1 = new EasyPC(gameController, player1Attributes, 0);
 			break;
 		case GameConfig.CcpuMedium:
-			player1 = new MediumPC(gameController, player1Attributes,
-					new Logic(gameController), 0);
+			player1 = new MediumPC(gameController, player1Attributes, 0);
 		}
 
 		switch (player2Type) {
@@ -77,8 +76,7 @@ public class GameFactory {
 			player2 = new EasyPC(gameController, player2Attributes, 0);
 			break;
 		case GameConfig.CcpuMedium:
-			player2 = new MediumPC(gameController, player2Attributes,
-					new Logic(gameController), 0);
+			player2 = new MediumPC(gameController, player2Attributes, 0);
 		}
 
 	}

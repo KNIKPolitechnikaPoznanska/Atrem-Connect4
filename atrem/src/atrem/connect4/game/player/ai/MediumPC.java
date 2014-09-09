@@ -27,11 +27,11 @@ public class MediumPC implements PlayerController {
 	private PlayerId playerId;
 
 	public MediumPC(GameController gameController,
-			PlayerAttributes playerAttributes, Logic logic, int playerPoints) {
+			PlayerAttributes playerAttributes, int playerPoints) {
 		this.gameController = gameController;
 		this.playerAttributes = playerAttributes;
 		this.playerId = playerAttributes.getPlayerId();
-		this.logic = logic;
+		this.logic = new Logic(gameController);
 		board = gameController.getBoard();
 		rand = new Random();
 		informationBoxes = new DialogInformationBoxes();
@@ -58,6 +58,10 @@ public class MediumPC implements PlayerController {
 		else
 			opp = HoleState.PLAYER1;
 		// wywakic ^^
+		if (gameController.getLastMove().getLastRow() == -1
+				&& gameController.getLastMove().getLastSlot() == -1) {
+			return 4;
+		}
 		for (int i = 0; i < board.getSlots(); i++) {// tu mamy x
 			simulatedRow = simulatedGo(i);// a tu y
 			if (simulatedRow == -1)
@@ -134,8 +138,11 @@ public class MediumPC implements PlayerController {
 	public void endOfGame(ResultState resultGame) {
 		gameController.wakeUpGCr();
 		playerAttributes.setPlayerDecision(PlayerDecision.NEW_GAME);
-		if (gameController.getGamestate() == GameState.END_INIT_ALL)
+		this.logic = new Logic(gameController);
+		if (gameController.getGamestate() == GameState.END_INIT_ALL) {
 			gameController.analyseDecision();
+			gameController.wakeUpGCr();
+		}
 	}
 
 	@Override
