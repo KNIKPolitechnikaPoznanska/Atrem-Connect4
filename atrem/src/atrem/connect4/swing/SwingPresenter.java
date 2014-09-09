@@ -2,6 +2,7 @@ package atrem.connect4.swing;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.Toolkit;
 import java.util.List;
 
@@ -153,6 +154,8 @@ public class SwingPresenter implements PlayerController {
 	public void endOfGame(ResultState resultGame) {
 		if (resultGame != ResultState.DRAW)
 			markWinningFour(gameController.getLogic().getWinningCoordinates());
+			gameController.getLogic().getWinningCoordinates().clear();
+		}
 		if (resultGame == ResultState.PLAYER_1_WIN) {
 			decision = informationBoxes.winMessage(gameController.getPlayer1()
 					.getName());
@@ -189,11 +192,11 @@ public class SwingPresenter implements PlayerController {
 			frame.dispose();
 	}
 
-	public void markWinningFour(List<int[]> winningCoordinates) {
+	public void markWinningFour(List<Point> winningCoordinates) {
 
 		for (int i = 0; i < winningCoordinates.size(); i++) {
-			gameBoard.setColor(winningCoordinates.get(i)[0],
-					winningCoordinates.get(i)[1], Color.PINK);
+			gameBoard.setColor((int) winningCoordinates.get(i).getX(),
+					(int) winningCoordinates.get(i).getY(), Color.PINK);
 		}
 	}
 

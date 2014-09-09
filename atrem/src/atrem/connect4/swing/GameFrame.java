@@ -10,7 +10,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class GameFrame extends JFrame {
-
 	/**
 	 * Serial
 	 */
@@ -38,7 +37,8 @@ public class GameFrame extends JFrame {
 		board.setBackground(new Color(255, 255, 255));
 		getContentPane().add(board);
 
-		sideBoard = new SideBoard(swingPresenter.getPlayerColor(),
+		sideBoard = new SideBoard(swingPresenter.getPlayerId(),
+				swingPresenter.getPlayerColor(),
 				swingPresenter.getOpponentColor());
 		getContentPane().add(sideBoard);
 		stats = new Stats();
@@ -46,7 +46,6 @@ public class GameFrame extends JFrame {
 		sideBoard.add(stats);
 
 		this.setVisible(true);
-
 	}
 
 	public Stats getStats() {
@@ -64,5 +63,4 @@ public class GameFrame extends JFrame {
 	public JLabel getSideToken() {
 		return sideToken;
 	}
-
 }
