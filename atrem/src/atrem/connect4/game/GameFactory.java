@@ -46,8 +46,7 @@ public class GameFactory {
 		gameController.setPlayer1(player1);
 		gameController.setPlayer2(player2);
 		gameController.setPlayerTurn(randomFirstTurn());
-		gameController.setPl1Color(player1Color);
-		gameController.setPl2Color(player2Color);
+
 	}
 
 	/**
