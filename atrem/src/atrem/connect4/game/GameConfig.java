@@ -41,13 +41,17 @@ public class GameConfig {
 
 	}
 
-	public void setDBox() {
+	public void showClientDBox() {
 		try {
 			dialogBox = new DialogSettingsBox(this, gameFactory);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	public void showServerDBox() {
+	
+	}
+
 	/**
 	 * Pobierz dane z okna dialogowego do config.
 	 */

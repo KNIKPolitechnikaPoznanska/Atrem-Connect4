@@ -41,6 +41,7 @@ public class Connect4 {
 
 		Registry r = LocateRegistry.getRegistry(1234);
 		connect4Server = (IConnect4Server) r.lookup("connect4LocalServer");
+		new Connect4Client().runOnLocal();
 	}
 
 	public static void createOnline() throws RemoteException, NotBoundException {
