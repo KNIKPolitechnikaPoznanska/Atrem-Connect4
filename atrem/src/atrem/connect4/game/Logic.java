@@ -66,9 +66,6 @@ public class Logic {
 	private boolean checkIfThereIsAFour(int row, int slot, int i, int j) {
 		if (getAddedNumbersOfNeighbours(row, slot, i, j) + 1 > 3) {
 			getAddedNumbersOfNeighboursAndSaveCoordinates(row, slot, i, j);
-			for (int k = 0; k < winningCoordinates.size(); k++)
-				System.out.println(winningCoordinates.get(k).getX() + ", "
-						+ winningCoordinates.get(k).getY());
 			return true;
 		}
 		return false;
