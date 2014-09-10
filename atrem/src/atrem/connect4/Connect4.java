@@ -2,15 +2,12 @@ package atrem.connect4;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import multiplayer.IConnect4Server;
 import atrem.connect4.console.Menu;
-import atrem.connect4.game.GameFactory;
-import atrem.connect4.swing.GameModeSelectionBox;
+import atrem.connect4.factory.GameFactory;
+import atrem.connect4.factory.GameModeSelectionBox;
+import atrem.connect4.game.GameConfig;
 
 /*
  * Klasa main uruchamiaj¹ca grê Connect4hhh
@@ -18,7 +15,8 @@ import atrem.connect4.swing.GameModeSelectionBox;
 public class Connect4 {
 
 	private static IConnect4Server connect4Server;
-	private static ExecutorService executor;
+	private static GameConfig config;
+	private static GameFactory gameFactory;
 
 	public static void main(String[] args) throws RemoteException,
 			NotBoundException {
@@ -27,22 +25,20 @@ public class Connect4 {
 			Menu menu = new Menu(gameFactory);
 			menu.runGame();
 		} else {
-			executor = Executors.newCachedThreadPool();
 			GameModeSelectionBox gameMode = new GameModeSelectionBox();
 		}
 	}
 
 	public static void createOffline() throws RemoteException,
 			NotBoundException {
-		Runnable serverThread = new Connect4Server();
-		executor.execute(serverThread);
-
-		Registry r = LocateRegistry.getRegistry(1234);
-		connect4Server = (IConnect4Server) r.lookup("connect4LocalServer");
-		new Connect4Client().runOnLocal();
+		gameFactory = new GameFactory();
+		config = new GameConfig(gameFactory);
+		config.showOfflineDBox();
 	}
-
 	public static void createOnline() throws RemoteException, NotBoundException {
 		Connect4Client client = new Connect4Client();
+		gameFactory = new GameFactory();
+		config = new GameConfig(gameFactory);
+		config.showOnlineDBox();
 	}
 }

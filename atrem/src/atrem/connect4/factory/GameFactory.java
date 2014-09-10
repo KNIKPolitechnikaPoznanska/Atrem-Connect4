@@ -1,9 +1,12 @@
-package atrem.connect4.game;
+package atrem.connect4.factory;
 
 import java.awt.Color;
 import java.util.Random;
 
 import atrem.connect4.console.PlayerConsole;
+import atrem.connect4.game.GameConfig;
+import atrem.connect4.game.GameController;
+import atrem.connect4.game.GameControllerImpl;
 import atrem.connect4.game.board.Board;
 import atrem.connect4.game.player.PlayerAttributes;
 import atrem.connect4.game.player.PlayerController;

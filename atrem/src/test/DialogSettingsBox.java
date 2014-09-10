@@ -23,8 +23,8 @@ import javax.swing.LayoutStyle;
 import javax.swing.WindowConstants;
 
 import atrem.connect4.Connect4Swing;
+import atrem.connect4.factory.GameFactory;
 import atrem.connect4.game.GameConfig;
-import atrem.connect4.game.GameFactory;
 
 public class DialogSettingsBox extends JDialog {
 	/**

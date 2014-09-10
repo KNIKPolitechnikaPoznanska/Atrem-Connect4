@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Point;
 import java.util.List;
 
+import atrem.connect4.factory.GameFactory;
 import atrem.connect4.game.board.Board;
 import atrem.connect4.game.board.HoleState;
 import atrem.connect4.game.player.PlayerAttributes;
