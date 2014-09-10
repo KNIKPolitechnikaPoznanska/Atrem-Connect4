@@ -105,7 +105,7 @@ public class GameControllerImpl implements Runnable, GameController {
 		boolean endGame;
 		logic = new Logic(this);
 		lastMove = new LastMove();
-		waitForInit();
+		// waitForInit();
 		while (resultState == ResultState.NO_WIN) {
 			currentPlayer = currentPlayer();
 			try {

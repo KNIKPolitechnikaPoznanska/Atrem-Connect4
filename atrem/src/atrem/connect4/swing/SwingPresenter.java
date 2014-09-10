@@ -60,15 +60,19 @@ public class SwingPresenter implements PlayerController {
 	@Override
 	public void yourTurn() {// LastMove lastMove
 
-		gameBoard.enableButtons(true);
-		sideBoard.tokenEnable();
-		LastSlot = gameController.getLastMove().getLastSlot();
-		LastRow = gameController.getLastMove().getLastRow();
-
-		if (LastRow != -1 && LastSlot != -1) {
-			refreshView(LastRow, LastSlot);
-		}
-		System.out.println(LastRow + " " + LastSlot);
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				gameBoard.enableButtons(true);
+				sideBoard.tokenEnable();
+				LastSlot = gameController.getLastMove().getLastSlot();
+				LastRow = gameController.getLastMove().getLastRow();
+				if (LastRow != -1 && LastSlot != -1) {
+					refreshView(LastRow, LastSlot);
+				}
+				System.out.println(LastRow + " " + LastSlot);
+			}
+		});
 	}
 
 	/**
@@ -113,7 +117,7 @@ public class SwingPresenter implements PlayerController {
 					stats.setName(gameController.getPlayer2().getName(),
 							PlayerId.PLAYER2);
 
-					gameController.wakeUpGCr();
+					// gameController.wakeUpGCr();
 					gameBoard.enableButtons(blockButton);
 					setNamesAndToken();
 					sideBoard.setPreferredSize(new Dimension(215, 200));
@@ -145,9 +149,14 @@ public class SwingPresenter implements PlayerController {
 	/**
 	 * Odœwie¿a planszê na GUI
 	 */
-	public void refreshView(int row, int slot) {
-		gameBoard.setFreeRow(row, slot, gameController.getLastMove()
-				.getPlayerId());
+	public void refreshView(final int row, final int slot) {
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				gameBoard.setFreeRow(row, slot, gameController.getLastMove()
+						.getPlayerId());
+			}
+		});
 	}
 
 	@Override
