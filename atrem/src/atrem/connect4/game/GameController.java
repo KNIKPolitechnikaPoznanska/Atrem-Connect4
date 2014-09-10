@@ -63,4 +63,6 @@ public interface GameController {
 
 	public abstract List<Point> getWinningCoordinates();
 
+	public abstract void addPlayerController(PlayerController playerController);
+
 }

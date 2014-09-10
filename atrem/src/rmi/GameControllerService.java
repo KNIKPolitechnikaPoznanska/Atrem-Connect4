@@ -21,6 +21,10 @@ public class GameControllerService implements GameController {
 		this.remoteGameController = remoteGameController;
 	}
 
+	public void addPlayerController(PlayerController playerController) {
+		remoteGameController.addPlayerController(playerController);
+	}
+
 	@Override
 	public int move(int slot) {
 		try {

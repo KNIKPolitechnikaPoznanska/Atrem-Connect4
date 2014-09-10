@@ -20,7 +20,7 @@ public class RemoteGameControllerImp extends UnicastRemoteObject implements
 
 	GameController gameController;
 
-	protected RemoteGameControllerImp(GameController gameController)
+	public RemoteGameControllerImp(GameController gameController)
 			throws RemoteException {
 		super();
 		this.gameController = gameController;
@@ -172,6 +172,12 @@ public class RemoteGameControllerImp extends UnicastRemoteObject implements
 	@Override
 	public void run() throws RemoteException {
 		gameController.run();
+
+	}
+
+	@Override
+	public void addPlayerController(
+			RemotePlayerController remotePlayerController) {
 
 	}
 
