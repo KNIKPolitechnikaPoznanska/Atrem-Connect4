@@ -83,7 +83,7 @@ public class OfflineSettingsBox extends JDialog {
 	 */
 	private void startButtonPressed() {
 		if (saveSettings()) {
-			gameConfig.setupSettings();
+			gameConfig.setupOfflineSettings();
 			dispose();
 			new Connect4().createOfflineGame(gameConfig);
 		}

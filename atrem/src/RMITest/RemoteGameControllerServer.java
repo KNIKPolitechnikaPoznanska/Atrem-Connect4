@@ -18,7 +18,7 @@ public class RemoteGameControllerServer extends UnicastRemoteObject
 		implements
 			RemoteGameController {
 
-	protected RemoteGameControllerServer() throws RemoteException {
+	public RemoteGameControllerServer() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}

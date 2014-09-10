@@ -29,6 +29,7 @@ public class GameConfig {
 	private Color token1Color, token2Color;
 	private OnlineSettingsBox onlineBox;
 	private OfflineSettingsBox offlineBox;
+	private String adress;
 
 	public GameConfig() {
 		playerFactory = new PlayerFactory();
@@ -52,7 +53,7 @@ public class GameConfig {
 	/**
 	 * Pobierz dane z okna dialogowego do config.
 	 */
-	public void setupSettings() {
+	public void setupOfflineSettings() {
 		player1name = offlineBox.getPl1Name();
 		player2name = offlineBox.getPl2Name();
 
@@ -68,6 +69,13 @@ public class GameConfig {
 		token1Color = offlineBox.getToken1Color();
 		token2Color = offlineBox.getToken2Color();
 	}
+
+	public void setupOnlineClientSettings() {
+		adress = onlineBox.getAdress();
+		player1name = onlineBox.getName();
+		token1Color = onlineBox.getColor();
+	}
+
 	/**
 	 * Ustaw gameFactory wartoœciami z Config.
 	 */
@@ -116,6 +124,14 @@ public class GameConfig {
 
 	public void setPlayer2name(String player2name) {
 		this.player2name = player2name;
+	}
+
+	public Color getToken1Color() {
+		return token1Color;
+	}
+
+	public String getAdress() {
+		return adress;
 	}
 
 	public int getRows() {

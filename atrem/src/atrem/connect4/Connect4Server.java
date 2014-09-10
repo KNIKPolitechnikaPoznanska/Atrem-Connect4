@@ -5,14 +5,17 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-import multiplayer.GameServer;
-import multiplayer.IConnect4Server;
+import RMITest.RemoteGameController;
+import RMITest.RemoteGameControllerServer;
+import atrem.connect4.game.GameController;
+import atrem.connect4.game.GameControllerImpl;
 
 /**
  * Urruchamia serwer gry.
  */
-public class Connect4Server implements Runnable {
-	private static IConnect4Server connect4Server;
+public class Connect4Server {
+	private static RemoteGameController remoteGameController;
+	private static GameController gameController;
 
 	/**
 	 * Uruchamia tylko serwer.
@@ -23,22 +26,12 @@ public class Connect4Server implements Runnable {
 	 */
 	public static void main(String[] args) throws RemoteException,
 			AlreadyBoundException {
-		connect4Server = new GameServer();
 		Registry registry = LocateRegistry.createRegistry(1234);
-		registry.bind("connect4Server", connect4Server);
-	}
 
-	/**
-	 * Metoda uruchamiana jako w¹tek w Offline.
-	 */
-	@Override
-	public void run() {
-		try {
-			connect4Server = new GameServer();
-			Registry registry = LocateRegistry.createRegistry(1234);
-			registry.bind("connect4LocalServer", connect4Server);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		gameController = new GameControllerImpl();
+		remoteGameController = new RemoteGameControllerServer();
+
+		registry.bind("RGCS", remoteGameController);
+
 	}
 }

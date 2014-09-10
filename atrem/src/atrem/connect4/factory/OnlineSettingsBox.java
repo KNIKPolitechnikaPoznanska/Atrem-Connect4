@@ -32,17 +32,23 @@ public class OnlineSettingsBox extends JDialog {
 
 	protected void connectButtonPressed() {
 		if (saveSettings()) {
-			gameConfig.setupSettings();
+			gameConfig.setupOnlineClientSettings();
 			dispose();
 			new Connect4().connectToServer(gameConfig);
 		}
 	}
 
+	/**
+	 * Saves all settings from swing to it's fields.
+	 * 
+	 * @return true if success
+	 */
 	private boolean saveSettings() {
 		setPlayerName(nameTextField.getText());
 		setAdress(adressTextField.getText());
 		return true;
 	}
+
 	/**
 	 * Create the dialog.
 	 * 

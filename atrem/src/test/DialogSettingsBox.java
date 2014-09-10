@@ -86,7 +86,7 @@ public class DialogSettingsBox extends JDialog {
 	 */
 	private void startButtonPressed() {
 		if (saveSettings()) {
-			gameConfig.setupSettings();
+			gameConfig.setupOfflineSettings();
 			dispose();
 			new Connect4Swing().init(gameConfig, gameFactory);
 		}

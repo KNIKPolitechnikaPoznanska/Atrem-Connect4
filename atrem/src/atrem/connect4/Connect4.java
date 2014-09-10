@@ -1,5 +1,6 @@
 package atrem.connect4;
 
+import java.awt.Color;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
@@ -45,6 +46,7 @@ public class Connect4 {
 	 */
 	public void createOnline() throws RemoteException, NotBoundException {
 		config.showOnlineDBox();
+
 	}
 
 	/**
@@ -63,6 +65,9 @@ public class Connect4 {
 	}
 
 	public void connectToServer(GameConfig gameConfig) {
+		String adress = gameConfig.getAdress();
+		String name = gameConfig.getPlayer1name();
+		Color color = gameConfig.getToken1Color();
 		System.out.println("Tworzenie klienta ...");
 	}
 }
