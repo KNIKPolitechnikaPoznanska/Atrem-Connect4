@@ -7,6 +7,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 import RMITest.GameControllerService;
+import RMITest.PlayerControllerClient;
 import RMITest.RemoteGameController;
 import RMITest.RemotePlayerController;
 import atrem.connect4.console.Menu;
@@ -14,7 +15,10 @@ import atrem.connect4.factory.GameFactory;
 import atrem.connect4.factory.GameModeSelectionBox;
 import atrem.connect4.game.GameConfig;
 import atrem.connect4.game.GameController;
+import atrem.connect4.game.player.PlayerAttributes;
 import atrem.connect4.game.player.PlayerController;
+import atrem.connect4.game.player.PlayerId;
+import atrem.connect4.swing.SwingPresenter;
 
 /*
  * Klasa main uruchamiaj¹ca grê Connect4
@@ -24,8 +28,8 @@ public class Connect4 {
 	private static GameFactory gameFactory;
 	private static GameController gameController;
 	private PlayerController playerController;
-	private RemoteGameController rGCS, rGCC;
 	private RemotePlayerController rPCC, rPCS;
+	private RemoteGameController rGCS, rGCC;
 
 	public static void main(String[] args) throws RemoteException,
 			NotBoundException {
@@ -84,10 +88,17 @@ public class Connect4 {
 
 		try {
 			Registry registry = LocateRegistry.getRegistry(adress, 1234);
-			rGCS = new GameControllerService(rGCC);
-			registry.lookup("RGCS");
+			rGCC = new GameControllerService(rGCS);
+			rPCS = new PlayerControllerClient(playerController);
+			rGCS = (RemoteGameController) registry.lookup("RGCS");
+			rGCS.addRemotePlayer(rPCC);
 		} catch (RemoteException | NotBoundException e) {
+			System.out.println("Error!");
 		}
+		PlayerAttributes playerAttributes = new PlayerAttributes(name,
+				PlayerId.PLAYER1, 0, color);
+		playerController = new SwingPresenter(gameController, playerAttributes,
+				gameController.get, 0);
 
 	}
 }

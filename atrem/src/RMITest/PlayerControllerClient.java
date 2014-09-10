@@ -14,7 +14,7 @@ public class PlayerControllerClient extends UnicastRemoteObject
 			RemotePlayerController {
 	private PlayerController playerController;
 
-	protected PlayerControllerClient(PlayerController playerController)
+	public PlayerControllerClient(PlayerController playerController)
 			throws RemoteException {
 		super();
 		this.playerController = playerController;

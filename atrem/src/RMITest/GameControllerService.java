@@ -285,4 +285,22 @@ public class GameControllerService extends UnicastRemoteObject
 		}
 		return null;
 	}
+
+	@Override
+	public void addRemotePlayer(RemotePlayerController rPCC)
+			throws RemoteException {
+		// PlayerController playerController = new PlayerControllerClient(rPCC);
+
+		// switch (gamecontroller.getGamestate()) {
+		// case PRE_INIT :
+		// gamecontroller.setPlayer1(playerController);
+		// break;
+		// case END_INIT_1 :
+		// gamecontroller.setPlayer2(playerController);
+		// this.notifyAll();
+		// break;
+		// }
+		// gamecontroller.connectPlayer();
+
+	}
 }

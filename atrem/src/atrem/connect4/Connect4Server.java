@@ -16,8 +16,7 @@ import atrem.connect4.game.GameControllerImpl;
  */
 public class Connect4Server {
 	private static GameController gameController;
-	private static RemoteGameController rGCS;
-	private static RemoteGameController rGCC;
+	private static RemoteGameController rGCS, rGCC;
 	private static RemotePlayerController rPCC, rPCS;
 
 	/**

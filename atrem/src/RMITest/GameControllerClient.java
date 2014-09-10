@@ -176,4 +176,11 @@ public class GameControllerClient extends UnicastRemoteObject
 
 	}
 
+	@Override
+	public void addRemotePlayer(RemotePlayerController rPCC)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+
+	}
+
 }

@@ -16,6 +16,9 @@ import atrem.connect4.game.player.PlayerId;
 
 public interface RemoteGameController extends Remote {
 
+	public abstract void addRemotePlayer(RemotePlayerController rPCC)
+			throws RemoteException;
+
 	public abstract int move(int slot) throws RemoteException;
 
 	public abstract void startNewGame() throws RemoteException;
