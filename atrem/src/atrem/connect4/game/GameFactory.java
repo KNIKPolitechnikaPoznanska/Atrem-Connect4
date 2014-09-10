@@ -41,7 +41,7 @@ public class GameFactory {
 	 * Tworzy GameController.
 	 */
 	public void createGameController() {
-		gameController = new GameController();
+		gameController = new GameControllerImpl();
 		gameController.setBoard(board);
 		createPlayerGame();
 		gameController.setPlayer1(player1);
