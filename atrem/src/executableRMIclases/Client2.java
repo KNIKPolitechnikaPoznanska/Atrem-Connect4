@@ -15,10 +15,10 @@ import atrem.connect4.game.player.PlayerController;
 import atrem.connect4.game.player.PlayerId;
 import atrem.connect4.swing.SwingPresenter;
 
-public class Client {
+public class Client2 {
 	static RemoteGameController remoteGameController;
-	static PlayerAttributes playerAttributes1 = new PlayerAttributes("pawel",
-			PlayerId.PLAYER1, 0, new Color(2, 2, 200));
+	static PlayerAttributes playerAttributes1 = new PlayerAttributes("wojtek",
+			PlayerId.PLAYER2, 0, new Color(100, 100, 100));
 	static PlayerController player;
 
 	public static void main(String[] args) throws RemoteException {
@@ -34,7 +34,7 @@ public class Client {
 		GameControllerService gameControllerService = new GameControllerService(
 				remoteGameController);
 		player = new SwingPresenter(gameControllerService, playerAttributes1,
-				new Color(100, 100, 100), 0);
+				new Color(2, 2, 200), 0);
 		RemotePlayerController remotePlayerController = new RemotePlayerControllerImp(
 				player);
 		gameControllerService.addPlayerController(remotePlayerController);

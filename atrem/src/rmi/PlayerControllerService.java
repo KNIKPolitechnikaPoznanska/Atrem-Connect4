@@ -12,6 +12,10 @@ public class PlayerControllerService implements PlayerController {
 
 	RemotePlayerController remotePlayerController;
 
+	public PlayerControllerService(RemotePlayerController remotePlayerController) {
+		this.remotePlayerController = remotePlayerController;
+	}
+
 	@Override
 	public String getName() {
 

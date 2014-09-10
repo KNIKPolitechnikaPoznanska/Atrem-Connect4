@@ -21,8 +21,9 @@ public class GameControllerService implements GameController {
 		this.remoteGameController = remoteGameController;
 	}
 
-	public void addPlayerController(PlayerController playerController) {
-		remoteGameController.addPlayerController(playerController);
+	public void addPlayerController(
+			RemotePlayerController remotePlayerController) {
+		remoteGameController.addPlayerController(remotePlayerController);
 	}
 
 	@Override

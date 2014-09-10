@@ -13,11 +13,13 @@ import atrem.connect4.game.board.Board;
 import atrem.connect4.game.player.PlayerController;
 
 public class Server {
+
 	private PlayerController player1, player2;
 	private PlayerController playerControllerService;
 
 	public static void main(String[] args) throws RemoteException,
 			AlreadyBoundException {
+		System.out.println("serwer start");
 		GameController gameController;
 		gameController = new GameControllerImpl();
 		Board board = new Board(6, 7);
