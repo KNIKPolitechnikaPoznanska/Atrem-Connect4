@@ -84,7 +84,6 @@ public class SwingPresenter implements PlayerController {
 			refreshView(emptySpot, slot);
 			gameBoard.enableButtons(false);
 			sideBoard.tokenDisable();
-
 		}
 	}
 
