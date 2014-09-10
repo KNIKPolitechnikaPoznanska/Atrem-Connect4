@@ -7,6 +7,7 @@ import java.rmi.registry.Registry;
 
 import RMITest.GameControllerService;
 import RMITest.RemoteGameController;
+import RMITest.RemotePlayerController;
 import atrem.connect4.game.GameController;
 import atrem.connect4.game.GameControllerImpl;
 
@@ -14,8 +15,10 @@ import atrem.connect4.game.GameControllerImpl;
  * Urruchamia serwer gry.
  */
 public class Connect4Server {
-	private static RemoteGameController remoteGameController;
 	private static GameController gameController;
+	private static RemoteGameController rGCS;
+	private static RemoteGameController rGCC;
+	private static RemotePlayerController rPCC, rPCS;
 
 	/**
 	 * Uruchamia tylko serwer.
@@ -29,9 +32,10 @@ public class Connect4Server {
 		Registry registry = LocateRegistry.createRegistry(1234);
 
 		gameController = new GameControllerImpl();
-		remoteGameController = new GameControllerService(remoteGameController);
 
-		registry.bind("RGCS", remoteGameController);
+		rGCS = new GameControllerService(rGCC);
+
+		registry.bind("RGCS", rGCS);
 
 	}
 }

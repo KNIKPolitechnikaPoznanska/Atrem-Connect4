@@ -69,6 +69,7 @@ public class OnlineSettingsBox extends JDialog {
 		imieLabel.setFont(new Font("Tahoma", Font.PLAIN, 21));
 		nameTextField = new JTextField();
 		nameTextField.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		nameTextField.setText("Gracz");
 		Container imieContainer = new Container();
 		imieContainer.setLayout(new GridLayout(0, 2, 0, 0));
 		imieContainer.add(imieLabel);
@@ -78,6 +79,7 @@ public class OnlineSettingsBox extends JDialog {
 		adresIPLabel.setFont(new Font("Tahoma", Font.PLAIN, 21));
 		adressTextField = new JTextField();
 		adressTextField.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		adressTextField.setText("localhost");
 		Container adresIPContainer = new Container();
 		adresIPContainer.setLayout(new GridLayout(0, 2, 0, 0));
 		adresIPContainer.add(adresIPLabel);
