@@ -235,16 +235,6 @@ public class GameControllerImpl implements Runnable, GameController {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see atrem.connect4.game.GameController#wakeUp()
-	 */
-	@Override
-	public void wakeUp() {
-		notifyAll();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
 	 * @see atrem.connect4.game.GameController#getHoleState(int, int)
 	 */
 	@Override
@@ -419,10 +409,6 @@ public class GameControllerImpl implements Runnable, GameController {
 	 * 
 	 * @see atrem.connect4.game.GameController#getLogic()
 	 */
-	@Override
-	public Logic getLogic() {
-		return logic;
-	}
 
 	/*
 	 * (non-Javadoc)
