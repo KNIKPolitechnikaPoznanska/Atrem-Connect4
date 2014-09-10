@@ -5,18 +5,23 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-import atrem.connect4.game.GameController;
-import atrem.connect4.game.GameControllerImpl;
-
 public class Connect4RemoteServer {
 
 	public static void main(String[] args) throws RemoteException,
 			AlreadyBoundException {
 		// TODO Auto-generated method stub
-		GameController Connect4 = new GameControllerImpl();
+		// GameController Connect4 = new GameControllerImpl();
+		// r.bind("Connect4", r);
+		/**
+		 * establish connection
+		 */
+		RemoteGameController connect = new RemoteGameControllerImpl();
 		Registry r = LocateRegistry.createRegistry(1234);
-		r.bind("Connect4", r);
 
+		r.bind("connect", connect);
+		/**
+ * 
+ */
 	}
 
 }
