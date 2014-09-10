@@ -118,10 +118,14 @@ public class SwingPresenter implements PlayerController {
 					stats.setName(gameController.getPlayer2().getName(),
 							PlayerId.PLAYER2);
 
+<<<<<<< HEAD
 					// gameController.wakeUpGCr();
 
 					gameController.connectPlayer();
 
+=======
+					gameController.connectPlayer();
+>>>>>>> branch 'batryk' of https://github.com/KNIKPolitechnikaPoznanska/AtremProject.git
 					gameBoard.enableButtons(blockButton);
 					setNamesAndToken();
 					sideBoard.setPreferredSize(new Dimension(215, 200));
