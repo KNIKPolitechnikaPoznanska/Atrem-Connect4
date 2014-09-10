@@ -118,7 +118,11 @@ public class SwingPresenter implements PlayerController {
 					stats.setName(gameController.getPlayer2().getName(),
 							PlayerId.PLAYER2);
 
+<<<<<<< Upstream, based on origin/master
 					// gameController.wakeUpGCr();
+=======
+					gameController.connectPlayer();
+>>>>>>> 805a5e0 gamecontroller do gracza
 					gameBoard.enableButtons(blockButton);
 					setNamesAndToken();
 					sideBoard.setPreferredSize(new Dimension(215, 200));
@@ -185,7 +189,7 @@ public class SwingPresenter implements PlayerController {
 	}
 
 	public void makeDecision(int decision) {
-		gameController.wakeUpGCr();
+		gameController.connectPlayer();
 		if (decision == 1) {
 			playerAttributes.setPlayerDecision(PlayerDecision.MENU);
 			frame.dispose();

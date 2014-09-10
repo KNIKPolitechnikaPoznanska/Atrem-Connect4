@@ -29,7 +29,7 @@ public class PlayerConsole implements PlayerController {
 		this.playerAttributes = playerAttributes;
 		keyHandler = new KeyHandler(gameController.getBoard());
 		guiConsole = new GUIConsole(gameController);
-		gameController.wakeUpGCr();
+		gameController.connectPlayer();
 	}
 
 	@Override

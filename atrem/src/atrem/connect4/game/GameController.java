@@ -15,7 +15,7 @@ public interface GameController {
 
 	public abstract void startNewGame();
 
-	public abstract void wakeUpGCr();
+	public abstract void connectPlayer();
 
 	public abstract void analyseDecision();
 
