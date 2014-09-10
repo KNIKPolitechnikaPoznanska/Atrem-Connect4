@@ -33,12 +33,12 @@ public class GameControllerImpl implements Runnable, GameController {
 	 */
 	private PlayerController currentPlayer() {
 		switch (playerTurn) {
-		case PLAYER1:
-			return player1;
-		case PLAYER2:
-			return player2;
-		default:
-			return null; // player1
+			case PLAYER1 :
+				return player1;
+			case PLAYER2 :
+				return player2;
+			default :
+				return null; // player1
 		}
 	}
 
@@ -162,15 +162,15 @@ public class GameControllerImpl implements Runnable, GameController {
 	@Override
 	public synchronized void wakeUpGCr() {
 		switch (gameState) {
-		case PRE_INIT:
-			gameState = GameState.END_INIT_1;
-			break;
-		case END_INIT_1:
-			gameState = GameState.END_INIT_ALL;
-			this.notifyAll();
-			break;
-		default:
-			break;
+			case PRE_INIT :
+				gameState = GameState.END_INIT_1;
+				break;
+			case END_INIT_1 :
+				gameState = GameState.END_INIT_ALL;
+				this.notifyAll();
+				break;
+			default :
+				break;
 		}
 	}
 
@@ -230,7 +230,8 @@ public class GameControllerImpl implements Runnable, GameController {
 	public void backToMenu() {
 		GameFactory gameFactory = new GameFactory();
 		GameConfig config = new GameConfig(gameFactory);
-		config.setDBox();
+		config.showOfflineDBox();
+		config.showOnlineDBox();
 	}
 
 	/*

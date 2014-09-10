@@ -24,20 +24,19 @@ import javax.swing.LayoutStyle;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.WindowConstants;
 
-import atrem.connect4.Connect4Swing;
+import atrem.connect4.Connect4;
 import atrem.connect4.game.GameConfig;
 
-public class DialogSettingsBox extends JDialog {
+public class OfflineSettingsBox extends JDialog {
 	/**
 	 * Serial
 	 */
 	private static final long serialVersionUID = 973461278407448042L;
-	private static DialogSettingsBox dialog;
+	private static OfflineSettingsBox dialog;
 	private String pl1Name, pl2Name, pl1GameType, pl2GameType, pl1Type,
 			pl2Type;
 	private int slots, rows;
 	private GameConfig gameConfig;
-	private GameFactory gameFactory;
 	private JPanel boardSetPanel, playerSetPanel, buttonPanel;
 	private ButtonGroup buttonGroup1, buttonGroup2;
 	private JLabel jLabel1, jLabel2, jLabel3, jLabel4, jLabel5, jLabel6,
@@ -57,14 +56,12 @@ public class DialogSettingsBox extends JDialog {
 	 * 
 	 * @param swingConfig
 	 */
-	public DialogSettingsBox(GameConfig swingConfig, GameFactory gameFactory) {
+	public OfflineSettingsBox(GameConfig swingConfig) {
 		this.gameConfig = swingConfig;
-		this.gameFactory = gameFactory;
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		token1Color = color1;
 		token2Color = color2;
 		initComponents();
-		this.setVisible(true);
 	}
 
 	/**
@@ -88,7 +85,7 @@ public class DialogSettingsBox extends JDialog {
 		if (saveSettings()) {
 			gameConfig.setupSettings();
 			dispose();
-			new Connect4Swing().init(gameConfig, gameFactory);
+			new Connect4().createOfflineGame(gameConfig);
 		}
 	}
 
@@ -204,7 +201,7 @@ public class DialogSettingsBox extends JDialog {
 		TFieldRows = new JTextField();
 
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		setTitle("Connect4 Settings");
+		setTitle("Connect4 Offline Settings");
 		setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 		setResizable(false);
 
@@ -358,7 +355,7 @@ public class DialogSettingsBox extends JDialog {
 
 		buttonGroup1.add(rBSwing1);
 		rBSwing1.setFont(new Font("Tahoma", 0, 19)); // NOI18N
-		rBSwing1.setText("Swing");
+		rBSwing1.setText("Okno Graficzne");
 		rBSwing1.setSelected(true);
 
 		buttonGroup2.add(rBConsole2);
@@ -367,7 +364,7 @@ public class DialogSettingsBox extends JDialog {
 
 		buttonGroup2.add(rBSwing2);
 		rBSwing2.setFont(new Font("Tahoma", 0, 19)); // NOI18N
-		rBSwing2.setText("Swing");
+		rBSwing2.setText("Okno Graficzne");
 		rBSwing2.setSelected(true);
 
 		plTypeBox1.setFont(new Font("Tahoma", 0, 20)); // NOI18N

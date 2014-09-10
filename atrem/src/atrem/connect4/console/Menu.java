@@ -16,8 +16,8 @@ public class Menu {
 	private GameFactory gameFactory;
 	private Connect4Console console;
 
-	public Menu(GameFactory gameFactory) {
-		this.gameFactory = gameFactory;
+	public Menu() {
+		gameFactory = new GameFactory();
 		keyGo = new KeyHandler();
 		loadSettings();
 		setupGameFactory();
