@@ -1,4 +1,4 @@
-package atrem.connect4.swing;
+package atrem.connect4.factory;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;

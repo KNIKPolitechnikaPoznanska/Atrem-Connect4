@@ -2,8 +2,9 @@ package atrem.connect4.game;
 
 import java.awt.Color;
 
-import atrem.connect4.swing.DialogSettingsBox;
-import atrem.connect4.swing.GameModeSelectionBox;
+import atrem.connect4.factory.DialogSettingsBox;
+import atrem.connect4.factory.GameFactory;
+import atrem.connect4.factory.GameModeSelectionBox;
 
 /*
  * Pobiera od gracza wszystkie informacje
@@ -41,14 +42,14 @@ public class GameConfig {
 
 	}
 
-	public void showClientDBox() {
+	public void showOfflineDBox() {
 		try {
 			dialogBox = new DialogSettingsBox(this, gameFactory);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	public void showServerDBox() {
+	public void showOnlineDBox() {
 	
 	}
 

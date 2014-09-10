@@ -1,4 +1,4 @@
-package atrem.connect4.swing;
+package atrem.connect4.factory;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -26,7 +26,6 @@ import javax.swing.WindowConstants;
 
 import atrem.connect4.Connect4Swing;
 import atrem.connect4.game.GameConfig;
-import atrem.connect4.game.GameFactory;
 
 public class DialogSettingsBox extends JDialog {
 	/**
