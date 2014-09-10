@@ -29,7 +29,7 @@ public class EasyPC implements PlayerController {
 		this.playerAttributes = playerAttributes;
 		this.playerId = playerAttributes.getPlayerId();
 		board = gameController.getBoard();
-		gameController.wakeUpGCr();
+		gameController.connectPlayer();
 		informationBoxes = new DialogInformationBoxes();
 	}
 
@@ -81,7 +81,7 @@ public class EasyPC implements PlayerController {
 
 	@Override
 	public void endOfGame(ResultState resultGame) {
-		gameController.wakeUpGCr();
+		gameController.connectPlayer();
 		if (resultGame == ResultState.PLAYER_1_WIN) {
 			if (playerId == PlayerId.PLAYER1)
 				playerAttributes.addPoints();
@@ -93,7 +93,7 @@ public class EasyPC implements PlayerController {
 		playerAttributes.setPlayerDecision(PlayerDecision.NEW_GAME);
 		if (gameController.getGamestate() == GameState.END_INIT_ALL) {
 			gameController.analyseDecision();
-			gameController.wakeUpGCr();
+			gameController.connectPlayer();
 		}
 	}
 

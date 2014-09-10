@@ -89,12 +89,12 @@ public class GameControllerImpl implements Runnable, GameController {
 			player1 = new SwingPresenter(this, player1Attributes, player2Color,
 					player1.getPlayerPoints());
 		} else
-			wakeUpGCr();
+			connectPlayer();
 		if (player2 instanceof SwingPresenter) {
 			player2 = new SwingPresenter(this, player2Attributes, player1Color,
 					player2.getPlayerPoints());
 		} else
-			wakeUpGCr();
+			connectPlayer();
 
 		doneMoves = 0;
 
@@ -159,7 +159,7 @@ public class GameControllerImpl implements Runnable, GameController {
 	 * @see atrem.connect4.game.GameController#wakeUpGCr()
 	 */
 	@Override
-	public synchronized void wakeUpGCr() {
+	public synchronized void connectPlayer() {
 		switch (gameState) {
 		case PRE_INIT:
 			gameState = GameState.END_INIT_1;
