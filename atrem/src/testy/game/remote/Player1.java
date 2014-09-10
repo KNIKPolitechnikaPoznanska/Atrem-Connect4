@@ -5,6 +5,8 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
+import atrem.connect4.game.GameController;
+
 public class Player1 {
 
 	public static void main(String[] args) throws RemoteException,
@@ -16,15 +18,15 @@ public class Player1 {
 		/**
 		 * connect
 		 */
-		Registry r = LocateRegistry.getRegistry("locahost", 1254);
-		RemotePlayerController connect = (RemotePlayerController) r
-				.lookup("connect");
-		/**
-		 * 
-		 */
 
-		LocalGameController gameController = new LocalGameController();
+		RemotePlayerController player = new RemotePlayerControlerImpl();
+		Registry r = LocateRegistry.getRegistry(1234);
+		RemoteGameController connect = (RemoteGameController) r
+				.lookup("connect");
+		GameController gameController = new LocalGameController(connect);
+		gameController.connectPlayer();
+		gameController.
+		
 
 	}
-
 }

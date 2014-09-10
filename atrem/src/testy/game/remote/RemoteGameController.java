@@ -62,4 +62,7 @@ public interface RemoteGameController extends Remote {
 			throws RemoteException;
 
 	public abstract List<Point> getWinningCoordinates() throws RemoteException;
+
+	public abstract void addPlayer(RemotePlayerController player)
+			throws RemoteException;
 }

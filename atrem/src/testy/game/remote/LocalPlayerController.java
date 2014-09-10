@@ -11,6 +11,11 @@ import atrem.connect4.game.player.PlayerId;
 public class LocalPlayerController implements PlayerController {
 	private RemotePlayerController remotePlayerController;
 
+	public LocalPlayerController(RemotePlayerController remotePlayerController) {
+
+		this.remotePlayerController = remotePlayerController;
+	}
+
 	@Override
 	public String getName() {
 		String name;

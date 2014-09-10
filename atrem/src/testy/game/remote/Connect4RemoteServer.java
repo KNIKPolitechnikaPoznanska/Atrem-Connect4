@@ -5,6 +5,9 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
+import atrem.connect4.game.GameController;
+import atrem.connect4.game.GameControllerImpl;
+
 public class Connect4RemoteServer {
 
 	public static void main(String[] args) throws RemoteException,
@@ -15,6 +18,7 @@ public class Connect4RemoteServer {
 		/**
 		 * establish connection
 		 */
+		GameController gameController = new GameControllerImpl();
 		RemoteGameController connect = new RemoteGameControllerImpl();
 		Registry r = LocateRegistry.createRegistry(1234);
 

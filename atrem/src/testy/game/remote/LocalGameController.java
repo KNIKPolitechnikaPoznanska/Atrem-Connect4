@@ -16,6 +16,10 @@ import atrem.connect4.game.player.PlayerId;
 public class LocalGameController implements GameController {
 	private RemoteGameController remoteGameController;
 
+	public LocalGameController(RemoteGameController remoteGameController) {
+		this.remoteGameController = remoteGameController;
+	}
+
 	@Override
 	public int move(int slot) {
 		int spot = 0;

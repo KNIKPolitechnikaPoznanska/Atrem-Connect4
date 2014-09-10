@@ -40,7 +40,8 @@ public class RemoteGameControllerImpl extends UnicastRemoteObject implements
 
 	@Override
 	public void connectPlayer() throws RemoteException {
-		gamecontroller.connectPlayer();
+		// gamecontroller.connectPlayer();
+		System.out.println("tescik kurcze");
 
 	}
 
@@ -151,5 +152,22 @@ public class RemoteGameControllerImpl extends UnicastRemoteObject implements
 
 	public GameController getGamecontroller() {
 		return gamecontroller;
+	}
+
+	@Override
+	public void addPlayer(RemotePlayerController player) throws RemoteException {
+		PlayerController playerController = new LocalPlayerController(player);
+
+		switch (gamecontroller.getGamestate()) {
+		case PRE_INIT:
+			gamecontroller.setPlayer1(playerController);
+			break;
+		case END_INIT_1:
+			gamecontroller.setPlayer2(playerController);
+			this.notifyAll();
+			break;
+		}
+		gamecontroller.connectPlayer();
+
 	}
 }
