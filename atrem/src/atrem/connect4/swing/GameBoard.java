@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import atrem.connect4.game.board.HoleState;
 import atrem.connect4.game.player.PlayerId;
 
 public class GameBoard extends JPanel {
@@ -20,7 +19,7 @@ public class GameBoard extends JPanel {
 	private DLabel[][] swingBoard;
 	private JButton[] button;
 	private SwingPresenter swingPresenter;
-	private HoleState holeState;
+	private PlayerId holeState;
 	private Color myTokenColor, opponentTokenColor;
 	private PlayerId playerID;
 
@@ -75,7 +74,7 @@ public class GameBoard extends JPanel {
 		}
 	}
 
-	public void setFreeRow(int row, int slot, HoleState holeState) {
+	public void setFreeRow(int row, int slot, PlayerId holeState) {
 		this.freeRow = row;
 		this.holeState = holeState;
 		swingBoard[row][slot].changeTokenColor(holeState);

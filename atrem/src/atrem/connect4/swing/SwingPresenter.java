@@ -16,7 +16,7 @@ import atrem.connect4.game.player.PlayerController;
 import atrem.connect4.game.player.PlayerDecision;
 import atrem.connect4.game.player.PlayerId;
 
-public class SwingPresenter implements PlayerController, RemotePlayerController {
+public class SwingPresenter implements PlayerController {
 	private int LastRow, LastSlot, emptySpot, slots, rows, decision;
 	private GameController gameController;
 	private PlayerAttributes playerAttributes;
