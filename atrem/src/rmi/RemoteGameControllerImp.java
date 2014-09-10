@@ -8,6 +8,7 @@ import java.util.List;
 import atrem.connect4.game.GameController;
 import atrem.connect4.game.GameState;
 import atrem.connect4.game.LastMove;
+import atrem.connect4.game.Logic;
 import atrem.connect4.game.ResultState;
 import atrem.connect4.game.board.Board;
 import atrem.connect4.game.board.HoleState;
@@ -40,31 +41,31 @@ public class RemoteGameControllerImp extends UnicastRemoteObject implements
 
 	@Override
 	public void wakeUpGCr() throws RemoteException {
-		gameController.wakeUpGCr(
+		gameController.wakeUpGCr();
 
 	}
 
-	// @Override
-	// public void analyseDecision() throws RemoteException {
-	// // TODO Auto-generated method stub
-	// gameController.analyseDecision();
-	// }
+	@Override
+	public void analyseDecision() throws RemoteException {
+		// TODO Auto-generated method stub
+		gameController.analyseDecision();
+	}
 
 	@Override
 	public void startGameLoop() throws RemoteException {
-		startGameLoop();
+		gameController.startGameLoop();
 
 	}
 
-	// @Override
-	// public void backToMenu() throws RemoteException {
-	// // TODO Auto-generated method stub
-	//
-	// }
+	@Override
+	public void backToMenu() throws RemoteException {
+		gameController.backToMenu();
+
+	}
 
 	@Override
 	public void wakeUp() throws RemoteException {
-		wakeUp();
+		gameController.wakeUp();
 
 	}
 
@@ -73,11 +74,11 @@ public class RemoteGameControllerImp extends UnicastRemoteObject implements
 		return gameController.getHoleState(rows, slots);
 	}
 
-	// @Override
-	// public void setResult(ResultState result) throws RemoteException {
-	// // TODO Auto-generated method stub
-	//
-	// }
+	@Override
+	public void setResult(ResultState result) throws RemoteException {
+		gameController.setResult(result);
+
+	}
 
 	@Override
 	public PlayerId getPlayerTurn() throws RemoteException {
@@ -103,15 +104,14 @@ public class RemoteGameControllerImp extends UnicastRemoteObject implements
 
 	@Override
 	public Board getBoard() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		return gameController.getBoard();
 	}
 
-	// @Override
-	// public void setBoard(Board board) throws RemoteException {
-	// // TODO Auto-generated method stub
-	//
-	// }
+	@Override
+	public void setBoard(Board board) throws RemoteException {
+		gameController.setBoard(board);
+
+	}
 
 	@Override
 	public PlayerController getPlayer1() throws RemoteException {
@@ -141,11 +141,11 @@ public class RemoteGameControllerImp extends UnicastRemoteObject implements
 		return gameController.getGamestate();
 	}
 
-	// @Override
-	// public PlayerController getCurrentPlayer() throws RemoteException {
-	// // TODO Auto-generated method stub
-	// return null;
-	// }
+	@Override
+	public PlayerController getCurrentPlayer() throws RemoteException {
+		// TODO Auto-generated method stub
+		return gameController.getCurrentPlayer();
+	}
 
 	@Override
 	public LastMove getLastMove() throws RemoteException {
@@ -158,15 +158,21 @@ public class RemoteGameControllerImp extends UnicastRemoteObject implements
 
 	}
 
-	// @Override
-	// public Logic getLogic() throws RemoteException {
-	// // TODO Auto-generated method stub
-	// return null;
-	// }
+	@Override
+	public Logic getLogic() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
 	public List<Point> getWinningCoordinates() throws RemoteException {
 		return gameController.getWinningCoordinates();
+	}
+
+	@Override
+	public void run() throws RemoteException {
+		gameController.run();
+
 	}
 
 }

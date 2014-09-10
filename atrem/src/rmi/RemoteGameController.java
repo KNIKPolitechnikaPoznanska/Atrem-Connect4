@@ -7,6 +7,7 @@ import java.util.List;
 
 import atrem.connect4.game.GameState;
 import atrem.connect4.game.LastMove;
+import atrem.connect4.game.Logic;
 import atrem.connect4.game.ResultState;
 import atrem.connect4.game.board.Board;
 import atrem.connect4.game.board.HoleState;
@@ -21,21 +22,20 @@ public interface RemoteGameController extends Remote {
 
 	public abstract void wakeUpGCr() throws RemoteException;
 
-	// public abstract void analyseDecision() throws RemoteException;
+	public abstract void analyseDecision() throws RemoteException;
 
-	// public abstract void run() throws RemoteException;
+	public abstract void run() throws RemoteException;
 
 	public abstract void startGameLoop() throws RemoteException;
 
-	// public abstract void backToMenu() throws RemoteException;
+	public abstract void backToMenu() throws RemoteException;
 
 	public abstract void wakeUp() throws RemoteException;
 
 	public abstract HoleState getHoleState(int rows, int slots)
 			throws RemoteException;
 
-	// public abstract void setResult(ResultState result) throws
-	// RemoteException;
+	public abstract void setResult(ResultState result) throws RemoteException;
 
 	public abstract PlayerId getPlayerTurn() throws RemoteException;
 
@@ -48,7 +48,7 @@ public interface RemoteGameController extends Remote {
 
 	public abstract Board getBoard() throws RemoteException;
 
-	// public abstract void setBoard(Board board) throws RemoteException;
+	public abstract void setBoard(Board board) throws RemoteException;
 
 	public abstract PlayerController getPlayer1() throws RemoteException;
 
@@ -62,15 +62,14 @@ public interface RemoteGameController extends Remote {
 
 	public abstract GameState getGamestate() throws RemoteException;
 
-	// public abstract PlayerController getCurrentPlayer() throws
-	// RemoteException;
+	public abstract PlayerController getCurrentPlayer() throws RemoteException;
 
 	public abstract LastMove getLastMove() throws RemoteException;
 
 	public abstract void setGamestate(GameState gamestate)
 			throws RemoteException;
 
-	// public abstract Logic getLogic() throws RemoteException;
+	public abstract Logic getLogic() throws RemoteException;
 
 	public abstract List<Point> getWinningCoordinates() throws RemoteException;
 

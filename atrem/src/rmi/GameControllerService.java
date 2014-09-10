@@ -56,12 +56,20 @@ public class GameControllerService implements GameController {
 
 	@Override
 	public void analyseDecision() {
-
+		try {
+			remoteGameController.analyseDecision();
+		} catch (RemoteException e) {
+			System.out.println("wyjatek w remoteGameController");
+		}
 	}
 
 	@Override
 	public void run() {
-
+		try {
+			remoteGameController.run();
+		} catch (RemoteException e) {
+			System.out.println("wyjatek w remoteGameController");
+		}
 	}
 
 	@Override
@@ -76,7 +84,11 @@ public class GameControllerService implements GameController {
 
 	@Override
 	public void backToMenu() {
-
+		try {
+			remoteGameController.backToMenu();
+		} catch (RemoteException e) {
+			System.out.println("wyjatek w remoteGameController");
+		}
 	}
 
 	@Override
@@ -103,101 +115,170 @@ public class GameControllerService implements GameController {
 
 	@Override
 	public void setResult(ResultState result) {
-
+		try {
+			remoteGameController.setResult(result);
+		} catch (RemoteException e) {
+			System.out.println("wyjatek w remoteGameController");
+		}
 	}
 
 	@Override
 	public PlayerId getPlayerTurn() {
-		return remoteGameController.getPlayerTurn();
+		try {
+			return remoteGameController.getPlayerTurn();
+		} catch (RemoteException e) {
+			System.out.println("wyjatek w remoteGameController");
+		}
+		return null;
 	}
 
 	@Override
 	public void setPlayerTurn(PlayerId playerTurn) {
-		// TODO Auto-generated method stub
+		try {
+			remoteGameController.setPlayerTurn(playerTurn);
+		} catch (RemoteException e) {
+			System.out.println("wyjatek w remoteGameController");
+		}
 
 	}
 
 	@Override
 	public int getEmptySpot() {
-		// TODO Auto-generated method stub
+		try {
+			return remoteGameController.getEmptySpot();
+		} catch (RemoteException e) {
+			System.out.println("wyjatek w remoteGameController");
+		}
 		return 0;
 	}
 
 	@Override
 	public ResultState getResult() {
-		// TODO Auto-generated method stub
+		try {
+			return remoteGameController.getResult();
+		} catch (RemoteException e) {
+			System.out.println("wyjatek w remoteGameController");
+		}
 		return null;
 	}
 
 	@Override
 	public Board getBoard() {
-		// TODO Auto-generated method stub
+		try {
+			return remoteGameController.getBoard();
+		} catch (RemoteException e) {
+			System.out.println("wyjatek w remoteGameController");
+		}
 		return null;
 	}
 
 	@Override
 	public void setBoard(Board board) {
-		// TODO Auto-generated method stub
+		try {
+			remoteGameController.setBoard(board);
+		} catch (RemoteException e) {
+			System.out.println("wyjatek w remoteGameController");
+		}
 
 	}
 
 	@Override
 	public PlayerController getPlayer1() {
-		// TODO Auto-generated method stub
+		try {
+			return remoteGameController.getPlayer1();
+		} catch (RemoteException e) {
+			System.out.println("wyjatek w remoteGameController");
+		}
 		return null;
 	}
 
 	@Override
 	public void setPlayer1(PlayerController player1) {
-		// TODO Auto-generated method stub
+		try {
+			remoteGameController.setPlayer1(player1);
+		} catch (RemoteException e) {
+			System.out.println("wyjatek w remoteGameController");
+		}
 
 	}
 
 	@Override
 	public PlayerController getPlayer2() {
-		// TODO Auto-generated method stub
+		try {
+			return remoteGameController.getPlayer2();
+		} catch (RemoteException e) {
+			System.out.println("wyjatek w remoteGameController");
+		}
 		return null;
 	}
 
 	@Override
 	public void setPlayer2(PlayerController player2) {
-		// TODO Auto-generated method stub
+		try {
+			remoteGameController.setPlayer2(player2);
+		} catch (RemoteException e) {
+			System.out.println("wyjatek w remoteGameController");
+		}
 
 	}
 
 	@Override
 	public GameState getGamestate() {
-		// TODO Auto-generated method stub
+		try {
+			return remoteGameController.getGamestate();
+		} catch (RemoteException e) {
+			System.out.println("wyjatek w remoteGameController");
+		}
 		return null;
 	}
 
 	@Override
 	public PlayerController getCurrentPlayer() {
-		// TODO Auto-generated method stub
+		try {
+			return remoteGameController.getCurrentPlayer();
+		} catch (RemoteException e) {
+			System.out.println("wyjatek w remoteGameController");
+		}
 		return null;
 	}
 
 	@Override
 	public LastMove getLastMove() {
-		// TODO Auto-generated method stub
+		try {
+			return remoteGameController.getLastMove();
+		} catch (RemoteException e) {
+			System.out.println("wyjatek w remoteGameController");
+		}
 		return null;
 	}
 
 	@Override
 	public void setGamestate(GameState gamestate) {
-		// TODO Auto-generated method stub
+		try {
+			remoteGameController.setGamestate(gamestate);
+		} catch (RemoteException e) {
+			System.out.println("wyjatek w remoteGameController");
+		}
 
 	}
 
 	@Override
 	public Logic getLogic() {
-		// TODO Auto-generated method stub
+		try {
+			return remoteGameController.getLogic();
+		} catch (RemoteException e) {
+			System.out.println("wyjatek w remoteGameController");
+		}
 		return null;
 	}
 
 	@Override
 	public List<Point> getWinningCoordinates() {
-		// TODO Auto-generated method stub
+		try {
+			return remoteGameController.getWinningCoordinates();
+		} catch (RemoteException e) {
+			System.out.println("wyjatek w remoteGameController");
+		}
 		return null;
 	}
 
