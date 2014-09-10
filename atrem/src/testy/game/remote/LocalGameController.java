@@ -29,134 +29,246 @@ public class LocalGameController implements GameController {
 
 	@Override
 	public void startNewGame() {
-		// TODO Auto-generated method stub
+		try {
+			remoteGameController.startNewGame();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 
 	}
 
 	@Override
 	public void connectPlayer() {
-		// TODO Auto-generated method stub
+		try {
+			remoteGameController.connectPlayer();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
 	@Override
 	public void analyseDecision() {
-		// TODO Auto-generated method stub
+		try {
+			remoteGameController.analyseDecision();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
 	@Override
 	public void startGameLoop() {
-		// TODO Auto-generated method stub
+		try {
+			remoteGameController.startGameLoop();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
 	@Override
 	public void backToMenu() {
-		// TODO Auto-generated method stub
+		try {
+			remoteGameController.backToMenu();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
 	@Override
 	public HoleState getHoleState(int rows, int slots) {
-		// TODO Auto-generated method stub
-		return null;
+		HoleState holeState = null;
+		try {
+			holeState = remoteGameController.getHoleState(rows, slots);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return holeState;
 	}
 
 	@Override
 	public void setResult(ResultState result) {
-		// TODO Auto-generated method stub
+		try {
+			remoteGameController.setResult(result);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
 	@Override
 	public PlayerId getPlayerTurn() {
-		// TODO Auto-generated method stub
-		return null;
+		PlayerId playerId = null;
+		try {
+			playerId = remoteGameController.getPlayerTurn();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return playerId;
 	}
 
 	@Override
 	public void setPlayerTurn(PlayerId playerTurn) {
-		// TODO Auto-generated method stub
+		try {
+			remoteGameController.setPlayerTurn(playerTurn);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
 	@Override
 	public int getEmptySpot() {
-		// TODO Auto-generated method stub
-		return 0;
+		int spot = 0;
+		try {
+			spot = remoteGameController.getEmptySpot();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return spot;
 	}
 
 	@Override
 	public ResultState getResult() {
-		// TODO Auto-generated method stub
-		return null;
+		ResultState resultState = null;
+		try {
+			resultState = remoteGameController.getResult();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return resultState;
 	}
 
 	@Override
 	public Board getBoard() {
-		// TODO Auto-generated method stub
-		return null;
+		Board board = null;
+		try {
+			board = remoteGameController.getBoard();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return board;
 	}
 
 	@Override
 	public void setBoard(Board board) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public PlayerController getPlayer1() {
-		// TODO Auto-generated method stub
-		return null;
+		PlayerController player = null;
+		try {
+			player = remoteGameController.getPlayer1();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return player;
 	}
 
 	@Override
 	public void setPlayer1(PlayerController player1) {
-		// TODO Auto-generated method stub
+		try {
+			remoteGameController.setPlayer1(player1);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
 	@Override
 	public PlayerController getPlayer2() {
-		// TODO Auto-generated method stub
-		return null;
+		PlayerController player = null;
+		try {
+			player = remoteGameController.getPlayer2();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return player;
 	}
 
 	@Override
 	public void setPlayer2(PlayerController player2) {
-		// TODO Auto-generated method stub
+		try {
+			remoteGameController.setPlayer2(player2);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
 	@Override
 	public GameState getGamestate() {
-		// TODO Auto-generated method stub
-		return null;
+		GameState gameState = null;
+		try {
+			remoteGameController.getGamestate();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return gameState;
 	}
 
 	@Override
 	public PlayerController getCurrentPlayer() {
-		// TODO Auto-generated method stub
-		return null;
+		PlayerController player = null;
+		try {
+			player = remoteGameController.getCurrentPlayer();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return player;
 	}
 
 	@Override
 	public LastMove getLastMove() {
-		// TODO Auto-generated method stub
-		return null;
+		LastMove lastMove = null;
+		try {
+			lastMove = remoteGameController.getLastMove();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lastMove;
 	}
 
 	@Override
 	public void setGamestate(GameState gamestate) {
-		// TODO Auto-generated method stub
+		try {
+			remoteGameController.setGamestate(gamestate);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
 	@Override
 	public List<Point> getWinningCoordinates() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Point> list = null;
+		try {
+			list = remoteGameController.getWinningCoordinates();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
 	}
-
 }
