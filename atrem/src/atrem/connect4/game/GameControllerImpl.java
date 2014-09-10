@@ -229,7 +229,7 @@ public class GameControllerImpl implements Runnable, GameController {
 	@Override
 	public void backToMenu() {
 		GameFactory gameFactory = new GameFactory();
-		GameConfig config = new GameConfig(gameFactory);
+		GameConfig config = new GameConfig();
 		config.showOfflineDBox();
 		config.showOnlineDBox();
 	}
