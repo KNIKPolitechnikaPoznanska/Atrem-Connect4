@@ -1,6 +1,8 @@
 package atrem.connect4.game;
 
 import java.awt.Color;
+import java.awt.Point;
+import java.util.List;
 
 import atrem.connect4.game.board.Board;
 import atrem.connect4.game.board.HoleState;
@@ -97,7 +99,6 @@ public class GameController implements Runnable {
 		boolean endGame;
 		logic = new Logic(this);
 		lastMove = new LastMove();
-		System.out.println("przed init");
 		waitForInit();
 		while (resultState == ResultState.NO_WIN) {
 			currentPlayer = currentPlayer();
@@ -107,7 +108,6 @@ public class GameController implements Runnable {
 				e.printStackTrace();
 			}
 			currentPlayer.yourTurn();
-			System.out.println("po ");
 			gameState = GameState.WAITING_FOR_MOVE;
 			waitForMove();
 			doneMoves++;
@@ -268,5 +268,9 @@ public class GameController implements Runnable {
 
 	public Logic getLogic() {
 		return logic;
+	}
+
+	public List<Point> getWinningCoordinates() {
+		return logic.getWinningCoordinates();
 	}
 }
