@@ -10,7 +10,6 @@ import atrem.connect4.game.player.PlayerId;
 
 public interface GameController {
 
-	// TODO wyrzucic to co niepotrzebne
 	public abstract int move(int slot);
 
 	public abstract void startNewGame();
