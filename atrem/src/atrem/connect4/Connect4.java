@@ -46,7 +46,6 @@ public class Connect4 {
 	 */
 	public void createOnline() throws RemoteException, NotBoundException {
 		config.showOnlineDBox();
-
 	}
 
 	/**
@@ -64,6 +63,11 @@ public class Connect4 {
 		this.gameController.startGameLoop();
 	}
 
+	/**
+	 * £aczy z serwerem RMI.
+	 * 
+	 * @param gameConfig
+	 */
 	public void connectToServer(GameConfig gameConfig) {
 		String adress = gameConfig.getAdress();
 		String name = gameConfig.getPlayer1name();

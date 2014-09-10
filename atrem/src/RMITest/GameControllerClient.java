@@ -5,7 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 import atrem.connect4.game.player.PlayerController;
 
-public class RemoteGameControllerClient extends UnicastRemoteObject {
+public class GameControllerClient extends UnicastRemoteObject {
 
 	/**
 	 * 
@@ -13,7 +13,7 @@ public class RemoteGameControllerClient extends UnicastRemoteObject {
 	private static final long serialVersionUID = 1L;
 	private PlayerController playerController;
 
-	protected RemoteGameControllerClient(PlayerController playerController)
+	protected GameControllerClient(PlayerController playerController)
 			throws RemoteException {
 		super();
 		this.playerController = playerController;

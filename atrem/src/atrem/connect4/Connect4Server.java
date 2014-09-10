@@ -5,8 +5,8 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
+import RMITest.GameControllerService;
 import RMITest.RemoteGameController;
-import RMITest.RemoteGameControllerServer;
 import atrem.connect4.game.GameController;
 import atrem.connect4.game.GameControllerImpl;
 
@@ -29,7 +29,7 @@ public class Connect4Server {
 		Registry registry = LocateRegistry.createRegistry(1234);
 
 		gameController = new GameControllerImpl();
-		remoteGameController = new RemoteGameControllerServer();
+		remoteGameController = new GameControllerService(remoteGameController);
 
 		registry.bind("RGCS", remoteGameController);
 
