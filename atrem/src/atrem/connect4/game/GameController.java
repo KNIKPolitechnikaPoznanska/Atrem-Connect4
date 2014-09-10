@@ -10,30 +10,12 @@ import atrem.connect4.game.player.PlayerId;
 
 public interface GameController {
 
-<<<<<<< Upstream, based on origin/master
 	// TODO wyrzucic to co niepotrzebne
 	public abstract int move(int slot);
 
 	public abstract void startNewGame();
 
 	public abstract void wakeUpGCr();
-=======
-	/**
-	 * Sprawdza którego z graczy jest kolej
-	 * 
-	 * @return player1 lub player2
-	 */
-	private PlayerController currentPlayer() {
-		switch (playerTurn) {
-			case PLAYER1 :
-				return player1;
-			case PLAYER2 :
-				return player2;
-			default :
-				return null; // player1
-		}
-	}
->>>>>>> 7124c22 konflikt
 
 	public abstract void analyseDecision();
 
@@ -47,29 +29,7 @@ public interface GameController {
 
 	public abstract HoleState getHoleState(int rows, int slots);
 
-<<<<<<< Upstream, based on origin/master
 	public abstract void setResult(ResultState result);
-=======
-	private synchronized void gameLoop() {// ma odczytywaæ GameState
-		boolean endGame;
-		logic = new Logic(this);
-		lastMove = new LastMove();
-		System.out.println("przed init");
-		waitForInit();
-		while (resultState == ResultState.NO_WIN) {
-			currentPlayer = currentPlayer();
-			try {
-				this.wait(100);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			currentPlayer.yourTurn();
-			gameState = GameState.WAITING_FOR_MOVE;
-			waitForMove();
-			doneMoves++;
-			endGame = logic.getResultOfMove(lastMove.getLastRow(),
-					lastMove.getLastSlot(), doneMoves);
->>>>>>> 7124c22 konflikt
 
 	public abstract PlayerId getPlayerTurn();
 
@@ -79,23 +39,7 @@ public interface GameController {
 
 	public abstract ResultState getResult();
 
-<<<<<<< Upstream, based on origin/master
 	public abstract Board getBoard();
-=======
-	public synchronized void wakeUpGCr() {
-		switch (gameState) {
-			case PRE_INIT :
-				gameState = GameState.END_INIT_1;
-				break;
-			case END_INIT_1 :
-				gameState = GameState.END_INIT_ALL;
-				this.notifyAll();
-				break;
-			default :
-				break;
-		}
-	}
->>>>>>> 7124c22 konflikt
 
 	public abstract void setBoard(Board board);
 
@@ -107,15 +51,7 @@ public interface GameController {
 
 	public abstract void setPlayer2(PlayerController player2);
 
-<<<<<<< Upstream, based on origin/master
 	public abstract GameState getGamestate();
-=======
-	public void backToMenu() {
-		GameFactory gameFactory = new GameFactory();
-		GameConfig config = new GameConfig(gameFactory);
-		config.showClientDBox();
-	}
->>>>>>> 7124c22 konflikt
 
 	public abstract PlayerController getCurrentPlayer();
 
