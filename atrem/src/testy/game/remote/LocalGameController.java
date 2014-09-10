@@ -177,7 +177,6 @@ public class LocalGameController implements GameController {
 		try {
 			player = remoteGameController.getPlayer1();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return player;

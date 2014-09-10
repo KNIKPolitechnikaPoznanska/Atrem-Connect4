@@ -7,6 +7,8 @@ import java.rmi.registry.Registry;
 
 import atrem.connect4.game.GameController;
 import atrem.connect4.game.GameControllerImpl;
+import atrem.connect4.game.board.Board;
+import atrem.connect4.game.player.PlayerId;
 
 public class Connect4RemoteServer {
 
@@ -19,6 +21,10 @@ public class Connect4RemoteServer {
 		 * establish connection
 		 */
 		GameController gameController = new GameControllerImpl();
+		Board board = new Board(7, 6);
+		gameController.setBoard(board);
+		gameController.setPlayerTurn(PlayerId.PLAYER1);
+
 		RemoteGameController connect = new RemoteGameControllerImpl(
 				gameController);
 
@@ -28,5 +34,6 @@ public class Connect4RemoteServer {
 		/**
  * 
  */
+		System.out.println("cos");
 	}
 }
