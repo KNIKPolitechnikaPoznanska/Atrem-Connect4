@@ -10,21 +10,17 @@ import atrem.connect4.game.player.PlayerId;
 
 public interface GameController {
 
+	public abstract void addPlayer();
+
 	public abstract int move(int slot);
 
 	public abstract void startNewGame();
 
-	public abstract void wakeUpGCr();
-
 	public abstract void analyseDecision();
-
-	public abstract void run();
 
 	public abstract void startGameLoop();
 
 	public abstract void backToMenu();
-
-	public abstract void wakeUp();
 
 	public abstract HoleState getHoleState(int rows, int slots);
 
@@ -58,8 +54,5 @@ public interface GameController {
 
 	public abstract void setGamestate(GameState gamestate);
 
-	public abstract Logic getLogic();
-
 	public abstract List<Point> getWinningCoordinates();
-
 }

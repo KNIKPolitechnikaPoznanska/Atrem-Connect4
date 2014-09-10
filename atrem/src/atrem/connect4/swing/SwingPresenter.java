@@ -116,7 +116,6 @@ public class SwingPresenter implements PlayerController {
 							PlayerId.PLAYER1);
 					stats.setName(gameController.getPlayer2().getName(),
 							PlayerId.PLAYER2);
-
 					// gameController.wakeUpGCr();
 					gameBoard.enableButtons(blockButton);
 					setNamesAndToken();
@@ -184,7 +183,7 @@ public class SwingPresenter implements PlayerController {
 	}
 
 	public void makeDecision(int decision) {
-		gameController.wakeUpGCr();
+		gameController.addPlayer();
 		if (decision == 1) {
 			playerAttributes.setPlayerDecision(PlayerDecision.MENU);
 			frame.dispose();

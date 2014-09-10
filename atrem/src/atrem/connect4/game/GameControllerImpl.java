@@ -72,7 +72,6 @@ public class GameControllerImpl implements Runnable, GameController {
 	 * 
 	 * @see atrem.connect4.game.GameController#startNewGame()
 	 */
-
 	@Override
 	public void startNewGame() {
 		int row = board.getRows();
@@ -90,12 +89,12 @@ public class GameControllerImpl implements Runnable, GameController {
 			player1 = new SwingPresenter(this, player1Attributes, player2Color,
 					player1.getPlayerPoints());
 		} else
-			wakeUpGCr();
+			addPlayer();
 		if (player2 instanceof SwingPresenter) {
 			player2 = new SwingPresenter(this, player2Attributes, player1Color,
 					player2.getPlayerPoints());
 		} else
-			wakeUpGCr();
+			addPlayer();
 
 		doneMoves = 0;
 
@@ -160,7 +159,7 @@ public class GameControllerImpl implements Runnable, GameController {
 	 * @see atrem.connect4.game.GameController#wakeUpGCr()
 	 */
 	@Override
-	public synchronized void wakeUpGCr() {
+	public synchronized void addPlayer() {
 		switch (gameState) {
 			case PRE_INIT :
 				gameState = GameState.END_INIT_1;
@@ -232,16 +231,6 @@ public class GameControllerImpl implements Runnable, GameController {
 		GameConfig config = new GameConfig();
 		config.showOfflineDBox();
 		config.showOnlineDBox();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see atrem.connect4.game.GameController#wakeUp()
-	 */
-	@Override
-	public void wakeUp() {
-		notifyAll();
 	}
 
 	/*
@@ -416,12 +405,6 @@ public class GameControllerImpl implements Runnable, GameController {
 		this.gameState = gamestate;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see atrem.connect4.game.GameController#getLogic()
-	 */
-	@Override
 	public Logic getLogic() {
 		return logic;
 	}

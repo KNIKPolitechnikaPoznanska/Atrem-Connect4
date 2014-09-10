@@ -5,19 +5,21 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-import RMITest.GameControllerService;
-import RMITest.RemoteGameController;
-import RMITest.RemotePlayerController;
+import atrem.connect4.factory.GameFactory;
+import atrem.connect4.game.GameConfig;
 import atrem.connect4.game.GameController;
-import atrem.connect4.game.GameControllerImpl;
+import atrem.connect4.game.player.PlayerId;
+import atrem.connect4.rmi.RemoteGameController;
+import atrem.connect4.rmi.server.GameControllerService;
 
 /**
  * Urruchamia serwer gry.
  */
 public class Connect4Server {
 	private static GameController gameController;
-	private static RemoteGameController rGCS, rGCC;
-	private static RemotePlayerController rPCC, rPCS;
+	private static RemoteGameController gameCService;
+	private static GameConfig gameConfig;
+	private static GameFactory gameFactory;
 
 	/**
 	 * Uruchamia tylko serwer.
@@ -30,11 +32,23 @@ public class Connect4Server {
 			AlreadyBoundException {
 		Registry registry = LocateRegistry.createRegistry(1234);
 
-		gameController = new GameControllerImpl();
+		initServerGameController();
 
-		rGCS = new GameControllerService(rGCC);
+		gameCService = new GameControllerService(gameController);
 
-		registry.bind("RGCS", rGCS);
+		registry.bind("RGCS", gameCService);
 
+	}
+
+	public static void initServerGameController() {
+		gameConfig = new GameConfig();
+		gameFactory = gameConfig.getGameFactory();
+		gameConfig.setupServerGameFactory();
+		gameFactory.createServerGameController();
+		gameController = gameFactory.getGameController();
+		System.out.println("Rows: " + gameController.getBoard().getRows()
+				+ ", Slots: " + gameController.getBoard().getSlots());
+		gameController.setPlayerTurn(PlayerId.PLAYER1);
+		System.out.println("Server GameController Initialized.");
 	}
 }

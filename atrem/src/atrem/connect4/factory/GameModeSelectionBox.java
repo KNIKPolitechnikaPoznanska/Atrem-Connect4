@@ -64,11 +64,11 @@ public class GameModeSelectionBox extends JDialog {
 				public void actionPerformed(ActionEvent arg0) {
 					if (online.isSelected()) {
 						try {
-							new Connect4().createOnline();
+							new Connect4().createOnlineBox();
 						} catch (RemoteException | NotBoundException e) {
 						}
 					} else if (offline.isSelected()) {
-						new Connect4().createOffline();
+						new Connect4().createOfflineBox();
 					}
 					dispose();
 				}

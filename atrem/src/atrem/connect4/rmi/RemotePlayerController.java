@@ -1,5 +1,6 @@
-package RMITest;
+package atrem.connect4.rmi;
 
+import java.awt.Color;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -29,4 +30,6 @@ public interface RemotePlayerController extends Remote {
 	public abstract PlayerAttributes getPlayerAttributes()
 			throws RemoteException;
 
+	public abstract void createPlayer(GameController gameController,
+			String name, Color color) throws RemoteException;
 }

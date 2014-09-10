@@ -44,7 +44,11 @@ public class GameFactory {
 		gameController.setPlayer1(playerFactory.getPlayer1());
 		gameController.setPlayer2(playerFactory.getPlayer2());
 		gameController.setPlayerTurn(randomFirstTurn());
+	}
 
+	public void createServerGameController() {
+		gameController = new GameControllerImpl();
+		gameController.setBoard(board);
 	}
 
 	public Board getBoard() {

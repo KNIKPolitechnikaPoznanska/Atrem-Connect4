@@ -1,4 +1,4 @@
-package RMITest;
+package atrem.connect4.rmi.server;
 
 import java.awt.Point;
 import java.rmi.RemoteException;
@@ -8,179 +8,152 @@ import java.util.List;
 import atrem.connect4.game.GameController;
 import atrem.connect4.game.GameState;
 import atrem.connect4.game.LastMove;
-import atrem.connect4.game.Logic;
 import atrem.connect4.game.ResultState;
 import atrem.connect4.game.board.Board;
 import atrem.connect4.game.board.HoleState;
 import atrem.connect4.game.player.PlayerController;
 import atrem.connect4.game.player.PlayerId;
+import atrem.connect4.rmi.RemoteGameController;
+import atrem.connect4.rmi.RemotePlayerController;
+import atrem.connect4.rmi.client.PlayerControllerClient;
 
-public class GameControllerClient extends UnicastRemoteObject
+public class GameControllerService extends UnicastRemoteObject
 		implements
 			RemoteGameController {
+	private GameController gamecontroller;
 
-	GameController gameController;
-
-	public GameControllerClient(GameController gameController)
+	public GameControllerService(GameController gameController)
 			throws RemoteException {
 		super();
-		this.gameController = gameController;
-		// TODO Auto-generated constructor stub
+		this.gamecontroller = gameController;
+	}
+
+	public void setGamecontroller(GameController gamecontroller) {
+		this.gamecontroller = gamecontroller;
 	}
 
 	@Override
 	public int move(int slot) throws RemoteException {
-
-		return gameController.move(slot);
+		return gamecontroller.move(slot);
 	}
 
 	@Override
 	public void startNewGame() throws RemoteException {
-		gameController.startNewGame();
-
+		gamecontroller.startNewGame();
 	}
 
 	@Override
-	public void wakeUpGCr() throws RemoteException {
-		gameController.wakeUpGCr();
-
+	public void connectPlayer() throws RemoteException {
+		gamecontroller.addPlayer();
 	}
 
 	@Override
 	public void analyseDecision() throws RemoteException {
-		// TODO Auto-generated method stub
-		gameController.analyseDecision();
+		gamecontroller.analyseDecision();
 	}
 
 	@Override
 	public void startGameLoop() throws RemoteException {
-		gameController.startGameLoop();
-
+		gamecontroller.startGameLoop();
 	}
 
 	@Override
 	public void backToMenu() throws RemoteException {
-		gameController.backToMenu();
-
-	}
-
-	@Override
-	public void wakeUp() throws RemoteException {
-		gameController.wakeUp();
-
+		gamecontroller.backToMenu();
 	}
 
 	@Override
 	public HoleState getHoleState(int rows, int slots) throws RemoteException {
-		return gameController.getHoleState(rows, slots);
+		return gamecontroller.getHoleState(rows, slots);
 	}
 
 	@Override
 	public void setResult(ResultState result) throws RemoteException {
-		gameController.setResult(result);
-
+		gamecontroller.setResult(result);
 	}
 
 	@Override
 	public PlayerId getPlayerTurn() throws RemoteException {
-		return gameController.getPlayerTurn();
+		return gamecontroller.getPlayerTurn();
 	}
 
 	@Override
 	public void setPlayerTurn(PlayerId playerTurn) throws RemoteException {
-
-		gameController.setPlayerTurn(playerTurn);
+		gamecontroller.setPlayerTurn(playerTurn);
 	}
 
 	@Override
 	public int getEmptySpot() throws RemoteException {
-
-		return gameController.getEmptySpot();
+		return gamecontroller.getEmptySpot();
 	}
 
 	@Override
 	public ResultState getResult() throws RemoteException {
-		return gameController.getResult();
+		return gamecontroller.getResult();
 	}
 
 	@Override
 	public Board getBoard() throws RemoteException {
-		return gameController.getBoard();
-	}
-
-	@Override
-	public void setBoard(Board board) throws RemoteException {
-		gameController.setBoard(board);
-
+		return gamecontroller.getBoard();
 	}
 
 	@Override
 	public PlayerController getPlayer1() throws RemoteException {
-		return gameController.getPlayer1();
+		return gamecontroller.getPlayer1();
 	}
 
 	@Override
 	public void setPlayer1(PlayerController player1) throws RemoteException {
-		gameController.setPlayer1(player1);
-
+		gamecontroller.setPlayer1(player1);
 	}
 
 	@Override
 	public PlayerController getPlayer2() throws RemoteException {
-		return gameController.getPlayer2();
-
+		return gamecontroller.getPlayer2();
 	}
 
 	@Override
 	public void setPlayer2(PlayerController player2) throws RemoteException {
-		gameController.setPlayer2(player2);
-
+		gamecontroller.setPlayer2(player2);
 	}
 
 	@Override
 	public GameState getGamestate() throws RemoteException {
-		return gameController.getGamestate();
+		return gamecontroller.getGamestate();
 	}
 
 	@Override
 	public PlayerController getCurrentPlayer() throws RemoteException {
-		// TODO Auto-generated method stub
-		return gameController.getCurrentPlayer();
+		return gamecontroller.getCurrentPlayer();
 	}
 
 	@Override
 	public LastMove getLastMove() throws RemoteException {
-		return gameController.getLastMove();
+		return gamecontroller.getLastMove();
 	}
 
 	@Override
 	public void setGamestate(GameState gamestate) throws RemoteException {
-		gameController.setGamestate(gamestate);
-
-	}
-
-	@Override
-	public Logic getLogic() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		gamecontroller.setGamestate(gamestate);
 	}
 
 	@Override
 	public List<Point> getWinningCoordinates() throws RemoteException {
-		return gameController.getWinningCoordinates();
+		return gamecontroller.getWinningCoordinates();
+	}
+
+	public GameController getGamecontroller() {
+		return gamecontroller;
 	}
 
 	@Override
-	public void run() throws RemoteException {
-		gameController.run();
-
-	}
-
-	@Override
-	public void addRemotePlayer(RemotePlayerController rPCC)
+	public void addRemotePlayer(RemotePlayerController remotePlayer)
 			throws RemoteException {
-		// TODO Auto-generated method stub
-
+		PlayerController playerController = new PlayerControllerClient(
+				remotePlayer);
+		if (gamecontroller.getPlayer1() == null)
+			gamecontroller.setPlayer1(playerController);
+		if (gamecontroller.getPlayer2() == null)
+			gamecontroller.setPlayer2(playerController);
 	}
-
 }

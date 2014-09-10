@@ -98,6 +98,14 @@ public class GameConfig {
 		gameFactory.setBoard();
 	}
 
+	public void setupServerGameFactory() {
+		rows = DEF_ROWS;
+		slots = DEF_SLOTS;
+		gameFactory.setRows(rows);
+		gameFactory.setSlots(slots);
+		gameFactory.setBoard();
+	}
+
 	public GameFactory getGameFactory() {
 		return gameFactory;
 	}
