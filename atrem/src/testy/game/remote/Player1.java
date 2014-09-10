@@ -24,9 +24,8 @@ public class Player1 {
 		RemoteGameController connect = (RemoteGameController) r
 				.lookup("connect");
 		GameController gameController = new LocalGameController(connect);
-		gameController.connectPlayer();
-		gameController.
-		
+		connect.addPlayer(player);
+		player.createPlayer(gameController);
 
 	}
 }

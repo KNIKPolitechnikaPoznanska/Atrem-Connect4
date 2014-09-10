@@ -19,7 +19,9 @@ public class Connect4RemoteServer {
 		 * establish connection
 		 */
 		GameController gameController = new GameControllerImpl();
-		RemoteGameController connect = new RemoteGameControllerImpl();
+		RemoteGameController connect = new RemoteGameControllerImpl(
+				gameController);
+
 		Registry r = LocateRegistry.createRegistry(1234);
 
 		r.bind("connect", connect);
@@ -27,5 +29,4 @@ public class Connect4RemoteServer {
  * 
  */
 	}
-
 }

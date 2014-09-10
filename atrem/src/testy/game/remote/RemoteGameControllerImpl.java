@@ -16,9 +16,12 @@ import atrem.connect4.game.player.PlayerId;
 
 public class RemoteGameControllerImpl extends UnicastRemoteObject implements
 		RemoteGameController {
+	private GameController gamecontroller;
 
-	protected RemoteGameControllerImpl() throws RemoteException {
+	protected RemoteGameControllerImpl(GameController gameController)
+			throws RemoteException {
 		super();
+		this.gamecontroller = gameController;
 	}
 
 	public void setGamecontroller(GameController gamecontroller) {
@@ -40,8 +43,8 @@ public class RemoteGameControllerImpl extends UnicastRemoteObject implements
 
 	@Override
 	public void connectPlayer() throws RemoteException {
-		// gamecontroller.connectPlayer();
-		System.out.println("tescik kurcze");
+		gamecontroller.connectPlayer();
+		// System.out.println("tescik kurcze");//TODO tescik kurcze tu siedzi
 
 	}
 
@@ -148,8 +151,6 @@ public class RemoteGameControllerImpl extends UnicastRemoteObject implements
 		return gamecontroller.getWinningCoordinates();
 	}
 
-	private GameController gamecontroller;
-
 	public GameController getGamecontroller() {
 		return gamecontroller;
 	}
@@ -158,16 +159,10 @@ public class RemoteGameControllerImpl extends UnicastRemoteObject implements
 	public void addPlayer(RemotePlayerController player) throws RemoteException {
 		PlayerController playerController = new LocalPlayerController(player);
 
-		switch (gamecontroller.getGamestate()) {
-		case PRE_INIT:
+		if (gamecontroller.getPlayer1() == null)
 			gamecontroller.setPlayer1(playerController);
-			break;
-		case END_INIT_1:
+		if (gamecontroller.getPlayer2() == null)
 			gamecontroller.setPlayer2(playerController);
-			this.notifyAll();
-			break;
-		}
-		gamecontroller.connectPlayer();
 
 	}
 }

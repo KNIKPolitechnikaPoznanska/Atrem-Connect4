@@ -1,12 +1,14 @@
 package atrem.connect4.game.board;
 
+import java.io.Serializable;
+
 import atrem.connect4.game.player.PlayerId;
 
 /*
  * Tworzenie planszy 
  * poprzez wype³nienie obiektami klasy Hole
  */
-public class Board {
+public class Board implements Serializable {
 	private int slots, rows, lastSlot, lastRow;
 	private Hole[][] gameBoard;
 	private int totalSpots;

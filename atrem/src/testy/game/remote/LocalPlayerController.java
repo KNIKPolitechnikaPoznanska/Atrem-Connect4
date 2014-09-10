@@ -1,6 +1,7 @@
 package testy.game.remote;
 
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
 import atrem.connect4.game.GameController;
 import atrem.connect4.game.ResultState;
@@ -8,11 +9,13 @@ import atrem.connect4.game.player.PlayerAttributes;
 import atrem.connect4.game.player.PlayerController;
 import atrem.connect4.game.player.PlayerId;
 
-public class LocalPlayerController implements PlayerController {
+public class LocalPlayerController extends UnicastRemoteObject implements
+		PlayerController {
 	private RemotePlayerController remotePlayerController;
 
-	public LocalPlayerController(RemotePlayerController remotePlayerController) {
-
+	public LocalPlayerController(RemotePlayerController remotePlayerController)
+			throws RemoteException {
+		super();
 		this.remotePlayerController = remotePlayerController;
 	}
 
