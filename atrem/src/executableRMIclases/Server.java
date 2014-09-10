@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
+<<<<<<< HEAD
 import rmi.RemoteGameController;
 import rmi.RemoteGameControllerImp;
 import atrem.connect4.game.GameController;
@@ -31,6 +32,9 @@ public class Server {
 			// TODO Auto-generated catch block
 			System.out.println("wyj¹tek registru");
 		}
+=======
+	public static void main(String[] args) {
+>>>>>>> branch 'Pawel&Wojciech' of https://github.com/KNIKPolitechnikaPoznanska/AtremProject.git
 
 	}
 
