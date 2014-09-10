@@ -9,7 +9,6 @@ import java.awt.Graphics2D;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 
-import atrem.connect4.game.board.HoleState;
 import atrem.connect4.game.player.PlayerId;
 
 /**
@@ -51,37 +50,32 @@ public class DLabel extends JLabel {
 		g2d.fillOval(0, 0, w, h);
 	}
 
-	public void changeTokenColor(HoleState holeState) {
+	public void changeTokenColor(PlayerId holeState) {
 		if (playerId == PlayerId.PLAYER1)
 			switch (holeState) {
-				case EMPTY :
-					color = colorEmpty;
-					break;
-				case PLAYER1 :
-					color = myColor;
-					break;
-				case PLAYER2 :
-					color = oppColor;
-					break;
-				default :
-					System.out.println("Z³y kolor?");
+			case PLAYER1:
+				color = myColor;
+				break;
+			case PLAYER2:
+				color = oppColor;
+				break;
+			default:
+				color = colorEmpty;
 			}
 		if (playerId == PlayerId.PLAYER2)
 			switch (holeState) {
-				case EMPTY :
-					color = colorEmpty;
-					break;
-				case PLAYER1 :
-					color = oppColor;
-					break;
-				case PLAYER2 :
-					color = myColor;
-					break;
-				default :
-					System.out.println("Z³y kolor?");
+			case PLAYER1:
+				color = oppColor;
+				break;
+			case PLAYER2:
+				color = myColor;
+				break;
+			default:
+				color = colorEmpty;
 			}
 		this.paintComponent(getGraphics());
 	}
+
 	public void changeTo(Color color) {
 		this.color = color;
 		this.setBorder(null);

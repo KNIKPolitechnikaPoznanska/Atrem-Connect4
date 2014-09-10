@@ -10,9 +10,10 @@ public class Logic {
 
 	private int maxRows;
 	private int maxSlots;
-	private GameController gameController;
-	private boolean cpuWin = false;
-	private List<Point> winningCoordinates;
+	private GameController gameController; // TODO zalez w druga strone
+	private boolean cpuWin = false; // TODO wywalic, zrobic klase ogolnie, albo
+									// dziedziczyc
+	private List<Point> winningCoordinates; // TODO to nie powinno byc w Logic
 
 	public Logic(GameController gameController) {
 		this.gameController = gameController;
@@ -29,11 +30,12 @@ public class Logic {
 		return false;
 	}
 
+	// TODO poprawic nazwe z get
 	public boolean getResultOfMove(int row, int slot, int doneMoves) {
 
 		if (checkIfItIsAWinningMove(row, slot) || checkIfDraw(doneMoves)) {
 			checkTheWinner(gameController.getHoleState(row, slot));
-			return true;
+			return true;// TODO zrobic enuma graskonczona
 		}
 
 		return false;
@@ -42,14 +44,14 @@ public class Logic {
 	private void checkTheWinner(HoleState token) {
 
 		switch (token) {
-			case PLAYER1 :
-				gameController.setResult(ResultState.PLAYER_1_WIN);
-				break;
-			case PLAYER2 :
-				gameController.setResult(ResultState.PLAYER_2_WIN);
-				break;
-			default :
-				break;
+		case PLAYER1:
+			gameController.setResult(ResultState.PLAYER_1_WIN);
+			break;
+		case PLAYER2:
+			gameController.setResult(ResultState.PLAYER_2_WIN);
+			break;
+		default:
+			break;
 		}
 	}
 
@@ -70,6 +72,7 @@ public class Logic {
 		}
 		return false;
 	}
+
 	private int getAddedNumbersOfNeighbours(int row, int slot, int i, int j) {
 		return countNeighboursInOneDirection(row, slot, i, j)
 				+ countNeighboursInOneDirection(row, slot, -i, -j);
@@ -129,7 +132,7 @@ public class Logic {
 	public boolean checkIfWinPC(int row, int slot) {
 		if (checkIfItIsAWinningMove(row, slot))
 			return cpuWin = true;
-		return cpuWin = false;
+		return cpuWin = false; // TODO to nic nie robi
 	}
 
 	public boolean getCPUwin() {

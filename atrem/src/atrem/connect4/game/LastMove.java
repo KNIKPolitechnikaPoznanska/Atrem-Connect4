@@ -2,8 +2,10 @@ package atrem.connect4.game;
 
 import atrem.connect4.game.player.PlayerId;
 
-public class LastMove {
-	private int lastSlot, lastRow;
+import atrem.connect4.game.player.PlayerId;
+
+public class LastMove {// TODO zmienic na Move
+	private int lastSlot, lastRow;// TODO zmienic na point
 	private PlayerId playerId;
 
 	public LastMove() {
