@@ -12,11 +12,6 @@ public class Client1 {
 		Registry r = LocateRegistry.getRegistry("127.0.0.1", 1234);
 		ServerIterface server = (ServerIterface) r.lookup("server");
 		PlayerInterface player1 = new PlayerImpl();
-		setPlayer1(this);
-		String message;
-		message = player1.speak();
-		server.setMessage(message);
-		wait();
 
 	}
 

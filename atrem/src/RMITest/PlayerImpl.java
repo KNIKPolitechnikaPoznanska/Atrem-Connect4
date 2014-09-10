@@ -2,7 +2,6 @@ package RMITest;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.Scanner;
 
 public class PlayerImpl extends UnicastRemoteObject implements PlayerInterface {
 
@@ -17,17 +16,13 @@ public class PlayerImpl extends UnicastRemoteObject implements PlayerInterface {
 		// TODO Auto-generated constructor stub
 	}
 
-	public void setPlayer
-	{
-		this.client =  client;
+	public void setPlayer() {
+		this.client = client;
 	}
-	
+
 	@Override
 	public String speak() throws RemoteException {
-		Scanner scanner = new Scanner(System.in);
-		String message = scanner.nextLine();
-		return message;
-
+		return null;
 	}
 
 }
