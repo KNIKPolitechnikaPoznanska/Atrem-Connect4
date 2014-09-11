@@ -171,7 +171,7 @@ public class GameControllerService implements GameController {
 	@Override
 	public Board getBoard() {
 		try {
-			System.out.println(remoteGameController);
+			// System.out.println(remoteGameController);
 			return remoteGameController.getBoard();
 		} catch (RemoteException e) {
 			System.out.println("wyjatek w remoteGameController getBoard");
