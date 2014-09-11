@@ -1,4 +1,4 @@
-package atrem.connect4.rmi.server;
+package atrem.connect4.rmi.client;
 
 import java.awt.Color;
 import java.io.Serializable;
@@ -27,11 +27,17 @@ public class PlayerControllerService
 	@Override
 	public void createPlayer(GameController gameController, String name,
 			Color color) {
-		playerAttributes = new PlayerAttributes(name, PlayerId.PLAYER1, 0,
-				color);
-
-		this.player = new SwingPresenter(gameController, playerAttributes,
-				color.darker(), 0);
+		if (gameController.getPlayer1() == null) {
+			playerAttributes = new PlayerAttributes(name, PlayerId.PLAYER1, 0,
+					color);
+			this.player = new SwingPresenter(gameController, playerAttributes,
+					color.darker(), 0);
+			gameController.setPlayer1Attributes(playerAttributes);
+		} else {
+			playerAttributes = new PlayerAttributes(name, PlayerId.PLAYER2, 0,
+					color);
+			gameController.setPlayer2Attributes(playerAttributes);
+		}
 	}
 
 	@Override

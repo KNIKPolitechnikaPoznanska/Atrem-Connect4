@@ -19,12 +19,11 @@ public class GameControllerImpl implements Runnable, GameController {
 	private int doneMoves;
 	private LastMove lastMove;
 	private PlayerController currentPlayer, player1, player2;
+	private PlayerAttributes player1Attributes, player2Attributes;
 	private int emptySpot, slot;
 	private PlayerId playerTurn = PlayerId.PLAYER1;
 	private ResultState resultState = ResultState.NO_WIN;
 	private GameState gameState = GameState.PRE_INIT;
-
-	// private Stack<LastMove> lastMoveStack = new Stack<LastMove>();
 
 	/**
 	 * Sprawdza którego z graczy jest kolej
@@ -89,12 +88,12 @@ public class GameControllerImpl implements Runnable, GameController {
 			player1 = new SwingPresenter(this, player1Attributes, player2Color,
 					player1.getPlayerPoints());
 		} else
-			addPlayer();
+			connectPlayer();
 		if (player2 instanceof SwingPresenter) {
 			player2 = new SwingPresenter(this, player2Attributes, player1Color,
 					player2.getPlayerPoints());
 		} else
-			addPlayer();
+			connectPlayer();
 
 		doneMoves = 0;
 
@@ -107,11 +106,7 @@ public class GameControllerImpl implements Runnable, GameController {
 		// waitForInit();
 		while (resultState == ResultState.NO_WIN) {
 			currentPlayer = currentPlayer();
-			try {
-				this.wait(100);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			System.out.println("twoj ruch ");
 			currentPlayer.yourTurn();
 			gameState = GameState.WAITING_FOR_MOVE;
 			waitForMove();
@@ -159,7 +154,7 @@ public class GameControllerImpl implements Runnable, GameController {
 	 * @see atrem.connect4.game.GameController#wakeUpGCr()
 	 */
 	@Override
-	public synchronized void addPlayer() {
+	public synchronized void connectPlayer() {
 		switch (gameState) {
 			case PRE_INIT :
 				gameState = GameState.END_INIT_1;
@@ -417,5 +412,25 @@ public class GameControllerImpl implements Runnable, GameController {
 	@Override
 	public List<Point> getWinningCoordinates() {
 		return logic.getWinningCoordinates();
+	}
+
+	@Override
+	public PlayerAttributes getPlayer1Attributes() {
+		return player1.getPlayerAttributes();
+	}
+
+	@Override
+	public PlayerAttributes getPlayer2Attributes() {
+		return player2.getPlayerAttributes();
+	}
+
+	@Override
+	public void setPlayer1Attributes(PlayerAttributes player1Attributes) {
+		this.player1Attributes = player1Attributes;
+	}
+
+	@Override
+	public void setPlayer2Attributes(PlayerAttributes player2Attributes) {
+		this.player2Attributes = player2Attributes;
 	}
 }

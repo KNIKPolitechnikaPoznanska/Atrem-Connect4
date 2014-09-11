@@ -11,6 +11,7 @@ import atrem.connect4.game.LastMove;
 import atrem.connect4.game.ResultState;
 import atrem.connect4.game.board.Board;
 import atrem.connect4.game.board.HoleState;
+import atrem.connect4.game.player.PlayerAttributes;
 import atrem.connect4.game.player.PlayerController;
 import atrem.connect4.game.player.PlayerId;
 import atrem.connect4.rmi.RemoteGameController;
@@ -43,14 +44,13 @@ public class GameControllerClient implements GameController, Serializable {
 	}
 
 	@Override
-	public void addPlayer() {
+	public void connectPlayer() {
 		try {
 			remoteGameController.connectPlayer();
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			throw new Error(e);
 		}
-
 	}
 
 	@Override
@@ -58,8 +58,8 @@ public class GameControllerClient implements GameController, Serializable {
 		try {
 			remoteGameController.analyseDecision();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			throw new Error(e);
 		}
 
 	}
@@ -174,13 +174,12 @@ public class GameControllerClient implements GameController, Serializable {
 
 	@Override
 	public PlayerController getPlayer1() {
-		PlayerController player = null;
 		try {
-			player = remoteGameController.getPlayer1();
+			return remoteGameController.getPlayer1();
 		} catch (RemoteException e) {
 			e.printStackTrace();
+			throw new Error(e);
 		}
-		return player;
 	}
 
 	@Override
@@ -274,6 +273,42 @@ public class GameControllerClient implements GameController, Serializable {
 			e.printStackTrace();
 		}
 		return list;
+	}
+
+	@Override
+	public PlayerAttributes getPlayer1Attributes() {
+		try {
+			return remoteGameController.getPlayer1().getPlayerAttributes();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			throw new Error(e);
+		}
+	}
+
+	@Override
+	public PlayerAttributes getPlayer2Attributes() {
+		return null;
+	}
+
+	@Override
+	public void setPlayer1Attributes(PlayerAttributes player1Attributes) {
+		try {
+			remoteGameController.setPlayer1Attributes(player1Attributes);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			System.out.println("Error setPA");
+		}
+
+	}
+
+	@Override
+	public void setPlayer2Attributes(PlayerAttributes player2Attributes) {
+		try {
+			remoteGameController.setPlayer2Attributes(player2Attributes);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			System.out.println("Error setPA");
+		}
 	}
 
 }

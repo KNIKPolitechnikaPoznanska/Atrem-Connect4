@@ -11,11 +11,11 @@ import atrem.connect4.game.LastMove;
 import atrem.connect4.game.ResultState;
 import atrem.connect4.game.board.Board;
 import atrem.connect4.game.board.HoleState;
+import atrem.connect4.game.player.PlayerAttributes;
 import atrem.connect4.game.player.PlayerController;
 import atrem.connect4.game.player.PlayerId;
 import atrem.connect4.rmi.RemoteGameController;
 import atrem.connect4.rmi.RemotePlayerController;
-import atrem.connect4.rmi.client.PlayerControllerClient;
 
 public class GameControllerService extends UnicastRemoteObject
 		implements
@@ -44,7 +44,7 @@ public class GameControllerService extends UnicastRemoteObject
 
 	@Override
 	public void connectPlayer() throws RemoteException {
-		gamecontroller.addPlayer();
+		gamecontroller.connectPlayer();
 	}
 
 	@Override
@@ -155,5 +155,19 @@ public class GameControllerService extends UnicastRemoteObject
 
 	public GameController getGamecontroller() {
 		return gamecontroller;
+	}
+
+	@Override
+	public void setPlayer1Attributes(PlayerAttributes player1Attributes)
+			throws RemoteException {
+		gamecontroller.setPlayer1Attributes(player1Attributes);
+
+	}
+
+	@Override
+	public void setPlayer2Attributes(PlayerAttributes player2Attributes)
+			throws RemoteException {
+		gamecontroller.setPlayer2Attributes(player2Attributes);
+
 	}
 }

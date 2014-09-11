@@ -1,4 +1,4 @@
-package atrem.connect4.rmi.client;
+package atrem.connect4.rmi.server;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;

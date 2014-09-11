@@ -123,6 +123,14 @@ public class PlayerFactory {
 		return player2Name;
 	}
 
+	public PlayerAttributes getPlayer1Attributes() {
+		return player1Attributes;
+	}
+
+	public PlayerAttributes getPlayer2Attributes() {
+		return player2Attributes;
+	}
+
 	public void setGamePl1Type(String gamePl1Type) {
 		this.gamePl1Type = gamePl1Type;
 	}

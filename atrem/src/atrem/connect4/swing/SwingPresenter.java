@@ -50,6 +50,7 @@ public class SwingPresenter implements PlayerController, Serializable {
 		this.playerId = playerAttributes.getPlayerId();
 		this.playerColor = playerAttributes.getPlayerColor();
 		this.opponentColor = opponentColor;
+		gameController.connectPlayer();
 		setupFrame();
 		slots = gameController.getBoard().getSlots();
 		rows = gameController.getBoard().getRows();
@@ -109,14 +110,18 @@ public class SwingPresenter implements PlayerController, Serializable {
 					sideBoard = frame.getSideBoard();
 					sideBoard.setBackground(Color.orange);
 					stats = frame.getStats();
-					// stats.setPointsPlayer(gameController.getPlayer1()
+					System.out.println(gameController.getBoard().getRows());
+					// TODO na zmienne
+					// System.out.println(gameController.getPlayer1Attributes()
+					// .getName());
+					// stats.setPointsPlayer(gameController.getPlayer1Attributes()
 					// .getPlayerPoints(), PlayerId.PLAYER1);
-					// stats.setPointsPlayer(gameController.getPlayer2()
+					// stats.setPointsPlayer(gameController.getPlayer2Attributes()
 					// .getPlayerPoints(), PlayerId.PLAYER2);
-					// stats.setName(gameController.getPlayer1().getName(),
-					// PlayerId.PLAYER1);
-					// stats.setName(gameController.getPlayer2().getName(),
-					// PlayerId.PLAYER2);
+					// stats.setName(gameController.getPlayer1Attributes()
+					// .getName(), PlayerId.PLAYER1);
+					// stats.setName(gameController.getPlayer2Attributes()
+					// .getName(), PlayerId.PLAYER2);
 
 					gameBoard.enableButtons(blockButton);
 					setNamesAndToken();
@@ -124,6 +129,7 @@ public class SwingPresenter implements PlayerController, Serializable {
 					stats.setPreferredSize(new Dimension(215, 200));
 					frame.pack();
 					frame.setResizable(false);
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -184,7 +190,7 @@ public class SwingPresenter implements PlayerController, Serializable {
 	}
 
 	public void makeDecision(int decision) {
-		gameController.addPlayer();
+		gameController.connectPlayer();
 		if (decision == 1) {
 			playerAttributes.setPlayerDecision(PlayerDecision.MENU);
 			frame.dispose();
@@ -219,19 +225,20 @@ public class SwingPresenter implements PlayerController, Serializable {
 	 * Ustawia Imiona graczy na Labelach
 	 */
 	public void setNamesAndToken() {
-
-		// sideBoard.setTokenPl2();
 		if (playerId == PlayerId.PLAYER1) {
 			sideBoard.setTokenPl1();
-			sideBoard.setPl1Name(gameController.getPlayer1().getName());
-			sideBoard.setPl2Name(gameController.getPlayer2().getName());
+			// TODO na zmienne dac
+			// sideBoard.setPl1Name(gameController.getPlayer1Attributes()
+			// .getName());
+			// sideBoard.setPl2Name(gameController.getPlayer2Attributes()
+			// .getName());
 		} else {
 			sideBoard.setTokenPl2();
-			sideBoard.setPl1Name(gameController.getPlayer2().getName());
-			sideBoard.setPl2Name(gameController.getPlayer1().getName());
-			// 2 - 1 ;
+			// sideBoard.setPl1Name(gameController.getPlayer2Attributes()
+			// .getName());
+			// sideBoard.setPl2Name(gameController.getPlayer1Attributes()
+			// .getName());
 		}
-
 	}
 
 	/**

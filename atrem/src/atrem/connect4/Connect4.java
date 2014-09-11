@@ -78,6 +78,11 @@ public class Connect4 {
 		client = new Connect4Client();
 		client.connect(adress);
 		client.createPlayer(name, color);
-
+		try {
+			client.startGame();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

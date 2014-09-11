@@ -11,7 +11,7 @@ import atrem.connect4.game.player.PlayerController;
 import atrem.connect4.rmi.RemoteGameController;
 import atrem.connect4.rmi.RemotePlayerController;
 import atrem.connect4.rmi.client.GameControllerClient;
-import atrem.connect4.rmi.server.PlayerControllerService;
+import atrem.connect4.rmi.client.PlayerControllerService;
 
 /**
  * 
@@ -57,6 +57,23 @@ public class Connect4Client {
 		} catch (RemoteException e) {
 			System.out.println("Problem z przypisaniem gracza.");
 			e.printStackTrace();
+		}
+
+	}
+
+	public void startGame() throws RemoteException {
+		PlayerController player;
+		if (gameCService.getPlayer1() == null)
+			player = gameCService.getPlayer1();
+		else {
+			player = gameCService.getPlayer2();
+			try {
+				Thread.sleep(6000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			player.yourTurn();
 		}
 	}
 }

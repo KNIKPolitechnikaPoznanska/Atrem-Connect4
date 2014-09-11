@@ -49,6 +49,10 @@ public class GameFactory {
 	public void createServerGameController() {
 		gameController = new GameControllerImpl();
 		gameController.setBoard(board);
+		gameController.setPlayer1Attributes(playerFactory
+				.getPlayer1Attributes());
+		gameController.setPlayer2Attributes(playerFactory
+				.getPlayer2Attributes());
 	}
 
 	public Board getBoard() {
