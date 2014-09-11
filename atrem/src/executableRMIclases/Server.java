@@ -10,12 +10,9 @@ import rmi.RemoteGameControllerImp;
 import atrem.connect4.game.GameController;
 import atrem.connect4.game.GameControllerImpl;
 import atrem.connect4.game.board.Board;
-import atrem.connect4.game.player.PlayerController;
+import atrem.connect4.game.player.PlayerId;
 
 public class Server {
-
-	private PlayerController player1, player2;
-	private PlayerController playerControllerService;
 
 	public static void main(String[] args) throws RemoteException,
 			AlreadyBoundException {
@@ -24,6 +21,7 @@ public class Server {
 		gameController = new GameControllerImpl();
 		Board board = new Board(6, 7);
 		gameController.setBoard(board);
+		gameController.setPlayerTurn(PlayerId.PLAYER1);
 		RemoteGameController remoteGameController = new RemoteGameControllerImp(
 				gameController);
 		Registry registry = LocateRegistry.createRegistry(6969);
@@ -33,7 +31,8 @@ public class Server {
 			// TODO Auto-generated catch block
 			System.out.println("wyj¹tek registru");
 		}
+		while (true)
+			;
 
 	}
-
 }

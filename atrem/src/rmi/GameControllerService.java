@@ -22,7 +22,8 @@ public class GameControllerService implements GameController {
 	}
 
 	public void addPlayerController(
-			RemotePlayerController remotePlayerController) {
+			RemotePlayerController remotePlayerController)
+			throws RemoteException {
 		remoteGameController.addPlayerController(remotePlayerController);
 	}
 
@@ -170,9 +171,10 @@ public class GameControllerService implements GameController {
 	@Override
 	public Board getBoard() {
 		try {
+			System.out.println(remoteGameController);
 			return remoteGameController.getBoard();
 		} catch (RemoteException e) {
-			System.out.println("wyjatek w remoteGameController");
+			System.out.println("wyjatek w remoteGameController getBoard");
 		}
 		return null;
 	}

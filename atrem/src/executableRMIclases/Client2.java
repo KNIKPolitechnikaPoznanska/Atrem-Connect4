@@ -16,17 +16,16 @@ import atrem.connect4.game.player.PlayerId;
 import atrem.connect4.swing.SwingPresenter;
 
 public class Client2 {
-	static RemoteGameController remoteGameController;
+
 	static PlayerAttributes playerAttributes1 = new PlayerAttributes("wojtek",
 			PlayerId.PLAYER2, 0, new Color(100, 100, 100));
 	static PlayerController player;
 
 	public static void main(String[] args) throws RemoteException {
-
+		RemoteGameController remoteGameController = null; // tak ma byc pawel
 		Registry registry = LocateRegistry.getRegistry("localhost", 6969);
 		try {
-			RemoteGameController remoteGameController = (RemoteGameController) registry
-					.lookup("GC");
+			remoteGameController = (RemoteGameController) registry.lookup("GC");
 		} catch (NotBoundException e) {
 			System.out.println("wyjatek klienta");
 		}

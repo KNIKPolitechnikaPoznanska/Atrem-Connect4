@@ -177,7 +177,8 @@ public class RemoteGameControllerImp extends UnicastRemoteObject implements
 
 	@Override
 	public void addPlayerController(
-			RemotePlayerController remotePlayerController) {
+			RemotePlayerController remotePlayerController)
+			throws RemoteException {
 		PlayerController playerController = new PlayerControllerService(
 				remotePlayerController);
 		if (gameController.getPlayer1() == null)
