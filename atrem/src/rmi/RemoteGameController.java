@@ -11,6 +11,7 @@ import atrem.connect4.game.Logic;
 import atrem.connect4.game.ResultState;
 import atrem.connect4.game.board.Board;
 import atrem.connect4.game.board.HoleState;
+import atrem.connect4.game.player.PlayerAttributes;
 import atrem.connect4.game.player.PlayerController;
 import atrem.connect4.game.player.PlayerId;
 
@@ -75,6 +76,16 @@ public interface RemoteGameController extends Remote {
 
 	public void addPlayerController(
 			RemotePlayerController remotePlayerController)
+			throws RemoteException;
+
+	public PlayerAttributes getPlayer1Attributes() throws RemoteException;
+
+	public void setPlayer1Attributes(PlayerAttributes player1Attributes)
+			throws RemoteException;
+
+	public PlayerAttributes getPlayer2Attributes() throws RemoteException;
+
+	public void setPlayer2Attributes(PlayerAttributes player2Attributes)
 			throws RemoteException;
 
 }

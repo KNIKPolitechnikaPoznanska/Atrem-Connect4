@@ -168,14 +168,14 @@ public class SwingPresenter implements PlayerController {
 			// gameController.getLogic().getWinningCoordinates().clear();
 		}
 		if (resultGame == ResultState.PLAYER_1_WIN) {
-			decision = informationBoxes.winMessage(gameController.getPlayer1()
-					.getName());
+			decision = informationBoxes.winMessage(gameController
+					.getPlayer1Attributes().getName());
 			if (playerId == PlayerId.PLAYER1)
 				playerAttributes.addPoints();
 		}
 		if (resultGame == ResultState.PLAYER_2_WIN) {
-			decision = informationBoxes.winMessage(gameController.getPlayer2()
-					.getName());
+			decision = informationBoxes.winMessage(gameController
+					.getPlayer2Attributes().getName());
 			if (playerId == PlayerId.PLAYER2)
 				playerAttributes.addPoints();
 		}
@@ -291,4 +291,20 @@ public class SwingPresenter implements PlayerController {
 		return playerAttributes.getPlayerPoints();
 	}
 
+	@Override
+	public Color getColor() {
+		return playerColor;
+	}
+
+	@Override
+	public Color getOppColor() {
+
+		return opponentColor;
+	}
+
+	@Override
+	public void setPlayerId(PlayerId playerId) {
+		this.playerId = playerId;
+
+	}
 }

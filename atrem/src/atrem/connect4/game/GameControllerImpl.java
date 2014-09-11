@@ -22,6 +22,7 @@ public class GameControllerImpl implements Runnable, GameController {
 	private PlayerId playerTurn = PlayerId.PLAYER1;
 	private ResultState resultState = ResultState.NO_WIN;
 	private GameState gameState = GameState.PRE_INIT;
+	private PlayerAttributes player1Attributes, player2Attributes;
 
 	// private Stack<LastMove> lastMoveStack = new Stack<LastMove>();
 
@@ -348,6 +349,23 @@ public class GameControllerImpl implements Runnable, GameController {
 	@Override
 	public void setPlayer1(PlayerController player1) {
 		this.player1 = player1;
+		player1Attributes = player1.getPlayerAttributes();
+	}
+
+	public PlayerAttributes getPlayer1Attributes() {
+		return player1Attributes;
+	}
+
+	public void setPlayer1Attributes(PlayerAttributes player1Attributes) {
+		this.player1Attributes = player1Attributes;
+	}
+
+	public PlayerAttributes getPlayer2Attributes() {
+		return player2Attributes;
+	}
+
+	public void setPlayer2Attributes(PlayerAttributes player2Attributes) {
+		this.player2Attributes = player2Attributes;
 	}
 
 	/*
@@ -370,6 +388,8 @@ public class GameControllerImpl implements Runnable, GameController {
 	@Override
 	public void setPlayer2(PlayerController player2) {
 		this.player2 = player2;
+		player2Attributes = player2.getPlayerAttributes();
+
 	}
 
 	/*

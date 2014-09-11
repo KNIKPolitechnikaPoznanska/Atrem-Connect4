@@ -24,8 +24,8 @@ public class Client2 {
 		GameController gameControllerService = new GameControllerService(
 				remoteGameController);
 		RemotePlayerController remotePlayerController = new RemotePlayerControllerImp();
-		remoteGameController.addPlayerController(remotePlayerController);
 		remotePlayerController.createPlayer(gameControllerService);
+		remoteGameController.addPlayerController(remotePlayerController);
 
 	}
 }
