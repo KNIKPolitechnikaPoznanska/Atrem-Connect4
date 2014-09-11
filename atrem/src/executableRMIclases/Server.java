@@ -4,6 +4,7 @@ import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.Scanner;
 
 import rmi.RemoteGameController;
 import rmi.RemoteGameControllerImp;
@@ -26,12 +27,9 @@ public class Server {
 				gameController);
 		Registry registry = LocateRegistry.createRegistry(80);
 		registry.bind("gc", remoteGameController);
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Scanner pause = new Scanner(System.in);
+		pause.nextLine();
+
 		gameController.startGameLoop();
 
 	}
