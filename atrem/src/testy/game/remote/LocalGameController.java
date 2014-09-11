@@ -22,13 +22,14 @@ public class LocalGameController implements GameController {
 
 	@Override
 	public int move(int slot) {
-		int spot = 0;
+
 		try {
-			spot = remoteGameController.move(slot);
+			return remoteGameController.move(slot);
 		} catch (RemoteException e) {
 			e.printStackTrace();
+			throw new Error(e);
 		}
-		return spot;
+
 	}
 
 	@Override
