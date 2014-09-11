@@ -26,11 +26,13 @@ public class Server {
 				gameController);
 		Registry registry = LocateRegistry.createRegistry(80);
 		registry.bind("gc", remoteGameController);
-
-		System.out.println("wyj¹tek registru");
-
-		while (true)
-			;
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		gameController.startGameLoop();
 
 	}
 }
