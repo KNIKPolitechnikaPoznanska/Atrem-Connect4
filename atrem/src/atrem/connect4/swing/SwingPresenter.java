@@ -109,18 +109,18 @@ public class SwingPresenter implements PlayerController {
 					sideBoard = frame.getSideBoard();
 					sideBoard.setBackground(Color.orange);
 					stats = frame.getStats();
-					// stats.setPointsPlayer(gameController.getPlayer1()
-					// .getPlayerPoints(), PlayerId.PLAYER1);
-					// stats.setPointsPlayer(gameController.getPlayer2()
-					// .getPlayerPoints(), PlayerId.PLAYER2);
-					// stats.setName(gameController.getPlayer1().getName(),
-					// PlayerId.PLAYER1);
-					// stats.setName(gameController.getPlayer2().getName(),
-					// PlayerId.PLAYER2);
-					stats.setPointsPlayer(0, PlayerId.PLAYER1);
-					stats.setPointsPlayer(0, PlayerId.PLAYER2);
-					stats.setName("Patryk", PlayerId.PLAYER1);
-					stats.setName("Bartek", PlayerId.PLAYER2);
+					stats.setPointsPlayer(gameController.getPlayer1Attributes()
+							.getPlayerPoints(), PlayerId.PLAYER1);
+					stats.setPointsPlayer(gameController.getPlayer2Attributes()
+							.getPlayerPoints(), PlayerId.PLAYER2);
+					stats.setName(gameController.getPlayer1Attributes()
+							.getName(), PlayerId.PLAYER1);
+					stats.setName(gameController.getPlayer2Attributes()
+							.getName(), PlayerId.PLAYER2);
+					// stats.setPointsPlayer(0, PlayerId.PLAYER1);
+					// stats.setPointsPlayer(0, PlayerId.PLAYER2);
+					// stats.setName("Patryk", PlayerId.PLAYER1);
+					// stats.setName("Bartek", PlayerId.PLAYER2);
 
 					gameController.connectPlayer();
 
@@ -172,14 +172,14 @@ public class SwingPresenter implements PlayerController {
 			// gameController.getLogic().getWinningCoordinates().clear();
 		}
 		if (resultGame == ResultState.PLAYER_1_WIN) {
-			decision = informationBoxes.winMessage(gameController.getPlayer1()
-					.getName());
+			decision = informationBoxes.winMessage(gameController
+					.getPlayer1Attributes().getName());
 			if (playerId == PlayerId.PLAYER1)
 				playerAttributes.addPoints();
 		}
 		if (resultGame == ResultState.PLAYER_2_WIN) {
-			decision = informationBoxes.winMessage(gameController.getPlayer2()
-					.getName());
+			decision = informationBoxes.winMessage(gameController
+					.getPlayer2Attributes().getName());
 			if (playerId == PlayerId.PLAYER2)
 				playerAttributes.addPoints();
 		}
@@ -229,12 +229,16 @@ public class SwingPresenter implements PlayerController {
 		// sideBoard.setTokenPl2();
 		if (playerId == PlayerId.PLAYER1) {
 			sideBoard.setTokenPl1();
-			// sideBoard.setPl1Name(gameController.getPlayer1().getName());
-			// sideBoard.setPl2Name(gameController.getPlayer2().getName());
+			sideBoard.setPl1Name(gameController.getPlayer1Attributes()
+					.getName());
+			sideBoard.setPl2Name(gameController.getPlayer2Attributes()
+					.getName());
 		} else {
 			sideBoard.setTokenPl2();
-			// sideBoard.setPl1Name(gameController.getPlayer2().getName());
-			// sideBoard.setPl2Name(gameController.getPlayer1().getName());
+			sideBoard.setPl1Name(gameController.getPlayer2Attributes()
+					.getName());
+			sideBoard.setPl2Name(gameController.getPlayer1Attributes()
+					.getName());
 			// 2 - 1 ;
 		}
 

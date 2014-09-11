@@ -10,6 +10,7 @@ import atrem.connect4.game.LastMove;
 import atrem.connect4.game.ResultState;
 import atrem.connect4.game.board.Board;
 import atrem.connect4.game.board.HoleState;
+import atrem.connect4.game.player.PlayerAttributes;
 import atrem.connect4.game.player.PlayerController;
 import atrem.connect4.game.player.PlayerId;
 
@@ -274,5 +275,44 @@ public class LocalGameController implements GameController {
 			e.printStackTrace();
 		}
 		return list;
+	}
+
+	@Override
+	public PlayerAttributes getPlayer1Attributes() {
+		try {
+			return remoteGameController.getPlayer1Attributes();
+		} catch (RemoteException e) {
+			throw new Error(e);
+		}
+
+	}
+
+	@Override
+	public void setPlayer1Attributes(PlayerAttributes player1Attributes) {
+		try {
+			remoteGameController.setPlayer1Attributes(player1Attributes);
+		} catch (RemoteException e) {
+			throw new Error(e);
+		}
+
+	}
+
+	@Override
+	public PlayerAttributes getPlayer2Attributes() {
+		try {
+			return remoteGameController.getPlayer2Attributes();
+		} catch (RemoteException e) {
+			throw new Error(e);
+		}
+	}
+
+	@Override
+	public void setPlayer2Attributes(PlayerAttributes player2Attributes) {
+		try {
+			remoteGameController.setPlayer2Attributes(player2Attributes);
+		} catch (RemoteException e) {
+			throw new Error(e);
+		}
+
 	}
 }

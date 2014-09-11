@@ -1,24 +1,26 @@
 package atrem.connect4.game.player;
 
 import java.awt.Color;
+import java.io.Serializable;
 
 /*
  * Klasa obs³uguj¹ca dane graczy
  */
 
-public class PlayerAttributes {
+public class PlayerAttributes implements Serializable {
 	private String playerName;
 	private PlayerId playerId;
 	private int playerPoints;
 	private Color playerColor;
 
-	public PlayerAttributes(String playerName, PlayerId playerId, int playerPoints,
-			Color playerColor) {
+	public PlayerAttributes(String playerName, PlayerId playerId,
+			int playerPoints, Color playerColor) {
 		this.playerName = playerName;
 		this.playerId = playerId;
 		this.playerPoints = playerPoints;
 		this.playerColor = playerColor;
 	}
+
 	private PlayerDecision playerDecision;
 
 	public PlayerDecision getPlayerDecision() {
