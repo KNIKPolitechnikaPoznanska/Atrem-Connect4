@@ -13,10 +13,6 @@ public interface GameController {
 
 	public abstract void connectPlayer();
 
-	public abstract void analyseDecision();
-
-	public abstract void backToMenu();
-
 	public abstract Board getBoard();
 
 	public abstract PlayerController getCurrentPlayer();

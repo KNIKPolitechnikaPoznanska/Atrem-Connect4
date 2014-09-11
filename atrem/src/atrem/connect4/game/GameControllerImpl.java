@@ -21,7 +21,7 @@ public class GameControllerImpl implements Runnable, GameController {
 	private PlayerController currentPlayer, player1, player2;
 	private PlayerAttributes player1Attributes, player2Attributes;
 	private int emptySpot, slot;
-	private PlayerId playerTurn = PlayerId.PLAYER1;
+	private PlayerId playerTurn = PlayerId.PLAYER2;
 	private ResultState resultState = ResultState.NO_WIN;
 	private GameState gameState = GameState.PRE_INIT;
 
@@ -167,12 +167,6 @@ public class GameControllerImpl implements Runnable, GameController {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see atrem.connect4.game.GameController#analyseDecision()
-	 */
-	@Override
 	public void analyseDecision() {
 		if (player1.getPlayerAttributes().getPlayerDecision() == PlayerDecision.NEW_GAME
 				&& player2.getPlayerAttributes().getPlayerDecision() == PlayerDecision.NEW_GAME)
@@ -214,12 +208,6 @@ public class GameControllerImpl implements Runnable, GameController {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see atrem.connect4.game.GameController#backToMenu()
-	 */
-	@Override
 	public void backToMenu() {
 		GameFactory gameFactory = new GameFactory();
 		GameConfig config = new GameConfig();

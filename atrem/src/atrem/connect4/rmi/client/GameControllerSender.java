@@ -53,31 +53,9 @@ public class GameControllerSender implements GameController, Serializable {
 	}
 
 	@Override
-	public void analyseDecision() {
-		try {
-			remoteGameController.analyseDecision();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			throw new Error(e);
-		}
-
-	}
-
-	@Override
 	public void startGameLoop() {
 		try {
 			remoteGameController.startGameLoop();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-
-	@Override
-	public void backToMenu() {
-		try {
-			remoteGameController.backToMenu();
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -309,5 +287,4 @@ public class GameControllerSender implements GameController, Serializable {
 			System.out.println("Error setPA");
 		}
 	}
-
 }

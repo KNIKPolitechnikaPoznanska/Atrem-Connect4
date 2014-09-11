@@ -78,11 +78,11 @@ public class Connect4 {
 		client = new Connect4Client();
 		client.connect(adress);
 		client.createPlayer(name, color);
-		try {
-			client.startGame();
-		} catch (RemoteException e) {
-			System.out.println("Gra nie odpali³a? Nie mój problem");
-			e.printStackTrace();
-		}
+		// try {
+		// client.startGame();
+		// } catch (RemoteException e) {
+		// System.out.println("Gra nie odpali³a? Nie mój problem");
+		// e.printStackTrace();
+		// }
 	}
 }

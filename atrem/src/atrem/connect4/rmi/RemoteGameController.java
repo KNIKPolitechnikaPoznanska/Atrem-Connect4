@@ -19,10 +19,6 @@ public interface RemoteGameController extends Remote {
 	public abstract void addRemotePlayer(RemotePlayerController rPCC)
 			throws RemoteException;
 
-	public abstract void analyseDecision() throws RemoteException;
-
-	public abstract void backToMenu() throws RemoteException;
-
 	public abstract void connectPlayer() throws RemoteException;
 
 	public abstract Board getBoard() throws RemoteException;
@@ -73,4 +69,8 @@ public interface RemoteGameController extends Remote {
 	public abstract void startGameLoop() throws RemoteException;
 
 	public abstract void startNewGame() throws RemoteException;
+
+	PlayerAttributes getPlayer1Attributes() throws RemoteException;
+
+	PlayerAttributes getPlayer2Attributes() throws RemoteException;
 }

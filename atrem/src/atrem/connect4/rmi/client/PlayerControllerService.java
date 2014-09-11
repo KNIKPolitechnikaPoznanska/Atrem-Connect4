@@ -17,7 +17,7 @@ public class PlayerControllerService
 			RemotePlayerController,
 			Serializable {
 
-	private PlayerController player;
+	private PlayerController playerController;
 	private PlayerAttributes playerAttributes;
 
 	public PlayerControllerService() throws RemoteException {
@@ -36,53 +36,53 @@ public class PlayerControllerService
 					color);
 			gameController.setPlayer2Attributes(playerAttributes);
 		}
-		this.player = new SwingPresenter(gameController, playerAttributes,
+		this.playerController = new SwingPresenter(gameController, playerAttributes,
 				color.darker(), 0);
 	}
 
 	@Override
 	public String getName() throws RemoteException {
-		return player.getName();
+		return playerController.getName();
 	}
 
 	@Override
 	public void setName(String playerName) throws RemoteException {
-		player.setName(playerName);
+		playerController.setName(playerName);
 
 	}
 
 	@Override
 	public PlayerId getPlayerId() throws RemoteException {
-		return player.getPlayerId();
+		return playerController.getPlayerId();
 	}
 
 	@Override
 	public void yourTurn() throws RemoteException {
-		player.yourTurn();
+		playerController.yourTurn();
 
 	}
 
 	@Override
 	public void setGamecontroller(GameController gamecontroller)
 			throws RemoteException {
-		player.setGamecontroller(gamecontroller);
+		playerController.setGamecontroller(gamecontroller);
 
 	}
 
 	@Override
 	public void endOfGame(ResultState resultGame) throws RemoteException {
-		player.endOfGame(resultGame);
+		playerController.endOfGame(resultGame);
 
 	}
 
 	@Override
 	public int getPlayerPoints() throws RemoteException {
-		return player.getPlayerPoints();
+		return playerController.getPlayerPoints();
 
 	}
 
 	@Override
 	public PlayerAttributes getPlayerAttributes() throws RemoteException {
-		return player.getPlayerAttributes();
+		return playerController.getPlayerAttributes();
 	}
 }

@@ -10,7 +10,6 @@ import java.util.List;
 import javax.swing.SwingUtilities;
 
 import atrem.connect4.game.GameController;
-import atrem.connect4.game.GameState;
 import atrem.connect4.game.ResultState;
 import atrem.connect4.game.player.PlayerAttributes;
 import atrem.connect4.game.player.PlayerController;
@@ -51,17 +50,15 @@ public class SwingPresenter implements PlayerController, Serializable {
 		this.playerColor = playerAttributes.getPlayerColor();
 		this.opponentColor = opponentColor;
 		setupFrame();
-		gameController.connectPlayer();
 		slots = gameController.getBoard().getSlots();
 		rows = gameController.getBoard().getRows();
 	}
 
 	/**
-	 * Wywo³ywane przez GC.GameLoop
+	 * Wywolywane przez GC.GameLoop
 	 */
 	@Override
 	public void yourTurn() {// LastMove lastMove
-
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -69,6 +66,7 @@ public class SwingPresenter implements PlayerController, Serializable {
 				sideBoard.tokenEnable();
 				LastSlot = gameController.getLastMove().getLastSlot();
 				LastRow = gameController.getLastMove().getLastRow();
+
 				if (LastRow != -1 && LastSlot != -1) {
 					refreshView(LastRow, LastSlot);
 				}
@@ -78,7 +76,7 @@ public class SwingPresenter implements PlayerController, Serializable {
 	}
 
 	/**
-	 * Ustawia ostatnio klikniêty slot.
+	 * Ustawia ostatnio klikniety slot.
 	 * 
 	 * @param slot
 	 */
@@ -90,11 +88,12 @@ public class SwingPresenter implements PlayerController, Serializable {
 			refreshView(emptySpot, slot);
 			gameBoard.enableButtons(false);
 			sideBoard.tokenDisable();
+
 		}
 	}
 
 	/**
-	 * Tworzy w¹tek Swing
+	 * Tworzy watek Swing
 	 */
 	private void setupFrame() {
 		SwingUtilities.invokeLater(new Runnable() {
@@ -118,6 +117,12 @@ public class SwingPresenter implements PlayerController, Serializable {
 							.getName(), PlayerId.PLAYER1);
 					stats.setName(gameController.getPlayer2Attributes()
 							.getName(), PlayerId.PLAYER2);
+					// stats.setPointsPlayer(0, PlayerId.PLAYER1);
+					// stats.setPointsPlayer(0, PlayerId.PLAYER2);
+					// stats.setName("Patryk", PlayerId.PLAYER1);
+					// stats.setName("Bartek", PlayerId.PLAYER2);
+
+					gameController.connectPlayer();
 
 					gameBoard.enableButtons(blockButton);
 					setNamesAndToken();
@@ -125,7 +130,6 @@ public class SwingPresenter implements PlayerController, Serializable {
 					stats.setPreferredSize(new Dimension(215, 200));
 					frame.pack();
 					frame.setResizable(false);
-					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -149,7 +153,7 @@ public class SwingPresenter implements PlayerController, Serializable {
 	}
 
 	/**
-	 * Odœwie¿a planszê na GUI
+	 * Odswieza plansze na GUI
 	 */
 	public void refreshView(final int row, final int slot) {
 		SwingUtilities.invokeLater(new Runnable() {
@@ -168,14 +172,14 @@ public class SwingPresenter implements PlayerController, Serializable {
 			// gameController.getLogic().getWinningCoordinates().clear();
 		}
 		if (resultGame == ResultState.PLAYER_1_WIN) {
-			decision = informationBoxes.winMessage(gameController.getPlayer1()
-					.getName());
+			decision = informationBoxes.winMessage(gameController
+					.getPlayer1Attributes().getName());
 			if (playerId == PlayerId.PLAYER1)
 				playerAttributes.addPoints();
 		}
 		if (resultGame == ResultState.PLAYER_2_WIN) {
-			decision = informationBoxes.winMessage(gameController.getPlayer2()
-					.getName());
+			decision = informationBoxes.winMessage(gameController
+					.getPlayer2Attributes().getName());
 			if (playerId == PlayerId.PLAYER2)
 				playerAttributes.addPoints();
 		}
@@ -200,12 +204,11 @@ public class SwingPresenter implements PlayerController, Serializable {
 			frame.dispose();
 			return;
 		}
-		if (gameController.getGamestate() == GameState.END_INIT_ALL)
-			gameController.analyseDecision();
+		// if (gameController.getGamestate() == GameState.END_INIT_ALL)
+		// gameController.analyseDecision();
 	}
 
 	public void markWinningFour(List<Point> winningCoordinates) {
-
 		for (int i = 0; i < winningCoordinates.size(); i++) {
 			gameBoard.setColor((int) winningCoordinates.get(i).getX(),
 					(int) winningCoordinates.get(i).getY(), Color.PINK);
@@ -221,6 +224,8 @@ public class SwingPresenter implements PlayerController, Serializable {
 	 * Ustawia Imiona graczy na Labelach
 	 */
 	public void setNamesAndToken() {
+
+		// sideBoard.setTokenPl2();
 		if (playerId == PlayerId.PLAYER1) {
 			sideBoard.setTokenPl1();
 			sideBoard.setPl1Name(gameController.getPlayer1Attributes()
@@ -233,14 +238,17 @@ public class SwingPresenter implements PlayerController, Serializable {
 					.getName());
 			sideBoard.setPl2Name(gameController.getPlayer1Attributes()
 					.getName());
+			// 2 - 1 ;
 		}
+
 	}
 
 	/**
 	 * potencjalna kopia kodu z metody setNamesAndToken
 	 */
 	// public void SemaphoreToken() {
-	// if (gameController.getCurrentPlayer().getPlayerId() == PlayerId.PLAYER1)
+	// if (gameController.getCurrentPlayer().getPlayerId() ==
+	// PlayerId.PLAYER1)
 	// {
 	// System.out.println("playe1");
 	// sideBoard.semaphorTurnPl1();
@@ -290,5 +298,4 @@ public class SwingPresenter implements PlayerController, Serializable {
 	public int getPlayerPoints() {
 		return playerAttributes.getPlayerPoints();
 	}
-
 }

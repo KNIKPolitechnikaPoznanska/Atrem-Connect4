@@ -20,46 +20,32 @@ import atrem.connect4.rmi.RemotePlayerController;
 public class GameControllerService extends UnicastRemoteObject
 		implements
 			RemoteGameController {
-	private GameController gamecontroller;
+	private GameController gameController;
 
 	public GameControllerService(GameController gameController)
 			throws RemoteException {
 		super();
-		this.gamecontroller = gameController;
-	}
-
-	public void setGamecontroller(GameController gamecontroller) {
-		this.gamecontroller = gamecontroller;
+		this.gameController = gameController;
 	}
 
 	@Override
 	public int move(int slot) throws RemoteException {
-		return gamecontroller.move(slot);
+		return gameController.move(slot);
 	}
 
 	@Override
 	public void startNewGame() throws RemoteException {
-		gamecontroller.startNewGame();
+		gameController.startNewGame();
 	}
 
 	@Override
 	public void connectPlayer() throws RemoteException {
-		gamecontroller.connectPlayer();
-	}
-
-	@Override
-	public void analyseDecision() throws RemoteException {
-		gamecontroller.analyseDecision();
+		gameController.connectPlayer();
 	}
 
 	@Override
 	public void startGameLoop() throws RemoteException {
-		gamecontroller.startGameLoop();
-	}
-
-	@Override
-	public void backToMenu() throws RemoteException {
-		gamecontroller.backToMenu();
+		gameController.startGameLoop();
 	}
 
 	@Override
@@ -67,107 +53,121 @@ public class GameControllerService extends UnicastRemoteObject
 			throws RemoteException {
 		PlayerController playerController = new PlayerControllerSender(
 				remotePlayer);
-		if (gamecontroller.getPlayer1() == null)
-			gamecontroller.setPlayer1(playerController);
-		else if (gamecontroller.getPlayer2() == null)
-			gamecontroller.setPlayer2(playerController);
+		if (gameController.getPlayer1() == null)
+			gameController.setPlayer1(playerController);
+		else if (gameController.getPlayer2() == null)
+			gameController.setPlayer2(playerController);
 	}
 
 	@Override
 	public HoleState getHoleState(int rows, int slots) throws RemoteException {
-		return gamecontroller.getHoleState(rows, slots);
+		return gameController.getHoleState(rows, slots);
 	}
 
 	@Override
 	public void setResult(ResultState result) throws RemoteException {
-		gamecontroller.setResult(result);
+		gameController.setResult(result);
 	}
 
 	@Override
 	public PlayerId getPlayerTurn() throws RemoteException {
-		return gamecontroller.getPlayerTurn();
+		return gameController.getPlayerTurn();
 	}
 
 	@Override
 	public void setPlayerTurn(PlayerId playerTurn) throws RemoteException {
-		gamecontroller.setPlayerTurn(playerTurn);
+		gameController.setPlayerTurn(playerTurn);
+	}
+
+	public void setGamecontroller(GameController gamecontroller) {
+		this.gameController = gamecontroller;
 	}
 
 	@Override
 	public int getEmptySpot() throws RemoteException {
-		return gamecontroller.getEmptySpot();
+		return gameController.getEmptySpot();
 	}
 
 	@Override
 	public ResultState getResult() throws RemoteException {
-		return gamecontroller.getResult();
+		return gameController.getResult();
 	}
 
 	@Override
 	public Board getBoard() throws RemoteException {
-		return gamecontroller.getBoard();
+		return gameController.getBoard();
 	}
 
 	@Override
 	public PlayerController getPlayer1() throws RemoteException {
-		return gamecontroller.getPlayer1();
+		return gameController.getPlayer1();
 	}
 
 	@Override
 	public void setPlayer1(PlayerController player1) throws RemoteException {
-		gamecontroller.setPlayer1(player1);
+		gameController.setPlayer1(player1);
 	}
 
 	@Override
 	public PlayerController getPlayer2() throws RemoteException {
-		return gamecontroller.getPlayer2();
+		return gameController.getPlayer2();
 	}
 
 	@Override
 	public void setPlayer2(PlayerController player2) throws RemoteException {
-		gamecontroller.setPlayer2(player2);
+		gameController.setPlayer2(player2);
 	}
 
 	@Override
 	public GameState getGamestate() throws RemoteException {
-		return gamecontroller.getGamestate();
+		return gameController.getGamestate();
 	}
 
 	@Override
 	public PlayerController getCurrentPlayer() throws RemoteException {
-		return gamecontroller.getCurrentPlayer();
+		return gameController.getCurrentPlayer();
 	}
 
 	@Override
 	public LastMove getLastMove() throws RemoteException {
-		return gamecontroller.getLastMove();
+		return gameController.getLastMove();
 	}
 
 	@Override
 	public void setGamestate(GameState gamestate) throws RemoteException {
-		gamecontroller.setGamestate(gamestate);
+		gameController.setGamestate(gamestate);
 	}
 
 	@Override
 	public List<Point> getWinningCoordinates() throws RemoteException {
-		return gamecontroller.getWinningCoordinates();
+		return gameController.getWinningCoordinates();
 	}
 
 	public GameController getGamecontroller() {
-		return gamecontroller;
+		return gameController;
 	}
 
 	@Override
 	public void setPlayer1Attributes(PlayerAttributes player1Attributes)
 			throws RemoteException {
-		gamecontroller.setPlayer1Attributes(player1Attributes);
+		gameController.setPlayer1Attributes(player1Attributes);
 
 	}
 
 	@Override
 	public void setPlayer2Attributes(PlayerAttributes player2Attributes)
 			throws RemoteException {
-		gamecontroller.setPlayer2Attributes(player2Attributes);
+		gameController.setPlayer2Attributes(player2Attributes);
 
+	}
+
+	@Override
+	public PlayerAttributes getPlayer1Attributes() throws RemoteException {
+		return gameController.getPlayer1Attributes();
+	}
+
+	@Override
+	public PlayerAttributes getPlayer2Attributes() throws RemoteException {
+		return gameController.getPlayer2Attributes();
 	}
 }
