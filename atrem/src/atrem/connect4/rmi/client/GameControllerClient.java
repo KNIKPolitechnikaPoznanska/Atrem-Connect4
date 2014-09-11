@@ -1,6 +1,7 @@
 package atrem.connect4.rmi.client;
 
 import java.awt.Point;
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import atrem.connect4.game.player.PlayerController;
 import atrem.connect4.game.player.PlayerId;
 import atrem.connect4.rmi.RemoteGameController;
 
-public class GameControllerClient implements GameController {
+public class GameControllerClient implements GameController, Serializable {
 	private RemoteGameController remoteGameController;
 
 	public GameControllerClient(RemoteGameController remoteGameController) {
@@ -23,13 +24,12 @@ public class GameControllerClient implements GameController {
 
 	@Override
 	public int move(int slot) {
-		int spot = 0;
 		try {
-			spot = remoteGameController.move(slot);
+			return remoteGameController.move(slot);
 		} catch (RemoteException e) {
 			e.printStackTrace();
+			throw new Error(e);
 		}
-		return spot;
 	}
 
 	@Override
@@ -47,8 +47,8 @@ public class GameControllerClient implements GameController {
 		try {
 			remoteGameController.connectPlayer();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			throw new Error(e);
 		}
 
 	}

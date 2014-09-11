@@ -22,7 +22,7 @@ public class GameConfig {
 			CcpuMedium, CcpuHard};
 	public static final String DEF_PL1_NAME = "Gracz 1",
 			DEF_PL2_NAME = "Gracz 2";
-	public static final int DEF_SLOTS = 7, DEF_ROWS = 6;
+	public static final int DEF_SLOTS = 9, DEF_ROWS = 6;
 	private int slots, rows;
 	private GameFactory gameFactory;
 	private PlayerFactory playerFactory;

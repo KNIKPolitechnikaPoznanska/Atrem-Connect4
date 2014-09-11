@@ -1,9 +1,11 @@
 package atrem.connect4.game.player;
 
+import java.io.Serializable;
+
 import atrem.connect4.game.GameController;
 import atrem.connect4.game.ResultState;
 
-public interface PlayerController {
+public interface PlayerController extends Serializable {
 
 	public abstract String getName();
 

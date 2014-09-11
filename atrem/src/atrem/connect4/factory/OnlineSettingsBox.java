@@ -34,7 +34,7 @@ public class OnlineSettingsBox extends JDialog {
 		if (saveSettings()) {
 			gameConfig.setupOnlineClientSettings();
 			dispose();
-			new Connect4().connectToServer(gameConfig);
+			new Connect4().createOnlineClientGame(gameConfig);
 		}
 	}
 

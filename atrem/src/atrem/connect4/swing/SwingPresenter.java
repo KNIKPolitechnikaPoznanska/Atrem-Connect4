@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.io.Serializable;
 import java.util.List;
 
 import javax.swing.SwingUtilities;
@@ -16,7 +17,7 @@ import atrem.connect4.game.player.PlayerController;
 import atrem.connect4.game.player.PlayerDecision;
 import atrem.connect4.game.player.PlayerId;
 
-public class SwingPresenter implements PlayerController {
+public class SwingPresenter implements PlayerController, Serializable {
 	private int LastRow, LastSlot, emptySpot, slots, rows, decision;
 	private GameController gameController;
 	private PlayerAttributes playerAttributes;
@@ -108,15 +109,15 @@ public class SwingPresenter implements PlayerController {
 					sideBoard = frame.getSideBoard();
 					sideBoard.setBackground(Color.orange);
 					stats = frame.getStats();
-					stats.setPointsPlayer(gameController.getPlayer1()
-							.getPlayerPoints(), PlayerId.PLAYER1);
-					stats.setPointsPlayer(gameController.getPlayer2()
-							.getPlayerPoints(), PlayerId.PLAYER2);
-					stats.setName(gameController.getPlayer1().getName(),
-							PlayerId.PLAYER1);
-					stats.setName(gameController.getPlayer2().getName(),
-							PlayerId.PLAYER2);
-					// gameController.wakeUpGCr();
+					// stats.setPointsPlayer(gameController.getPlayer1()
+					// .getPlayerPoints(), PlayerId.PLAYER1);
+					// stats.setPointsPlayer(gameController.getPlayer2()
+					// .getPlayerPoints(), PlayerId.PLAYER2);
+					// stats.setName(gameController.getPlayer1().getName(),
+					// PlayerId.PLAYER1);
+					// stats.setName(gameController.getPlayer2().getName(),
+					// PlayerId.PLAYER2);
+
 					gameBoard.enableButtons(blockButton);
 					setNamesAndToken();
 					sideBoard.setPreferredSize(new Dimension(215, 200));

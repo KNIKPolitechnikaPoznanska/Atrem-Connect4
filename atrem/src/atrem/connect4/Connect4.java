@@ -65,11 +65,11 @@ public class Connect4 {
 	}
 
 	/**
-	 * £aczy z serwerem RMI.
+	 * £aczy z serwerem RMI i uruchamia klienta.
 	 * 
 	 * @param gameConfig
 	 */
-	public void connectToServer(GameConfig gameConfig) {
+	public void createOnlineClientGame(GameConfig gameConfig) {
 		String adress = gameConfig.getAdress();
 		String name = gameConfig.getPlayer1name();
 		Color color = gameConfig.getToken1Color();

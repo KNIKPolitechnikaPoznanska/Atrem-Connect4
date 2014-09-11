@@ -63,6 +63,17 @@ public class GameControllerService extends UnicastRemoteObject
 	}
 
 	@Override
+	public void addRemotePlayer(RemotePlayerController remotePlayer)
+			throws RemoteException {
+		PlayerController playerController = new PlayerControllerClient(
+				remotePlayer);
+		if (gamecontroller.getPlayer1() == null)
+			gamecontroller.setPlayer1(playerController);
+		else if (gamecontroller.getPlayer2() == null)
+			gamecontroller.setPlayer2(playerController);
+	}
+
+	@Override
 	public HoleState getHoleState(int rows, int slots) throws RemoteException {
 		return gamecontroller.getHoleState(rows, slots);
 	}
@@ -144,16 +155,5 @@ public class GameControllerService extends UnicastRemoteObject
 
 	public GameController getGamecontroller() {
 		return gamecontroller;
-	}
-
-	@Override
-	public void addRemotePlayer(RemotePlayerController remotePlayer)
-			throws RemoteException {
-		PlayerController playerController = new PlayerControllerClient(
-				remotePlayer);
-		if (gamecontroller.getPlayer1() == null)
-			gamecontroller.setPlayer1(playerController);
-		if (gamecontroller.getPlayer2() == null)
-			gamecontroller.setPlayer2(playerController);
 	}
 }
