@@ -21,6 +21,8 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.WindowConstants;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import atrem.connect4.Connect4Swing;
 import atrem.connect4.game.GameConfig;
@@ -65,6 +67,17 @@ public class DialogSettingsBox extends JDialog {
 		token2Color = color2;
 		initComponents();
 		this.setVisible(true);
+	}
+
+	public DialogSettingsBox() {
+		// this.gameConfig = swingConfig;
+		// this.gameFactory = gameFactory;
+		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		token1Color = color1;
+		token2Color = color2;
+		initComponents();
+		this.setVisible(true);
+
 	}
 
 	/**
@@ -119,6 +132,7 @@ public class DialogSettingsBox extends JDialog {
 
 		return true;
 	}
+
 	/**
 	 * Ustawia sprawdzone wartoœci z pól TxtField
 	 * 
@@ -198,6 +212,20 @@ public class DialogSettingsBox extends JDialog {
 		rBConsole1 = new JRadioButton();
 		rBSwing1 = new JRadioButton();
 		rBMulti1 = new JRadioButton();
+		rBMulti1.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent event) {
+				JRadioButton button = (JRadioButton) event.getSource();
+
+				/**
+				 * ta metoda ma na celu zablokowanie gracza 2 zaraz po
+				 * utworzeniu swingwych komponentow
+				 */
+
+				disablePlayer2Input(button.isSelected());
+
+			}
+		});
 		rBConsole2 = new JRadioButton();
 		rBSwing2 = new JRadioButton();
 		rBMulti2 = new JRadioButton();
@@ -776,6 +804,21 @@ public class DialogSettingsBox extends JDialog {
 												.addContainerGap(90,
 														Short.MAX_VALUE))));
 		pack();
+	}
+
+	private void disablePlayer2Input(boolean b) {
+		if (b) {
+			boolean bool = false;
+			// TODO zmienic ta metode
+			TFieldPl2Name.setEnabled(bool);
+			plTypeBox2.setEnabled(bool);
+			buttonColor2.setEnabled(bool);
+			rBConsole2.setEnabled(bool);
+			rBSwing2.setSelected(bool);
+			rBSwing2.setEnabled(bool);
+			rBMulti2.setEnabled(bool);
+			rBMulti2.setSelected(true);
+		}
 	}
 
 	public String getPl1GameType() {

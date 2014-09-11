@@ -20,6 +20,7 @@ public class RemotePlayerControlerImpl extends UnicastRemoteObject implements
 		super();
 	}
 
+	@Override
 	public void createPlayer(GameController gameController) {
 		PlayerAttributes playerAttributes = new PlayerAttributes("patryk",
 				PlayerId.PLAYER1, 0, Color.BLUE);
