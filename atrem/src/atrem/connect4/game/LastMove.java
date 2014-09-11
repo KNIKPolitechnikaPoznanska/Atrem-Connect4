@@ -1,10 +1,10 @@
 package atrem.connect4.game;
 
-import atrem.connect4.game.player.PlayerId;
+import java.io.Serializable;
 
 import atrem.connect4.game.player.PlayerId;
 
-public class LastMove {// TODO zmienic na Move
+public class LastMove implements Serializable {// TODO zmienic na Move
 	private int lastSlot, lastRow;// TODO zmienic na point
 	private PlayerId playerId;
 

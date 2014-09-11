@@ -34,6 +34,6 @@ public class Connect4RemoteServer {
 		/**
  * 
  */
-		System.out.println("cos");
+		gameController.startGameLoop();
 	}
 }

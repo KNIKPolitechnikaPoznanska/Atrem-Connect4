@@ -109,18 +109,18 @@ public class SwingPresenter implements PlayerController {
 					sideBoard = frame.getSideBoard();
 					sideBoard.setBackground(Color.orange);
 					stats = frame.getStats();
-					stats.setPointsPlayer(gameController.getPlayer1()
-							.getPlayerPoints(), PlayerId.PLAYER1);
-					stats.setPointsPlayer(gameController.getPlayer2()
-							.getPlayerPoints(), PlayerId.PLAYER2);
-					stats.setName(gameController.getPlayer1().getName(),
-							PlayerId.PLAYER1);
-					stats.setName(gameController.getPlayer2().getName(),
-							PlayerId.PLAYER2);
-
-					// gameController.wakeUpGCr();
-
-					gameController.connectPlayer();
+					// stats.setPointsPlayer(gameController.getPlayer1()
+					// .getPlayerPoints(), PlayerId.PLAYER1);
+					// stats.setPointsPlayer(gameController.getPlayer2()
+					// .getPlayerPoints(), PlayerId.PLAYER2);
+					// stats.setName(gameController.getPlayer1().getName(),
+					// PlayerId.PLAYER1);
+					// stats.setName(gameController.getPlayer2().getName(),
+					// PlayerId.PLAYER2);
+					stats.setPointsPlayer(0, PlayerId.PLAYER1);
+					stats.setPointsPlayer(0, PlayerId.PLAYER2);
+					stats.setName("Patryk", PlayerId.PLAYER1);
+					stats.setName("Bartek", PlayerId.PLAYER2);
 
 					gameController.connectPlayer();
 
@@ -229,12 +229,12 @@ public class SwingPresenter implements PlayerController {
 		// sideBoard.setTokenPl2();
 		if (playerId == PlayerId.PLAYER1) {
 			sideBoard.setTokenPl1();
-			sideBoard.setPl1Name(gameController.getPlayer1().getName());
-			sideBoard.setPl2Name(gameController.getPlayer2().getName());
+			// sideBoard.setPl1Name(gameController.getPlayer1().getName());
+			// sideBoard.setPl2Name(gameController.getPlayer2().getName());
 		} else {
 			sideBoard.setTokenPl2();
-			sideBoard.setPl1Name(gameController.getPlayer2().getName());
-			sideBoard.setPl2Name(gameController.getPlayer1().getName());
+			// sideBoard.setPl1Name(gameController.getPlayer2().getName());
+			// sideBoard.setPl2Name(gameController.getPlayer1().getName());
 			// 2 - 1 ;
 		}
 

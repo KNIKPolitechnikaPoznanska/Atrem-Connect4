@@ -37,7 +37,7 @@ public class GameControllerImpl implements Runnable, GameController {
 		case PLAYER2:
 			return player2;
 		default:
-			return null; // player1
+			return player1;
 		}
 	}
 
@@ -104,7 +104,7 @@ public class GameControllerImpl implements Runnable, GameController {
 		boolean endGame;
 		logic = new Logic(this);
 		lastMove = new LastMove();
-		// waitForInit();
+		waitForPlayers();
 		while (resultState == ResultState.NO_WIN) {
 			currentPlayer = currentPlayer();
 			try {
@@ -143,7 +143,7 @@ public class GameControllerImpl implements Runnable, GameController {
 		}
 	}
 
-	private synchronized void waitForInit() {
+	private synchronized void waitForPlayers() {
 		while (gameState != GameState.END_INIT_ALL) {
 			try {
 				wait();
