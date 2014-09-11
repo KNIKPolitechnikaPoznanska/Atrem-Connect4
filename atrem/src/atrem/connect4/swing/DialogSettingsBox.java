@@ -98,10 +98,17 @@ public class DialogSettingsBox extends JDialog {
 	 * Klikniêcie guzika "Start"
 	 */
 	private void startButtonPressed() {
-		if (saveSettings()) {
-			gameConfig.setupSettings();
-			dispose();
-			new Connect4Swing().init(gameConfig, gameFactory);
+		if (false == rBMulti1.isSelected()) {
+			if (saveSettings()) {
+				gameConfig.setupSettings();
+				dispose();
+				new Connect4Swing().init(gameConfig, gameFactory);
+			}
+		} else {
+			/**
+			 * uruchamianie tworzenie rmi
+			 */
+			System.out.println("uruchom multi");
 		}
 	}
 
@@ -121,6 +128,8 @@ public class DialogSettingsBox extends JDialog {
 			setPl1GameType("console");
 		if (rBSwing1.isSelected())
 			setPl1GameType("swing");
+		if (rBMulti1.isSelected())
+			setPl1GameType("multi");
 
 		if (rBSwing2.isSelected())
 			setPl2GameType("swing");

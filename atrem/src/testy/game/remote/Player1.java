@@ -7,6 +7,7 @@ import java.rmi.registry.Registry;
 
 import atrem.connect4.console.Menu;
 import atrem.connect4.game.GameConfig;
+import atrem.connect4.game.GameController;
 import atrem.connect4.game.RemoteGameFactory;
 import atrem.connect4.game.player.PlayerAttributes;
 import atrem.connect4.game.player.PlayerId;
@@ -48,9 +49,15 @@ public class Player1 {
 		} else {
 			remoteGameFactory = new RemoteGameFactory();
 			player1 = remoteGameFactory.getPlayer();
+			/**
+			 * tutaj powinien byc juz wywolany start !
+			 */
+			remoteGameFactory.readSettings();
 			// player1.getAtt;
 			// config = new GameConfig(gameFactory);
 			// config.setDBox();
+			System.out.println(remoteGameFactory.getPlayer1name());
+
 		}
 		/**
 		 * tworzy remote board

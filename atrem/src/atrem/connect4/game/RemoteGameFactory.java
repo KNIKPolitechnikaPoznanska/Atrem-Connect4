@@ -18,11 +18,15 @@ public class RemoteGameFactory {
 	private PlayerAttributes player;
 
 	// private PlayerAttributes player;
+	public RemoteGameFactory() {
+		dialogBox = new DialogSettingsBox();
+		// readSettings();
+	}
 
 	/**
 	 * TODO zmodyfikowac game config na potrzbe remote Game Facoty
 	 */
-	private void readSettings() {
+	public void readSettings() {
 		// TODO Auto-generated method stub
 		player1name = dialogBox.getPl1Name();
 		rows = dialogBox.getRows();
@@ -62,8 +66,4 @@ public class RemoteGameFactory {
 		return token1Color;
 	}
 
-	public RemoteGameFactory() {
-		dialogBox = new DialogSettingsBox();
-		readSettings();
-	}
 }
