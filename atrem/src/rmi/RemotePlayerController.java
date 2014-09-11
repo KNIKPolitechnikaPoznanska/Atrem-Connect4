@@ -28,4 +28,6 @@ public interface RemotePlayerController extends Remote {
 	public abstract PlayerAttributes getPlayerAttributes()
 			throws RemoteException;
 
+	public void createPlayer(GameController gameControllerService)
+			throws RemoteException;
 }

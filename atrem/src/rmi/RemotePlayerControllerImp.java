@@ -1,5 +1,6 @@
 package rmi;
 
+import java.awt.Color;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
@@ -8,16 +9,24 @@ import atrem.connect4.game.ResultState;
 import atrem.connect4.game.player.PlayerAttributes;
 import atrem.connect4.game.player.PlayerController;
 import atrem.connect4.game.player.PlayerId;
+import atrem.connect4.swing.SwingPresenter;
 
 public class RemotePlayerControllerImp extends UnicastRemoteObject implements
 		RemotePlayerController {
+	private PlayerAttributes playerAttributes1 = new PlayerAttributes("wojtek",
+			PlayerId.PLAYER2, 0, new Color(100, 100, 100));
 
 	private PlayerController playerController;
 
-	public RemotePlayerControllerImp(PlayerController playerController)
-			throws RemoteException {
+	public RemotePlayerControllerImp() throws RemoteException {
 		super();
-		this.playerController = playerController;
+
+	}
+
+	@Override
+	public void createPlayer(GameController gameControllerService) {
+		playerController = new SwingPresenter(gameControllerService,
+				playerAttributes1, new Color(2, 2, 200), 0);
 	}
 
 	@Override

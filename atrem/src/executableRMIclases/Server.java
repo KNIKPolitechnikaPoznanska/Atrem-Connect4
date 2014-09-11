@@ -1,6 +1,6 @@
 package executableRMIclases;
 
-import java.nio.channels.AlreadyBoundException;
+import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -24,13 +24,11 @@ public class Server {
 		gameController.setPlayerTurn(PlayerId.PLAYER1);
 		RemoteGameController remoteGameController = new RemoteGameControllerImp(
 				gameController);
-		Registry registry = LocateRegistry.createRegistry(6969);
-		try {
-			registry.bind("GC", remoteGameController);
-		} catch (java.rmi.AlreadyBoundException e) {
-			// TODO Auto-generated catch block
-			System.out.println("wyj¹tek registru");
-		}
+		Registry registry = LocateRegistry.createRegistry(80);
+		registry.bind("gc", remoteGameController);
+
+		System.out.println("wyj¹tek registru");
+
 		while (true)
 			;
 
