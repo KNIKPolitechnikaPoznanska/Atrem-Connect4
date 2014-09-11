@@ -30,7 +30,8 @@ public class Player1 {
 
 		RemotePlayerController player = new RemotePlayerControlerImpl();
 		// Registry r = LocateRegistry.getRegistry("10.7.7.152", 80);
-		Registry r = LocateRegistry.getRegistry(1234);
+		// Registry r = LocateRegistry.getRegistry("10.7.7.155", 1234);
+		Registry r = LocateRegistry.getRegistry(80);
 		RemoteGameController connect = (RemoteGameController) r
 				.lookup("connect");
 		/**

@@ -22,6 +22,11 @@ public class GameControllerImpl implements Runnable, GameController {
 	private PlayerId playerTurn = PlayerId.PLAYER1;
 	private ResultState resultState = ResultState.NO_WIN;
 	private GameState gameState = GameState.PRE_INIT;
+	private PlayerAttributes player1Attributes = new PlayerAttributes("patryk",
+			PlayerId.PLAYER1, 0, Color.BLUE);
+
+	private PlayerAttributes player2Attributes = new PlayerAttributes("bartek",
+			PlayerId.PLAYER1, 0, Color.GRAY);
 
 	// private Stack<LastMove> lastMoveStack = new Stack<LastMove>();
 
@@ -107,11 +112,7 @@ public class GameControllerImpl implements Runnable, GameController {
 		waitForPlayers();
 		while (resultState == ResultState.NO_WIN) {
 			currentPlayer = currentPlayer();
-			try {
-				this.wait(100);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			System.out.println("twoj ruch ");
 			currentPlayer.yourTurn();
 			gameState = GameState.WAITING_FOR_MOVE;
 			waitForMove();
@@ -419,4 +420,25 @@ public class GameControllerImpl implements Runnable, GameController {
 	public List<Point> getWinningCoordinates() {
 		return logic.getWinningCoordinates();
 	}
+
+	@Override
+	public PlayerAttributes getPlayer1Attributes() {
+		return player1Attributes;
+	}
+
+	@Override
+	public void setPlayer1Attributes(PlayerAttributes player1Attributes) {
+		this.player1Attributes = player1Attributes;
+	}
+
+	@Override
+	public PlayerAttributes getPlayer2Attributes() {
+		return player2Attributes;
+	}
+
+	@Override
+	public void setPlayer2Attributes(PlayerAttributes player2Attributes) {
+		this.player2Attributes = player2Attributes;
+	}
+
 }

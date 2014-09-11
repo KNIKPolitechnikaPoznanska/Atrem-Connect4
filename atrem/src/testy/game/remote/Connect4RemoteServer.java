@@ -28,7 +28,7 @@ public class Connect4RemoteServer {
 		RemoteGameController connect = new RemoteGameControllerImpl(
 				gameController);
 
-		Registry r = LocateRegistry.createRegistry(1234);
+		Registry r = LocateRegistry.createRegistry(80);
 
 		r.bind("connect", connect);
 		/**
