@@ -1,8 +1,9 @@
 package atrem.connect4.console;
 
 import atrem.connect4.Connect4Console;
-import atrem.connect4.game.GameConfig;
-import atrem.connect4.game.GameFactory;
+import atrem.connect4.factory.GameConfig;
+import atrem.connect4.factory.GameFactory;
+import atrem.connect4.factory.PlayerFactory;
 
 /*
  * Pobiera od gracza wszystkie informacje
@@ -15,9 +16,10 @@ public class Menu {
 	private int slots, rows;
 	private GameFactory gameFactory;
 	private Connect4Console console;
+	private PlayerFactory playerFactory;
 
-	public Menu(GameFactory gameFactory) {
-		this.gameFactory = gameFactory;
+	public Menu() {
+		GameConfig gameConfig = new GameConfig();
 		keyGo = new KeyHandler();
 		loadSettings();
 		setupGameFactory();
@@ -28,14 +30,15 @@ public class Menu {
 	 */
 	private void setupGameFactory() {
 		gameFactory.setRows(rows);
+		playerFactory = gameFactory.getPlayerFactory();
 		gameFactory.setSlots(slots);
-		gameFactory.setPlayer1Name(player1name);
-		gameFactory.setPlayer2Name(player2name);
+		playerFactory.setPlayer1Name(player1name);
+		playerFactory.setPlayer2Name(player2name);
 		gameFactory.setBoard();
-		gameFactory.setGamePl1Type(gamePl1Type);
-		gameFactory.setGamePl2Type(gamePl2Type);
-		gameFactory.setPlayer1Type(player1Type);
-		gameFactory.setPlayer2Type(player2Type);
+		playerFactory.setGamePl1Type(gamePl1Type);
+		playerFactory.setGamePl2Type(gamePl2Type);
+		playerFactory.setPlayer1Type(player1Type);
+		playerFactory.setPlayer2Type(player2Type);
 	}
 
 	/**

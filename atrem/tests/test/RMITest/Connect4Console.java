@@ -1,4 +1,4 @@
-package atrem.connect4;
+package test.RMITest;
 
 import atrem.connect4.factory.GameFactory;
 import atrem.connect4.game.GameController;

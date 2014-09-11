@@ -56,7 +56,7 @@ public interface GameController {
 
 	public abstract PlayerController getCurrentPlayer();
 
-	public abstract LastMove getLastMove();
+	public abstract Move getLastMove();
 
 	public abstract void setGamestate(GameState gamestate);
 

@@ -49,17 +49,16 @@ public class SwingPresenter implements PlayerController {
 		this.playerId = playerAttributes.getPlayerId();
 		this.playerColor = playerAttributes.getPlayerColor();
 		this.opponentColor = opponentColor;
+		this.slots = gameController.getBoard().getSlots();
+		this.rows = gameController.getBoard().getRows();
 		setupFrame();
-
-		slots = gameController.getBoard().getSlots();
-		rows = gameController.getBoard().getRows();
 	}
 
 	/**
 	 * Wywo³ywane przez GC.GameLoop
 	 */
 	@Override
-	public void yourTurn() {// LastMove lastMove
+	public void yourTurn() {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -89,7 +88,6 @@ public class SwingPresenter implements PlayerController {
 			refreshView(emptySpot, slot);
 			gameBoard.enableButtons(false);
 			sideBoard.tokenDisable();
-
 		}
 	}
 
@@ -161,27 +159,34 @@ public class SwingPresenter implements PlayerController {
 		});
 	}
 
+	/**
+	 * Koniec gry. Wyœwietla rezultat gry.
+	 */
 	@Override
 	public void endOfGame(ResultState resultGame) {
 		if (resultGame != ResultState.DRAW) {
 			markWinningFour(gameController.getWinningCoordinates());
 			// gameController.getLogic().getWinningCoordinates().clear();
 		}
-		if (resultGame == ResultState.PLAYER_1_WIN) {
-			decision = informationBoxes.winMessage(gameController
-					.getPlayer1Attributes().getName());
-			if (playerId == PlayerId.PLAYER1)
-				playerAttributes.addPoints();
+		switch (resultGame) {
+			case DRAW :
+				informationBoxes.drawMessage();
+				break;
+			case PLAYER_1_WIN :
+				decision = informationBoxes.winMessage(gameController
+						.getPlayer1Attributes().getName());
+				if (playerId == PlayerId.PLAYER1)
+					playerAttributes.addPoints();
+				break;
+			case PLAYER_2_WIN :
+				decision = informationBoxes.winMessage(gameController
+						.getPlayer2Attributes().getName());
+				if (playerId == PlayerId.PLAYER2)
+					playerAttributes.addPoints();
+				break;
+			default :
+				break;
 		}
-		if (resultGame == ResultState.PLAYER_2_WIN) {
-			decision = informationBoxes.winMessage(gameController
-					.getPlayer2Attributes().getName());
-			if (playerId == PlayerId.PLAYER2)
-				playerAttributes.addPoints();
-		}
-		if (resultGame == ResultState.DRAW)
-			informationBoxes.drawMessage();
-
 		makeDecision(decision);
 	}
 
@@ -212,17 +217,10 @@ public class SwingPresenter implements PlayerController {
 		}
 	}
 
-	@Override
-	public PlayerAttributes getPlayerAttributes() {
-		return playerAttributes;
-	}
-
 	/**
 	 * Ustawia Imiona graczy na Labelach
 	 */
 	public void setNamesAndToken() {
-
-		// sideBoard.setTokenPl2();
 		if (playerId == PlayerId.PLAYER1) {
 			sideBoard.setTokenPl1();
 			sideBoard.setPl1Name(gameController.getPlayer1().getName());
@@ -231,14 +229,9 @@ public class SwingPresenter implements PlayerController {
 			sideBoard.setTokenPl2();
 			sideBoard.setPl1Name(gameController.getPlayer2().getName());
 			sideBoard.setPl2Name(gameController.getPlayer1().getName());
-			// 2 - 1 ;
 		}
-
 	}
 
-	/**
-	 * potencjalna kopia kodu z metody setNamesAndToken
-	 */
 	// public void SemaphoreToken() {
 	// if (gameController.getCurrentPlayer().getPlayerId() == PlayerId.PLAYER1)
 	// {
@@ -252,6 +245,11 @@ public class SwingPresenter implements PlayerController {
 
 	public Color getOpponentColor() {
 		return opponentColor;
+	}
+
+	@Override
+	public PlayerAttributes getPlayerAttributes() {
+		return playerAttributes;
 	}
 
 	public int getSlots() {
@@ -298,13 +296,11 @@ public class SwingPresenter implements PlayerController {
 
 	@Override
 	public Color getOppColor() {
-
 		return opponentColor;
 	}
 
 	@Override
 	public void setPlayerId(PlayerId playerId) {
 		this.playerId = playerId;
-
 	}
 }

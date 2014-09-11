@@ -9,16 +9,17 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import atrem.connect4.Connect4;
-import atrem.connect4.game.GameConfig;
 
 public class OnlineSettingsBox extends JDialog {
 	private Color color = new Color(255, 0, 0);
@@ -28,8 +29,15 @@ public class OnlineSettingsBox extends JDialog {
 	private String playerName;
 	private Color playerColor;
 	private String adress;
-	private JTextField nameTextField, adressTextField;
+	private int port;
+	private String guiType;
+	private JTextField nameTextField, adressTextField, portField;
+	private JRadioButton swingButton, consoleButton;
+	private ButtonGroup bGroup;
 
+	/**
+	 * ActionPerformed on Connect Buttton Press.
+	 */
 	protected void connectButtonPressed() {
 		if (saveSettings()) {
 			gameConfig.setupOnlineClientSettings();
@@ -46,6 +54,11 @@ public class OnlineSettingsBox extends JDialog {
 	private boolean saveSettings() {
 		setPlayerName(nameTextField.getText());
 		setAdress(adressTextField.getText());
+		setPort(Integer.parseInt(portField.getText()));
+		if (swingButton.isSelected())
+			guiType = "swing";
+		else
+			guiType = "console";
 		return true;
 	}
 
@@ -59,10 +72,9 @@ public class OnlineSettingsBox extends JDialog {
 		setTitle("Connect 4 Online Settings");
 		this.gameConfig = gameConfig;
 
-		setBounds(100, 100, 282, 241);
+		setBounds(100, 100, 239, 311);
 
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		JLabel imieLabel = new JLabel("imie:");
@@ -99,10 +111,43 @@ public class OnlineSettingsBox extends JDialog {
 				}
 			}
 		});
+		contentPanel.setLayout(new GridLayout(0, 1, 0, 0));
 
-		contentPanel.add(imieContainer, BorderLayout.NORTH);
-		contentPanel.add(adresIPContainer, BorderLayout.CENTER);
-		contentPanel.add(buttonColor, BorderLayout.SOUTH);
+		contentPanel.add(imieContainer);
+		contentPanel.add(adresIPContainer);
+
+		Container portContainer = new Container();
+		contentPanel.add(portContainer);
+		portContainer.setLayout(new GridLayout(0, 2, 0, 0));
+
+		JLabel portLabel = new JLabel("port:");
+		portLabel.setFont(new Font("Tahoma", Font.PLAIN, 21));
+		portContainer.add(portLabel);
+
+		portField = new JTextField();
+		portField.setText("1234");
+		portField.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		portContainer.add(portField);
+
+		Container guiModeContainer = new Container();
+		contentPanel.add(guiModeContainer);
+		guiModeContainer.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+
+		JLabel guiTypeLabel = new JLabel("Wygl\u0105d:");
+		guiTypeLabel.setFont(new Font("Tahoma", Font.PLAIN, 21));
+		guiModeContainer.add(guiTypeLabel);
+
+		bGroup = new ButtonGroup();
+
+		swingButton = new JRadioButton("Okno");
+		swingButton.setSelected(true);
+		guiModeContainer.add(swingButton);
+		bGroup.add(swingButton);
+
+		consoleButton = new JRadioButton("Konsola");
+		guiModeContainer.add(consoleButton);
+		contentPanel.add(buttonColor);
+		bGroup.add(consoleButton);
 
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		{
@@ -167,5 +212,21 @@ public class OnlineSettingsBox extends JDialog {
 
 	public void setAdress(String adress) {
 		this.adress = adress;
+	}
+
+	public int getPort() {
+		return port;
+	}
+
+	public void setPort(int port) {
+		this.port = port;
+	}
+
+	public String getGuiType() {
+		return guiType;
+	}
+
+	public void setGuiType(String guiType) {
+		this.guiType = guiType;
 	}
 }

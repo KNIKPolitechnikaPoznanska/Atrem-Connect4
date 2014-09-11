@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Point;
 import java.util.List;
 
+import atrem.connect4.factory.GameConfig;
 import atrem.connect4.game.board.Board;
 import atrem.connect4.game.board.HoleState;
 import atrem.connect4.game.player.PlayerAttributes;
@@ -16,7 +17,7 @@ public class GameControllerImpl implements Runnable, GameController {
 	private Logic logic;
 	private Board board;
 	private int doneMoves;
-	private LastMove lastMove;
+	private Move lastMove;
 	private PlayerController currentPlayer, player1, player2;
 	private int emptySpot, slot;
 	private PlayerId playerTurn = PlayerId.PLAYER1;
@@ -33,12 +34,12 @@ public class GameControllerImpl implements Runnable, GameController {
 	 */
 	private PlayerController currentPlayer() {
 		switch (playerTurn) {
-		case PLAYER1:
-			return player1;
-		case PLAYER2:
-			return player2;
-		default:
-			return null; // player1
+			case PLAYER1 :
+				return player1;
+			case PLAYER2 :
+				return player2;
+			default :
+				return null; // player1
 		}
 	}
 
@@ -81,7 +82,7 @@ public class GameControllerImpl implements Runnable, GameController {
 		PlayerAttributes player2Attributes = player2.getPlayerAttributes();
 		Color player1Color = player1Attributes.getPlayerColor();
 		Color player2Color = player2Attributes.getPlayerColor();
-		lastMove = new LastMove();
+		lastMove = new Move();
 		board = new Board(row, slot);
 		resultState = ResultState.NO_WIN;
 		gameState = GameState.PRE_INIT;
@@ -104,7 +105,7 @@ public class GameControllerImpl implements Runnable, GameController {
 	private synchronized void gameLoop() {// ma odczytywaæ GameState
 		boolean endGame;
 		logic = new Logic(this);
-		lastMove = new LastMove();
+		lastMove = new Move();
 		// waitForInit();
 		while (resultState == ResultState.NO_WIN) {
 			currentPlayer = currentPlayer();
@@ -162,15 +163,15 @@ public class GameControllerImpl implements Runnable, GameController {
 	@Override
 	public synchronized void wakeUpGCr() {
 		switch (gameState) {
-		case PRE_INIT:
-			gameState = GameState.END_INIT_1;
-			break;
-		case END_INIT_1:
-			gameState = GameState.END_INIT_ALL;
-			this.notifyAll();
-			break;
-		default:
-			break;
+			case PRE_INIT :
+				gameState = GameState.END_INIT_1;
+				break;
+			case END_INIT_1 :
+				gameState = GameState.END_INIT_ALL;
+				this.notifyAll();
+				break;
+			default :
+				break;
 		}
 	}
 
@@ -187,7 +188,6 @@ public class GameControllerImpl implements Runnable, GameController {
 		else if (player1.getPlayerAttributes().getPlayerDecision() == PlayerDecision.MENU
 				|| player2.getPlayerAttributes().getPlayerDecision() == PlayerDecision.MENU)
 			backToMenu();
-
 	}
 
 	/*
@@ -228,9 +228,9 @@ public class GameControllerImpl implements Runnable, GameController {
 	 */
 	@Override
 	public void backToMenu() {
-		GameFactory gameFactory = new GameFactory();
-		GameConfig config = new GameConfig(gameFactory);
-		config.setDBox();
+		GameConfig config = new GameConfig();
+		config.showOfflineDBox();
+		config.showOnlineDBox();
 	}
 
 	/*
@@ -352,18 +352,22 @@ public class GameControllerImpl implements Runnable, GameController {
 		player1Attributes = player1.getPlayerAttributes();
 	}
 
+	@Override
 	public PlayerAttributes getPlayer1Attributes() {
 		return player1Attributes;
 	}
 
+	@Override
 	public void setPlayer1Attributes(PlayerAttributes player1Attributes) {
 		this.player1Attributes = player1Attributes;
 	}
 
+	@Override
 	public PlayerAttributes getPlayer2Attributes() {
 		return player2Attributes;
 	}
 
+	@Override
 	public void setPlayer2Attributes(PlayerAttributes player2Attributes) {
 		this.player2Attributes = player2Attributes;
 	}
@@ -389,7 +393,6 @@ public class GameControllerImpl implements Runnable, GameController {
 	public void setPlayer2(PlayerController player2) {
 		this.player2 = player2;
 		player2Attributes = player2.getPlayerAttributes();
-
 	}
 
 	/*
@@ -418,7 +421,7 @@ public class GameControllerImpl implements Runnable, GameController {
 	 * @see atrem.connect4.game.GameController#getLastMove()
 	 */
 	@Override
-	public LastMove getLastMove() {
+	public Move getLastMove() {
 		return lastMove;
 	}
 

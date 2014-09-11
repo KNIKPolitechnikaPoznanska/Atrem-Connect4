@@ -3,7 +3,6 @@ package atrem.connect4.factory;
 import java.awt.Color;
 
 import atrem.connect4.console.PlayerConsole;
-import atrem.connect4.game.GameConfig;
 import atrem.connect4.game.GameController;
 import atrem.connect4.game.player.PlayerAttributes;
 import atrem.connect4.game.player.PlayerController;
