@@ -72,7 +72,7 @@ public class GameConfig {
 
 	public void setupOnlineClientSettings() {
 		adress = onlineBox.getAdress();
-		player1name = onlineBox.getName();
+		player1name = onlineBox.getPlayerName();
 		token1Color = onlineBox.getColor();
 	}
 

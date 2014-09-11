@@ -65,7 +65,7 @@ public class GameControllerService extends UnicastRemoteObject
 	@Override
 	public void addRemotePlayer(RemotePlayerController remotePlayer)
 			throws RemoteException {
-		PlayerController playerController = new PlayerControllerClient(
+		PlayerController playerController = new PlayerControllerSender(
 				remotePlayer);
 		if (gamecontroller.getPlayer1() == null)
 			gamecontroller.setPlayer1(playerController);

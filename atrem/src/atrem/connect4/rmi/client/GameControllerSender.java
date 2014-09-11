@@ -16,10 +16,10 @@ import atrem.connect4.game.player.PlayerController;
 import atrem.connect4.game.player.PlayerId;
 import atrem.connect4.rmi.RemoteGameController;
 
-public class GameControllerClient implements GameController, Serializable {
+public class GameControllerSender implements GameController, Serializable {
 	private RemoteGameController remoteGameController;
 
-	public GameControllerClient(RemoteGameController remoteGameController) {
+	public GameControllerSender(RemoteGameController remoteGameController) {
 		this.remoteGameController = remoteGameController;
 	}
 
@@ -40,7 +40,6 @@ public class GameControllerClient implements GameController, Serializable {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	@Override

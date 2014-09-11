@@ -30,14 +30,14 @@ public class PlayerControllerService
 		if (gameController.getPlayer1() == null) {
 			playerAttributes = new PlayerAttributes(name, PlayerId.PLAYER1, 0,
 					color);
-			this.player = new SwingPresenter(gameController, playerAttributes,
-					color.darker(), 0);
 			gameController.setPlayer1Attributes(playerAttributes);
 		} else {
 			playerAttributes = new PlayerAttributes(name, PlayerId.PLAYER2, 0,
 					color);
 			gameController.setPlayer2Attributes(playerAttributes);
 		}
+		this.player = new SwingPresenter(gameController, playerAttributes,
+				color.darker(), 0);
 	}
 
 	@Override
@@ -47,14 +47,12 @@ public class PlayerControllerService
 
 	@Override
 	public void setName(String playerName) throws RemoteException {
-
 		player.setName(playerName);
 
 	}
 
 	@Override
 	public PlayerId getPlayerId() throws RemoteException {
-
 		return player.getPlayerId();
 	}
 

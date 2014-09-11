@@ -30,14 +30,14 @@ public class GameControllerImpl implements Runnable, GameController {
 	 * 
 	 * @return player1 lub player2
 	 */
-	private PlayerController currentPlayer() {
+	private PlayerController changeCurrentPlayer() {
 		switch (playerTurn) {
 			case PLAYER1 :
 				return player1;
 			case PLAYER2 :
 				return player2;
 			default :
-				return null; // player1
+				return null; // currentPlayer
 		}
 	}
 
@@ -48,7 +48,7 @@ public class GameControllerImpl implements Runnable, GameController {
 	 */
 	@Override
 	public synchronized int move(int slot) {
-		this.currentPlayer = currentPlayer();
+		this.currentPlayer = changeCurrentPlayer();
 		this.slot = slot;
 		emptySpot = board.findFreeSpot(slot);
 		if (emptySpot == -1) {
@@ -94,21 +94,21 @@ public class GameControllerImpl implements Runnable, GameController {
 					player2.getPlayerPoints());
 		} else
 			connectPlayer();
-
 		doneMoves = 0;
-
 	}
 
 	private synchronized void gameLoop() {// ma odczytywaæ GameState
 		boolean endGame;
 		logic = new Logic(this);
 		lastMove = new LastMove();
-		// waitForInit();
+		System.out.println("Oczekuje na graczy.");
+		waitForPlayers();
 		while (resultState == ResultState.NO_WIN) {
-			currentPlayer = currentPlayer();
-			System.out.println("twoj ruch ");
-			currentPlayer.yourTurn();
+			currentPlayer = changeCurrentPlayer();
+			System.out.println("Ruch gracza: "
+					+ changeCurrentPlayer().getName());
 			gameState = GameState.WAITING_FOR_MOVE;
+			currentPlayer.yourTurn();
 			waitForMove();
 			doneMoves++;
 			endGame = logic.getResultOfMove(lastMove.getLastRow(),
@@ -117,14 +117,13 @@ public class GameControllerImpl implements Runnable, GameController {
 			if (endGame) {
 				gameState = GameState.PRE_INIT;
 				changePlayer();
-				currentPlayer = currentPlayer();
+				currentPlayer = changeCurrentPlayer();
 				currentPlayer.yourTurn();
 				player1.endOfGame(resultState);
 				player2.endOfGame(resultState);
 				return;
 			}
 			changePlayer();
-
 		}
 	}
 
@@ -138,7 +137,7 @@ public class GameControllerImpl implements Runnable, GameController {
 		}
 	}
 
-	private synchronized void waitForInit() {
+	private synchronized void waitForPlayers() {
 		while (gameState != GameState.END_INIT_ALL) {
 			try {
 				wait();
@@ -416,12 +415,12 @@ public class GameControllerImpl implements Runnable, GameController {
 
 	@Override
 	public PlayerAttributes getPlayer1Attributes() {
-		return player1.getPlayerAttributes();
+		return player1Attributes;
 	}
 
 	@Override
 	public PlayerAttributes getPlayer2Attributes() {
-		return player2.getPlayerAttributes();
+		return player2Attributes;
 	}
 
 	@Override

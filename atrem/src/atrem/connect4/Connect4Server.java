@@ -1,5 +1,8 @@
 package atrem.connect4;
 
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -8,7 +11,6 @@ import java.rmi.registry.Registry;
 import atrem.connect4.factory.GameFactory;
 import atrem.connect4.game.GameConfig;
 import atrem.connect4.game.GameController;
-import atrem.connect4.game.player.PlayerId;
 import atrem.connect4.rmi.RemoteGameController;
 import atrem.connect4.rmi.server.GameControllerService;
 
@@ -27,28 +29,31 @@ public class Connect4Server {
 	 * @param args
 	 * @throws RemoteException
 	 * @throws AlreadyBoundException
+	 * @throws UnknownHostException
 	 */
 	public static void main(String[] args) throws RemoteException,
-			AlreadyBoundException {
+			AlreadyBoundException, UnknownHostException {
 		Registry registry = LocateRegistry.createRegistry(1234);
+		InetAddress myHost = Inet4Address.getLocalHost();
+		String myIP = myHost.getHostAddress();
 
 		initServerGameController();
 
-		gameCService = new GameControllerService(gameController);
-
+		System.out.println("Rows: " + gameController.getBoard().getRows()
+				+ ", Slots: " + gameController.getBoard().getSlots());
+		System.out.println("Server GameController Initialized.");
+		System.out.println("Adres serwera: " + myIP);
 		registry.bind("RGCS", gameCService);
 
+		gameController.startGameLoop();
 	}
 
-	public static void initServerGameController() {
+	public static void initServerGameController() throws RemoteException {
 		gameConfig = new GameConfig();
 		gameFactory = gameConfig.getGameFactory();
 		gameConfig.setupServerGameFactory();
 		gameFactory.createServerGameController();
 		gameController = gameFactory.getGameController();
-		System.out.println("Rows: " + gameController.getBoard().getRows()
-				+ ", Slots: " + gameController.getBoard().getSlots());
-		gameController.setPlayerTurn(PlayerId.PLAYER1);
-		System.out.println("Server GameController Initialized.");
+		gameCService = new GameControllerService(gameController);
 	}
 }

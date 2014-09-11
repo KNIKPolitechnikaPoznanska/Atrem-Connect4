@@ -81,7 +81,7 @@ public class Connect4 {
 		try {
 			client.startGame();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
+			System.out.println("Gra nie odpali³a? Nie mój problem");
 			e.printStackTrace();
 		}
 	}

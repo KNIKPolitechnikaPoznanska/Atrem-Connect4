@@ -23,7 +23,7 @@ public class SwingPresenter implements PlayerController, Serializable {
 	private PlayerAttributes playerAttributes;
 	private GameBoard gameBoard;
 	private GameFrame frame;
-	private boolean blockButton;
+	private boolean blockButton = false;
 	private PlayerId playerId;
 	private SideBoard sideBoard;
 	private Color playerColor, opponentColor;
@@ -50,8 +50,8 @@ public class SwingPresenter implements PlayerController, Serializable {
 		this.playerId = playerAttributes.getPlayerId();
 		this.playerColor = playerAttributes.getPlayerColor();
 		this.opponentColor = opponentColor;
-		gameController.connectPlayer();
 		setupFrame();
+		gameController.connectPlayer();
 		slots = gameController.getBoard().getSlots();
 		rows = gameController.getBoard().getRows();
 	}
@@ -110,18 +110,14 @@ public class SwingPresenter implements PlayerController, Serializable {
 					sideBoard = frame.getSideBoard();
 					sideBoard.setBackground(Color.orange);
 					stats = frame.getStats();
-					System.out.println(gameController.getBoard().getRows());
-					// TODO na zmienne
-					// System.out.println(gameController.getPlayer1Attributes()
-					// .getName());
-					// stats.setPointsPlayer(gameController.getPlayer1Attributes()
-					// .getPlayerPoints(), PlayerId.PLAYER1);
-					// stats.setPointsPlayer(gameController.getPlayer2Attributes()
-					// .getPlayerPoints(), PlayerId.PLAYER2);
-					// stats.setName(gameController.getPlayer1Attributes()
-					// .getName(), PlayerId.PLAYER1);
-					// stats.setName(gameController.getPlayer2Attributes()
-					// .getName(), PlayerId.PLAYER2);
+					stats.setPointsPlayer(gameController.getPlayer1Attributes()
+							.getPlayerPoints(), PlayerId.PLAYER1);
+					stats.setPointsPlayer(gameController.getPlayer2Attributes()
+							.getPlayerPoints(), PlayerId.PLAYER2);
+					stats.setName(gameController.getPlayer1Attributes()
+							.getName(), PlayerId.PLAYER1);
+					stats.setName(gameController.getPlayer2Attributes()
+							.getName(), PlayerId.PLAYER2);
 
 					gameBoard.enableButtons(blockButton);
 					setNamesAndToken();
@@ -227,17 +223,16 @@ public class SwingPresenter implements PlayerController, Serializable {
 	public void setNamesAndToken() {
 		if (playerId == PlayerId.PLAYER1) {
 			sideBoard.setTokenPl1();
-			// TODO na zmienne dac
-			// sideBoard.setPl1Name(gameController.getPlayer1Attributes()
-			// .getName());
-			// sideBoard.setPl2Name(gameController.getPlayer2Attributes()
-			// .getName());
+			sideBoard.setPl1Name(gameController.getPlayer1Attributes()
+					.getName());
+			sideBoard.setPl2Name(gameController.getPlayer2Attributes()
+					.getName());
 		} else {
 			sideBoard.setTokenPl2();
-			// sideBoard.setPl1Name(gameController.getPlayer2Attributes()
-			// .getName());
-			// sideBoard.setPl2Name(gameController.getPlayer1Attributes()
-			// .getName());
+			sideBoard.setPl1Name(gameController.getPlayer2Attributes()
+					.getName());
+			sideBoard.setPl2Name(gameController.getPlayer1Attributes()
+					.getName());
 		}
 	}
 

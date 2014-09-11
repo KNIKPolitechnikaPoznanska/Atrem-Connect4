@@ -10,10 +10,10 @@ import atrem.connect4.game.player.PlayerController;
 import atrem.connect4.game.player.PlayerId;
 import atrem.connect4.rmi.RemotePlayerController;
 
-public class PlayerControllerClient implements PlayerController, Serializable {
+public class PlayerControllerSender implements PlayerController, Serializable {
 	private RemotePlayerController remotePlayerController;
 
-	public PlayerControllerClient(RemotePlayerController remotePlayerController)
+	public PlayerControllerSender(RemotePlayerController remotePlayerController)
 			throws RemoteException {
 		super();
 		this.remotePlayerController = remotePlayerController;
@@ -112,5 +112,11 @@ public class PlayerControllerClient implements PlayerController, Serializable {
 	public void setRemotePlayerController(
 			RemotePlayerController remotePlayerController) {
 		this.remotePlayerController = remotePlayerController;
+	}
+
+	@Override
+	public void refreshView(int row, int slot) {
+		// TODO Auto-generated method stub
+
 	}
 }

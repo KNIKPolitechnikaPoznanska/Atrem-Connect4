@@ -10,7 +10,7 @@ import atrem.connect4.game.GameController;
 import atrem.connect4.game.player.PlayerController;
 import atrem.connect4.rmi.RemoteGameController;
 import atrem.connect4.rmi.RemotePlayerController;
-import atrem.connect4.rmi.client.GameControllerClient;
+import atrem.connect4.rmi.client.GameControllerSender;
 import atrem.connect4.rmi.client.PlayerControllerService;
 
 /**
@@ -36,7 +36,7 @@ public class Connect4Client {
 			this.playerCService = new PlayerControllerService();
 
 			this.gameCService = (RemoteGameController) registry.lookup("RGCS");
-			this.gameController = new GameControllerClient(gameCService);
+			this.gameController = new GameControllerSender(gameCService);
 		} catch (RemoteException | NotBoundException e) {
 			System.out.println("Error!");
 			e.printStackTrace();
@@ -58,22 +58,16 @@ public class Connect4Client {
 			System.out.println("Problem z przypisaniem gracza.");
 			e.printStackTrace();
 		}
-
 	}
 
 	public void startGame() throws RemoteException {
-		PlayerController player;
+		PlayerController playerOne;
 		if (gameCService.getPlayer1() == null)
-			player = gameCService.getPlayer1();
+			playerController = gameCService.getPlayer1();
 		else {
-			player = gameCService.getPlayer2();
-			try {
-				Thread.sleep(6000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			player.yourTurn();
+			playerOne = gameCService.getPlayer1();
+			playerController = gameCService.getPlayer2();
+			playerOne.yourTurn();
 		}
 	}
 }
