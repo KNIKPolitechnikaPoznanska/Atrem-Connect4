@@ -185,7 +185,7 @@ public class RemoteGameControllerImp extends UnicastRemoteObject implements
 		if (gameController.getPlayer1() == null) {
 			playerController.setPlayerId(PlayerId.PLAYER1);
 			gameController.setPlayer1(playerController);
-		} else {
+		} else if (gameController.getPlayer2() == null) {
 			playerController.setPlayerId(PlayerId.PLAYER2);
 			gameController.setPlayer2(playerController);
 		}
