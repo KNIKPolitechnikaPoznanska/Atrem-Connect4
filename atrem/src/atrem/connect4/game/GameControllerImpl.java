@@ -107,11 +107,7 @@ public class GameControllerImpl implements Runnable, GameController {
 		waitForPlayers();
 		while (resultState == ResultState.NO_WIN) {
 			currentPlayer = currentPlayer();
-			try {
-				this.wait(100);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			System.out.println("twoj ruch ");
 			currentPlayer.yourTurn();
 			gameState = GameState.WAITING_FOR_MOVE;
 			waitForMove();
