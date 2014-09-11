@@ -14,8 +14,8 @@ public class GameConfig {
 			gamePl1Type, gamePl2Type;
 	public static final String CHuman = "CZ£OWIEK", CcpuEasy = "CPU-Easy",
 			CcpuMedium = "CPU-Medium", CcpuHard = "CPU-Hard";
-	public static final String[] playerTypeItems = {CHuman, CcpuEasy,
-			CcpuMedium, CcpuHard};
+	public static final String[] playerTypeItems = { CHuman, CcpuEasy,
+			CcpuMedium, CcpuHard };
 	public static final String DEF_PL1_NAME = "Gracz 1",
 			DEF_PL2_NAME = "Gracz 2";
 	public static final int DEF_SLOTS = 7, DEF_ROWS = 6;
@@ -37,6 +37,15 @@ public class GameConfig {
 			e.printStackTrace();
 		}
 	}
+
+	public void setMultiDBox() {
+		try {
+			dialogBox = new DialogSettingsBox();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	/**
 	 * Pobierz dane z okna dialogowego do config.
 	 */
@@ -56,6 +65,7 @@ public class GameConfig {
 		token1Color = dialogBox.getToken1Color();
 		token2Color = dialogBox.getToken2Color();
 	}
+
 	/**
 	 * Ustaw gameFactory wartoœciami z Config.
 	 */
@@ -77,6 +87,7 @@ public class GameConfig {
 
 		gameFactory.setBoard();
 	}
+
 	public String getPlayer1Type() {
 		return player1Type;
 	}
