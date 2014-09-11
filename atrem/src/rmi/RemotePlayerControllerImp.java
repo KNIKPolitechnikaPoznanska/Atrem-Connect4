@@ -76,4 +76,22 @@ public class RemotePlayerControllerImp extends UnicastRemoteObject implements
 		return playerController.getName();
 	}
 
+	@Override
+	public Color getColor() throws RemoteException {
+		// TODO Auto-generated method stub
+		return playerController.getColor();
+	}
+
+	@Override
+	public Color getOppColor() throws RemoteException {
+		// TODO Auto-generated method stub
+		return playerController.getOppColor();
+	}
+
+	@Override
+	public void setPlayerId(PlayerId playerId) throws RemoteException {
+		playerController.setPlayerId(playerId);
+
+	}
+
 }

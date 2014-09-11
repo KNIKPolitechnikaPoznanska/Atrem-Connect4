@@ -1,5 +1,6 @@
 package rmi;
 
+import java.awt.Color;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -9,6 +10,12 @@ import atrem.connect4.game.player.PlayerAttributes;
 import atrem.connect4.game.player.PlayerId;
 
 public interface RemotePlayerController extends Remote {
+	public Color getColor() throws RemoteException;
+
+	public Color getOppColor() throws RemoteException;
+
+	public void setPlayerId(PlayerId playerId) throws RemoteException;
+
 	public String getName() throws RemoteException;
 
 	public abstract void setName(String playerName) throws RemoteException;
