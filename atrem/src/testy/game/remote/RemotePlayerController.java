@@ -32,5 +32,5 @@ public interface RemotePlayerController extends Remote {
 			throws RemoteException;
 
 	public abstract void createPlayer(GameController gameController,
-			PlayerId playerId) throws RemoteException;
+			PlayerAttributes playerAttributes) throws RemoteException;
 }

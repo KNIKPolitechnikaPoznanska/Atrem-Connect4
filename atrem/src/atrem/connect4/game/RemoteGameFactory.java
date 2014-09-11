@@ -42,7 +42,7 @@ public class RemoteGameFactory {
 		return rows;
 	}
 
-	public PlayerAttributes getPlayer() {
+	public PlayerAttributes getPlayerAttributes() {
 		return player;
 	}
 
