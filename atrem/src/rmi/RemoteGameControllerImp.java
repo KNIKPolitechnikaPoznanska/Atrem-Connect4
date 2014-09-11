@@ -12,6 +12,7 @@ import atrem.connect4.game.Logic;
 import atrem.connect4.game.ResultState;
 import atrem.connect4.game.board.Board;
 import atrem.connect4.game.board.HoleState;
+import atrem.connect4.game.player.PlayerAttributes;
 import atrem.connect4.game.player.PlayerController;
 import atrem.connect4.game.player.PlayerId;
 
@@ -181,9 +182,34 @@ public class RemoteGameControllerImp extends UnicastRemoteObject implements
 			throws RemoteException {
 		PlayerController playerController = new PlayerControllerService(
 				remotePlayerController);
-		if (gameController.getPlayer1() == null)
+		if (gameController.getPlayer1() == null) {
+			playerController.setPlayerId(PlayerId.PLAYER1);
 			gameController.setPlayer1(playerController);
-		else
+		} else {
+			playerController.setPlayerId(PlayerId.PLAYER2);
 			gameController.setPlayer2(playerController);
+		}
+	}
+
+	@Override
+	public PlayerAttributes getPlayer1Attributes() {
+		return gameController.getPlayer1Attributes();
+	}
+
+	@Override
+	public void setPlayer1Attributes(PlayerAttributes player1Attributes) {
+		gameController.setPlayer1Attributes(player1Attributes);
+
+	}
+
+	@Override
+	public PlayerAttributes getPlayer2Attributes() {
+		return gameController.getPlayer2Attributes();
+	}
+
+	@Override
+	public void setPlayer2Attributes(PlayerAttributes player2Attributes) {
+		gameController.setPlayer2Attributes(player2Attributes);
+
 	}
 }

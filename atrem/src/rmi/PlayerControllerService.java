@@ -1,5 +1,6 @@
 package rmi;
 
+import java.awt.Color;
 import java.rmi.RemoteException;
 
 import atrem.connect4.game.GameController;
@@ -22,6 +23,7 @@ public class PlayerControllerService implements PlayerController {
 		try {
 			return remotePlayerController.getName();
 		} catch (RemoteException e) {
+			e.printStackTrace();
 			System.out.println("Wyjatek w remotePlayerController");
 		}
 		return null;
@@ -32,6 +34,7 @@ public class PlayerControllerService implements PlayerController {
 		try {
 			remotePlayerController.setName(playerName);
 		} catch (RemoteException e) {
+			e.printStackTrace();
 			System.out.println("Wyjatek w remotePlayerController");
 		}
 
@@ -42,6 +45,7 @@ public class PlayerControllerService implements PlayerController {
 		try {
 			return remotePlayerController.getPlayerId();
 		} catch (RemoteException e) {
+			e.printStackTrace();
 			System.out.println("Wyjatek w remotePlayerController");
 		}
 		return null;
@@ -52,6 +56,7 @@ public class PlayerControllerService implements PlayerController {
 		try {
 			remotePlayerController.yourTurn();
 		} catch (RemoteException e) {
+			e.printStackTrace();
 			System.out.println("Wyjatek w remotePlayerController");
 		}
 
@@ -62,6 +67,7 @@ public class PlayerControllerService implements PlayerController {
 		try {
 			remotePlayerController.setGamecontroller(gamecontroller);
 		} catch (RemoteException e) {
+			e.printStackTrace();
 			System.out.println("Wyjatek w remotePlayerController");
 		}
 
@@ -72,6 +78,7 @@ public class PlayerControllerService implements PlayerController {
 		try {
 			remotePlayerController.endOfGame(resultGame);
 		} catch (RemoteException e) {
+			e.printStackTrace();
 			System.out.println("Wyjatek w remotePlayerController");
 		}
 
@@ -82,6 +89,7 @@ public class PlayerControllerService implements PlayerController {
 		try {
 			return remotePlayerController.getPlayerPoints();
 		} catch (RemoteException e) {
+			e.printStackTrace();
 			System.out.println("Wyjatek w remotePlayerController");
 		}
 		return 0;
@@ -92,9 +100,28 @@ public class PlayerControllerService implements PlayerController {
 		try {
 			return remotePlayerController.getPlayerAttributes();
 		} catch (RemoteException e) {
+			e.printStackTrace();
 			System.out.println("Wyjatek w remotePlayerController");
 		}
 		return null;
+	}
+
+	@Override
+	public Color getColor() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Color getOppColor() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setPlayerId(PlayerId playerId) {
+		// TODO Auto-generated method stub
+
 	}
 
 }
