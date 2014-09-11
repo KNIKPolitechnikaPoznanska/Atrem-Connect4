@@ -108,19 +108,35 @@ public class PlayerControllerService implements PlayerController {
 
 	@Override
 	public Color getColor() {
-		// TODO Auto-generated method stub
+
+		try {
+			return remotePlayerController.getColor();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 
 	@Override
 	public Color getOppColor() {
-		// TODO Auto-generated method stub
+		try {
+			return remotePlayerController.getOppColor();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 
 	@Override
 	public void setPlayerId(PlayerId playerId) {
-		// TODO Auto-generated method stub
+		try {
+			remotePlayerController.setPlayerId(playerId);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
