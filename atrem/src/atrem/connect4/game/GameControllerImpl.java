@@ -183,7 +183,7 @@ public class GameControllerImpl implements Runnable, GameController {
 	public void analyseDecision() {
 		if (player1.getPlayerAttributes().getPlayerDecision() == PlayerDecision.NEW_GAME
 				&& player2.getPlayerAttributes().getPlayerDecision() == PlayerDecision.NEW_GAME)
-			startNewGame();
+			startGameLoop();
 		else if (player1.getPlayerAttributes().getPlayerDecision() == PlayerDecision.MENU
 				|| player2.getPlayerAttributes().getPlayerDecision() == PlayerDecision.MENU)
 			backToMenu();

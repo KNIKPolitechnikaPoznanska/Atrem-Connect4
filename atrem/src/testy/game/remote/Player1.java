@@ -6,6 +6,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 import atrem.connect4.game.GameController;
+import atrem.connect4.game.player.PlayerId;
 
 public class Player1 {
 
@@ -25,8 +26,8 @@ public class Player1 {
 		RemoteGameController connect = (RemoteGameController) r
 				.lookup("connect");
 		GameController gameController = new LocalGameController(connect);
-		connect.addPlayer(player);
-		player.createPlayer(gameController);
+		PlayerId playerId = connect.addPlayer(player);
+		player.createPlayer(gameController, playerId);
 
 	}
 }

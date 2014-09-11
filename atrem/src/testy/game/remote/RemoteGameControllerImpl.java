@@ -25,6 +25,22 @@ public class RemoteGameControllerImpl extends UnicastRemoteObject implements
 		this.gameController = gameController;
 	}
 
+	@Override
+	public PlayerId addPlayer(RemotePlayerController player)
+			throws RemoteException {
+		PlayerController playerController = new LocalPlayerController(player);
+
+		if (gameController.getPlayer1() == null) {
+			gameController.setPlayer1(playerController);
+			return PlayerId.PLAYER1;
+		} else if (gameController.getPlayer2() == null) {
+			gameController.setPlayer2(playerController);
+			return PlayerId.PLAYER2;
+		}
+		return PlayerId.PLAYER1;
+
+	}
+
 	public void setGamecontroller(GameController gamecontroller) {
 		this.gameController = gamecontroller;
 	}
@@ -154,17 +170,6 @@ public class RemoteGameControllerImpl extends UnicastRemoteObject implements
 
 	public GameController getGamecontroller() {
 		return gameController;
-	}
-
-	@Override
-	public void addPlayer(RemotePlayerController player) throws RemoteException {
-		PlayerController playerController = new LocalPlayerController(player);
-
-		if (gameController.getPlayer1() == null)
-			gameController.setPlayer1(playerController);
-		else if (gameController.getPlayer2() == null)
-			gameController.setPlayer2(playerController);
-
 	}
 
 	@Override
