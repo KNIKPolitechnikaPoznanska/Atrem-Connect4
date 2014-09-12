@@ -33,6 +33,6 @@ public interface PlayerController {
 
 	public void setPlayerId(PlayerId playerId);
 
-	public void updateOpponentInfo();
+	public void setOppName(String name);
 
 }

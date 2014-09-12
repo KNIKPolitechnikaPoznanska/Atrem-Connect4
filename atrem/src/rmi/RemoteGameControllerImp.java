@@ -184,15 +184,18 @@ public class RemoteGameControllerImp extends UnicastRemoteObject implements
 				remotePlayerController);
 		if (gameController.getPlayer1() == null) {
 			playerController.setPlayerId(PlayerId.PLAYER1);
-			System.out.println("if" + playerController.getPlayerId());
+			playerController.setOppName(gameController.getPlayer2Attributes()
+					.getName());
 			playerController.setOppColor(gameController.getPlayer2Attributes()
 					.getPlayerColor());
 			gameController.setPlayer1(playerController);
 		} else if (gameController.getPlayer2() == null) {
 			playerController.setPlayerId(PlayerId.PLAYER2);
+			playerController.setOppName(gameController.getPlayer1Attributes()
+					.getName());
 			playerController.setOppColor(gameController.getPlayer1Attributes()
-					.getPlayerColor());// tutaj
-			System.out.println("else" + playerController.getPlayerId());
+					.getPlayerColor());
+
 			gameController.setPlayer2(playerController);
 		}
 	}

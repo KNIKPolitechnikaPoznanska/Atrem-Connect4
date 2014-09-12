@@ -100,8 +100,8 @@ public class RemotePlayerControllerImp extends UnicastRemoteObject implements
 	}
 
 	@Override
-	public void updateOpponentInfo() throws RemoteException {
-		playerController.updateOpponentInfo();
+	public void setOppName(String name) throws RemoteException {
+		playerController.setOppName(name);
 
 	}
 
