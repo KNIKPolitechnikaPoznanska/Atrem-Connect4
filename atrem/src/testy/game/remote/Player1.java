@@ -12,9 +12,9 @@ public class Player1 {
 
 	private PlayerAttributes playerAttributes;
 
-	public void createRemotePlayer() {
+	public void createRemotePlayer(String IP) {
 		RemoteGameFactory remoteGameFactory = new RemoteGameFactory();
-		remoteGameFactory.startConnection();
+		remoteGameFactory.startConnection(IP);
 
 		try {
 			remoteGameFactory.createPlayer(playerAttributes);
@@ -30,11 +30,11 @@ public class Player1 {
 	public static void main(String[] args) throws RemoteException,
 			NotBoundException, InterruptedException {
 
-		PlayerAttributes playerAttributes = new PlayerAttributes("patryk",
+		PlayerAttributes playerAttributes = new PlayerAttributes("kots",
 				PlayerId.PLAYER1, 0, Color.GREEN);
 		Player1 player = new Player1(playerAttributes);
 
-		player.createRemotePlayer();
+		// player.createRemotePlayer();
 	}
 
 }

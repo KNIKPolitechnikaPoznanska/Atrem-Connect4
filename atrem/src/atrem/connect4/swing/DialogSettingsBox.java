@@ -53,6 +53,9 @@ public class DialogSettingsBox extends JDialog {
 	private Color token1Color, token2Color;
 	protected Color color1 = new Color(227, 252, 0), color2 = new Color(252, 0,
 			67);
+	private JTextField textField;
+	private String IP = "localhost";
+	private JTextField IPtextField;
 
 	/**
 	 * Create the settings dialog.
@@ -106,7 +109,8 @@ public class DialogSettingsBox extends JDialog {
 			PlayerAttributes playerAttributes = gameFactory
 					.getPlayer1Attributes();
 			Player1 player = new Player1(playerAttributes);
-			player.createRemotePlayer();
+
+			player.createRemotePlayer(getIP());
 
 			System.out.println("watek");
 		}
@@ -850,6 +854,19 @@ public class DialogSettingsBox extends JDialog {
 														GroupLayout.PREFERRED_SIZE)
 												.addContainerGap(90,
 														Short.MAX_VALUE))));
+
+		JPanel panel = new JPanel();
+		jTabbedPane.addTab("IP settings", null, panel, null);
+		panel.setLayout(null);
+
+		IPtextField = new JTextField();
+		IPtextField.setBounds(239, 111, 210, 20);
+		panel.add(IPtextField);
+		IPtextField.setColumns(10);
+
+		JLabel lblNewLabel = new JLabel("Wpisz IP serwera");
+		lblNewLabel.setBounds(223, 86, 226, 14);
+		panel.add(lblNewLabel);
 		pack();
 	}
 
@@ -935,5 +952,10 @@ public class DialogSettingsBox extends JDialog {
 
 	public void setPl2Type(String pl2Type) {
 		this.pl2Type = pl2Type;
+	}
+
+	public String getIP() {
+		IP = IPtextField.getText();
+		return IP;
 	}
 }

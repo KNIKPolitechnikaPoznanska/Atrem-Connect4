@@ -59,10 +59,10 @@ public class RemoteGameFactory {
 				0, token1Color);
 	}
 
-	public void startConnection() {
+	public void startConnection(String IP) {
 		Registry r;
 		try {
-			r = LocateRegistry.getRegistry(80);
+			r = LocateRegistry.getRegistry(IP, 80);
 			// Registry r = LocateRegistry.getRegistry("10.7.7.152", 80);
 			// Registry r = LocateRegistry.getRegistry("10.7.7.155", 1234);
 		} catch (RemoteException e) {
