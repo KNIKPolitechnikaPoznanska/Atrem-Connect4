@@ -82,15 +82,16 @@ public class RemoteGameFactory {
 
 	}
 
-	public void createPlayer() throws RemoteException {
-
+	public void createPlayer(PlayerAttributes sendplayerAttributes)
+			throws RemoteException {
+		playerAttributes = sendplayerAttributes;
 		gameController = new LocalGameController(connect);
 
 		PlayerId playerId = connect.addPlayer(player);
 		if (playerId == PlayerId.PLAYER1)
-			playerAttributes = gameController.getPlayer1Attributes();
+			gameController.setPlayer1Attributes(playerAttributes);
 		if (playerId == PlayerId.PLAYER2)
-			playerAttributes = gameController.getPlayer2Attributes();
+			gameController.setPlayer2Attributes(playerAttributes);
 		playerAttributes.setPlayerId(playerId);
 		player.createPlayer(gameController, playerAttributes);
 

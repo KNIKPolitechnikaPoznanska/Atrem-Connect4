@@ -105,8 +105,9 @@ public class DialogSettingsBox extends JDialog {
 
 			PlayerAttributes playerAttributes = gameFactory
 					.getPlayer1Attributes();
+			Player1 player = new Player1(playerAttributes);
+			player.createRemotePlayer();
 
-			new Thread(new Player1(playerAttributes));
 			System.out.println("watek");
 		}
 	}
