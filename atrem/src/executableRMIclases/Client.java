@@ -5,6 +5,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.Scanner;
 
 import rmi.GameControllerService;
 import rmi.RemoteGameController;
@@ -33,7 +34,9 @@ public class Client {
 		} else if (remoteGameController.getPlayer2Attributes() == null) {
 			remoteGameController.setPlayer2Attributes(playerAttributes);
 		}
-		Thread.sleep(10000);
+		Scanner scaner = new Scanner(System.in);
+		scaner.nextLine();
+		// Thread.sleep(10000);
 		remotePlayerController.createPlayer(gameControllerService,
 				playerAttributes);
 		remoteGameController.addPlayerController(remotePlayerController);
