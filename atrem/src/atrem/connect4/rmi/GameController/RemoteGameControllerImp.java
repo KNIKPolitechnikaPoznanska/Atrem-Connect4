@@ -1,4 +1,4 @@
-package atrem.connect4.rmi;
+package atrem.connect4.rmi.GameController;
 
 import java.awt.Point;
 import java.rmi.RemoteException;
@@ -15,6 +15,8 @@ import atrem.connect4.game.board.HoleState;
 import atrem.connect4.game.player.PlayerAttributes;
 import atrem.connect4.game.player.PlayerController;
 import atrem.connect4.game.player.PlayerId;
+import atrem.connect4.rmi.PlayerController.PlayerControllerService;
+import atrem.connect4.rmi.PlayerController.RemotePlayerController;
 
 public class RemoteGameControllerImp extends UnicastRemoteObject
 		implements

@@ -6,10 +6,10 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 import atrem.connect4.game.GameController;
-import atrem.connect4.rmi.GameControllerService;
-import atrem.connect4.rmi.RemoteGameController;
 import atrem.connect4.rmi.RemotePlayerController;
 import atrem.connect4.rmi.RemotePlayerControllerImp;
+import atrem.connect4.rmi.GameController.GameControllerService;
+import atrem.connect4.rmi.GameController.RemoteGameController;
 
 public class Client2 {
 

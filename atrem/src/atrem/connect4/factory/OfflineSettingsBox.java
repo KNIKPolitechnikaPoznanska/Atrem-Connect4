@@ -24,7 +24,7 @@ import javax.swing.LayoutStyle;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.WindowConstants;
 
-import atrem.connect4.Connect4;
+import atrem.connect4.starters.Connect4;
 
 public class OfflineSettingsBox extends JDialog {
 	/**

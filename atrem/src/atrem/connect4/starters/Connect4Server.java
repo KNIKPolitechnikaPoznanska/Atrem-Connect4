@@ -1,4 +1,4 @@
-package atrem.connect4;
+package atrem.connect4.starters;
 
 import java.net.Inet4Address;
 import java.net.InetAddress;
@@ -11,8 +11,8 @@ import java.rmi.registry.Registry;
 import atrem.connect4.factory.GameConfig;
 import atrem.connect4.factory.GameFactory;
 import atrem.connect4.game.GameController;
-import atrem.connect4.rmi.RemoteGameController;
-import atrem.connect4.rmi.RemoteGameControllerImp;
+import atrem.connect4.rmi.GameController.RemoteGameController;
+import atrem.connect4.rmi.GameController.RemoteGameControllerImp;
 
 /**
  * Urruchamia serwer gry.

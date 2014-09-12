@@ -1,4 +1,4 @@
-package atrem.connect4.rmi;
+package atrem.connect4.rmi.GameController;
 
 import java.awt.Point;
 import java.rmi.RemoteException;

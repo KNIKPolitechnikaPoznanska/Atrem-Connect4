@@ -1,4 +1,4 @@
-package atrem.connect4;
+package atrem.connect4.starters;
 
 import java.awt.Color;
 import java.rmi.NotBoundException;
@@ -7,10 +7,10 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 import atrem.connect4.game.GameController;
-import atrem.connect4.rmi.GameControllerService;
-import atrem.connect4.rmi.RemoteGameController;
-import atrem.connect4.rmi.RemotePlayerController;
-import atrem.connect4.rmi.RemotePlayerControllerImp;
+import atrem.connect4.rmi.GameController.GameControllerService;
+import atrem.connect4.rmi.GameController.RemoteGameController;
+import atrem.connect4.rmi.PlayerController.RemotePlayerController;
+import atrem.connect4.rmi.PlayerController.RemotePlayerControllerImp;
 
 /**
  * 

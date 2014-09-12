@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
 
-import atrem.connect4.Connect4;
+import atrem.connect4.starters.Connect4;
 
 public class GameModeSelectionBox extends JDialog {
 	private final JPanel contentPanel = new JPanel();

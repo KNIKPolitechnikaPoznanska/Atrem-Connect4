@@ -1,4 +1,4 @@
-package atrem.connect4;
+package atrem.connect4.starters;
 
 import java.awt.Color;
 import java.rmi.NotBoundException;

@@ -116,4 +116,10 @@ public class PlayerConsole implements PlayerController {
 
 	}
 
+	@Override
+	public void opponentConnected() {
+		// TODO Auto-generated method stub
+
+	}
+
 }

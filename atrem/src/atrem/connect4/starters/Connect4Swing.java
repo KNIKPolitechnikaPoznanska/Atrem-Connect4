@@ -1,4 +1,4 @@
-package atrem.connect4;
+package atrem.connect4.starters;
 
 import atrem.connect4.factory.GameConfig;
 import atrem.connect4.game.GameController;

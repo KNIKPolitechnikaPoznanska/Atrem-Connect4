@@ -1,4 +1,4 @@
-package atrem.connect4.rmi;
+package atrem.connect4.rmi.GameController;
 
 import java.awt.Point;
 import java.rmi.Remote;
@@ -14,6 +14,7 @@ import atrem.connect4.game.board.HoleState;
 import atrem.connect4.game.player.PlayerAttributes;
 import atrem.connect4.game.player.PlayerController;
 import atrem.connect4.game.player.PlayerId;
+import atrem.connect4.rmi.PlayerController.RemotePlayerController;
 
 public interface RemoteGameController extends Remote {
 

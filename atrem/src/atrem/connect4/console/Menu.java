@@ -1,9 +1,9 @@
 package atrem.connect4.console;
 
-import atrem.connect4.Connect4Console;
 import atrem.connect4.factory.GameConfig;
 import atrem.connect4.factory.GameFactory;
 import atrem.connect4.factory.PlayerFactory;
+import atrem.connect4.starters.Connect4Console;
 
 /*
  * Pobiera od gracza wszystkie informacje

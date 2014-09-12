@@ -1,4 +1,4 @@
-package atrem.connect4.rmi;
+package atrem.connect4.rmi.PlayerController;
 
 import java.awt.Color;
 import java.rmi.RemoteException;
