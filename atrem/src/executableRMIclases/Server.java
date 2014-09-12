@@ -26,12 +26,12 @@ public class Server {
 				gameController);
 		Registry registry = LocateRegistry.createRegistry(80);
 		registry.bind("gc", remoteGameController);
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		// try {
+		// Thread.sleep(10000);
+		// } catch (InterruptedException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
 		gameController.startGameLoop();
 
 	}

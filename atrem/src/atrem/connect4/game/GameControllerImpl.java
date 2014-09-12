@@ -105,14 +105,10 @@ public class GameControllerImpl implements Runnable, GameController {
 		boolean endGame;
 		logic = new Logic(this);
 		lastMove = new LastMove();
-		// waitForInit();
+		waitForInit();
 		while (resultState == ResultState.NO_WIN) {
 			currentPlayer = currentPlayer();
-			try {
-				this.wait(100);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+
 			currentPlayer.yourTurn();
 			gameState = GameState.WAITING_FOR_MOVE;
 			waitForMove();
@@ -349,21 +345,26 @@ public class GameControllerImpl implements Runnable, GameController {
 	@Override
 	public void setPlayer1(PlayerController player1) {
 		this.player1 = player1;
+		player1.setPlayerId(PlayerId.PLAYER1);
 		player1Attributes = player1.getPlayerAttributes();
 	}
 
+	@Override
 	public PlayerAttributes getPlayer1Attributes() {
 		return player1Attributes;
 	}
 
+	@Override
 	public void setPlayer1Attributes(PlayerAttributes player1Attributes) {
 		this.player1Attributes = player1Attributes;
 	}
 
+	@Override
 	public PlayerAttributes getPlayer2Attributes() {
 		return player2Attributes;
 	}
 
+	@Override
 	public void setPlayer2Attributes(PlayerAttributes player2Attributes) {
 		this.player2Attributes = player2Attributes;
 	}
@@ -388,6 +389,7 @@ public class GameControllerImpl implements Runnable, GameController {
 	@Override
 	public void setPlayer2(PlayerController player2) {
 		this.player2 = player2;
+		player2.setPlayerId(PlayerId.PLAYER2);
 		player2Attributes = player2.getPlayerAttributes();
 
 	}
