@@ -108,7 +108,12 @@ public class GameControllerImpl implements Runnable, GameController {
 		waitForInit();
 		while (resultState == ResultState.NO_WIN) {
 			currentPlayer = currentPlayer();
-
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			currentPlayer.yourTurn();
 			gameState = GameState.WAITING_FOR_MOVE;
 			waitForMove();
@@ -346,7 +351,7 @@ public class GameControllerImpl implements Runnable, GameController {
 	public void setPlayer1(PlayerController player1) {
 		this.player1 = player1;
 		player1.setPlayerId(PlayerId.PLAYER1);
-		player1Attributes = player1.getPlayerAttributes();
+		// player1Attributes = player1.getPlayerAttributes();
 
 	}
 
@@ -391,7 +396,7 @@ public class GameControllerImpl implements Runnable, GameController {
 	public void setPlayer2(PlayerController player2) {
 		this.player2 = player2;
 		player2.setPlayerId(PlayerId.PLAYER2);
-		player2Attributes = player2.getPlayerAttributes();
+		// player2Attributes = player2.getPlayerAttributes();
 
 	}
 

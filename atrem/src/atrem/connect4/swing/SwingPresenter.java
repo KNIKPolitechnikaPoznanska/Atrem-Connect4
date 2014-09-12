@@ -27,6 +27,7 @@ public class SwingPresenter implements PlayerController {
 	private SideBoard sideBoard;
 	private Color playerColor, opponentColor;
 	private Stats stats;
+
 	private Dimension screenSize;
 	private DialogInformationBoxes informationBoxes;
 	private int frameHeight, frameWidth, screenHeight, screenWidth;
@@ -65,7 +66,7 @@ public class SwingPresenter implements PlayerController {
 			@Override
 			public void run() {
 				gameBoard.enableButtons(true);
-				// sideBoard.tokenEnable();
+				sideBoard.tokenEnable();
 				LastSlot = gameController.getLastMove().getLastSlot();
 				LastRow = gameController.getLastMove().getLastRow();
 
@@ -89,7 +90,7 @@ public class SwingPresenter implements PlayerController {
 		} else {
 			refreshView(emptySpot, slot);
 			gameBoard.enableButtons(false);
-			// sideBoard.tokenDisable();
+			sideBoard.tokenDisable();
 
 		}
 	}
@@ -108,22 +109,22 @@ public class SwingPresenter implements PlayerController {
 					setupBounds();
 					gameBoard = frame.getGameBoard();
 					informationBoxes = new DialogInformationBoxes();
-					// sideBoard = frame.getSideBoard();
-					// sideBoard.setBackground(Color.orange);
-					// stats = frame.getStats();
-					// stats.setPointsPlayer(gameController.getPlayer1Attributes()
-					// .getPlayerPoints(), PlayerId.PLAYER1);
-					// stats.setPointsPlayer(gameController.getPlayer2Attributes()
-					// .getPlayerPoints(), PlayerId.PLAYER2);
-					// stats.setName(gameController.getPlayer1Attributes()
-					// .getName(), PlayerId.PLAYER1);
-					// stats.setName(gameController.getPlayer2Attributes()
-					// .getName(), PlayerId.PLAYER2);
+					sideBoard = frame.getSideBoard();
+					sideBoard.setBackground(Color.orange);
+					stats = frame.getStats();
+					stats.setPointsPlayer(gameController.getPlayer1Attributes()
+							.getPlayerPoints(), PlayerId.PLAYER1);
+					stats.setPointsPlayer(gameController.getPlayer2Attributes()
+							.getPlayerPoints(), PlayerId.PLAYER2);
+					stats.setName(gameController.getPlayer2Attributes()
+							.getName(), PlayerId.PLAYER1);
+					stats.setName(gameController.getPlayer1Attributes()
+							.getName(), PlayerId.PLAYER2);
 					gameController.wakeUpGCr();
 					gameBoard.enableButtons(blockButton);
-					// setNamesAndToken();
-					// sideBoard.setPreferredSize(new Dimension(215, 200));
-					// stats.setPreferredSize(new Dimension(215, 200));
+					setNamesAndToken();
+					sideBoard.setPreferredSize(new Dimension(215, 200));
+					stats.setPreferredSize(new Dimension(215, 200));
 					frame.pack();
 					frame.setResizable(false);
 				} catch (Exception e) {
@@ -225,12 +226,16 @@ public class SwingPresenter implements PlayerController {
 		// sideBoard.setTokenPl2();
 		if (playerId == PlayerId.PLAYER1) {
 			sideBoard.setTokenPl1();
-			sideBoard.setPl1Name(gameController.getPlayer1().getName());
-			sideBoard.setPl2Name(gameController.getPlayer2().getName());
+			sideBoard.setPl1Name(gameController.getPlayer1Attributes()
+					.getName());
+			sideBoard.setPl2Name(gameController.getPlayer2Attributes()
+					.getName());
 		} else {
 			sideBoard.setTokenPl2();
-			sideBoard.setPl1Name(gameController.getPlayer2().getName());
-			sideBoard.setPl2Name(gameController.getPlayer1().getName());
+			sideBoard.setPl1Name(gameController.getPlayer1Attributes()
+					.getName());
+			sideBoard.setPl2Name(gameController.getPlayer2Attributes()
+					.getName());
 			// 2 - 1 ;
 		}
 
@@ -303,9 +308,22 @@ public class SwingPresenter implements PlayerController {
 	}
 
 	@Override
+	public void setOppColor(Color color) {
+		opponentColor = color;
+	}
+
+	@Override
 	public void setPlayerId(PlayerId playerId) {
 		playerAttributes.setPlayerId(playerId);
 		System.out.println("jestem w setId" + playerId);
 
+	}
+
+	public Stats getStats() {
+		return stats;
+	}
+
+	public void setStats(Stats stats) {
+		this.stats = stats;
 	}
 }

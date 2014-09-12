@@ -140,4 +140,26 @@ public class PlayerControllerService implements PlayerController {
 
 	}
 
+	@Override
+	public void setOppColor(Color color) {
+		try {
+			remotePlayerController.setOppColor(color);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public void updateOpponentInfo() {
+		try {
+			remotePlayerController.updateOpponentInfo();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
 }

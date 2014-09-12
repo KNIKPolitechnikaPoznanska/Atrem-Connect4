@@ -1,5 +1,6 @@
 package atrem.connect4.game.player.ai;
 
+import java.awt.Color;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -22,6 +23,7 @@ public class EasyPC implements PlayerController {
 	private Board board;
 	private ExecutorService executor = Executors.newSingleThreadExecutor();
 	private PlayerId playerId;
+	private Color playerColor, opponentColor;
 
 	public EasyPC(GameController gameController,
 			PlayerAttributes playerAttributes, int playerPoints) {
@@ -31,6 +33,7 @@ public class EasyPC implements PlayerController {
 		board = gameController.getBoard();
 		gameController.wakeUpGCr();
 		informationBoxes = new DialogInformationBoxes();
+		this.playerColor = playerAttributes.getPlayerColor();
 	}
 
 	@Override
@@ -106,6 +109,24 @@ public class EasyPC implements PlayerController {
 	public PlayerAttributes getPlayerAttributes() {
 
 		return playerAttributes;
+	}
+
+	@Override
+	public Color getColor() {
+		return playerColor;
+	}
+
+	@Override
+	public Color getOppColor() {
+
+		return opponentColor;
+	}
+
+	@Override
+	public void setPlayerId(PlayerId playerId) {
+		playerAttributes.setPlayerId(playerId);
+		System.out.println("jestem w setId" + playerId);
+
 	}
 
 }
