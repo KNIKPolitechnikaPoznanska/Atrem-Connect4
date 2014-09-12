@@ -347,6 +347,7 @@ public class GameControllerImpl implements Runnable, GameController {
 		this.player1 = player1;
 		player1.setPlayerId(PlayerId.PLAYER1);
 		player1Attributes = player1.getPlayerAttributes();
+
 	}
 
 	@Override

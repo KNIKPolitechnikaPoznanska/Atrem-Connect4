@@ -53,6 +53,7 @@ public class SwingPresenter implements PlayerController {
 
 		slots = gameController.getBoard().getSlots();
 		rows = gameController.getBoard().getRows();
+
 	}
 
 	/**
@@ -109,21 +110,20 @@ public class SwingPresenter implements PlayerController {
 					informationBoxes = new DialogInformationBoxes();
 					sideBoard = frame.getSideBoard();
 					sideBoard.setBackground(Color.orange);
-					// stats = frame.getStats();
-					// stats.setPointsPlayer(gameController.getPlayer1()
-					// .getPlayerPoints(), PlayerId.PLAYER1);
-					// stats.setPointsPlayer(gameController.getPlayer2()
-					// .getPlayerPoints(), PlayerId.PLAYER2);
-					// stats.setName(gameController.getPlayer1().getName(),
-					// PlayerId.PLAYER1);
-					// stats.setName(gameController.getPlayer2().getName(),
-					// PlayerId.PLAYER2);
-
-					// gameController.wakeUpGCr();
+					stats = frame.getStats();
+					stats.setPointsPlayer(gameController.getPlayer1Attributes()
+							.getPlayerPoints(), PlayerId.PLAYER1);
+					stats.setPointsPlayer(gameController.getPlayer2Attributes()
+							.getPlayerPoints(), PlayerId.PLAYER2);
+					stats.setName(gameController.getPlayer1Attributes()
+							.getName(), PlayerId.PLAYER1);
+					stats.setName(gameController.getPlayer2Attributes()
+							.getName(), PlayerId.PLAYER2);
+					gameController.wakeUpGCr();
 					gameBoard.enableButtons(blockButton);
-					// setNamesAndToken();
+					setNamesAndToken();
 					sideBoard.setPreferredSize(new Dimension(215, 200));
-					// stats.setPreferredSize(new Dimension(215, 200));
+					stats.setPreferredSize(new Dimension(215, 200));
 					frame.pack();
 					frame.setResizable(false);
 				} catch (Exception e) {

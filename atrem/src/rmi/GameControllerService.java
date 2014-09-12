@@ -190,7 +190,7 @@ public class GameControllerService implements GameController {
 		try {
 			return remoteGameController.getPlayer1();
 		} catch (RemoteException e) {
-			System.out.println("wyjatek w remoteGameController");
+			e.printStackTrace();
 		}
 		return null;
 	}
@@ -287,8 +287,13 @@ public class GameControllerService implements GameController {
 
 	@Override
 	public PlayerAttributes getPlayer1Attributes() {
-		return getPlayer1Attributes();
-
+		try {
+			return remoteGameController.getPlayer1Attributes();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override

@@ -26,7 +26,6 @@ public class Client2 {
 		RemotePlayerController remotePlayerController = new RemotePlayerControllerImp();
 		remotePlayerController.createPlayer(gameControllerService);
 		remoteGameController.addPlayerController(remotePlayerController);
-		remoteGameController.wakeUpGCr();
 
 	}
 }
