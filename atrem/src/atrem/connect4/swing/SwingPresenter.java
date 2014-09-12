@@ -326,4 +326,10 @@ public class SwingPresenter implements PlayerController {
 	public void setStats(Stats stats) {
 		this.stats = stats;
 	}
+
+	@Override
+	public void updateOpponentInfo() {
+		setStats
+
+	}
 }
