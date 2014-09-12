@@ -65,7 +65,6 @@ public class PlayerControllerService implements PlayerController {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	@Override

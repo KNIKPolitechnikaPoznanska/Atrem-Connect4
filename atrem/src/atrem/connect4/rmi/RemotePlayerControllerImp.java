@@ -25,15 +25,18 @@ public class RemotePlayerControllerImp extends UnicastRemoteObject
 	public void createPlayer(GameController gameControllerService, String name,
 			Color color) {
 		PlayerController playerID = gameControllerService.getPlayer1();
-		if (playerID == null)
+		if (playerID == null) {
 			playerAttributes = new PlayerAttributes(name, PlayerId.PLAYER1, 0,
 					color);
-		else
+			playerController = new SwingPresenter(gameControllerService,
+					playerAttributes, new Color(2, 2, 200), 0, false);
+		} else {
 			playerAttributes = new PlayerAttributes(name, PlayerId.PLAYER2, 0,
 					color);
+			playerController = new SwingPresenter(gameControllerService,
+					playerAttributes, new Color(2, 2, 200), 0, false);
+		}
 
-		playerController = new SwingPresenter(gameControllerService,
-				playerAttributes, new Color(2, 2, 200), 0);
 	}
 
 	@Override

@@ -19,8 +19,7 @@ import atrem.connect4.game.player.PlayerId;
 public class RemoteGameControllerImp extends UnicastRemoteObject
 		implements
 			RemoteGameController {
-
-	GameController gameController;
+	private GameController gameController;
 
 	public RemoteGameControllerImp(GameController gameController)
 			throws RemoteException {
@@ -202,7 +201,6 @@ public class RemoteGameControllerImp extends UnicastRemoteObject
 	@Override
 	public void setPlayer1Attributes(PlayerAttributes player1Attributes) {
 		gameController.setPlayer1Attributes(player1Attributes);
-
 	}
 
 	@Override
@@ -213,6 +211,5 @@ public class RemoteGameControllerImp extends UnicastRemoteObject
 	@Override
 	public void setPlayer2Attributes(PlayerAttributes player2Attributes) {
 		gameController.setPlayer2Attributes(player2Attributes);
-
 	}
 }

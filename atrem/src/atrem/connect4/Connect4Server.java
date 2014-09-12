@@ -46,14 +46,13 @@ public class Connect4Server { // NO_UCD (unused code)
 		InetAddress myHost = Inet4Address.getLocalHost();
 		String myIP = myHost.getHostAddress();
 		System.out.println("Adres serwera: " + myIP + ":" + PORT);
-		registry.bind("RGC", remoteGameController);
 
+		registry.bind("RGC", remoteGameController);
 		System.out.println("Server GameController Initialized.");
 
-		// waitForPlayersToInit();
 		System.out.println("Starting Game ...");
 		gameController.startGameLoop();
-		System.out.println("Game should be started.");
+		System.out.println("Game started.");
 	}
 
 	public static void initServerGameController() throws RemoteException {
@@ -63,13 +62,5 @@ public class Connect4Server { // NO_UCD (unused code)
 		gameFactory.createServerGameController();
 		gameController = gameFactory.getGameController();
 		remoteGameController = new RemoteGameControllerImp(gameController);
-	}
-
-	private static void waitForPlayersToInit() {
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 	}
 }

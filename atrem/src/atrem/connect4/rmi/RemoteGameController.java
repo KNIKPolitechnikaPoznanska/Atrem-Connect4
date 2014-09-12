@@ -89,5 +89,4 @@ public interface RemoteGameController extends Remote {
 
 	public void setPlayer2Attributes(PlayerAttributes player2Attributes)
 			throws RemoteException;
-
 }

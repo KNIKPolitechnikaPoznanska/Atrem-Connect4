@@ -92,7 +92,7 @@ public class EasyPC implements PlayerController {
 				playerAttributes.addPoints();
 		}
 		playerAttributes.setPlayerDecision(PlayerDecision.NEW_GAME);
-		if (gameController.getGameState() == GameState.END_INIT_2) {
+		if (gameController.getGameState() == GameState.PL2_INITED) {
 			gameController.analyseDecision();
 			gameController.connectPlayer();
 		}
@@ -123,6 +123,12 @@ public class EasyPC implements PlayerController {
 
 	@Override
 	public void setPlayerId(PlayerId playerId) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void opponentConnected() {
 		// TODO Auto-generated method stub
 
 	}

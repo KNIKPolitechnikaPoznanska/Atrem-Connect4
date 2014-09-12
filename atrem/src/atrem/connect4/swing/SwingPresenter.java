@@ -23,9 +23,9 @@ public class SwingPresenter implements PlayerController {
 	private GameBoard gameBoard;
 	private GameFrame frame;
 	private boolean blockButton;
-	private PlayerId playerId;
+	private PlayerId playerId = PlayerId.PLAYER1;
 	private SideBoard sideBoard;
-	private Color playerColor, opponentColor;
+	private Color playerColor = null, opponentColor = null;
 	private Stats stats;
 	private Dimension screenSize;
 	private DialogInformationBoxes informationBoxes;
@@ -35,6 +35,7 @@ public class SwingPresenter implements PlayerController {
 	 * Presenter MVP do GameFrame
 	 * 
 	 * @param gameController
+	 * @param isLocal
 	 * @param playerName
 	 * @param playerId
 	 * @param pl1TokenColor
@@ -43,7 +44,7 @@ public class SwingPresenter implements PlayerController {
 	 */
 	public SwingPresenter(GameController gameController,
 			PlayerAttributes playerAttributes, Color opponentColor,
-			int playerPoints) {
+			int playerPoints, boolean isLocal) {
 		this.gameController = gameController;
 		this.playerAttributes = playerAttributes;
 		this.playerId = playerAttributes.getPlayerId();
@@ -51,11 +52,27 @@ public class SwingPresenter implements PlayerController {
 		this.opponentColor = opponentColor;
 		this.slots = gameController.getBoard().getSlots();
 		this.rows = gameController.getBoard().getRows();
+
 		gameController.connectPlayer();
-		waitForOpponentToConnect();
+		if (!isLocal) {
+			System.out.println("Czekam na przeciwnika."
+					+ gameController.getGameState());
+			waitForOpponentToConnect();
+			System.out.println("SP tworzy?");
+			endInit();
+		}
 		setupFrame();
+
 	}
 
+	private synchronized void endInit() {
+		try {
+			wait(2500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		gameController.endPlayerInit();
+	}
 	/**
 	 * Wywo³ywane przez GC.GameLoop
 	 */
@@ -100,6 +117,7 @@ public class SwingPresenter implements PlayerController {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
+				System.out.println("Creating frame");
 				try {
 					screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 					frame = new GameFrame(SwingPresenter.this);
@@ -116,10 +134,10 @@ public class SwingPresenter implements PlayerController {
 							.getPlayerPoints(), PlayerId.PLAYER1);
 					stats.setPointsPlayer(gameController.getPlayer2Attributes()
 							.getPlayerPoints(), PlayerId.PLAYER2);
-					stats.setName(gameController.getPlayer1().getName(),
-							PlayerId.PLAYER1);
-					stats.setName(gameController.getPlayer2().getName(),
-							PlayerId.PLAYER2);
+					stats.setName(gameController.getPlayer1Attributes()
+							.getName(), PlayerId.PLAYER1);
+					stats.setName(gameController.getPlayer2Attributes()
+							.getName(), PlayerId.PLAYER2);
 					stats.setPreferredSize(new Dimension(215, 200));
 
 					gameBoard.enableButtons(blockButton);
@@ -130,7 +148,6 @@ public class SwingPresenter implements PlayerController {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				gameController.endPlayerInit();
 			}
 
 			private void setupBounds() {
@@ -150,24 +167,24 @@ public class SwingPresenter implements PlayerController {
 		});
 	}
 
-	public synchronized void waitForOpponentToConnect() {
-		while (gameController.getGameState() != GameState.START_INIT
-				|| gameController.getGameState() != GameState.END_INIT_1) {
-			try {
-				System.out.println("Waitin for opponent. "
-						+ gameController.getGameState());
-				wait();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+	private synchronized void waitForOpponentToConnect() {
+		if (playerId == PlayerId.PLAYER1)
+			while (gameController.getGameState() != GameState.PL2_CONNECTED) {
+				try {
+					System.out.println("StartWait: "
+							+ gameController.getGameState());
+					wait(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
-		}
 	}
 
 	@Override
-	public void opponentConnected() {
-		System.out.println("Connected? " + gameController.getGameState());
-		if (gameController.getGameState() == GameState.START_INIT
-				|| gameController.getGameState() == GameState.END_INIT_1)
+	public synchronized void opponentConnected() {
+		System.out.println("Opp Connected? " + gameController.getGameState());
+		if (gameController.getGameState() == GameState.PL2_CONNECTED
+				|| gameController.getGameState() == GameState.PL1_INITED)
 			this.notifyAll();
 	}
 
@@ -230,7 +247,7 @@ public class SwingPresenter implements PlayerController {
 			frame.dispose();
 			return;
 		}
-		if (gameController.getGameState() == GameState.END_INIT_2)
+		if (gameController.getGameState() == GameState.PL2_INITED)
 			gameController.analyseDecision();
 	}
 
@@ -248,12 +265,16 @@ public class SwingPresenter implements PlayerController {
 	public void setNamesAndToken() {
 		if (playerId == PlayerId.PLAYER1) {
 			sideBoard.setTokenPl1();
-			sideBoard.setPl1Name(gameController.getPlayer1().getName());
-			sideBoard.setPl2Name(gameController.getPlayer2().getName());
+			sideBoard.setPl1Name(gameController.getPlayer1Attributes()
+					.getName());
+			sideBoard.setPl2Name(gameController.getPlayer2Attributes()
+					.getName());
 		} else {
 			sideBoard.setTokenPl2();
-			sideBoard.setPl1Name(gameController.getPlayer2().getName());
-			sideBoard.setPl2Name(gameController.getPlayer1().getName());
+			sideBoard.setPl1Name(gameController.getPlayer2Attributes()
+					.getName());
+			sideBoard.setPl2Name(gameController.getPlayer1Attributes()
+					.getName());
 		}
 	}
 

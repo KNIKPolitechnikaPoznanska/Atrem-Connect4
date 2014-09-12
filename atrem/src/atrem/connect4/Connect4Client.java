@@ -50,5 +50,6 @@ public class Connect4Client {
 		remotePlayerController.createPlayer(gameControllerService, name, color);
 		remoteGameController.addPlayerController(remotePlayerController);
 		System.out.println("Gracz " + name + " dodany");
+		remotePlayerController.opponentConnected();
 	}
 }

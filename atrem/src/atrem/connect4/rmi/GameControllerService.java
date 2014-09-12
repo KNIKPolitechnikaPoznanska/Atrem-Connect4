@@ -100,7 +100,7 @@ public class GameControllerService implements GameController {
 		try {
 			remoteGameController.wakeUp();
 		} catch (RemoteException e) {
-			System.out.println("wyjatek w remoteGameController");
+			System.out.println("wyjatek w wakeUp.");
 		}
 	}
 

@@ -8,10 +8,10 @@ import java.io.Serializable;
  */
 
 public class PlayerAttributes implements Serializable {
-	private String playerName;
-	private PlayerId playerId;
-	private int playerPoints;
-	private Color playerColor;
+	private String playerName = "unnamed";
+	private PlayerId playerId = PlayerId.PLAYER1;
+	private int playerPoints = 0;
+	private Color playerColor = null;
 
 	public PlayerAttributes(String playerName, PlayerId playerId,
 			int playerPoints, Color playerColor) {
