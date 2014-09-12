@@ -46,7 +46,7 @@ public class SwingPresenter implements PlayerController {
 			int playerPoints) {
 		this.gameController = gameController;
 		this.playerAttributes = playerAttributes;
-		this.playerId = playerAttributes.getPlayerId();
+
 		this.playerColor = playerAttributes.getPlayerColor();
 		this.opponentColor = opponentColor;
 		setupFrame();
@@ -305,6 +305,7 @@ public class SwingPresenter implements PlayerController {
 	@Override
 	public void setPlayerId(PlayerId playerId) {
 		this.playerId = playerId;
+		System.out.println("jestem w setId" + playerId);
 
 	}
 }
