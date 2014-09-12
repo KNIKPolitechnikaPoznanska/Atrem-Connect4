@@ -7,8 +7,8 @@ import java.util.List;
 
 import atrem.connect4.game.GameController;
 import atrem.connect4.game.GameState;
-import atrem.connect4.game.Move;
 import atrem.connect4.game.Logic;
+import atrem.connect4.game.Move;
 import atrem.connect4.game.ResultState;
 import atrem.connect4.game.board.Board;
 import atrem.connect4.game.board.HoleState;
@@ -16,8 +16,9 @@ import atrem.connect4.game.player.PlayerAttributes;
 import atrem.connect4.game.player.PlayerController;
 import atrem.connect4.game.player.PlayerId;
 
-public class RemoteGameControllerImp extends UnicastRemoteObject implements
-		RemoteGameController {
+public class RemoteGameControllerImp extends UnicastRemoteObject
+		implements
+			RemoteGameController {
 
 	GameController gameController;
 
@@ -25,7 +26,6 @@ public class RemoteGameControllerImp extends UnicastRemoteObject implements
 			throws RemoteException {
 		super();
 		this.gameController = gameController;
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -41,14 +41,13 @@ public class RemoteGameControllerImp extends UnicastRemoteObject implements
 	}
 
 	@Override
-	public void wakeUpGCr() throws RemoteException {
-		gameController.wakeUpGCr();
+	public void connectPlayer() throws RemoteException {
+		gameController.connectPlayer();
 
 	}
 
 	@Override
 	public void analyseDecision() throws RemoteException {
-		// TODO Auto-generated method stub
 		gameController.analyseDecision();
 	}
 
@@ -68,6 +67,16 @@ public class RemoteGameControllerImp extends UnicastRemoteObject implements
 	public void wakeUp() throws RemoteException {
 		gameController.wakeUp();
 
+	}
+
+	@Override
+	public void run() throws RemoteException {
+		gameController.run();
+	}
+
+	@Override
+	public void endPlayerInit() throws RemoteException {
+		gameController.endPlayerInit();
 	}
 
 	@Override
@@ -139,12 +148,11 @@ public class RemoteGameControllerImp extends UnicastRemoteObject implements
 
 	@Override
 	public GameState getGamestate() throws RemoteException {
-		return gameController.getGamestate();
+		return gameController.getGameState();
 	}
 
 	@Override
 	public PlayerController getCurrentPlayer() throws RemoteException {
-		// TODO Auto-generated method stub
 		return gameController.getCurrentPlayer();
 	}
 
@@ -161,19 +169,12 @@ public class RemoteGameControllerImp extends UnicastRemoteObject implements
 
 	@Override
 	public Logic getLogic() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		return gameController.getLogic();
 	}
 
 	@Override
 	public List<Point> getWinningCoordinates() throws RemoteException {
 		return gameController.getWinningCoordinates();
-	}
-
-	@Override
-	public void run() throws RemoteException {
-		gameController.run();
-
 	}
 
 	@Override
@@ -183,12 +184,12 @@ public class RemoteGameControllerImp extends UnicastRemoteObject implements
 		PlayerController playerController = new PlayerControllerService(
 				remotePlayerController);
 		if (gameController.getPlayer1() == null) {
-			playerController.setPlayerId(PlayerId.PLAYER1);
-			System.out.println("if" + playerController.getPlayerId());
+			playerController.getPlayerAttributes()
+					.setPlayerId(PlayerId.PLAYER1);
 			gameController.setPlayer1(playerController);
 		} else if (gameController.getPlayer2() == null) {
-			playerController.setPlayerId(PlayerId.PLAYER2);
-			System.out.println("else" + playerController.getPlayerId());
+			playerController.getPlayerAttributes()
+					.setPlayerId(PlayerId.PLAYER2);
 			gameController.setPlayer2(playerController);
 		}
 	}

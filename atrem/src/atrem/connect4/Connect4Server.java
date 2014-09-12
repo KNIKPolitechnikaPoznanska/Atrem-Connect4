@@ -17,7 +17,7 @@ import atrem.connect4.rmi.RemoteGameControllerImp;
 /**
  * Urruchamia serwer gry.
  */
-public class Connect4Server {
+public class Connect4Server { // NO_UCD (unused code)
 	private static int PORT = 1234;
 	private static GameController gameController;
 	private static RemoteGameController remoteGameController;
@@ -40,7 +40,7 @@ public class Connect4Server {
 
 		System.out.println("Rows: " + gameController.getBoard().getRows()
 				+ ", Slots: " + gameController.getBoard().getSlots());
-		System.out.println("Server GameController Initializing.");
+		System.out.println("Initializing.");
 
 		Registry registry = LocateRegistry.createRegistry(PORT);
 		InetAddress myHost = Inet4Address.getLocalHost();
@@ -50,7 +50,7 @@ public class Connect4Server {
 
 		System.out.println("Server GameController Initialized.");
 
-		waitForPlayersToInit();
+		// waitForPlayersToInit();
 		System.out.println("Starting Game ...");
 		gameController.startGameLoop();
 		System.out.println("Game should be started.");

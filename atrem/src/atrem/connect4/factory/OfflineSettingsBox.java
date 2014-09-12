@@ -93,7 +93,7 @@ public class OfflineSettingsBox extends JDialog {
 	 * 
 	 * @return true je¿eli zapis siê powiedzie
 	 */
-	protected boolean saveSettings() {
+	private boolean saveSettings() {
 		setPl1Name(TFieldPl1Name.getText());
 		setPl2Name(TFieldPl2Name.getText());
 
@@ -139,14 +139,14 @@ public class OfflineSettingsBox extends JDialog {
 	/**
 	 * Ustawia wartoœci domyœlne gry
 	 */
-	protected void setDefaults() {
+	private void setDefaults() {
 		TFieldPl1Name.setText(GameConfig.DEF_PL1_NAME);
 		TFieldPl2Name.setText(GameConfig.DEF_PL2_NAME);
 		TFieldSlots.setText(Integer.toString(GameConfig.DEF_SLOTS));
 		TFieldRows.setText(Integer.toString(GameConfig.DEF_ROWS));
 	}
 
-	protected void disableGameTypeBoxes(JComboBox<String> item, int Nmb) {
+	private void disableGameTypeBoxes(JComboBox<String> item, int Nmb) {
 		String selItem = (String) item.getSelectedItem();
 		if (selItem == GameConfig.CcpuEasy || selItem == GameConfig.CcpuMedium
 				|| selItem == GameConfig.CcpuHard) {

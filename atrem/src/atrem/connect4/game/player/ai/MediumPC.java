@@ -36,7 +36,7 @@ public class MediumPC implements PlayerController {
 		board = gameController.getBoard();
 		rand = new Random();
 		informationBoxes = new DialogInformationBoxes();
-		gameController.wakeUpGCr();
+		gameController.connectPlayer();
 	}
 
 	public int simulatedGo(int slot) {
@@ -137,7 +137,7 @@ public class MediumPC implements PlayerController {
 
 	@Override
 	public void endOfGame(ResultState resultGame) {
-		gameController.wakeUpGCr();
+		gameController.connectPlayer();
 		if (resultGame == ResultState.PLAYER_1_WIN) {
 			if (playerId == PlayerId.PLAYER1)
 				playerAttributes.addPoints();
@@ -148,9 +148,9 @@ public class MediumPC implements PlayerController {
 		}
 		playerAttributes.setPlayerDecision(PlayerDecision.NEW_GAME);
 		this.logic = new Logic(gameController);
-		if (gameController.getGamestate() == GameState.END_INIT_ALL) {
+		if (gameController.getGameState() == GameState.END_INIT_2) {
 			gameController.analyseDecision();
-			gameController.wakeUpGCr();
+			gameController.connectPlayer();
 		}
 	}
 

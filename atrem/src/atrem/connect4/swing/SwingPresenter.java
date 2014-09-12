@@ -51,6 +51,8 @@ public class SwingPresenter implements PlayerController {
 		this.opponentColor = opponentColor;
 		this.slots = gameController.getBoard().getSlots();
 		this.rows = gameController.getBoard().getRows();
+		gameController.connectPlayer();
+		waitForOpponentToConnect();
 		setupFrame();
 	}
 
@@ -107,26 +109,28 @@ public class SwingPresenter implements PlayerController {
 					informationBoxes = new DialogInformationBoxes();
 					sideBoard = frame.getSideBoard();
 					sideBoard.setBackground(Color.orange);
-					// stats = frame.getStats();
-					// stats.setPointsPlayer(gameController.getPlayer1()
-					// .getPlayerPoints(), PlayerId.PLAYER1);
-					// stats.setPointsPlayer(gameController.getPlayer2()
-					// .getPlayerPoints(), PlayerId.PLAYER2);
-					// stats.setName(gameController.getPlayer1().getName(),
-					// PlayerId.PLAYER1);
-					// stats.setName(gameController.getPlayer2().getName(),
-					// PlayerId.PLAYER2);
-
-					// gameController.wakeUpGCr();
-					gameBoard.enableButtons(blockButton);
-					// setNamesAndToken();
 					sideBoard.setPreferredSize(new Dimension(215, 200));
-					// stats.setPreferredSize(new Dimension(215, 200));
+
+					stats = frame.getStats();
+					stats.setPointsPlayer(gameController.getPlayer1Attributes()
+							.getPlayerPoints(), PlayerId.PLAYER1);
+					stats.setPointsPlayer(gameController.getPlayer2Attributes()
+							.getPlayerPoints(), PlayerId.PLAYER2);
+					stats.setName(gameController.getPlayer1().getName(),
+							PlayerId.PLAYER1);
+					stats.setName(gameController.getPlayer2().getName(),
+							PlayerId.PLAYER2);
+					stats.setPreferredSize(new Dimension(215, 200));
+
+					gameBoard.enableButtons(blockButton);
+					setNamesAndToken();
+
 					frame.pack();
-					frame.setResizable(false);
+					frame.setResizable(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				gameController.endPlayerInit();
 			}
 
 			private void setupBounds() {
@@ -146,10 +150,31 @@ public class SwingPresenter implements PlayerController {
 		});
 	}
 
+	public synchronized void waitForOpponentToConnect() {
+		while (gameController.getGameState() != GameState.START_INIT
+				|| gameController.getGameState() != GameState.END_INIT_1) {
+			try {
+				System.out.println("Waitin for opponent. "
+						+ gameController.getGameState());
+				wait();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	@Override
+	public void opponentConnected() {
+		System.out.println("Connected? " + gameController.getGameState());
+		if (gameController.getGameState() == GameState.START_INIT
+				|| gameController.getGameState() == GameState.END_INIT_1)
+			this.notifyAll();
+	}
+
 	/**
 	 * Odœwie¿a planszê na GUI
 	 */
-	public void refreshView(final int row, final int slot) {
+	private void refreshView(final int row, final int slot) {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -191,7 +216,7 @@ public class SwingPresenter implements PlayerController {
 	}
 
 	public void makeDecision(int decision) {
-		gameController.wakeUpGCr();
+		gameController.connectPlayer();
 		if (decision == 1) {
 			playerAttributes.setPlayerDecision(PlayerDecision.MENU);
 			frame.dispose();
@@ -205,11 +230,11 @@ public class SwingPresenter implements PlayerController {
 			frame.dispose();
 			return;
 		}
-		if (gameController.getGamestate() == GameState.END_INIT_ALL)
+		if (gameController.getGameState() == GameState.END_INIT_2)
 			gameController.analyseDecision();
 	}
 
-	public void markWinningFour(List<Point> winningCoordinates) {
+	private void markWinningFour(List<Point> winningCoordinates) {
 
 		for (int i = 0; i < winningCoordinates.size(); i++) {
 			gameBoard.setColor((int) winningCoordinates.get(i).getX(),

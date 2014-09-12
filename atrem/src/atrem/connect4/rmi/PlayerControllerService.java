@@ -10,8 +10,7 @@ import atrem.connect4.game.player.PlayerController;
 import atrem.connect4.game.player.PlayerId;
 
 public class PlayerControllerService implements PlayerController {
-
-	RemotePlayerController remotePlayerController;
+	private RemotePlayerController remotePlayerController;
 
 	public PlayerControllerService(RemotePlayerController remotePlayerController) {
 		this.remotePlayerController = remotePlayerController;
@@ -19,12 +18,11 @@ public class PlayerControllerService implements PlayerController {
 
 	@Override
 	public String getName() {
-
 		try {
 			return remotePlayerController.getName();
 		} catch (RemoteException e) {
 			e.printStackTrace();
-			System.out.println("Wyjatek w remotePlayerController");
+			System.out.println("RemotePlayerController: getName");
 		}
 		return null;
 	}
@@ -35,9 +33,8 @@ public class PlayerControllerService implements PlayerController {
 			remotePlayerController.setName(playerName);
 		} catch (RemoteException e) {
 			e.printStackTrace();
-			System.out.println("Wyjatek w remotePlayerController");
+			System.out.println("RemotePlayerController: setName");
 		}
-
 	}
 
 	@Override
@@ -45,8 +42,8 @@ public class PlayerControllerService implements PlayerController {
 		try {
 			return remotePlayerController.getPlayerId();
 		} catch (RemoteException e) {
+			System.out.println("RemotePlayerController: getID");
 			e.printStackTrace();
-			System.out.println("Wyjatek w remotePlayerController");
 		}
 		return null;
 	}
@@ -56,19 +53,17 @@ public class PlayerControllerService implements PlayerController {
 		try {
 			remotePlayerController.yourTurn();
 		} catch (RemoteException e) {
+			System.out.println("RemotePlayerController: yourTurn");
 			e.printStackTrace();
-			System.out.println("Wyjatek w remotePlayerController");
 		}
-
 	}
 
 	@Override
-	public void setGamecontroller(GameController gamecontroller) {
+	public void opponentConnected() {
 		try {
-			remotePlayerController.setGamecontroller(gamecontroller);
+			remotePlayerController.opponentConnected();
 		} catch (RemoteException e) {
 			e.printStackTrace();
-			System.out.println("Wyjatek w remotePlayerController");
 		}
 
 	}
@@ -78,10 +73,19 @@ public class PlayerControllerService implements PlayerController {
 		try {
 			remotePlayerController.endOfGame(resultGame);
 		} catch (RemoteException e) {
+			System.out.println("RemotePlayerController: endgame");
 			e.printStackTrace();
-			System.out.println("Wyjatek w remotePlayerController");
 		}
+	}
 
+	@Override
+	public void setGamecontroller(GameController gamecontroller) {
+		try {
+			remotePlayerController.setGamecontroller(gamecontroller);
+		} catch (RemoteException e) {
+			System.out.println("RemotePlayerController: GC");
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -89,8 +93,8 @@ public class PlayerControllerService implements PlayerController {
 		try {
 			return remotePlayerController.getPlayerPoints();
 		} catch (RemoteException e) {
-			e.printStackTrace();
 			System.out.println("Wyjatek w remotePlayerController");
+			e.printStackTrace();
 		}
 		return 0;
 	}
@@ -108,11 +112,9 @@ public class PlayerControllerService implements PlayerController {
 
 	@Override
 	public Color getColor() {
-
 		try {
 			return remotePlayerController.getColor();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -123,21 +125,17 @@ public class PlayerControllerService implements PlayerController {
 		try {
 			return remotePlayerController.getOppColor();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		}
-		return null;
 	}
 
 	@Override
 	public void setPlayerId(PlayerId playerId) {
 		try {
-			remotePlayerController.setPlayerId(playerId);
+			remotePlayerController.getPlayerAttributes().setPlayerId(playerId);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
-
 }

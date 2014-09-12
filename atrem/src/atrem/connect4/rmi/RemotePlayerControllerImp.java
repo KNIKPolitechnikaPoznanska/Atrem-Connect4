@@ -19,7 +19,6 @@ public class RemotePlayerControllerImp extends UnicastRemoteObject
 
 	public RemotePlayerControllerImp() throws RemoteException {
 		super();
-
 	}
 
 	@Override
@@ -40,6 +39,11 @@ public class RemotePlayerControllerImp extends UnicastRemoteObject
 	@Override
 	public void yourTurn() throws RemoteException {
 		playerController.yourTurn();
+	}
+
+	@Override
+	public void opponentConnected() throws RemoteException {
+		playerController.opponentConnected();
 	}
 
 	@Override

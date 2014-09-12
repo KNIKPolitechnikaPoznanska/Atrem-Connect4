@@ -16,7 +16,7 @@ import atrem.connect4.game.player.PlayerController;
 import atrem.connect4.game.player.PlayerId;
 
 public class GameControllerService implements GameController {
-	RemoteGameController remoteGameController;
+	private RemoteGameController remoteGameController;
 
 	public GameControllerService(RemoteGameController remoteGameController) {
 		this.remoteGameController = remoteGameController;
@@ -27,7 +27,6 @@ public class GameControllerService implements GameController {
 		try {
 			return remoteGameController.move(slot);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			System.out.println("wyjatek w move");
 		}
 		return 0;
@@ -38,17 +37,25 @@ public class GameControllerService implements GameController {
 		try {
 			remoteGameController.startNewGame();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	@Override
-	public void wakeUpGCr() {
+	public void connectPlayer() {
 		try {
-			remoteGameController.wakeUpGCr();
+			remoteGameController.connectPlayer();
 		} catch (RemoteException e) {
-			System.out.println("wyjatek w remoteGameController");
+			System.out.println("RemoteGameController: connect");
+		}
+	}
+
+	@Override
+	public void endPlayerInit() {
+		try {
+			remoteGameController.endPlayerInit();
+		} catch (RemoteException e) {
+			System.out.println("RemoteGameController: endPlInit");
 		}
 	}
 
@@ -102,8 +109,7 @@ public class GameControllerService implements GameController {
 		try {
 			return remoteGameController.getHoleState(rows, slots);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			System.out.println("wyjatek w remoteGameController");
+			System.out.println("remoteGameController: holestate");
 		}
 		return null;
 	}
@@ -215,7 +221,7 @@ public class GameControllerService implements GameController {
 	}
 
 	@Override
-	public GameState getGamestate() {
+	public GameState getGameState() {
 		try {
 			return remoteGameController.getGamestate();
 		} catch (RemoteException e) {
@@ -249,9 +255,8 @@ public class GameControllerService implements GameController {
 		try {
 			remoteGameController.setGamestate(gamestate);
 		} catch (RemoteException e) {
-			System.out.println("wyjatek w remoteGameController: GameState");
+			System.out.println("remoteGameController: GameState");
 		}
-
 	}
 
 	@Override
@@ -259,7 +264,7 @@ public class GameControllerService implements GameController {
 		try {
 			return remoteGameController.getLogic();
 		} catch (RemoteException e) {
-			System.out.println("wyjatek w remoteGameController: Logic");
+			System.out.println("RemoteGameController Error: Logic");
 		}
 		return null;
 	}
@@ -277,12 +282,11 @@ public class GameControllerService implements GameController {
 	@Override
 	public PlayerAttributes getPlayer1Attributes() {
 		try {
-			return getPlayer1Attributes();
+			return remoteGameController.getPlayer1Attributes();
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new Error(e);
 		}
-
 	}
 
 	@Override
@@ -299,7 +303,6 @@ public class GameControllerService implements GameController {
 		try {
 			return remoteGameController.getPlayer2Attributes();
 		} catch (RemoteException e) {
-
 			e.printStackTrace();
 		}
 		return null;

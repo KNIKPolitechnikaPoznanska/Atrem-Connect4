@@ -6,8 +6,8 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 import atrem.connect4.game.GameState;
-import atrem.connect4.game.Move;
 import atrem.connect4.game.Logic;
+import atrem.connect4.game.Move;
 import atrem.connect4.game.ResultState;
 import atrem.connect4.game.board.Board;
 import atrem.connect4.game.board.HoleState;
@@ -21,7 +21,9 @@ public interface RemoteGameController extends Remote {
 
 	public abstract void startNewGame() throws RemoteException;
 
-	public abstract void wakeUpGCr() throws RemoteException;
+	public abstract void connectPlayer() throws RemoteException;
+
+	public abstract void endPlayerInit() throws RemoteException;
 
 	public abstract void analyseDecision() throws RemoteException;
 

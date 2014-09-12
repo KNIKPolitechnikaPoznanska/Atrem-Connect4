@@ -38,7 +38,7 @@ public class OnlineSettingsBox extends JDialog {
 	/**
 	 * ActionPerformed on Connect Buttton Press.
 	 */
-	protected void connectButtonPressed() {
+	private void connectButtonPressed() {
 		if (saveSettings()) {
 			gameConfig.setupOnlineClientSettings();
 			dispose();

@@ -16,7 +16,9 @@ public interface GameController {
 
 	public abstract void startNewGame();
 
-	public abstract void wakeUpGCr();
+	public abstract void connectPlayer();
+
+	public abstract void endPlayerInit();
 
 	public abstract void analyseDecision();
 
@@ -52,7 +54,7 @@ public interface GameController {
 
 	public abstract void setPlayer2(PlayerController player2);
 
-	public abstract GameState getGamestate();
+	public abstract GameState getGameState();
 
 	public abstract PlayerController getCurrentPlayer();
 
