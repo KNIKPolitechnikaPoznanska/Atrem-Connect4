@@ -82,13 +82,6 @@ public class DialogSettingsBox extends JDialog {
 
 	}
 
-	public DialogSettingsBox(RemoteGameFactory gameFactory) {
-
-		this();
-		this.gameFactory2 = gameFactory;
-
-	}
-
 	/**
 	 * Klikniêcie guzika "Anuluj"
 	 */

@@ -2,7 +2,6 @@ package atrem.connect4.game;
 
 import java.awt.Color;
 
-import testy.game.remote.LocalGameController;
 import testy.game.remote.Player1;
 import testy.game.remote.RemoteGameController;
 import atrem.connect4.game.player.PlayerAttributes;
@@ -24,18 +23,8 @@ public class RemoteGameFactory {
 	GameController gameController;
 
 	// private PlayerAttributes player;
-	public RemoteGameFactory(RemoteGameController gameController) {
-		// SwingUtilities.invokeLater(new Runnable() {
-		//
-		// @Override
-		// public void run() {
-		// (RemoteGameFactory.this);
-		//
-		// }
-		// });
-		this.connect = gameController;
-		this.gameController = new LocalGameController(connect);
-		dialogBox = new DialogSettingsBox(this);
+	public RemoteGameFactory() {
+		dialogBox = new DialogSettingsBox();
 		this.waitForDialogBox();
 
 		// readSettings();
