@@ -4,12 +4,16 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import executableRMIclases.Client;
 
 public class NetPlayerPanel extends JPanel {
 	private JTextField txtGracz;
@@ -18,6 +22,7 @@ public class NetPlayerPanel extends JPanel {
 	private Color color;
 	JLabel lblNewLabel, lblGraSieciowa, lblNewLabel_1, lblNewLabel_2,
 			lblNewLabel_3;
+	private Client client;
 
 	public NetPlayerPanel(NetPlayerFrame netPlayerFrame) {
 		setBackground(Color.ORANGE);
@@ -72,6 +77,26 @@ public class NetPlayerPanel extends JPanel {
 		add(lblNewLabel_3);
 
 		JButton btnNewButton = new JButton("GO!");
+		btnNewButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					client = new Client(txtGracz.getText(), color, txtIp
+							.getText());
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotBoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+
+		netPlayerFrame.dispose();
 		btnNewButton.setBounds(292, 248, 89, 23);
 		add(btnNewButton);
 	}

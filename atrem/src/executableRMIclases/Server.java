@@ -31,7 +31,7 @@ public class Server {
 		}
 		Registry registry = null;
 		try {
-			registry = LocateRegistry.createRegistry(80);
+			registry = LocateRegistry.createRegistry(1234);
 		} catch (RemoteException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
