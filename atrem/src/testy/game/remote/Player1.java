@@ -8,17 +8,7 @@ import atrem.connect4.game.RemoteGameFactory;
 import atrem.connect4.game.player.PlayerAttributes;
 import atrem.connect4.game.player.PlayerId;
 
-public class Player1 implements Runnable {
-
-	public static void main(String[] args) throws RemoteException,
-			NotBoundException, InterruptedException {
-
-		PlayerAttributes playerAttributes = new PlayerAttributes("patryk",
-				PlayerId.PLAYER1, 0, Color.GREEN);
-		Player1 player = new Player1(playerAttributes);
-
-		player.createRemotePlayer();
-	}
+public class Player1 {
 
 	private PlayerAttributes playerAttributes;
 
@@ -27,7 +17,7 @@ public class Player1 implements Runnable {
 		remoteGameFactory.startConnection();
 
 		try {
-			remoteGameFactory.createPlayer();
+			remoteGameFactory.createPlayer(playerAttributes);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -37,11 +27,14 @@ public class Player1 implements Runnable {
 		this.playerAttributes = playerAttributes;
 	}
 
-	@Override
-	public void run() {
+	public static void main(String[] args) throws RemoteException,
+			NotBoundException, InterruptedException {
 
-		this.createRemotePlayer();
+		PlayerAttributes playerAttributes = new PlayerAttributes("patryk",
+				PlayerId.PLAYER1, 0, Color.GREEN);
+		Player1 player = new Player1(playerAttributes);
 
+		player.createRemotePlayer();
 	}
 
 }
