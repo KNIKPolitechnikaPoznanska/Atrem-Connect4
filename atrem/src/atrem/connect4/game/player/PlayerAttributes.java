@@ -13,10 +13,10 @@ public class PlayerAttributes implements Serializable {
 	private int playerPoints;
 	private Color playerColor;
 
-	public PlayerAttributes(String playerName, PlayerId playerId,
-			int playerPoints, Color playerColor) {
+	public PlayerAttributes(String playerName, int playerPoints,
+			Color playerColor) {
 		this.playerName = playerName;
-		this.playerId = playerId;
+		// this.playerId = playerId;
 		this.playerPoints = playerPoints;
 		this.playerColor = playerColor;
 	}
