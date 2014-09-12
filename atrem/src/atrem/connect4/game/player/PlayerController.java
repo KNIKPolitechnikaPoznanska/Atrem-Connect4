@@ -23,6 +23,4 @@ public interface PlayerController {
 
 	public abstract PlayerAttributes getPlayerAttributes();
 
-	public abstract void sendOpponentInformation(
-			PlayerAttributes playerAttributes);
 }

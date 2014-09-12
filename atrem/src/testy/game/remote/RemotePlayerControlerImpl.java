@@ -25,9 +25,10 @@ public class RemotePlayerControlerImpl extends UnicastRemoteObject implements
 			PlayerAttributes playerAttributes) {
 		// PlayerAttributes playerAttributes = new PlayerAttributes("patryk",
 		// playerId, 0, Color.BLUE);
+		PlayerId playerId = playerAttributes.getPlayerId();
+		Color color = gameController.getOpponentColor(playerId);
+		player = new SwingPresenter(gameController, playerAttributes, color, 0);
 
-		player = new SwingPresenter(gameController, playerAttributes,
-				Color.GRAY, 0);
 	}
 
 	@Override

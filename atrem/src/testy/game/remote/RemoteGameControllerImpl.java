@@ -1,5 +1,6 @@
 package testy.game.remote;
 
+import java.awt.Color;
 import java.awt.Point;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -194,5 +195,11 @@ public class RemoteGameControllerImpl extends UnicastRemoteObject implements
 			throws RemoteException {
 		gameController.setPlayer2Attributes(player2Attributes);
 
+	}
+
+	@Override
+	public Color getOpponentColor(PlayerId playerId) throws RemoteException {
+
+		return gameController.getOpponentColor(playerId);
 	}
 }

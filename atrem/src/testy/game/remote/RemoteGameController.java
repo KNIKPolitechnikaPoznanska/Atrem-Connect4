@@ -1,5 +1,6 @@
 package testy.game.remote;
 
+import java.awt.Color;
 import java.awt.Point;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -68,13 +69,16 @@ public interface RemoteGameController extends Remote {
 			throws RemoteException;
 
 	public abstract PlayerAttributes getPlayer1Attributes()
-			throws RemoteException;;
+			throws RemoteException;
 
 	public void setPlayer1Attributes(PlayerAttributes player1Attributes)
-			throws RemoteException;;
+			throws RemoteException;
 
-	public PlayerAttributes getPlayer2Attributes() throws RemoteException;;
+	public PlayerAttributes getPlayer2Attributes() throws RemoteException;
 
 	public void setPlayer2Attributes(PlayerAttributes player2Attributes)
-			throws RemoteException;;
+			throws RemoteException;
+
+	public abstract Color getOpponentColor(PlayerId playerId)
+			throws RemoteException;
 }

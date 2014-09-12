@@ -48,7 +48,7 @@ public class SwingPresenter implements PlayerController {
 		this.playerAttributes = playerAttributes;
 		this.playerId = playerAttributes.getPlayerId();
 		this.playerColor = playerAttributes.getPlayerColor();
-		this.opponentColor = opponentColor;
+		this.opponentColor = gameController.getOpponentColor(playerId);
 		setupFrame();
 		slots = gameController.getBoard().getSlots();
 		rows = gameController.getBoard().getRows();

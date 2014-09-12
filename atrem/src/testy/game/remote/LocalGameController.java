@@ -1,5 +1,6 @@
 package testy.game.remote;
 
+import java.awt.Color;
 import java.awt.Point;
 import java.rmi.RemoteException;
 import java.util.List;
@@ -314,5 +315,16 @@ public class LocalGameController implements GameController {
 			throw new Error(e);
 		}
 
+	}
+
+	@Override
+	public Color getOpponentColor(PlayerId playerId) {
+
+		try {
+			return remoteGameController.getOpponentColor(playerId);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			throw new Error();
+		}
 	}
 }

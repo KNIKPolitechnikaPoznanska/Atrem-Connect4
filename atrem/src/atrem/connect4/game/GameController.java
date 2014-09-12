@@ -1,5 +1,6 @@
 package atrem.connect4.game;
 
+import java.awt.Color;
 import java.awt.Point;
 import java.util.List;
 
@@ -49,6 +50,8 @@ public interface GameController {
 	public abstract PlayerController getCurrentPlayer();
 
 	public abstract ResultState getResult();
+
+	public abstract Color getOpponentColor(PlayerId playerId);
 
 	// Settery
 	public abstract void setResult(ResultState result);

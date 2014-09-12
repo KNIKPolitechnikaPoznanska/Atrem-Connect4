@@ -38,8 +38,9 @@ public class RemoteGameFactory {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		playerAttributes = new PlayerAttributes("patryk", PlayerId.PLAYER1, 0,
-				Color.BLUE);
+		// playerAttributes = new PlayerAttributes("patryk", PlayerId.PLAYER1,
+		// 0,
+		// Color.BLUE);
 
 	}
 
@@ -84,7 +85,12 @@ public class RemoteGameFactory {
 	public void createPlayer() throws RemoteException {
 
 		gameController = new LocalGameController(connect);
+
 		PlayerId playerId = connect.addPlayer(player);
+		if (playerId == PlayerId.PLAYER1)
+			playerAttributes = gameController.getPlayer1Attributes();
+		if (playerId == PlayerId.PLAYER2)
+			playerAttributes = gameController.getPlayer2Attributes();
 		playerAttributes.setPlayerId(playerId);
 		player.createPlayer(gameController, playerAttributes);
 

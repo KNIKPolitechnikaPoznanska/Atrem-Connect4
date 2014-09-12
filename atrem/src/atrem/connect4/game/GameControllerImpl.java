@@ -23,7 +23,7 @@ public class GameControllerImpl implements Runnable, GameController {
 	private ResultState resultState = ResultState.NO_WIN;
 	private GameState gameState = GameState.PRE_INIT;
 	private PlayerAttributes player1Attributes = new PlayerAttributes("patryk",
-			PlayerId.PLAYER1, 0, Color.BLUE);
+			PlayerId.PLAYER1, 0, Color.GREEN);
 
 	private PlayerAttributes player2Attributes = new PlayerAttributes("bartek",
 			PlayerId.PLAYER1, 0, Color.GRAY);
@@ -172,6 +172,19 @@ public class GameControllerImpl implements Runnable, GameController {
 		default:
 			break;
 		}
+	}
+
+	@Override
+	public Color getOpponentColor(PlayerId playerId) {
+		switch (playerId) {
+		case PLAYER1:
+			return player2Attributes.getPlayerColor();
+		case PLAYER2:
+			return player1Attributes.getPlayerColor();
+		default:
+			return Color.BLACK;
+		}
+
 	}
 
 	/*
