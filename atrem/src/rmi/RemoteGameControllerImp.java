@@ -25,7 +25,7 @@ public class RemoteGameControllerImp extends UnicastRemoteObject implements
 			throws RemoteException {
 		super();
 		this.gameController = gameController;
-		// TODO Auto-generated constructor stub
+
 	}
 
 	@Override
@@ -183,8 +183,7 @@ public class RemoteGameControllerImp extends UnicastRemoteObject implements
 		PlayerController playerController = new PlayerControllerService(
 				remotePlayerController);
 		if (gameController.getPlayer1() == null) {
-			playerController.getPlayerAttributes()
-					.setPlayerId(PlayerId.PLAYER1);
+			playerController.setPlayerId(PlayerId.PLAYER1);
 			System.out.println("if" + playerController.getPlayerId());
 			gameController.setPlayer1(playerController);
 		} else if (gameController.getPlayer2() == null) {
