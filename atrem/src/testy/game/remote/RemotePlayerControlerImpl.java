@@ -16,7 +16,7 @@ public class RemotePlayerControlerImpl extends UnicastRemoteObject implements
 
 	private PlayerController player;
 
-	protected RemotePlayerControlerImpl() throws RemoteException {
+	public RemotePlayerControlerImpl() throws RemoteException {
 		super();
 	}
 
