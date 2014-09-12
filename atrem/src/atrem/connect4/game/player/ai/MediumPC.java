@@ -1,5 +1,6 @@
 package atrem.connect4.game.player.ai;
 
+import java.awt.Color;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -181,5 +182,23 @@ public class MediumPC implements PlayerController {
 	@Override
 	public PlayerAttributes getPlayerAttributes() {
 		return playerAttributes;
+	}
+
+	@Override
+	public Color getColor() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Color getOppColor() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setPlayerId(PlayerId playerId) {
+		// TODO Auto-generated method stub
+
 	}
 }

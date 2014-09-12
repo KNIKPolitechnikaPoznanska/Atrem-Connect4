@@ -27,6 +27,7 @@ public class SwingPresenter implements PlayerController {
 	private SideBoard sideBoard;
 	private Color playerColor, opponentColor;
 	private Stats stats;
+
 	private Dimension screenSize;
 	private DialogInformationBoxes informationBoxes;
 	private int frameHeight, frameWidth, screenHeight, screenWidth;
@@ -115,9 +116,9 @@ public class SwingPresenter implements PlayerController {
 							.getPlayerPoints(), PlayerId.PLAYER1);
 					stats.setPointsPlayer(gameController.getPlayer2Attributes()
 							.getPlayerPoints(), PlayerId.PLAYER2);
-					stats.setName(gameController.getPlayer1Attributes()
-							.getName(), PlayerId.PLAYER1);
 					stats.setName(gameController.getPlayer2Attributes()
+							.getName(), PlayerId.PLAYER1);
+					stats.setName(gameController.getPlayer1Attributes()
 							.getName(), PlayerId.PLAYER2);
 					gameController.wakeUpGCr();
 					gameBoard.enableButtons(blockButton);
@@ -231,9 +232,9 @@ public class SwingPresenter implements PlayerController {
 					.getName());
 		} else {
 			sideBoard.setTokenPl2();
-			sideBoard.setPl1Name(gameController.getPlayer2Attributes()
+			sideBoard.setPl1Name(gameController.getPlayer1Attributes()
 					.getName());
-			sideBoard.setPl2Name(gameController.getPlayer1Attributes()
+			sideBoard.setPl2Name(gameController.getPlayer2Attributes()
 					.getName());
 			// 2 - 1 ;
 		}
@@ -307,9 +308,22 @@ public class SwingPresenter implements PlayerController {
 	}
 
 	@Override
+	public void setOppColor(Color color) {
+		opponentColor = color;
+	}
+
+	@Override
 	public void setPlayerId(PlayerId playerId) {
 		playerAttributes.setPlayerId(playerId);
 		System.out.println("jestem w setId" + playerId);
 
+	}
+
+	public Stats getStats() {
+		return stats;
+	}
+
+	public void setStats(Stats stats) {
+		this.stats = stats;
 	}
 }

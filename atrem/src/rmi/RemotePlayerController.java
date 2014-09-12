@@ -35,6 +35,10 @@ public interface RemotePlayerController extends Remote {
 	public abstract PlayerAttributes getPlayerAttributes()
 			throws RemoteException;
 
-	public void createPlayer(GameController gameControllerService)
-			throws RemoteException;
+	public void createPlayer(GameController gameControllerService,
+			PlayerAttributes playerAttributes) throws RemoteException;
+
+	public void setOppColor(Color color) throws RemoteException;
+
+	public void updateOpponentInfo() throws RemoteException;
 }

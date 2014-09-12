@@ -9,6 +9,8 @@ public interface PlayerController {
 
 	public abstract String getName();
 
+	public void setOppColor(Color color);
+
 	public abstract void setName(String playerName);
 
 	public abstract PlayerId getPlayerId();
@@ -30,5 +32,7 @@ public interface PlayerController {
 	public Color getOppColor();
 
 	public void setPlayerId(PlayerId playerId);
+
+	public void updateOpponentInfo();
 
 }

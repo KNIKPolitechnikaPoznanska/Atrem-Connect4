@@ -44,6 +44,8 @@ public class GameFactory {
 		gameController = new GameControllerImpl();
 		gameController.setBoard(board);
 		createPlayerGame();
+		gameController.setPlayer1Attributes(player1.getPlayerAttributes());
+		gameController.setPlayer2Attributes(player2.getPlayerAttributes());
 		gameController.setPlayer1(player1);
 		gameController.setPlayer2(player2);
 		gameController.setPlayerTurn(randomFirstTurn());

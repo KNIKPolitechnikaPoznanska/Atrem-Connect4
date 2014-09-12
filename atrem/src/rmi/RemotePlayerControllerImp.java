@@ -22,10 +22,10 @@ public class RemotePlayerControllerImp extends UnicastRemoteObject implements
 	}
 
 	@Override
-	public void createPlayer(GameController gameControllerService) {
+	public void createPlayer(GameController gameControllerService,
+			PlayerAttributes playerAttributes) {
 		playerController = new SwingPresenter(gameControllerService,
-				gameControllerService.getPlayer1Attributes(), new Color(2, 2,
-						200), 0);
+				playerAttributes, null, 0);
 	}
 
 	@Override
@@ -90,6 +90,18 @@ public class RemotePlayerControllerImp extends UnicastRemoteObject implements
 	@Override
 	public void setPlayerId(PlayerId playerId) throws RemoteException {
 		playerController.setPlayerId(playerId);
+
+	}
+
+	@Override
+	public void setOppColor(Color color) {
+		playerController.setOppColor(color);
+
+	}
+
+	@Override
+	public void updateOpponentInfo() throws RemoteException {
+		playerController.updateOpponentInfo();
 
 	}
 

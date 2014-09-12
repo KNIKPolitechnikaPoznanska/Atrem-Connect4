@@ -13,13 +13,13 @@ import rmi.RemotePlayerControllerImp;
 import atrem.connect4.game.GameController;
 import atrem.connect4.game.player.PlayerAttributes;
 
-public class Client2 {
+public class Client1 {
 
 	public static void main(String[] args) throws RemoteException,
 			NotBoundException, InterruptedException {
-		System.out.println("client2 start (pawel)");
-		PlayerAttributes playerAttributes = new PlayerAttributes("pawel", null,
-				0, new Color(20, 255, 3));
+		System.out.println("cient1start (wojtek)");
+		PlayerAttributes playerAttributes = new PlayerAttributes("wojtek",
+				null, 0, new Color(10, 10, 150));
 		Registry registry = LocateRegistry.getRegistry(80);
 
 		RemoteGameController remoteGameController = (RemoteGameController) registry
@@ -36,6 +36,7 @@ public class Client2 {
 		Thread.sleep(10000);
 		remotePlayerController.createPlayer(gameControllerService,
 				playerAttributes);
+
 		remoteGameController.addPlayerController(remotePlayerController);
 
 	}
