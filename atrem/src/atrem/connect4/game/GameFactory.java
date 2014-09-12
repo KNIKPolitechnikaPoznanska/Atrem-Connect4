@@ -20,6 +20,7 @@ public class GameFactory {
 	private PlayerController player1, player2;
 	private PlayerAttributes player1Attributes, player2Attributes,
 			aiAttributes;
+
 	private GameController gameController;
 	private String player2Name, player1Name, player1Type, player2Type,
 			gamePl1Type, gamePl2Type;
@@ -220,5 +221,9 @@ public class GameFactory {
 
 	public void setPlayer2Type(String player2Type) {
 		this.player2Type = player2Type;
+	}
+
+	public PlayerAttributes getPlayer1Attributes() {
+		return player1Attributes;
 	}
 }

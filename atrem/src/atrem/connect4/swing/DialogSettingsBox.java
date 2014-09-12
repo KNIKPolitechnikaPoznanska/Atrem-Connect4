@@ -24,9 +24,11 @@ import javax.swing.WindowConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import testy.game.remote.Player1;
 import atrem.connect4.Connect4Swing;
 import atrem.connect4.game.GameConfig;
 import atrem.connect4.game.GameFactory;
+import atrem.connect4.game.player.PlayerAttributes;
 
 public class DialogSettingsBox extends JDialog {
 	/**
@@ -101,6 +103,11 @@ public class DialogSettingsBox extends JDialog {
 			gameConfig.setupMultiGameFactory();
 			dispose();
 			System.out.println("NEW uruchom multi");
+			PlayerAttributes playerAttributes = gameFactory
+					.getPlayer1Attributes();
+
+			new Thread(new Player1(playerAttributes));
+			System.out.println("watek");
 		}
 	}
 
