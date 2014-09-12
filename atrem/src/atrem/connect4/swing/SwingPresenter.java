@@ -225,12 +225,16 @@ public class SwingPresenter implements PlayerController {
 		// sideBoard.setTokenPl2();
 		if (playerId == PlayerId.PLAYER1) {
 			sideBoard.setTokenPl1();
-			sideBoard.setPl1Name(gameController.getPlayer1().getName());
-			sideBoard.setPl2Name(gameController.getPlayer2().getName());
+			sideBoard.setPl1Name(gameController.getPlayer1Attributes()
+					.getName());
+			sideBoard.setPl2Name(gameController.getPlayer2Attributes()
+					.getName());
 		} else {
 			sideBoard.setTokenPl2();
-			sideBoard.setPl1Name(gameController.getPlayer2().getName());
-			sideBoard.setPl2Name(gameController.getPlayer1().getName());
+			sideBoard.setPl1Name(gameController.getPlayer2Attributes()
+					.getName());
+			sideBoard.setPl2Name(gameController.getPlayer1Attributes()
+					.getName());
 			// 2 - 1 ;
 		}
 
