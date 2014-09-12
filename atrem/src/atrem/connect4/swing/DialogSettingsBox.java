@@ -27,6 +27,7 @@ import javax.swing.event.ChangeListener;
 import atrem.connect4.Connect4Swing;
 import atrem.connect4.game.GameConfig;
 import atrem.connect4.game.GameFactory;
+import atrem.connect4.game.RemoteGameFactory;
 
 public class DialogSettingsBox extends JDialog {
 	/**
@@ -53,6 +54,7 @@ public class DialogSettingsBox extends JDialog {
 	private Color token1Color, token2Color;
 	protected Color color1 = new Color(227, 252, 0), color2 = new Color(252, 0,
 			67);
+	private RemoteGameFactory gameFactory2;
 
 	/**
 	 * Create the settings dialog.
@@ -80,6 +82,13 @@ public class DialogSettingsBox extends JDialog {
 
 	}
 
+	public DialogSettingsBox(RemoteGameFactory gameFactory) {
+
+		this();
+		this.gameFactory2 = gameFactory;
+
+	}
+
 	/**
 	 * Klikniêcie guzika "Anuluj"
 	 */
@@ -98,10 +107,18 @@ public class DialogSettingsBox extends JDialog {
 	 * Klikniêcie guzika "Start"
 	 */
 	private void startButtonPressed() {
-		if (saveSettings()) {
-			gameConfig.setupSettings();
-			dispose();
-			new Connect4Swing().init(gameConfig, gameFactory);
+		if (false == rBMulti1.isSelected()) {
+			if (saveSettings()) {
+				gameConfig.setupSettings();
+				dispose();
+				new Connect4Swing().init(gameConfig, gameFactory);
+			}
+		} else {
+			/**
+			 * uruchamianie tworzenie rmi
+			 */
+			System.out.println("uruchom multi");
+			gameFactory2.notifyAll();
 		}
 	}
 
@@ -121,6 +138,8 @@ public class DialogSettingsBox extends JDialog {
 			setPl1GameType("console");
 		if (rBSwing1.isSelected())
 			setPl1GameType("swing");
+		if (rBMulti1.isSelected())
+			setPl1GameType("multi");
 
 		if (rBSwing2.isSelected())
 			setPl2GameType("swing");

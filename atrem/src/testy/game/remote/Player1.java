@@ -49,6 +49,23 @@ public class Player1 {
 		playerAttributes.setPlayerId(playerId);
 		// gameController.set
 		player.createPlayer(gameController, playerAttributes);
+		if (args.length > 0) {
+			// gameFactory = new GameFactory();
+			// menu = new Menu(gameFactory);
+			// menu.runGame();
+		} else {
+			remoteGameFactory = new RemoteGameFactory();
+			player1 = remoteGameFactory.getPlayer();
+			/**
+			 * tutaj powinien byc juz wywolany start !
+			 */
+			remoteGameFactory.readSettings();
+			// player1.getAtt;
+			// config = new GameConfig(gameFactory);
+			// config.setDBox();
+			System.out.println(remoteGameFactory.getPlayer1name());
+
+		}
 		/**
 		 * tworzy remote board
 		 */

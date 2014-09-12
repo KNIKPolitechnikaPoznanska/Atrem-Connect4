@@ -2,6 +2,9 @@ package atrem.connect4.game;
 
 import java.awt.Color;
 
+import testy.game.remote.LocalGameController;
+import testy.game.remote.Player1;
+import testy.game.remote.RemoteGameController;
 import atrem.connect4.game.player.PlayerAttributes;
 import atrem.connect4.game.player.PlayerId;
 import atrem.connect4.swing.DialogSettingsBox;
@@ -16,13 +19,32 @@ public class RemoteGameFactory {
 	private String gamePl1Type;
 	private Color token1Color;
 	private PlayerAttributes player;
+	private Player1 main;
+	private RemoteGameController connect;
+	GameController gameController;
 
 	// private PlayerAttributes player;
+	public RemoteGameFactory(RemoteGameController gameController) {
+		// SwingUtilities.invokeLater(new Runnable() {
+		//
+		// @Override
+		// public void run() {
+		// (RemoteGameFactory.this);
+		//
+		// }
+		// });
+		this.connect = gameController;
+		this.gameController = new LocalGameController(connect);
+		dialogBox = new DialogSettingsBox(this);
+		this.waitForDialogBox();
+
+		// readSettings();
+	}
 
 	/**
 	 * TODO zmodyfikowac game config na potrzbe remote Game Facoty
 	 */
-	private void readSettings() {
+	public void readSettings() {
 		// TODO Auto-generated method stub
 		player1name = dialogBox.getPl1Name();
 		rows = dialogBox.getRows();
@@ -32,6 +54,14 @@ public class RemoteGameFactory {
 		token1Color = dialogBox.getToken1Color();
 		player = new PlayerAttributes(player1Type, PlayerId.PLAYER1, 0,
 				token1Color);
+	}
+
+	public synchronized void waitForDialogBox() {
+		try {
+			wait();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public String getPlayer1name() {
@@ -62,8 +92,4 @@ public class RemoteGameFactory {
 		return token1Color;
 	}
 
-	public RemoteGameFactory() {
-		dialogBox = new DialogSettingsBox();
-		readSettings();
-	}
 }
