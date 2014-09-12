@@ -1,19 +1,26 @@
 package testy.game.remote;
 
+import java.awt.Color;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 import atrem.connect4.game.RemoteGameFactory;
+import atrem.connect4.game.player.PlayerAttributes;
+import atrem.connect4.game.player.PlayerId;
 
-public class Player1 {
+public class Player1 implements Runnable {
 
 	public static void main(String[] args) throws RemoteException,
 			NotBoundException, InterruptedException {
 
-		Player1 player = new Player1();
+		PlayerAttributes playerAttributes = new PlayerAttributes("patryk",
+				PlayerId.PLAYER1, 0, Color.GREEN);
+		Player1 player = new Player1(playerAttributes);
 
 		player.createRemotePlayer();
 	}
+
+	private PlayerAttributes playerAttributes;
 
 	public void createRemotePlayer() {
 		RemoteGameFactory remoteGameFactory = new RemoteGameFactory();
@@ -24,6 +31,17 @@ public class Player1 {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public Player1(PlayerAttributes playerAttributes) {
+		this.playerAttributes = playerAttributes;
+	}
+
+	@Override
+	public void run() {
+
+		this.createRemotePlayer();
+
 	}
 
 }
