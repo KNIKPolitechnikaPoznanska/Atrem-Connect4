@@ -21,7 +21,7 @@ public class Client {
 
 		PlayerAttributes playerAttributes = new PlayerAttributes(name, null, 0,
 				color);
-		Registry registry = LocateRegistry.getRegistry("localhost", 1234);
+		Registry registry = LocateRegistry.getRegistry("ip", 1234);
 
 		RemoteGameController remoteGameController = (RemoteGameController) registry
 				.lookup("gc");
