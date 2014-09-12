@@ -21,8 +21,6 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.WindowConstants;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 import testy.game.remote.Player1;
 import atrem.connect4.Connect4Swing;
@@ -103,6 +101,7 @@ public class DialogSettingsBox extends JDialog {
 			gameConfig.setupMultiGameFactory();
 			dispose();
 			System.out.println("NEW uruchom multi");
+			gameFactory.createPlayerGame();
 			PlayerAttributes playerAttributes = gameFactory
 					.getPlayer1Attributes();
 
@@ -223,9 +222,9 @@ public class DialogSettingsBox extends JDialog {
 		buttonColor1 = new JButton();
 		buttonColor2 = new JButton();
 		rBConsole1 = new JRadioButton();
-		rBConsole1.addChangeListener(new ChangeListener() {
+		rBConsole1.addActionListener(new ActionListener() {
 			@Override
-			public void stateChanged(ChangeEvent e) {
+			public void actionPerformed(ActionEvent e) {
 				JRadioButton radio = (JRadioButton) e.getSource();
 				if (radio.isEnabled()) {
 					System.out.println("rb button console");
@@ -235,9 +234,9 @@ public class DialogSettingsBox extends JDialog {
 			}
 		});
 		rBSwing1 = new JRadioButton();
-		rBSwing1.addChangeListener(new ChangeListener() {
+		rBSwing1.addActionListener(new ActionListener() {
 			@Override
-			public void stateChanged(ChangeEvent e) {
+			public void actionPerformed(ActionEvent e) {
 				JRadioButton radio = (JRadioButton) e.getSource();
 				if (radio.isEnabled()) {
 					System.out.println("rb swing");
@@ -246,21 +245,31 @@ public class DialogSettingsBox extends JDialog {
 			}
 		});
 		rBMulti1 = new JRadioButton();
-
-		rBMulti1.addChangeListener(new ChangeListener() {
+		rBMulti1.addActionListener(new ActionListener() {
 			@Override
-			public void stateChanged(ChangeEvent event) {
-				JRadioButton radio = (JRadioButton) event.getSource();
+			public void actionPerformed(ActionEvent ButonClicked) {
+				JRadioButton radio = (JRadioButton) ButonClicked.getSource();
 				if (radio.isEnabled()) {
 					System.out.println("widze zznaczenie multi FALSE");
 					enablePlayer2Options(false);
 				}
-				// if (!radio.isEnabled()) {
-				// enablePlayer2Options(true);
-				// System.out.println("widze zznaczenie multi TRUE");
-				// }
 			}
 		});
+
+		// rBMulti1.addChangeListener(new ChangeListener() {
+		// @Override
+		// public void stateChanged(ChangeEvent event) {
+		// JRadioButton radio = (JRadioButton) event.getSource();
+		// if (radio.isEnabled()) {
+		// System.out.println("widze zznaczenie multi FALSE");
+		// enablePlayer2Options(false);
+		// }
+		// // if (!radio.isEnabled()) {
+		// // enablePlayer2Options(true);
+		// // System.out.println("widze zznaczenie multi TRUE");
+		// // }
+		// }
+		// });
 
 		rBConsole2 = new JRadioButton();
 		rBSwing2 = new JRadioButton();
