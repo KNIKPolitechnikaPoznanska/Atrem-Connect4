@@ -55,8 +55,7 @@ public class GameFactory {
 	 * Tworzy dla ka¿dego gracza w³asnego prezentera
 	 */
 	public void createPlayerGame() {
-		player1Attributes = new PlayerAttributes(player1Name, PlayerId.PLAYER1,
-				0, player1Color);
+		createMultiPLayer();
 		player2Attributes = new PlayerAttributes(player2Name, PlayerId.PLAYER2,
 				0, player2Color);
 		switch (player1Type) {
@@ -225,5 +224,10 @@ public class GameFactory {
 
 	public PlayerAttributes getPlayer1Attributes() {
 		return player1Attributes;
+	}
+
+	public void createMultiPLayer() {
+		player1Attributes = new PlayerAttributes(player1Name, PlayerId.PLAYER1,
+				0, player1Color);
 	}
 }

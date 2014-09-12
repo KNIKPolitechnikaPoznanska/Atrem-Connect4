@@ -101,7 +101,8 @@ public class DialogSettingsBox extends JDialog {
 			gameConfig.setupMultiGameFactory();
 			dispose();
 			System.out.println("NEW uruchom multi");
-			gameFactory.createPlayerGame();
+			gameFactory.createMultiPLayer();
+
 			PlayerAttributes playerAttributes = gameFactory
 					.getPlayer1Attributes();
 
