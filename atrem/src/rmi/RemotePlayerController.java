@@ -12,6 +12,8 @@ import atrem.connect4.game.player.PlayerId;
 public interface RemotePlayerController extends Remote {
 	public Color getColor() throws RemoteException;
 
+	public void setOppName(String name) throws RemoteException;
+
 	public Color getOppColor() throws RemoteException;
 
 	public void setPlayerId(PlayerId playerId) throws RemoteException;
@@ -40,5 +42,4 @@ public interface RemotePlayerController extends Remote {
 
 	public void setOppColor(Color color) throws RemoteException;
 
-	public void updateOpponentInfo() throws RemoteException;
 }

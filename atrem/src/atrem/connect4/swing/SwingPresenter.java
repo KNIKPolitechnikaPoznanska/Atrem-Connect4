@@ -310,6 +310,7 @@ public class SwingPresenter implements PlayerController {
 	@Override
 	public void setOppColor(Color color) {
 		opponentColor = color;
+
 	}
 
 	@Override
@@ -319,17 +320,9 @@ public class SwingPresenter implements PlayerController {
 
 	}
 
-	public Stats getStats() {
-		return stats;
-	}
-
-	public void setStats(Stats stats) {
-		this.stats = stats;
-	}
-
 	@Override
-	public void updateOpponentInfo() {
-		setStats
-
+	public void setOppName(String name) {
+		stats.setName(name);
 	}
+
 }

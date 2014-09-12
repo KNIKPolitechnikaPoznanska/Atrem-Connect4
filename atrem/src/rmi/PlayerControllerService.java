@@ -152,14 +152,13 @@ public class PlayerControllerService implements PlayerController {
 	}
 
 	@Override
-	public void updateOpponentInfo() {
+	public void setOppName(String name) {
 		try {
-			remotePlayerController.updateOpponentInfo();
+			remotePlayerController.setOppName(name);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 
 }
