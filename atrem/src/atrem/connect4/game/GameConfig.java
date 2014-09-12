@@ -38,13 +38,12 @@ public class GameConfig {
 		}
 	}
 
-	public void setMultiDBox() {
-		try {
-			dialogBox = new DialogSettingsBox();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	// public void setMultiDBox() {
+	// try {
+	// dialogBox = new DialogSettingsBox();
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// }
 
 	/**
 	 * Pobierz dane z okna dialogowego do config.
@@ -66,9 +65,22 @@ public class GameConfig {
 		token2Color = dialogBox.getToken2Color();
 	}
 
+	public void setupMultiSettings() {
+		player1name = dialogBox.getPl1Name();
+		player1Type = dialogBox.getPl1Type();
+		token1Color = dialogBox.getToken1Color();
+	}
+
 	/**
 	 * Ustaw gameFactory wartoœciami z Config.
 	 */
+
+	public void setupMultiGameFactory() {
+		gameFactory.setPlayer1Type(player1Type);
+		gameFactory.setPlayer1Name(player1name);
+		gameFactory.setToken1Color(token1Color);
+	}
+
 	public void setupGameFactory() {
 		gameFactory.setRows(rows);
 		gameFactory.setSlots(slots);

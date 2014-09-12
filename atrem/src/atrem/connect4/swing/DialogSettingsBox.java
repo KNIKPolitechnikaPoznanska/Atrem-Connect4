@@ -69,17 +69,6 @@ public class DialogSettingsBox extends JDialog {
 		this.setVisible(true);
 	}
 
-	public DialogSettingsBox() {
-		// this.gameConfig = swingConfig;
-		// this.gameFactory = gameFactory;
-		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		token1Color = color1;
-		token2Color = color2;
-		initComponents();
-		this.setVisible(true);
-
-	}
-
 	/**
 	 * Klikniêcie guzika "Anuluj"
 	 */
@@ -98,18 +87,28 @@ public class DialogSettingsBox extends JDialog {
 	 * Klikniêcie guzika "Start"
 	 */
 	private void startButtonPressed() {
-		if (false == rBMulti1.isSelected()) {
+
+		if (!(rBMulti1.isSelected())) {
 			if (saveSettings()) {
 				gameConfig.setupSettings();
 				dispose();
 				new Connect4Swing().init(gameConfig, gameFactory);
+
 			}
-		} else {
-			/**
-			 * uruchamianie tworzenie rmi
-			 */
-			System.out.println("uruchom multi");
+		} else if (saveDataForMulti()) {
+
+			gameConfig.setupMultiSettings();
+			gameConfig.setupMultiGameFactory();
+			dispose();
+			System.out.println("NEW uruchom multi");
 		}
+	}
+
+	private boolean saveDataForMulti() {
+		// TODO Auto-generated method stub
+		setPl1Name(TFieldPl1Name.getText());
+		setPl1Type(plTypeBox1.getSelectedItem().toString());
+		return true;
 	}
 
 	/**
@@ -128,8 +127,6 @@ public class DialogSettingsBox extends JDialog {
 			setPl1GameType("console");
 		if (rBSwing1.isSelected())
 			setPl1GameType("swing");
-		if (rBMulti1.isSelected())
-			setPl1GameType("multi");
 
 		if (rBSwing2.isSelected())
 			setPl2GameType("swing");
@@ -219,22 +216,45 @@ public class DialogSettingsBox extends JDialog {
 		buttonColor1 = new JButton();
 		buttonColor2 = new JButton();
 		rBConsole1 = new JRadioButton();
+		rBConsole1.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				JRadioButton radio = (JRadioButton) e.getSource();
+				if (radio.isEnabled()) {
+					System.out.println("rb button console");
+					enablePlayer2Options(true);
+
+				}
+			}
+		});
 		rBSwing1 = new JRadioButton();
+		rBSwing1.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				JRadioButton radio = (JRadioButton) e.getSource();
+				if (radio.isEnabled()) {
+					System.out.println("rb swing");
+					enablePlayer2Options(true);
+				}
+			}
+		});
 		rBMulti1 = new JRadioButton();
+
 		rBMulti1.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent event) {
-				JRadioButton button = (JRadioButton) event.getSource();
-
-				/**
-				 * ta metoda ma na celu zablokowanie gracza 2 zaraz po
-				 * utworzeniu swingwych komponentow
-				 */
-
-				disablePlayer2Input(button.isSelected());
-
+				JRadioButton radio = (JRadioButton) event.getSource();
+				if (radio.isEnabled()) {
+					System.out.println("widze zznaczenie multi FALSE");
+					enablePlayer2Options(false);
+				}
+				// if (!radio.isEnabled()) {
+				// enablePlayer2Options(true);
+				// System.out.println("widze zznaczenie multi TRUE");
+				// }
 			}
 		});
+
 		rBConsole2 = new JRadioButton();
 		rBSwing2 = new JRadioButton();
 		rBMulti2 = new JRadioButton();
@@ -815,19 +835,16 @@ public class DialogSettingsBox extends JDialog {
 		pack();
 	}
 
-	private void disablePlayer2Input(boolean b) {
-		if (b) {
-			boolean bool = false;
-			// TODO zmienic ta metode
-			TFieldPl2Name.setEnabled(bool);
-			plTypeBox2.setEnabled(bool);
-			buttonColor2.setEnabled(bool);
-			rBConsole2.setEnabled(bool);
-			rBSwing2.setSelected(bool);
-			rBSwing2.setEnabled(bool);
-			rBMulti2.setEnabled(bool);
-			rBMulti2.setSelected(true);
-		}
+	private void enablePlayer2Options(boolean b) {
+
+		TFieldPl2Name.setEnabled(b);
+		plTypeBox2.setEnabled(b);
+		buttonColor2.setEnabled(b);
+		rBConsole2.setEnabled(b);
+		rBSwing2.setEnabled(b);
+		rBMulti2.setEnabled(b);
+		rBMulti2.setSelected(!b);
+
 	}
 
 	public String getPl1GameType() {
