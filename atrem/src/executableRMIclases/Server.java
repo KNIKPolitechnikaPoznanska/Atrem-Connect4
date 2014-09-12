@@ -1,5 +1,6 @@
 package executableRMIclases;
 
+import java.rmi.AccessException;
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -14,18 +15,39 @@ import atrem.connect4.game.player.PlayerId;
 
 public class Server {
 
-	public static void main(String[] args) throws RemoteException,
-			AlreadyBoundException {
+	public Server() {
 		System.out.println("serwer start");
 		GameController gameController;
 		gameController = new GameControllerImpl();
 		Board board = new Board(6, 7);
 		gameController.setBoard(board);
-		gameController.setPlayerTurn(PlayerId.PLAYER1);
-		RemoteGameController remoteGameController = new RemoteGameControllerImp(
-				gameController);
-		Registry registry = LocateRegistry.createRegistry(80);
-		registry.bind("gc", remoteGameController);
+		gameController.setPlayerTurn(PlayerId.PLAYER2);
+		RemoteGameController remoteGameController = null;
+		try {
+			remoteGameController = new RemoteGameControllerImp(gameController);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Registry registry = null;
+		try {
+			registry = LocateRegistry.createRegistry(80);
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			registry.bind("gc", remoteGameController);
+		} catch (AccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (AlreadyBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		// try {
 		// Thread.sleep(10000);
 		// } catch (InterruptedException e) {

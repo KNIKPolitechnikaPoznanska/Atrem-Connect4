@@ -14,7 +14,7 @@ import atrem.connect4.swing.SwingPresenter;
 public class RemotePlayerControllerImp extends UnicastRemoteObject implements
 		RemotePlayerController {
 	private PlayerAttributes playerAttributes = new PlayerAttributes("wojtek",
-			PlayerId.PLAYER1, 0, new Color(100, 100, 100));
+			PlayerId.PLAYER1, 0, new Color(0, 0, 0));
 
 	private PlayerController playerController;
 
@@ -26,7 +26,7 @@ public class RemotePlayerControllerImp extends UnicastRemoteObject implements
 	@Override
 	public void createPlayer(GameController gameControllerService) {
 		playerController = new SwingPresenter(gameControllerService,
-				playerAttributes, new Color(2, 2, 200), 0);
+				playerAttributes, new Color(255, 255, 0), 0);
 	}
 
 	@Override

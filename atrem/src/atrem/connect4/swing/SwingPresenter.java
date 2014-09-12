@@ -65,7 +65,7 @@ public class SwingPresenter implements PlayerController {
 			@Override
 			public void run() {
 				gameBoard.enableButtons(true);
-				sideBoard.tokenEnable();
+				// sideBoard.tokenEnable();
 				LastSlot = gameController.getLastMove().getLastSlot();
 				LastRow = gameController.getLastMove().getLastRow();
 
@@ -89,7 +89,7 @@ public class SwingPresenter implements PlayerController {
 		} else {
 			refreshView(emptySpot, slot);
 			gameBoard.enableButtons(false);
-			sideBoard.tokenDisable();
+			// sideBoard.tokenDisable();
 
 		}
 	}
@@ -108,22 +108,22 @@ public class SwingPresenter implements PlayerController {
 					setupBounds();
 					gameBoard = frame.getGameBoard();
 					informationBoxes = new DialogInformationBoxes();
-					sideBoard = frame.getSideBoard();
-					sideBoard.setBackground(Color.orange);
-					stats = frame.getStats();
-					stats.setPointsPlayer(gameController.getPlayer1Attributes()
-							.getPlayerPoints(), PlayerId.PLAYER1);
-					stats.setPointsPlayer(gameController.getPlayer2Attributes()
-							.getPlayerPoints(), PlayerId.PLAYER2);
-					stats.setName(gameController.getPlayer1Attributes()
-							.getName(), PlayerId.PLAYER1);
-					stats.setName(gameController.getPlayer2Attributes()
-							.getName(), PlayerId.PLAYER2);
+					// sideBoard = frame.getSideBoard();
+					// sideBoard.setBackground(Color.orange);
+					// stats = frame.getStats();
+					// stats.setPointsPlayer(gameController.getPlayer1Attributes()
+					// .getPlayerPoints(), PlayerId.PLAYER1);
+					// stats.setPointsPlayer(gameController.getPlayer2Attributes()
+					// .getPlayerPoints(), PlayerId.PLAYER2);
+					// stats.setName(gameController.getPlayer1Attributes()
+					// .getName(), PlayerId.PLAYER1);
+					// stats.setName(gameController.getPlayer2Attributes()
+					// .getName(), PlayerId.PLAYER2);
 					gameController.wakeUpGCr();
 					gameBoard.enableButtons(blockButton);
-					setNamesAndToken();
-					sideBoard.setPreferredSize(new Dimension(215, 200));
-					stats.setPreferredSize(new Dimension(215, 200));
+					// setNamesAndToken();
+					// sideBoard.setPreferredSize(new Dimension(215, 200));
+					// stats.setPreferredSize(new Dimension(215, 200));
 					frame.pack();
 					frame.setResizable(false);
 				} catch (Exception e) {
