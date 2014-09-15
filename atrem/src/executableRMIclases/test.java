@@ -13,7 +13,7 @@ public class test {
 	public static void main(String[] args) {
 		menu = new MenuFrame();
 		System.out.println("ll");
-		menu.setVisible(true);
+		// menu.setVisible(true);
 		// System.out.println(inet.gcccccetLocalHost().getHostAddress());
 
 	}

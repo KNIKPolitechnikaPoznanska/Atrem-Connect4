@@ -15,7 +15,6 @@ import atrem.connect4.game.player.PlayerAttributes;
 import atrem.connect4.game.player.PlayerController;
 import atrem.connect4.game.player.PlayerDecision;
 import atrem.connect4.game.player.PlayerId;
-import atrem.connect4.swing.DialogInformationBoxes;
 
 public class MediumPC implements PlayerController {
 	private Logic logic;
@@ -24,8 +23,8 @@ public class MediumPC implements PlayerController {
 	private Board board;
 	private Random rand;
 	private GameController gameController;
-	private DialogInformationBoxes informationBoxes;
 	private PlayerId playerId;
+	private int decision;
 
 	public MediumPC(GameController gameController,
 			PlayerAttributes playerAttributes, int playerPoints) {
@@ -35,7 +34,6 @@ public class MediumPC implements PlayerController {
 		this.logic = new Logic(gameController);
 		board = gameController.getBoard();
 		rand = new Random();
-		informationBoxes = new DialogInformationBoxes();
 		gameController.wakeUpGCr();
 	}
 
@@ -137,7 +135,7 @@ public class MediumPC implements PlayerController {
 
 	@Override
 	public void endOfGame(ResultState resultGame) {
-		gameController.wakeUpGCr();
+		decision = 0;
 		if (resultGame == ResultState.PLAYER_1_WIN) {
 			if (playerId == PlayerId.PLAYER1)
 				playerAttributes.addPoints();
@@ -146,12 +144,17 @@ public class MediumPC implements PlayerController {
 			if (playerId == PlayerId.PLAYER2)
 				playerAttributes.addPoints();
 		}
+
+		makeDecision(decision);
+
+	}
+
+	public void makeDecision(int decision) {
+		gameController.wakeUpGCr();
+
 		playerAttributes.setPlayerDecision(PlayerDecision.NEW_GAME);
-		this.logic = new Logic(gameController);
-		if (gameController.getGamestate() == GameState.END_INIT_ALL) {
+		if (gameController.getGamestate() == GameState.END_INIT_ALL)
 			gameController.analyseDecision();
-			gameController.wakeUpGCr();
-		}
 	}
 
 	@Override
@@ -198,6 +201,18 @@ public class MediumPC implements PlayerController {
 
 	@Override
 	public void setPlayerId(PlayerId playerId) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void setOppColor(Color color) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void setOppName(String name) {
 		// TODO Auto-generated method stub
 
 	}

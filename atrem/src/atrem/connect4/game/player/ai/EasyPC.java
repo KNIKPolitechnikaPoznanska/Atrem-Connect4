@@ -13,17 +13,16 @@ import atrem.connect4.game.player.PlayerAttributes;
 import atrem.connect4.game.player.PlayerController;
 import atrem.connect4.game.player.PlayerDecision;
 import atrem.connect4.game.player.PlayerId;
-import atrem.connect4.swing.DialogInformationBoxes;
 
 public class EasyPC implements PlayerController {
 
 	private PlayerAttributes playerAttributes;
 	private GameController gameController;
-	private DialogInformationBoxes informationBoxes;
 	private Board board;
 	private ExecutorService executor = Executors.newSingleThreadExecutor();
 	private PlayerId playerId;
 	private Color playerColor, opponentColor;
+	private int decision;
 
 	public EasyPC(GameController gameController,
 			PlayerAttributes playerAttributes, int playerPoints) {
@@ -32,7 +31,6 @@ public class EasyPC implements PlayerController {
 		this.playerId = playerAttributes.getPlayerId();
 		board = gameController.getBoard();
 		gameController.wakeUpGCr();
-		informationBoxes = new DialogInformationBoxes();
 		this.playerColor = playerAttributes.getPlayerColor();
 	}
 
@@ -84,7 +82,7 @@ public class EasyPC implements PlayerController {
 
 	@Override
 	public void endOfGame(ResultState resultGame) {
-		gameController.wakeUpGCr();
+		decision = 0;
 		if (resultGame == ResultState.PLAYER_1_WIN) {
 			if (playerId == PlayerId.PLAYER1)
 				playerAttributes.addPoints();
@@ -93,11 +91,17 @@ public class EasyPC implements PlayerController {
 			if (playerId == PlayerId.PLAYER2)
 				playerAttributes.addPoints();
 		}
+
+		makeDecision(decision);
+
+	}
+
+	public void makeDecision(int decision) {
+		gameController.wakeUpGCr();
+
 		playerAttributes.setPlayerDecision(PlayerDecision.NEW_GAME);
-		if (gameController.getGamestate() == GameState.END_INIT_ALL) {
+		if (gameController.getGamestate() == GameState.END_INIT_ALL)
 			gameController.analyseDecision();
-			gameController.wakeUpGCr();
-		}
 	}
 
 	@Override
@@ -126,6 +130,18 @@ public class EasyPC implements PlayerController {
 	public void setPlayerId(PlayerId playerId) {
 		playerAttributes.setPlayerId(playerId);
 		System.out.println("jestem w setId" + playerId);
+
+	}
+
+	@Override
+	public void setOppColor(Color color) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void setOppName(String name) {
+		// TODO Auto-generated method stub
 
 	}
 

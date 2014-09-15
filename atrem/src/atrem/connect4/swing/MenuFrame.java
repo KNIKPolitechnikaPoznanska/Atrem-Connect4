@@ -22,6 +22,7 @@ public class MenuFrame extends JFrame {
 		getContentPane().add(menuPanel);
 		setBounds(200, 200, 470, 350);
 		setResizable(false);
+		setVisible(true);
 
 	}
 }

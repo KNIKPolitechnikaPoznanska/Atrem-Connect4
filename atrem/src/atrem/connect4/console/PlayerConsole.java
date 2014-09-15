@@ -5,9 +5,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import atrem.connect4.game.GameController;
+import atrem.connect4.game.GameState;
 import atrem.connect4.game.ResultState;
 import atrem.connect4.game.player.PlayerAttributes;
 import atrem.connect4.game.player.PlayerController;
+import atrem.connect4.game.player.PlayerDecision;
 import atrem.connect4.game.player.PlayerId;
 
 /*
@@ -21,13 +23,18 @@ public class PlayerConsole implements PlayerController {
 	private ExecutorService executor = Executors.newSingleThreadExecutor();
 	private GUIConsole guiConsole;
 	private int emptySpot;
-	private int slot;
+	private int slot, decision;
 	private int playerPoints;
+	private PlayerId playerId;
+	private Color playerColor;
 
 	public PlayerConsole(GameController gameController,
 			PlayerAttributes playerAttributes) {
 		this.gameController = gameController;
 		this.playerAttributes = playerAttributes;
+		this.playerId = playerAttributes.getPlayerId();
+		this.playerColor = playerAttributes.getPlayerColor();
+
 		keyHandler = new KeyHandler(gameController.getBoard());
 		guiConsole = new GUIConsole(gameController);
 		gameController.wakeUpGCr();
@@ -85,6 +92,29 @@ public class PlayerConsole implements PlayerController {
 	@Override
 	public void endOfGame(ResultState resultGame) {
 		guiConsole.showResult(gameController);
+		guiConsole.askDecision();
+		decision = keyHandler.getDecision();
+		System.out.println(decision + " decision");
+		makeDecision(decision);
+	}
+
+	public void makeDecision(int decision) {
+		gameController.wakeUpGCr();
+		if (decision == 1) {
+			playerAttributes.setPlayerDecision(PlayerDecision.MENU);
+
+		}
+		if (decision == 0) { // tak gram dalej
+			playerAttributes.setPlayerDecision(PlayerDecision.NEW_GAME);
+
+		}
+		if (decision == 2) {// zamknij
+			playerAttributes.setPlayerDecision(PlayerDecision.END_GAME);
+
+			return;
+		}
+		if (gameController.getGamestate() == GameState.END_INIT_ALL)
+			gameController.analyseDecision();
 	}
 
 	@Override
@@ -94,14 +124,12 @@ public class PlayerConsole implements PlayerController {
 
 	@Override
 	public PlayerAttributes getPlayerAttributes() {
-		// TODO Auto-generated method stub
-		return null;
+		return playerAttributes;
 	}
 
 	@Override
 	public Color getColor() {
-		// TODO Auto-generated method stub
-		return null;
+		return playerColor;
 	}
 
 	@Override
@@ -112,6 +140,18 @@ public class PlayerConsole implements PlayerController {
 
 	@Override
 	public void setPlayerId(PlayerId playerId) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void setOppColor(Color color) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void setOppName(String name) {
 		// TODO Auto-generated method stub
 
 	}

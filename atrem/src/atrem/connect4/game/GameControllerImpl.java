@@ -89,6 +89,7 @@ public class GameControllerImpl implements Runnable, GameController {
 		if (player1 instanceof SwingPresenter) {
 			player1 = new SwingPresenter(this, player1Attributes, player2Color,
 					player1.getPlayerPoints());
+
 		} else
 			wakeUpGCr();
 		if (player2 instanceof SwingPresenter) {

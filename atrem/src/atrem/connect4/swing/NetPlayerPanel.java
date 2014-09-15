@@ -55,7 +55,7 @@ public class NetPlayerPanel extends JPanel {
 
 			}
 		});
-		btnKoloretonu.setBounds(160, 154, 99, 23);
+		btnKoloretonu.setBounds(160, 154, 120, 35);
 		add(btnKoloretonu);
 
 		lblNewLabel_1 = new JLabel("Wybierz sw\u00F3j kolor");

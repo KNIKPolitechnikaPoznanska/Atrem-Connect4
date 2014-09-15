@@ -16,18 +16,23 @@ public class GUIConsole {
 		this.gameController = gameController;
 	}
 
+	public void askDecision() {
+		System.out
+				.println("\n\n\n Co teraz?\n0 - Nowa gra\n1 - Menu \n2 - Koniec");
+	}
+
 	public void displayGame() {
 		drawBoard(gameController.getBoard());
 		drawSlots(gameController.getBoard().getSlots());
 		switch (gameController.getPlayerTurn()) {
-			case PLAYER1 :
-				this.writeCurrentPlayer(gameController.getPlayer1());
-				break;
-			case PLAYER2 :
-				this.writeCurrentPlayer(gameController.getPlayer2());
-				break;
-			default :
-				this.displayParagraph();
+		case PLAYER1:
+			this.writeCurrentPlayer(gameController.getPlayer1());
+			break;
+		case PLAYER2:
+			this.writeCurrentPlayer(gameController.getPlayer2());
+			break;
+		default:
+			this.displayParagraph();
 		}
 	}
 
@@ -49,15 +54,15 @@ public class GUIConsole {
 
 	private void drawHole(HoleState holeTmp) {
 		switch (holeTmp) {
-			case EMPTY :
-				System.out.print("|O|");
-				break;
-			case PLAYER1 :
-				System.out.print("|1|");
-				break;
-			case PLAYER2 :
-				System.out.print("|2|");
-				break;
+		case EMPTY:
+			System.out.print("|O|");
+			break;
+		case PLAYER1:
+			System.out.print("|1|");
+			break;
+		case PLAYER2:
+			System.out.print("|2|");
+			break;
 		}
 	}
 
@@ -114,19 +119,19 @@ public class GUIConsole {
 	 */
 	public void showResult(GameController gameController) {
 		switch (gameController.getResult()) {
-			case DRAW :
-				System.out.println("Gra bez rostrzygniecia \n Remis.");
-				break;
-			case PLAYER_1_WIN :
-				System.out.println("	Wygral‚: "
-						+ gameController.getPlayer1().getName());
-				break;
-			case PLAYER_2_WIN :
-				System.out.println("Wygral‚ "
-						+ gameController.getPlayer2().getName());
-				break;
-			default :
-				break;
+		case DRAW:
+			System.out.println("Gra bez rostrzygniecia \n Remis.");
+			break;
+		case PLAYER_1_WIN:
+			System.out.println("	Wygral‚: "
+					+ gameController.getPlayer1().getName());
+			break;
+		case PLAYER_2_WIN:
+			System.out.println("Wygral‚ "
+					+ gameController.getPlayer2().getName());
+			break;
+		default:
+			break;
 		}
 	}
 }

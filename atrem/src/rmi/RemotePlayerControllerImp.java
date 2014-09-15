@@ -94,7 +94,7 @@ public class RemotePlayerControllerImp extends UnicastRemoteObject implements
 	}
 
 	@Override
-	public void setOppColor(Color color) {
+	public void setOppColor(Color color) throws RemoteException {
 		playerController.setOppColor(color);
 
 	}

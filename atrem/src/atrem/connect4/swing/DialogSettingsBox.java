@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
@@ -13,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -20,6 +20,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 
 import atrem.connect4.Connect4Swing;
@@ -51,6 +53,7 @@ public class DialogSettingsBox extends JDialog {
 	private Color token1Color, token2Color;
 	protected Color color1 = new Color(227, 252, 0), color2 = new Color(252, 0,
 			67);
+	private JFrame menu;
 
 	/**
 	 * Create the settings dialog.
@@ -71,7 +74,8 @@ public class DialogSettingsBox extends JDialog {
 	 * Klikniêcie guzika "Anuluj"
 	 */
 	private void cancelButtonPressed() {
-		System.exit(0);
+		menu = new MenuFrame();
+		dispose();
 	}
 
 	/**
@@ -119,6 +123,7 @@ public class DialogSettingsBox extends JDialog {
 
 		return true;
 	}
+
 	/**
 	 * Ustawia sprawdzone wartoœci z pól TxtField
 	 * 
@@ -157,21 +162,21 @@ public class DialogSettingsBox extends JDialog {
 			if (Nmb == 1) {
 				rBConsole1.setEnabled(false);
 				rBSwing1.setEnabled(false);
-				rBMulti1.setEnabled(false);
+
 			} else {
 				rBConsole2.setEnabled(false);
 				rBSwing2.setEnabled(false);
-				rBMulti2.setEnabled(false);
+
 			}
 		} else if (selItem == GameConfig.CHuman) {
 			if (Nmb == 1) {
 				rBConsole1.setEnabled(true);
 				rBSwing1.setEnabled(true);
-				rBMulti1.setEnabled(true);
+
 			} else {
 				rBConsole2.setEnabled(true);
 				rBSwing2.setEnabled(true);
-				rBMulti2.setEnabled(true);
+
 			}
 		}
 
@@ -214,8 +219,7 @@ public class DialogSettingsBox extends JDialog {
 		setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 		setResizable(false);
 
-		buttonPanel.setBorder(BorderFactory
-				.createLineBorder(new java.awt.Color(0, 0, 0)));
+		// buttonPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
 		buttonStart.setFont(new Font("Tahoma", 0, 24)); // NOI18N
 		buttonStart.setMnemonic('s');
@@ -239,7 +243,7 @@ public class DialogSettingsBox extends JDialog {
 
 		buttonExit.setFont(new Font("Tahoma", 0, 24)); // NOI18N
 		buttonExit.setMnemonic('e');
-		buttonExit.setText("Exit");
+		buttonExit.setText("Menu");
 		buttonExit.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -297,12 +301,12 @@ public class DialogSettingsBox extends JDialog {
 																Short.MAX_VALUE))
 										.addGap(8, 8, 8)));
 
-		jTabbedPane.setBackground(new java.awt.Color(51, 200, 250));
-		jTabbedPane.setBorder(BorderFactory.createEtchedBorder());
+		jTabbedPane.setBackground(new java.awt.Color(255, 102, 51));
+		// jTabbedPane.setBorder(BorderFactory.createEtchedBorder());
 		jTabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 		jTabbedPane.setFont(new Font("Tahoma", 0, 20)); // NOI18N
 
-		playerSetPanel.setBackground(new java.awt.Color(51, 204, 255));
+		playerSetPanel.setBackground(Color.orange);
 		playerSetPanel.setFont(new Font("Tahoma", 0, 20)); // NOI18N
 
 		jLabel2.setFont(new Font("Tahoma", 0, 20)); // NOI18N
@@ -364,12 +368,12 @@ public class DialogSettingsBox extends JDialog {
 
 		buttonGroup1.add(rBSwing1);
 		rBSwing1.setFont(new Font("Tahoma", 0, 19)); // NOI18N
-		rBSwing1.setText("Swing");
+		rBSwing1.setText("GUI");
 		rBSwing1.setSelected(true);
 
-		buttonGroup1.add(rBMulti1);
-		rBMulti1.setFont(new Font("Tahoma", 0, 19)); // NOI18N
-		rBMulti1.setText("Multiplayer");
+		// buttonGroup1.add(rBMulti1);
+		// rBMulti1.setFont(new Font("Tahoma", 0, 19)); // NOI18N
+		// rBMulti1.setText("Multiplayer");
 
 		buttonGroup2.add(rBConsole2);
 		rBConsole2.setFont(new Font("Tahoma", 0, 19)); // NOI18N
@@ -377,12 +381,12 @@ public class DialogSettingsBox extends JDialog {
 
 		buttonGroup2.add(rBSwing2);
 		rBSwing2.setFont(new Font("Tahoma", 0, 19)); // NOI18N
-		rBSwing2.setText("Swing");
+		rBSwing2.setText("GUI");
 		rBSwing2.setSelected(true);
 
-		buttonGroup2.add(rBMulti2);
-		rBMulti2.setFont(new Font("Tahoma", 0, 19)); // NOI18N
-		rBMulti2.setText("Multiplayer");
+		// buttonGroup2.add(rBMulti2);
+		// rBMulti2.setFont(new Font("Tahoma", 0, 19)); // NOI18N
+		// rBMulti2.setText("Multiplayer");
 
 		plTypeBox1.setFont(new Font("Tahoma", 0, 20)); // NOI18N
 		plTypeBox1.setModel(new DefaultComboBoxModel<String>(
@@ -489,8 +493,8 @@ public class DialogSettingsBox extends JDialog {
 																												playerSetPanelLayout
 																														.createParallelGroup(
 																																GroupLayout.Alignment.LEADING)
-																														.addComponent(
-																																rBMulti1)
+																														// .addComponent(
+																														// rBMulti1)
 																														.addComponent(
 																																rBSwing1)
 																														.addComponent(
@@ -523,8 +527,8 @@ public class DialogSettingsBox extends JDialog {
 																																rBConsole2)
 																														.addComponent(
 																																rBSwing2)
-																														.addComponent(
-																																rBMulti2)
+																														// .addComponent(
+																														// rBMulti2)
 																														.addComponent(
 																																buttonColor2,
 																																GroupLayout.PREFERRED_SIZE,
@@ -636,9 +640,7 @@ public class DialogSettingsBox extends JDialog {
 																		.addComponent(
 																				rBSwing1)
 																		.addPreferredGap(
-																				LayoutStyle.ComponentPlacement.UNRELATED)
-																		.addComponent(
-																				rBMulti1))
+																				LayoutStyle.ComponentPlacement.UNRELATED))
 														.addGroup(
 																playerSetPanelLayout
 																		.createSequentialGroup()
@@ -649,14 +651,13 @@ public class DialogSettingsBox extends JDialog {
 																		.addComponent(
 																				rBSwing2)
 																		.addPreferredGap(
-																				LayoutStyle.ComponentPlacement.UNRELATED)
-																		.addComponent(
-																				rBMulti2)))
+																				LayoutStyle.ComponentPlacement.UNRELATED)))
 										.addContainerGap(22, Short.MAX_VALUE)));
 
 		jTabbedPane.addTab("Ustawienia graczy", playerSetPanel);
 
-		boardSetPanel.setBackground(new java.awt.Color(51, 240, 240));
+		boardSetPanel.setBackground(Color.orange);// new java.awt.Color(51, 240,
+													// 240)
 
 		jLabel1.setFont(new Font("Tahoma", 0, 21)); // NOI18N
 		jLabel1.setText("Sloty: ");
@@ -732,6 +733,8 @@ public class DialogSettingsBox extends JDialog {
 										.addContainerGap(242, Short.MAX_VALUE)));
 
 		jTabbedPane.addTab("Ustawienia planszy", boardSetPanel);
+		UIManager.put("TabbedPane.selected", Color.orange);
+		SwingUtilities.updateComponentTreeUI(jTabbedPane);
 
 		GroupLayout layout = new GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);

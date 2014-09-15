@@ -38,6 +38,24 @@ public class KeyHandler extends KeyAdapter {
 		}
 	}
 
+	public int getDecision() {
+		@SuppressWarnings("resource")
+		Scanner input = new Scanner(System.in);
+		while (true) {
+			if (input.hasNextInt()) {
+				int inputInt = input.nextInt();
+				if (inputInt >= 0 || inputInt <= 2) {
+					return inputInt;
+				} else {
+					System.out.println("WprowadŸ liczbê z zakresu [4-n]");
+				}
+			} else {
+				System.out.println("WprowadŸ¸ liczbê!!!");
+				input.next();
+			}
+		}
+	}
+
 	public int getSlot() {
 		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
